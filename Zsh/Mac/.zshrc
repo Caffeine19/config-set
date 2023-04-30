@@ -14,7 +14,7 @@ ZSH_THEME="random"
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
 # If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" "candy" "duellj" "avit" "apple" "awesomepanda" "garyblessington" "wedisagree" "mira" "xiong-chiamiov-plus")
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "skaro" "candy" "arrow" "af-magic" "muse" "macovsky-ruby")
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -100,10 +100,10 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# export HOST_IP=$(cat /etc/resolv.conf |grep -oP '(?<=nameserver\ ).*')
-# export https_proxy="http://${HOST_IP}:7890";
-# export http_proxy="http://${HOST_IP}:7890";source /home/caffeinecat/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# pnpm
+export PNPM_HOME="/Users/caffeinecat/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
