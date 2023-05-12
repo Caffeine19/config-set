@@ -104,6 +104,25 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# export HOST_IP=$(cat /etc/resolv.conf |grep -oP '(?<=nameserver\ ).*')
-# export https_proxy="http://${HOST_IP}:7890";
-# export http_proxy="http://${HOST_IP}:7890";source /home/caffeinecat/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+function set_proxy(){
+  export HOST_IP=$(cat /etc/resolv.conf |grep -oP '(?<=nameserver\ ).*')
+  export https_proxy="http://${HOST_IP}:7890"
+  export HTTPS_PROXY="http://${HOST_IP}:7890"
+
+  export http_proxy="http://${HOST_IP}:7890"
+  export HTTP_PROXY="http://${HOST_IP}:7890"
+
+  echo "Proxy has been opended.Run 'curl www.google.com' to test ."
+}
+
+function unset_proxy(){
+  unset https_proxy
+  unset HTTPS_PROXY
+
+  unset http_proxy
+  unset HTTP_PROXY
+
+  echo "Proxy has benn closed."
+}
+
+set_proxy
