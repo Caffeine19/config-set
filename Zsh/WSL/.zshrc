@@ -14,7 +14,7 @@ ZSH_THEME="random"
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
 # If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" "candy" "duellj" "avit" "apple" "awesomepanda" "garyblessington" "wedisagree" "mira" "xiong-chiamiov-plus" "skaro" "arrow" "af-magic" "muse" "macovsky-ruby")
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" "candy" "duellj" "avit" "apple" "awesomepanda" "garyblessington" "wedisagree" "mira" "xiong-chiamiov-plus" "skaro" "arrow" "af-magic" "muse" "macovsky-ruby" "fox")
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -126,3 +126,6 @@ function unset_proxy(){
 }
 
 set_proxy
+
+#GO
+export PATH=$PATH:$(go env GOPATH)/bin
