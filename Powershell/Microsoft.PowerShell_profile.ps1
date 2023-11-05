@@ -18,7 +18,8 @@ function DevInit {
     "$env:USERPROFILE\Desktop\HBuilder X.lnk",
     "$env:USERPROFILE\Desktop\Visual Studio Code.lnk",
     "$env:USERPROFILE\Desktop\WPS Office.lnk",
-    "$env:USERPROFILE\Desktop\gitkraken.lnk"
+    "$env:USERPROFILE\Desktop\gitkraken.lnk",
+    "$env:USERPROFILE\Desktop\notepad.lnk"
   )
 
   $shell = New-Object -ComObject WScript.Shell
