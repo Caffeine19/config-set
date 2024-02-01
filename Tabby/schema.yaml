@@ -1,8 +1,4 @@
-version: 3
-profiles: []
 hotkeys:
-  toggle-window:
-    - Ctrl-Space
   copy-current-path: []
   ctrl-c:
     - Ctrl-C
@@ -59,10 +55,12 @@ hotkeys:
   serial:
     - Alt-K
   restart-serial-session: []
-  new-window:
-    - Ctrl-Shift-N
   new-tab:
     - Ctrl-Shift-T
+  toggle-window:
+    - Ctrl-Space
+  new-window:
+    - Ctrl-Shift-N
   profile: {}
   profile-selectors: {}
   toggle-fullscreen:
@@ -89,6 +87,8 @@ hotkeys:
     - Ctrl-Shift
   duplicate-tab: []
   restart-tab: []
+  reconnect-tab: []
+  disconnect-tab: []
   explode-tab:
     - Ctrl-Shift-.
   combine-tabs:
@@ -163,91 +163,296 @@ hotkeys:
     - Ctrl-Shift-E
   command-selector:
     - Ctrl-Shift-P
-  reconnect-tab: []
 terminal:
-  searchOptions: {}
-  colorScheme:
-    name: 3024 Night
-    foreground: "#a5a2a2"
-    background: "#090300"
-    cursor: "#a5a2a2"
-    colors:
-      - "#090300"
-      - "#db2d20"
-      - "#01a252"
-      - "#fded02"
-      - "#01a0e4"
-      - "#a16a94"
-      - "#b5e4f4"
-      - "#a5a2a2"
-      - "#5c5855"
-      - "#e8bbd0"
-      - "#3a3432"
-      - "#4a4543"
-      - "#807d7c"
-      - "#d6d5d4"
-      - "#cdab53"
-      - "#f7f7f7"
-  cursor: beam
-  font: MesloLGL NF
-  background: colorScheme
-  customColorSchemes:
-    - name: "*Tokyo Night"
-      foreground: "#787c99"
-      background: "#16161e"
-      cursor: "#ffffff"
-      colors:
-        - "#363b54"
-        - "#f7768e"
-        - "#41a6b5"
-        - "#e0af68"
-        - "#7aa2f7"
-        - "#bb9af7"
-        - "#7dcfff"
-        - "#787c99"
-        - "#363b54"
-        - "#f7768e"
-        - "#41a6b5"
-        - "#e0af68"
-        - "#7aa2f7"
-        - "#bb9af7"
-        - "#7dcfff"
-        - "#787c99"
-      selection: "#ffffff"
-    - name: "*Tokyo Night Bright"
-      foreground: "#c0caf5"
-      background: "#1A1B26"
-      cursor: "#C0CAF5"
-      colors:
-        - "#15161E"
-        - "#F7768E"
-        - "#9ECE6A"
-        - "#E0AF68"
-        - "#7AA2F7"
-        - "#BB9AF7"
-        - "#7DCFFF"
-        - "#A9B1D6"
-        - "#15161E"
-        - "#F7768E"
-        - "#9ECE6A"
-        - "#E0AF68"
-        - "#7AA2F7"
-        - "#BB9AF7"
-        - "#7DCFFF"
-        - "#A9B1D6"
-  fontSize: 15
-  focusFollowsMouse: true
+  frontend: xterm-webgl
+  fontWeight: 400
+  fontWeightBold: 700
+  fallbackFont: null
+  linePadding: 1
+  bell: 'off'
+  bracketedPaste: true
+  background: theme
   ligatures: true
-ssh: {}
+  cursor: block
+  cursorBlink: true
+  hideTabIndex: false
+  showTabProfileIcon: true
+  hideCloseButton: false
+  hideTabOptionsButton: false
+  rightClick: clipboard
+  pasteOnMiddleClick: false
+  copyOnSelect: true
+  copyAsHTML: true
+  scrollOnInput: true
+  altIsMeta: false
+  wordSeparator: ' ()[]{}''"'
+  colorScheme:
+    name: Catppuccin Mocha Darker
+    foreground: '#cdd6f4'
+    background: hsl(240, 21%, 8%)
+    selection: null
+    cursor: '#f5e0dc'
+    cursorAccent: null
+    colors:
+      - '#45475a'
+      - '#f38ba8'
+      - '#a6e3a1'
+      - '#f9e2af'
+      - '#89b4fa'
+      - '#f5c2e7'
+      - '#94e2d5'
+      - '#bac2de'
+      - '#585b70'
+      - '#f38ba8'
+      - '#a6e3a1'
+      - '#f9e2af'
+      - '#89b4fa'
+      - '#f5c2e7'
+      - '#94e2d5'
+      - '#a6adc8'
+  lightColorScheme:
+    name: Catppuccin Mocha Darker
+    foreground: '#cdd6f4'
+    background: hsl(240, 21%, 8%)
+    selection: null
+    cursor: '#f5e0dc'
+    cursorAccent: null
+    colors:
+      - '#45475a'
+      - '#f38ba8'
+      - '#a6e3a1'
+      - '#f9e2af'
+      - '#89b4fa'
+      - '#f5c2e7'
+      - '#94e2d5'
+      - '#bac2de'
+      - '#585b70'
+      - '#f38ba8'
+      - '#a6e3a1'
+      - '#f9e2af'
+      - '#89b4fa'
+      - '#f5c2e7'
+      - '#94e2d5'
+      - '#a6adc8'
+  customColorSchemes:
+    - name: '*Tokyo Night'
+      foreground: '#787c99'
+      background: '#16161e'
+      cursor: '#ffffff'
+      colors:
+        - '#363b54'
+        - '#f7768e'
+        - '#41a6b5'
+        - '#e0af68'
+        - '#7aa2f7'
+        - '#bb9af7'
+        - '#7dcfff'
+        - '#787c99'
+        - '#363b54'
+        - '#f7768e'
+        - '#41a6b5'
+        - '#e0af68'
+        - '#7aa2f7'
+        - '#bb9af7'
+        - '#7dcfff'
+        - '#787c99'
+      selection: '#ffffff'
+    - name: '*Tokyo Night Bright'
+      foreground: '#c0caf5'
+      background: hsl(235, 19%, 8%)
+      cursor: '#C0CAF5'
+      colors:
+        - '#15161E'
+        - '#F7768E'
+        - '#9ECE6A'
+        - '#E0AF68'
+        - '#7AA2F7'
+        - '#BB9AF7'
+        - '#7DCFFF'
+        - '#A9B1D6'
+        - '#15161E'
+        - '#F7768E'
+        - '#9ECE6A'
+        - '#E0AF68'
+        - '#7AA2F7'
+        - '#BB9AF7'
+        - '#7DCFFF'
+        - '#A9B1D6'
+    - name: Catppuccin Mocha
+      foreground: '#cdd6f4'
+      background: '#1e1e2e'
+      selection: null
+      cursor: '#f5e0dc'
+      cursorAccent: null
+      colors:
+        - '#45475a'
+        - '#f38ba8'
+        - '#a6e3a1'
+        - '#f9e2af'
+        - '#89b4fa'
+        - '#f5c2e7'
+        - '#94e2d5'
+        - '#bac2de'
+        - '#585b70'
+        - '#f38ba8'
+        - '#a6e3a1'
+        - '#f9e2af'
+        - '#89b4fa'
+        - '#f5c2e7'
+        - '#94e2d5'
+        - '#a6adc8'
+    - name: Night Owl Darker
+      foreground: '#d6deeb'
+      background: hsl(207, 95%, 5%)
+      cursor: '#80a4c2'
+      colors:
+        - '#011627'
+        - '#ef5350'
+        - '#22da6e'
+        - '#addb67'
+        - '#82aaff'
+        - '#c792ea'
+        - '#21c7a8'
+        - '#ffffff'
+        - '#969696'
+        - '#ef5350'
+        - '#22da6e'
+        - '#ffeb95'
+        - '#82aaff'
+        - '#c792ea'
+        - '#7fdbca'
+        - '#ffffff'
+    - name: '*Tokyo Night Darker'
+      foreground: '#787c99'
+      background: hsl(240, 15%, 8%)
+      cursor: '#ffffff'
+      colors:
+        - '#363b54'
+        - '#f7768e'
+        - '#41a6b5'
+        - '#e0af68'
+        - '#7aa2f7'
+        - '#bb9af7'
+        - '#7dcfff'
+        - '#787c99'
+        - '#363b54'
+        - '#f7768e'
+        - '#41a6b5'
+        - '#e0af68'
+        - '#7aa2f7'
+        - '#bb9af7'
+        - '#7dcfff'
+        - '#787c99'
+      selection: '#ffffff'
+    - name: Catppuccin Mocha Darker
+      foreground: '#cdd6f4'
+      background: hsl(240, 21%, 8%)
+      selection: null
+      cursor: '#f5e0dc'
+      cursorAccent: null
+      colors:
+        - '#45475a'
+        - '#f38ba8'
+        - '#a6e3a1'
+        - '#f9e2af'
+        - '#89b4fa'
+        - '#f5c2e7'
+        - '#94e2d5'
+        - '#bac2de'
+        - '#585b70'
+        - '#f38ba8'
+        - '#a6e3a1'
+        - '#f9e2af'
+        - '#89b4fa'
+        - '#f5c2e7'
+        - '#94e2d5'
+        - '#a6adc8'
+  warnOnMultilinePaste: true
+  searchRegexAlwaysEnabled: false
+  searchOptions:
+    regex: false
+    wholeWord: false
+    caseSensitive: false
+  detectProgress: true
+  scrollbackLines: 25000
+  drawBoldTextInBrightColors: true
+  sixel: true
+  minimumContrastRatio: 4
+  trimWhitespaceOnPaste: true
+  font: MesloLGS Nerd Font
+  autoOpen: false
+  useConPTY: true
+  environment: {}
+  setComSpec: false
+  profile: local:powershell
+  showBuiltinProfiles: true
+  showRecentProfiles: 3
+  focusFollowsMouse: true
+  identification: wt
+ssh:
+  warnOnClose: false
+  winSCPPath: null
+  agentType: auto
+  agentPath: null
+  x11Display: null
+  knownHosts: []
+  verifyHostKeys: true
 configSync:
-  parts: {}
-clickableLinks: {}
-accessibility: {}
+  configID: null
+  auto: false
+  parts:
+    hotkeys: true
+    appearance: true
+    vault: true
+clickableLinks:
+  modifier: null
+accessibility:
+  animations: true
 appearance:
+  dock: 'off'
+  dockScreen: current
+  dockFill: 0.5
+  dockSpace: 1
+  dockHideOnBlur: false
+  dockAlwaysOnTop: true
+  tabsLocation: top
+  tabsInFullscreen: false
+  cycleTabs: true
   theme: Follow the color scheme
-hacks: {}
+  css: |-
+    split-tab>.child {
+        position: absolute;
+        transition: .125s all;
+        opacity: 1; 
+    }
+  vibrancyType: blur
+  lastTabClosesWindow: false
+  colorSchemeMode: dark
+  opacity: 1
+  spaciness: 1.1
+profiles: []
+groups: []
+profileDefaults:
+  ssh:
+    disableDynamicTitle: true
+recoverTabs: true
+enableAnalytics: true
 enableWelcomeTab: false
-pluginBlacklist: []
-profileDefaults: {}
-providerBlacklist: []
+electronFlags:
+  - - force_discrete_gpu
+    - '0'
+enableAutomaticUpdates: true
+version: 7
+vault: null
+encrypted: false
+enableExperimentalFeatures: false
 commandBlacklist: []
+providerBlacklist: []
+profileBlacklist: []
+hacks:
+  disableGPU: false
+  disableVibrancyWhileDragging: false
+  enableFluentBackground: false
+language: null
+defaultQuickConnectProvider: ssh
+pluginBlacklist: []
