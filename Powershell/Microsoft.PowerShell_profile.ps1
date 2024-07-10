@@ -1,4 +1,4 @@
-oh-my-posh init pwsh --config 'C:\Users\cafe-laptop\AppData\Local\Programs\oh-my-posh\themes\wopian.omp.json' | Invoke-Expression
+oh-my-posh init pwsh --config 'C:\Users\93959\AppData\Local\Programs\oh-my-posh\themes\wopian.omp.json' | Invoke-Expression
 #zsh | tokyo | emodipt-extend | mojada | 1_shell | wopian | ys | space
 
 Import-Module posh-git
@@ -10,44 +10,24 @@ Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
 # Set-PSReadLineOption -EditMode Vi
 # Set-PSReadlineOption -ViModeIndicator Cursor
 
-function DevInit {
-  Write-Host "DevInit"
- 
+function  SetProxy {
+    Set-Variable https_proxy=http://127.0.0.1:7890
+    Set-Variable http_proxy=http://127.0.0.1:7890
 
-  $shortcutPaths = @(
-    "$env:USERPROFILE\Desktop\HBuilder X.lnk",
-    "$env:USERPROFILE\Desktop\Visual Studio Code.lnk",
-    "$env:USERPROFILE\Desktop\WPS Office.lnk",
-    "$env:USERPROFILE\Desktop\gitkraken.lnk",
-    "$env:USERPROFILE\Desktop\notepad.lnk"
-  )
-
-  $shell = New-Object -ComObject WScript.Shell
-
-  foreach ($shortcutPath in $shortcutPaths) {
-    $shortcut = $shell.CreateShortcut($shortcutPath)
-    $targetPath = $shortcut.TargetPath
-    Start-Process $targetPath
-  }
+    Write-Host "Proxy has been set;"
+    Write-Host "Run 'TestProxy' to test it;"
+    Write-Host "Run 'RemoveProxy' to remove it;"
 }
 
-function  OpenProxy{
-  Set-Variable https_proxy=http://127.0.0.1:7890
-  Set-Variable http_proxy=http://127.0.0.1:7890
-
-  Write-Host "Proxy has been opened;"
-  Write-Host "Run 'curl www.google.com' to test it;"
-  Write-Host "Run 'CloseProxy' to close it"
-
-}
-
-function  CloseProxy{
-  Remove-Variable -Name http_proxy
-  Remove-Variable -Name https_proxy
-  Write-Host "Proxy has been closed"
+function  RemoveProxy {
+    Remove-Variable -Name http_proxy
+    Remove-Variable -Name https_proxy
+    Write-Host "Proxy has been removed"
 }
 
 function TestProxy {
-  Invoke-WebRequest "wwww.google.com"
-  
+    Invoke-WebRequest "wwww.google.com"
 }
+
+# enable zoxide
+Invoke-Expression (& { (zoxide init powershell | Out-String) })
