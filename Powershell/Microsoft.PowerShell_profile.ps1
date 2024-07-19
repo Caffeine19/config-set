@@ -1,5 +1,5 @@
-oh-my-posh init pwsh --config 'C:\Users\93959\AppData\Local\Programs\oh-my-posh\themes\wopian.omp.json' | Invoke-Expression
-#zsh | tokyo | emodipt-extend | mojada | 1_shell | wopian | ys | space
+oh-my-posh init pwsh --config 'C:\Users\93959\AppData\Local\Programs\oh-my-posh\themes\tokyonight_storm.omp.json' | Invoke-Expression
+#zsh | tokyo | emodipt-extend | mojada | 1_shell | wopian | ys | space | space-ship | tokyonight_storm
 
 Import-Module posh-git
 Import-Module Terminal-Icons
@@ -23,10 +23,6 @@ function  RemoveProxy {
     Remove-Variable -Name http_proxy
     Remove-Variable -Name https_proxy
     Write-Host "Proxy has been removed"
-}
-
-function TestProxy {
-    Invoke-WebRequest "wwww.google.com"
 }
 
 # enable zoxide
