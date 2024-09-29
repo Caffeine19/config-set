@@ -1,4 +1,4 @@
-oh-my-posh init pwsh --config 'C:\Users\93959\AppData\Local\Programs\oh-my-posh\themes\tokyonight_storm.omp.json' | Invoke-Expression
+oh-my-posh init pwsh --config 'C:\Users\93959\AppData\Local\Programs\oh-my-posh\themes\wopian.omp.json' | Invoke-Expression
 #zsh | tokyo | emodipt-extend | mojada | 1_shell | wopian | ys | space | space-ship | tokyonight_storm
 
 Import-Module posh-git
@@ -10,9 +10,10 @@ Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
 # Set-PSReadLineOption -EditMode Vi
 # Set-PSReadlineOption -ViModeIndicator Cursor
 
+# proxy 
 function  SetProxy {
-    Set-Variable https_proxy=http://127.0.0.1:7890
-    Set-Variable http_proxy=http://127.0.0.1:7890
+    Set-Variable https_proxy=http://127.0.0.1:7897
+    Set-Variable http_proxy=http://127.0.0.1:7897
 
     Write-Host "Proxy has been set;"
     Write-Host "Run 'TestProxy' to test it;"
@@ -24,6 +25,10 @@ function  RemoveProxy {
     Remove-Variable -Name https_proxy
     Write-Host "Proxy has been removed"
 }
+# proxy end
+
+# alias for lazygit
+Set-Alias -Name lg -Value lazygit
 
 # enable zoxide
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
