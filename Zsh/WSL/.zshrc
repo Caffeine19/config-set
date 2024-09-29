@@ -104,28 +104,30 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-function set_proxy(){
-  export HOST_IP=$(cat /etc/resolv.conf |grep -oP '(?<=nameserver\ ).*')
-  export https_proxy="http://${HOST_IP}:7890"
-  export HTTPS_PROXY="http://${HOST_IP}:7890"
+# didn't work any more
 
-  export http_proxy="http://${HOST_IP}:7890"
-  export HTTP_PROXY="http://${HOST_IP}:7890"
+# function set_proxy(){
+#   export HOST_IP=$(cat /etc/resolv.conf |grep -oP '(?<=nameserver\ ).*')
+#   export https_proxy="http://${HOST_IP}:7890"
+#   export HTTPS_PROXY="http://${HOST_IP}:7890"
 
-  echo "Proxy has been opended.Run 'curl www.google.com' to test ."
-}
+#   export http_proxy="http://${HOST_IP}:7890"
+#   export HTTP_PROXY="http://${HOST_IP}:7890"
 
-function unset_proxy(){
-  unset https_proxy
-  unset HTTPS_PROXY
+#   echo "Proxy has been opended.Run 'curl www.google.com' to test ."
+# }
 
-  unset http_proxy
-  unset HTTP_PROXY
+# function unset_proxy(){
+#   unset https_proxy
+#   unset HTTPS_PROXY
 
-  echo "Proxy has benn closed."
-}
+#   unset http_proxy
+#   unset HTTP_PROXY
 
-set_proxy
+#   echo "Proxy has benn closed."
+# }
+
+# set_proxy
 
 #GO
 export PATH=$PATH:$(go env GOPATH)/bin
