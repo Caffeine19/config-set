@@ -1,0 +1,34 @@
+" use system clipboard
+set clipboard^=unnamed,unnamedplus
+
+" junp between angle brackets
+set matchpairs+=<:>
+
+" leader key
+let mapleader=' '
+
+" source config
+noremap <leader>s :source ~/.ideavimrc<cr>
+
+" highlight search results
+set hlsearch
+
+" j j to escape insert mode
+inoremap jj <esc>
+
+" fold fix
+noremap j gj
+noremap k gk
+
+" case-insenstive search
+set ignorecase
+set smartcase
+
+" search while typing
+set incsearch
+
+" show hover
+map gh <Action>(ShowHoverInfo)
+
+
+" map <C-w> <Action>(ShowHoverInfo)
