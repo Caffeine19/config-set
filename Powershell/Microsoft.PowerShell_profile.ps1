@@ -30,5 +30,8 @@ function  RemoveProxy {
 # alias for lazygit
 Set-Alias -Name lg -Value lazygit
 
+# alias for idea
+Set-Alias -Name id -Value idea64.exe
+
 # enable zoxide
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
