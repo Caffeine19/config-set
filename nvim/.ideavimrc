@@ -8,7 +8,7 @@ set matchpairs+=<:>
 let mapleader=' '
 
 " source config
-noremap <leader>s :source ~/.ideavimrc<cr>
+noremap <leader>cs :source ~/.ideavimrc<cr>
 
 " highlight search results
 set hlsearch
@@ -30,5 +30,28 @@ set incsearch
 " show hover
 map gh <Action>(ShowHoverInfo)
 
+" window split
+map <leader>wv <Action>(SplitVertically)
 
-" map <C-w> <Action>(ShowHoverInfo)
+map <leader>wh <Action>(SplitHorizontally)
+
+map <leader>ww <Action>(Unsplit)
+
+map <leader>wa <Action>(UnSplitAll)
+
+
+" quick search
+map <leader>sc <Action>(GotoClass)
+
+map <leader>sf <Action>(GotoFile)
+
+map <leader>ss <Action>(GotoSymbol)
+
+map <leader>sa <Action>(GotoAction)
+
+map <leader>ug <Action>(FindUsages)
+map <leader>uu <Action>(ShowUsages)
+
+
+map <leader>vs <Action>(ViewSource)
+" map <leader>uu <Action>()
