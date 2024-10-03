@@ -102,7 +102,9 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alisa cls="clear"
+alias cls="clear"
+alias lg="lazygit"
+alias id="open -na 'Intellij IDEA.app'"
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
@@ -118,4 +120,10 @@ case ":$PATH:" in
 esac
 # pnpm end
 
+# console-ninja
 PATH=~/.console-ninja/.bin:$PATH
+# console-ninja end
+
+# zoxide
+eval "$(zoxide init zsh)"
+# zoxide end
