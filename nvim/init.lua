@@ -81,16 +81,6 @@ vim.keymap.set('n', '<leader>3', function()
     vscode.action("workbench.action.editorLayoutThreeColumns")
 end)
 
--- leadler + p -> pin
-vim.keymap.set('n', '<leader>p', function()
-    vscode.action("workbench.action.pinEditor")
-end)
-
--- leadler + P -> unpin
-vim.keymap.set('n', '<leader>P', function()
-    vscode.action("workbench.action.unpinEditor")
-end)
-
 -- leadler + , -> open use settings in json
 vim.keymap.set('n', '<leader>,', function()
     vscode.action("workbench.action.openSettingsJson")
@@ -119,4 +109,9 @@ end)
 -- leader + e + f -> focus on folders view
 vim.keymap.set('n', '<leader>ef', function()
     vscode.action("workbench.explorer.fileView.focus")
+end)
+
+-- leader + k -> show commands
+vim.keymap.set('n', '<leader>p', function()
+    vscode.action("workbench.action.showCommands")
 end)
