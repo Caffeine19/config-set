@@ -35,3 +35,6 @@ Set-Alias -Name id -Value idea64.exe
 
 # enable zoxide
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
+
+# enable fnm
+fnm env --use-on-cd --shell powershell | Out-String | Invoke-Expression
