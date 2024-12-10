@@ -105,6 +105,8 @@ source $ZSH/oh-my-zsh.sh
 alias cls="clear"
 alias lg="lazygit"
 alias id="open -na 'Intellij IDEA.app'"
+alias th="theme"
+alias ff="fastfetch"
 
 # pnpm
 export PNPM_HOME="/Users/caffeinecat/Library/pnpm"
@@ -123,3 +125,7 @@ export NVM_DIR="$HOME/.nvm"
 # zoxide
 eval "$(zoxide init zsh)"
 # zoxide en
+
+# haskell
+. ~/.ghcup/env
+# haskell end
