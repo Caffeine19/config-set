@@ -108,6 +108,10 @@ alias id="open -na 'Intellij IDEA.app'"
 alias th="theme"
 alias ff="fastfetch"
 
+alias ls="lsd --group-dirs first"
+alias ll="lsd -1 --group-dirs first"
+alias la="lsd -la --group-dirs first"
+
 # pnpm
 export PNPM_HOME="/Users/caffeinecat/Library/pnpm"
 case ":$PATH:" in
@@ -129,3 +133,5 @@ eval "$(zoxide init zsh)"
 # haskell
 . ~/.ghcup/env
 # haskell end
+
+PATH=~/.console-ninja/.bin:$PATH
