@@ -3,13 +3,11 @@ local vscode = require('vscode')
 -- navigate without expanding the block
 vim.cmd('nmap j gj')
 vim.cmd('nmap k gk')
+vim.cmd('vnoremap j gj')
+vim.cmd('vnoremap k gk')
 
--- junp between angle brackets
+-- jump between angle brackets
 vim.cmd('set matchpairs+=<:>')
-
--- todo
--- vim.cmd('vmap j gj')
--- vim.cmd('vmap k gk')
 
 -- vim.cmd('set relativenumber<cr>')
 vim.opt.clipboard = 'unnamedplus'
@@ -71,32 +69,32 @@ vim.keymap.set('n', '<leader>t', function()
     vscode.action("workbench.action.selectTheme")
 end)
 
--- leadler + 2 -> two panel
+-- leader + 2 -> two panel
 vim.keymap.set('n', '<leader>2', function()
     vscode.action("workbench.action.editorLayoutTwoColumns")
 end)
 
--- leadler + 3 -> 3 panel
+-- leader + 3 -> 3 panel
 vim.keymap.set('n', '<leader>3', function()
     vscode.action("workbench.action.editorLayoutThreeColumns")
 end)
 
--- leadler + , -> open use settings in json
+-- leader + , -> open use settings in json
 vim.keymap.set('n', '<leader>,', function()
     vscode.action("workbench.action.openSettingsJson")
 end)
 
--- leadler + f -> quick search
+-- leader + f -> quick search
 vim.keymap.set('n', '<leader>f', function()
     vscode.action("workbench.action.quickTextSearch")
 end)
 
--- leadler + a -> new file
+-- leader + a -> new file
 vim.keymap.set('n', '<leader>a', function()
     vscode.action("fileutils.newFileAtRoot")
 end)
 
--- leadler + A -> new folder
+-- leader + A -> new folder
 vim.keymap.set('n', '<leader>A', function()
     vscode.action("fileutils.newFolderAtRoot")
 end)
