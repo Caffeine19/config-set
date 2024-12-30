@@ -107,6 +107,7 @@ alias lg="lazygit"
 alias id="open -na 'Intellij IDEA.app'"
 alias th="theme"
 alias ff="fastfetch"
+alias cat="bat"
 
 alias ls="lsd --group-dirs first"
 alias ll="lsd -1 --group-dirs first"
@@ -134,4 +135,6 @@ eval "$(zoxide init zsh)"
 . ~/.ghcup/env
 # haskell end
 
+# console-ninja
 PATH=~/.console-ninja/.bin:$PATH
+# console-ninja end
