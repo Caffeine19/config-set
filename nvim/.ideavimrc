@@ -19,6 +19,8 @@ inoremap jj <esc>
 " fold fix
 noremap j gj
 noremap k gk
+vnoremap j gj
+vnoremap k gk
 
 " case-insenstive search
 set ignorecase
