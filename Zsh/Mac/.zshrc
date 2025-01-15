@@ -113,6 +113,12 @@ alias ls="lsd --group-dirs first"
 alias ll="lsd -1 --group-dirs first"
 alias la="lsd -la --group-dirs first"
 
+alias cz="pnpm czg"
+alias czw="pnpm -w czg"
+
+# git yesterday commits and copy to clipboard
+alias yw='git log --oneline --author="$(git config user.name)" --since=yesterday.midnight --until=midnight | pbcopy'
+
 # pnpm
 export PNPM_HOME="/Users/caffeinecat/Library/pnpm"
 case ":$PATH:" in
@@ -138,3 +144,20 @@ eval "$(zoxide init zsh)"
 # console-ninja
 PATH=~/.console-ninja/.bin:$PATH
 # console-ninja end
+
+# blacklist for themes
+ZSH_THEME_BLACKLIST=("agnoster" "trapd00r" "peepcode")
+
+# # if the current theme is in the blacklist, then load a random theme
+if [[ " ${ZSH_THEME_BLACKLIST[@]} " =~ " ${ZSH_THEME} " ]]; then
+    theme
+fi
+
+dislike_theme() {
+    # add the current theme to the blacklist
+    ZSH_THEME_BLACKLIST+=($ZSH_THEME)
+    # and update the .zshrc file
+    sed -i '' "s/ZSH_THEME_BLACKLIST=(/ZSH_THEME_BLACKLIST=(${ZSH_THEME_BLACKLIST} /" ~/.zshrc
+    # load a random theme
+    theme
+}
