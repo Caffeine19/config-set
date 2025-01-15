@@ -18,7 +18,33 @@ vim.opt.smartcase = true
 vim.g.mapleader = ' '
 
 -- leader + c -> edit neovim config file
-vim.cmd('nmap <leader>c :e ~/Appdata/local/nvim/init.lua<cr>')
+vim.cmd('nmap <leader>c :e ~/.config/nvim/init.lua<cr>')
+
+-- load plugins
+local Plug = vim.fn['plug#']
+vim.call('plug#begin')
+-- easy motion
+Plug('easymotion/vim-easymotion')
+vim.call('plug#end')
+
+-- <Leader>f{char} to move to {char}
+vim.keymap.set('n', '<Leader>f', '<Plug>(easymotion-overwin-f)')
+vim.keymap.set('', '<Leader>f', '<Plug>(easymotion-bd-f)')
+
+-- s{char}{char} to move to {char}{char}
+vim.keymap.set('n', 's', '<Plug>(easymotion-overwin-f2)')
+
+-- Move to line
+vim.keymap.set('n', '<Leader>L', '<Plug>(easymotion-overwin-line)')
+vim.keymap.set('', '<Leader>L', '<Plug>(easymotion-bd-jk)')
+
+-- Move to word
+vim.keymap.set('n', '<Leader>w', '<Plug>(easymotion-overwin-w)', {
+    silent = true
+})
+vim.keymap.set('', '<Leader>w', '<Plug>(easymotion-bd-w)', {
+    silent = true
+})
 
 if vim.g.vscode then
     -- vscode keybindings
@@ -117,10 +143,3 @@ if vim.g.vscode then
 else
     -- ordinary neovim
 end
-
--- local Plug = vim.fn['plug#']
--- vim.call('plug#begin')
--- -- easy motion
--- Plug('easymotion/vim-easymotion')
--- vim.call('plug#end')
-
