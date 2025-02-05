@@ -98,6 +98,12 @@ div.monaco-progress-container.quick-input-progress.done {
   justify-content: center !important;
 }
 
+
+/* 修复侧边栏github copilot 中的 file icon 样式错位 */
+.monaco-icon-label:before {
+  height: unset !important;
+}
+
 @keyframes breathing {
   0% {
     transform: scale(0.8);
