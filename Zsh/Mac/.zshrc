@@ -146,7 +146,7 @@ PATH=~/.console-ninja/.bin:$PATH
 # console-ninja end
 
 # blacklist for themes
-ZSH_THEME_BLACKLIST=("agnoster" "trapd00r" "peepcode")
+ZSH_THEME_BLACKLIST=("agnoster" "trapd00r" "peepcode" "arrow" "fino-time" "mh")
 
 # if the current theme is in the blacklist, then load a random theme
 if [[ " ${ZSH_THEME_BLACKLIST[@]} " =~ " ${ZSH_THEME} " ]]; then
