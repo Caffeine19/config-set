@@ -14,7 +14,7 @@ ZSH_THEME="random"
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
 # If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" "cloud" "pygmalion" "crunch" "dieter")
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -70,7 +70,7 @@ ZSH_THEME="random"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git themes golang history zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git themes golang history zsh-autosuggestions zsh-syntax-highlighting pnpm-shell-completion)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -102,22 +102,6 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias cls="clear"
-alias lg="lazygit"
-alias id="open -na 'Intellij IDEA.app'"
-alias th="theme"
-alias ff="fastfetch"
-alias cat="bat"
-
-alias ls="lsd --group-dirs first"
-alias ll="lsd -1 --group-dirs first"
-alias la="lsd -la --group-dirs first"
-
-alias cz="pnpm czg"
-alias czw="pnpm -w czg"
-
-# git yesterday commits and copy to clipboard
-alias yw='git log --oneline --author="$(git config user.name)" --since=yesterday.midnight --until=midnight | pbcopy'
 
 # pnpm
 export PNPM_HOME="/Users/caffeinecat/Library/pnpm"
@@ -141,23 +125,12 @@ eval "$(zoxide init zsh)"
 . ~/.ghcup/env
 # haskell end
 
-# console-ninja
+# console ninja
 PATH=~/.console-ninja/.bin:$PATH
-# console-ninja end
 
-# blacklist for themes
-ZSH_THEME_BLACKLIST=("agnoster" "trapd00r" "peepcode" "arrow" "fino-time" "mh")
+# Created by `pipx` on 2025-02-13 03:42:16
+export PATH="$PATH:/Users/caffeinecat/.local/bin"
 
-# if the current theme is in the blacklist, then load a random theme
-if [[ " ${ZSH_THEME_BLACKLIST[@]} " =~ " ${ZSH_THEME} " ]]; then
-    theme
-fi
-
-dislike_theme() {
-    # add the current theme to the blacklist
-    ZSH_THEME_BLACKLIST+=($ZSH_THEME)
-    # and update the .zshrc file
-    sed -i '' "s/ZSH_THEME_BLACKLIST=(/ZSH_THEME_BLACKLIST=(${ZSH_THEME_BLACKLIST} /" ~/.zshrc
-    # load a random theme
-    theme
-}
+# jetbrains
+___MY_VMOPTIONS_SHELL_FILE="${HOME}/.jetbrains.vmoptions.sh"
+if [ -f "${___MY_VMOPTIONS_SHELL_FILE}" ]; then . "${___MY_VMOPTIONS_SHELL_FILE}"; fi
