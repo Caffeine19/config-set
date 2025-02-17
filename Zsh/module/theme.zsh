@@ -1,5 +1,6 @@
 # blacklist for themes
 ZSH_THEME_BLACKLIST=(
+    "apple"
     "agnoster"
     "arrow"
     "bureau"
@@ -24,7 +25,7 @@ fi
 
 # copy the current theme to the clipboard
 copy_current_theme() {
-    echo $RANDOM_THEME | pbcopy
+    echo -n "\"$RANDOM_THEME\"" | pbcopy
 }
 
 # add the current theme to the blacklist
