@@ -15,29 +15,28 @@ ZSH_THEME_BLACKLIST=(
     "sporty_256"
     "sporty_256"
     "trapd00r"
+    "linuxonly"
+    "lambda"
 )
 
-# if the current theme is in the blacklist, then load a random theme
-if [[ " ${ZSH_THEME_BLACKLIST[@]} " =~ " ${RANDOM_THEME} " ]]; then
-    echo "Theme is in the blacklist, loading another theme"
-    theme
-fi
+delete_theme_file_from_blacklist() {
+    # the theme file is under $ZSH/themes/
+    # and the name is like $ZSH/themes/$THEME_NAME.zsh-theme
+    for theme_file in $ZSH/themes/*.zsh-theme; do
+        # get the theme name from the file name
+        local theme_name=$(basename $theme_file .zsh-theme)
+        # check if the theme is in the blacklist
+        if [[ " ${ZSH_THEME_BLACKLIST[@]} " =~ " $theme_name " ]]; then
+            echo "delete theme file: $theme_file"
+            # then delete the file in $ZSH/themes/
+            rm $theme_file
+        fi
+    done
+}
 
 # copy the current theme to the clipboard
 copy_current_theme() {
     echo -n "\"$RANDOM_THEME\"" | pbcopy
-}
-
-# add the current theme to the blacklist
-dislike_theme() {
-    # add the current theme to the blacklist
-    ZSH_THEME_BLACKLIST+=($RANDOM_THEME)
-    # create the new list as a string
-    local new_list=$(printf '"%s" ' "${ZSH_THEME_BLACKLIST[@]}")
-    # update the .zshrc file, only matching the first occurrence
-    sed -i '' "0,/^ZSH_THEME_BLACKLIST=(.*)/s//ZSH_THEME_BLACKLIST=($new_list)/" ~/.zshrc
-    # load a random theme
-    theme
 }
 
 echo "module theme.zsh loaded"
