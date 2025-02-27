@@ -17,6 +17,8 @@ ZSH_THEME_BLACKLIST=(
     "trapd00r"
     "linuxonly"
     "lambda"
+    "darkblood"
+    "fino"
 )
 
 delete_theme_file_from_blacklist() {
