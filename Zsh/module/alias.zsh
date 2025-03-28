@@ -18,9 +18,4 @@ alias yw='(git --no-pager log --oneline --no-merges --author="$(git config user.
 # today work
 alias tw='(git --no-pager log --oneline --no-merges  --author="$(git config user.name)" --since=midnight | pbcopy) && echo "Today commits copied to clipboard"'
 
-zo() {
-    local dir=${1:-"."} # 如果没有传入参数，默认使用当前目录
-    zi "$dir" && open ./
-}
-
 echo "module alias.zsh loaded"
