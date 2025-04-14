@@ -19,6 +19,7 @@ ZSH_THEME_BLACKLIST=(
     "lambda"
     "darkblood"
     "fino"
+    "steeef"
 )
 
 delete_theme_file_from_blacklist() {
