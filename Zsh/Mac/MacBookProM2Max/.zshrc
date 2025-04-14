@@ -119,6 +119,7 @@ export NVM_DIR="$HOME/.nvm"
 
 # zoxide
 eval "$(zoxide init zsh)"
+export _ZO_ECHO=1
 # zoxide en
 
 # haskell
