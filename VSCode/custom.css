@@ -9,34 +9,28 @@
   top: 20% !important;
   /* half of the width  */
   left: calc(50% - 400px) !important;
-  /* transform: translateX(-50%); */
-  border-radius: 16px;
-  /* padding: 8px; */
-  border: 0px solid transparent !important;
-  /* box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25) !important; */
-  z-index: 20;
-  /* display: block !important; */
 
   /* 600px */
   width: 800px !important;
-
-  /* top */
-  transform-origin: top center;
-
   /* 300px */
   margin-left: 0px !important;
+
+  border: 0px solid transparent !important;
 }
 
 .quick-input-widget::after {
   content: "";
   position: absolute;
   inset: -0.625em;
-  background: linear-gradient(60deg,
-      var(--vscode-terminal-ansiBlue),
-      var(--vscode-terminal-ansiMagenta),
-      var(--vscode-terminal-ansiCyan));
-  filter: blur(64px);
   z-index: -1;
+
+  background: linear-gradient(
+    60deg,
+    var(--vscode-terminal-ansiBlue),
+    var(--vscode-terminal-ansiMagenta),
+    var(--vscode-terminal-ansiCyan)
+  );
+  filter: blur(64px);
   animation: breathing 4s infinite ease-in-out;
 }
 
@@ -51,33 +45,23 @@
 
 /* field */
 .quick-input-header {
-  padding: 8px !important;
   background-color: var(--vscode-quickInput-background);
+  padding: 8px !important;
   border-radius: 10px 10px 0px 0px !important;
 }
 
 /* input element container */
-.quick-input-header>.quick-input-and-message .monaco-inputbox {
-  /* border-radius: 10px 10px 0 0 !important; */
+.quick-input-header > .quick-input-and-message .monaco-inputbox {
   border-radius: 4px !important;
   border-color: transparent !important;
 }
 
-/* actual input element */
-/* .quick-input-header
-  > .quick-input-and-message
-  > .quick-input-filter
-  > .quick-input-box
-  input {
-  padding: 8px 8px !important;
-} */
-
 div.monaco-progress-container.quick-input-progress.done {
-  height: 0px !important;
+  background-color: var(--vscode-quickInput-background);
 }
 
 /* list of results */
-.quick-input-list>.monaco-list>.monaco-scrollable-element {
+.quick-input-list > .monaco-list > .monaco-scrollable-element {
   padding: 0px !important;
 }
 
@@ -95,12 +79,6 @@ div.monaco-progress-container.quick-input-progress.done {
 
 .composite-bar-container {
   justify-content: center !important;
-}
-
-
-/* 修复侧边栏github copilot 中的 file icon 样式错位 */
-.monaco-icon-label:before {
-  height: unset !important;
 }
 
 @keyframes breathing {
