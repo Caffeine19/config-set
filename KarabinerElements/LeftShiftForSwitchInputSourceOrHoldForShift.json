@@ -1,0 +1,15 @@
+{
+  "description": "Left Shift For Switch Input Source Or Hold For Shift",
+  "manipulators": [
+    {
+      "to": [{ "key_code": "left_shift" }],
+      "to_if_alone": [
+        {
+          "key_code": "spacebar",
+          "modifiers": ["left_control"]
+        }
+      ],
+      "type": "basic"
+    }
+  ]
+}
