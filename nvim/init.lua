@@ -142,4 +142,9 @@ if vim.g.vscode then
 
 else
     -- ordinary neovim
+
+    -- transparent background
+    vim.cmd("set background=dark")
+    vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
+    vim.cmd("hi NonText guibg=NONE ctermbg=NONE")
 end
