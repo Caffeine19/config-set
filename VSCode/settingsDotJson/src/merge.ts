@@ -1,25 +1,25 @@
-const main = () => {
-    // merge all json files in the current directory into a single json file
-    const fs = require('fs');
-    const path = require('path');
-    const dir = path.join(__dirname, 'json');
-    const files = fs.readdirSync(dir);
-    const jsonFiles = files.filter(file => file.endsWith('.json'));
-    const mergedJson = {};
-    jsonFiles.forEach(file => {
-        const filePath = path.join(dir, file);
-        const json = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-        Object.keys(json).forEach(key => {
-            if (mergedJson[key]) {
-                mergedJson[key] = { ...mergedJson[key], ...json[key] };
-            } else {
-                mergedJson[key] = json[key];
-            }
-        });
-    }
-    const mergedFilePath = path.join(dir, 'merged.json');
-    fs.writeFileSync(mergedFilePath, JSON.stringify(mergedJson, null, 2));
-    console.log(`Merged ${jsonFiles.length} files into ${mergedFilePath}`);
-}
+import { readFileSync, writeFileSync, readdirSync } from "fs";
+import { assign, parse, stringify } from "comment-json";
+import { join } from "path";
 
-main()
+const main = () => {
+  const __dirname = import.meta.dirname;
+  const dir = join(__dirname, "./modules");
+
+  const files = readdirSync(dir);
+  const jsonFiles = files.filter((file) => file.endsWith(".json"));
+  let mergedJson = {};
+
+  jsonFiles.forEach((file) => {
+    const filePath = join(dir, file);
+    const json = parse(readFileSync(filePath, "utf8"));
+    mergedJson = assign(mergedJson, json);
+  });
+
+  const mergedFilePath = join(__dirname, "../build/settings.json");
+
+  writeFileSync(mergedFilePath, stringify(mergedJson, null, 2));
+  console.log(`Merged ${jsonFiles.length} files into ${mergedFilePath}`);
+};
+
+main();

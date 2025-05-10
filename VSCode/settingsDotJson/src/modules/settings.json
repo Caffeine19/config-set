@@ -1,4 +1,6 @@
 {
+    "$schema": "vscode://schemas/settings/user",
+
     // auto hide
     // secondary side bar
     "autoHide.autoHideAuxiliaryBar": false,
@@ -25,6 +27,7 @@
     // 文件关联方式
     "files.associations": { },
 
+    // file utils
     "fileutils.inputBox.pathType": "workspace",
 
     //git 自动拉取

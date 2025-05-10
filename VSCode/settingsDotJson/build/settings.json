@@ -1,0 +1,1709 @@
+{
+  "$schema": "vscode://schemas/settings/user",
+  "animations.Install-Method": "Custom CSS and JS",
+  "animations.UseCursorColorForCursorAnimation": true,
+  "animations.Active": "None",
+  "animations.CursorAnimation": true,
+  "animations.Smooth-Mode": false,
+  "animations.Command-Palette": "Fade",
+  "animations.Scrolling": "None",
+  "animations.Durations": {
+    "Command-Palette": 200
+  },
+  "animations.Enabled": false,
+  "catppuccin.accentColor": "lavender",
+  "catppuccin.bracketMode": "monochromatic",
+  "catppuccin.colorOverrides": {
+    "mocha": {
+      //darker
+      "base": "#161621",
+      // "base": "#11111a", //a little darker
+      // "mantle": "#0f101a",
+      "mantle": "#161621",
+      // "mantle": "#11111a",
+      // "crust": "#0f101a"
+      "crust": "#161621"
+      // "crust": "#11111a",
+      //high contrast
+      // "base": "#000000",
+      // "mantle": "#010101",
+      // "crust": "#020202"
+    }
+  },
+  // cspell用户词库
+  "cSpell.userWords": [
+    "agnoster",
+    "ARCHFLAGS",
+    "asvetliakov",
+    "autofetch",
+    "brandonkirbyson",
+    "caffeinecat",
+    "Cartograph",
+    "catppuccin",
+    "Colour",
+    "Consolas",
+    "easymotion",
+    "emotty",
+    "esbenp",
+    "fastfetch",
+    "Fira",
+    "foldfix",
+    "foxundermoon",
+    "fwalch",
+    "ghcup",
+    "hlsearch",
+    "ideavimrc",
+    "ignorecase",
+    "jaischeema",
+    "keymap",
+    "lazygit",
+    "luahelper",
+    "MANPATH",
+    "mapleader",
+    "matchpairs",
+    "Moegi",
+    "nmap",
+    "nvim",
+    "ohmyzsh",
+    "overwin",
+    "peepcode",
+    "pipx",
+    "powermode",
+    "Propo",
+    "relativenumber",
+    "robbyrussell",
+    "simonoff",
+    "skhd",
+    "skhdrc",
+    "smartcase",
+    "strftime",
+    "tabnine",
+    "trapd",
+    "unnamedplus",
+    "vmap",
+    "vmoptions",
+    "vnoremap",
+    "vscodevim",
+    "yabai",
+    "yabairc",
+    "yinfei",
+    "zoxide",
+    "zshconfig",
+    "zstyle"
+  ],
+  // 建议补全通过替换而不是在后面插入
+  // "editor.suggest.insertMode": "replace",
+  // 关闭屏幕阅读
+  "editor.accessibilitySupport": "off",
+  // 保存时的自动化
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "always"
+  },
+  // 光标不停闪烁
+  "editor.cursorBlinking": "smooth",
+  "editor.fontFamily": "'Maple Mono', 'Fira code', 'Cartograph CF', 'Victor Mono', Consolas, 'Courier New', monospace",
+  // 允许字体连体,例如: => <=
+  "editor.fontLigatures": true,
+  // 字体大小 13
+  "editor.fontSize": 13,
+  // 格式化开启或关闭
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  // 匹配括号的彩色标识线
+  "editor.guides.bracketPairs": true,
+  // 相对行号
+  "editor.lineNumbers": "relative",
+  // auto rename tag & auto close tag
+  "editor.linkedEditing": true,
+  //隐藏小地图
+  "editor.minimap.enabled": false,
+  "editor.semanticHighlighting.enabled": true,
+  // 滚动顺滑
+  "editor.smoothScrolling": true,
+  // 自动换行
+  "editor.wordWrap": "on",
+  // 字体斜体-配合部分字体有连体效果-每个主题需要对应的配置
+  "editor.tokenColorCustomizations": {
+    "[Ayu Dark Bordered]": {
+      "textMateRules": [
+        {
+          "scope": "emphasis",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "strong",
+          "settings": {
+            "fontStyle": "bold"
+          }
+        },
+        {
+          "scope": "entity.other.attribute-name",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "markup.underline",
+          "settings": {
+            "fontStyle": "underline"
+          }
+        },
+        {
+          "scope": "markup.bold",
+          "settings": {
+            "fontStyle": "bold"
+          }
+        },
+        {
+          "scope": "markup.heading",
+          "settings": {
+            "fontStyle": "bold"
+          }
+        },
+        {
+          "scope": "markup.italic",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "storage.type",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "storage.modifier",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "name": "String interpolation",
+          "scope": [
+            "punctuation.definition.template-expression.begin",
+            "punctuation.definition.template-expression.end",
+            "punctuation.section.embedded"
+          ],
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "keyword.control",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": [
+            "keyword.operator.new",
+            "keyword.operator.expression",
+            "keyword.operator.cast",
+            "keyword.operator.sizeof",
+            "keyword.operator.logical.python"
+          ],
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "name": "this.self",
+          "scope": "variable.language",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "name": "@Decorator",
+          "scope": [
+            "meta.decorator punctuation.decorator"
+          ],
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": [
+            "punctuation.definition.comment",
+            "comment"
+          ],
+          "settings": {
+            "fontStyle": "italic"
+          }
+        }
+      ]
+    },
+    "[Ayu Dark]": {
+      "textMateRules": [
+        {
+          "scope": "emphasis",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "strong",
+          "settings": {
+            "fontStyle": "bold"
+          }
+        },
+        {
+          "scope": "entity.other.attribute-name",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "markup.underline",
+          "settings": {
+            "fontStyle": "underline"
+          }
+        },
+        {
+          "scope": "markup.bold",
+          "settings": {
+            "fontStyle": "bold"
+          }
+        },
+        {
+          "scope": "markup.heading",
+          "settings": {
+            "fontStyle": "bold"
+          }
+        },
+        {
+          "scope": "markup.italic",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "storage.type",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "storage.modifier",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "name": "String interpolation",
+          "scope": [
+            "punctuation.definition.template-expression.begin",
+            "punctuation.definition.template-expression.end",
+            "punctuation.section.embedded"
+          ],
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "keyword.control",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": [
+            "keyword.operator.new",
+            "keyword.operator.expression",
+            "keyword.operator.cast",
+            "keyword.operator.sizeof",
+            "keyword.operator.logical.python"
+          ],
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "name": "this.self",
+          "scope": "variable.language",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "name": "@Decorator",
+          "scope": [
+            "meta.decorator punctuation.decorator"
+          ],
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": [
+            "punctuation.definition.comment",
+            "comment"
+          ],
+          "settings": {
+            "fontStyle": "italic"
+          }
+        }
+      ]
+    },
+    "[Catppuccin Mocha]": {
+      "textMateRules": [
+        {
+          "scope": "emphasis",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "strong",
+          "settings": {
+            "fontStyle": "bold"
+          }
+        },
+        {
+          "scope": "entity.other.attribute-name",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "markup.underline",
+          "settings": {
+            "fontStyle": "underline"
+          }
+        },
+        {
+          "scope": "markup.bold",
+          "settings": {
+            "fontStyle": "bold"
+          }
+        },
+        {
+          "scope": "markup.heading",
+          "settings": {
+            "fontStyle": "bold"
+          }
+        },
+        {
+          "scope": "markup.italic",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "storage.type",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "storage.modifier",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "name": "String interpolation",
+          "scope": [
+            "punctuation.definition.template-expression.begin",
+            "punctuation.definition.template-expression.end",
+            "punctuation.section.embedded"
+          ],
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "keyword.control",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": [
+            "keyword.operator.new",
+            "keyword.operator.expression",
+            "keyword.operator.cast",
+            "keyword.operator.sizeof",
+            "keyword.operator.logical.python"
+          ],
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "name": "this.self",
+          "scope": "variable.language",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "name": "@Decorator",
+          "scope": [
+            "meta.decorator punctuation.decorator"
+          ],
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": [
+            "punctuation.definition.comment",
+            "comment"
+          ],
+          "settings": {
+            //  ,
+            "fontStyle": "italic"
+          }
+        }
+      ]
+    },
+    "[Field Lights]": {
+      "textMateRules": [
+        {
+          "scope": "emphasis",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "strong",
+          "settings": {
+            "fontStyle": "bold"
+          }
+        },
+        {
+          "scope": "entity.other.attribute-name",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "markup.underline",
+          "settings": {
+            "fontStyle": "underline"
+          }
+        },
+        {
+          "scope": "markup.bold",
+          "settings": {
+            "fontStyle": "bold"
+          }
+        },
+        {
+          "scope": "markup.heading",
+          "settings": {
+            "fontStyle": "bold"
+          }
+        },
+        {
+          "scope": "markup.italic",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "storage.type",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "storage.modifier",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "name": "String interpolation",
+          "scope": [
+            "punctuation.definition.template-expression.begin",
+            "punctuation.definition.template-expression.end",
+            "punctuation.section.embedded"
+          ],
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "keyword.control",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": [
+            "keyword.operator.new",
+            "keyword.operator.expression",
+            "keyword.operator.cast",
+            "keyword.operator.sizeof",
+            "keyword.operator.logical.python"
+          ],
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "name": "this.self",
+          "scope": "variable.language",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "name": "@Decorator",
+          "scope": [
+            "meta.decorator punctuation.decorator"
+          ],
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": [
+            "punctuation.definition.comment",
+            "comment"
+          ],
+          "settings": {
+            //  ,
+            "fontStyle": "italic"
+          }
+        }
+      ]
+    },
+    "[GitHub Dark Default]": {
+      "textMateRules": [
+        {
+          "scope": "emphasis",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "strong",
+          "settings": {
+            "fontStyle": "bold"
+          }
+        },
+        {
+          "scope": "entity.other.attribute-name",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "markup.underline",
+          "settings": {
+            "fontStyle": "underline"
+          }
+        },
+        {
+          "scope": "markup.bold",
+          "settings": {
+            "fontStyle": "bold"
+          }
+        },
+        {
+          "scope": "markup.heading",
+          "settings": {
+            "fontStyle": "bold"
+          }
+        },
+        {
+          "scope": "markup.italic",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "storage.type",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "storage.modifier",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "name": "String interpolation",
+          "scope": [
+            "punctuation.definition.template-expression.begin",
+            "punctuation.definition.template-expression.end",
+            "punctuation.section.embedded"
+          ],
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "keyword.control",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": [
+            "keyword.operator.new",
+            "keyword.operator.expression",
+            "keyword.operator.cast",
+            "keyword.operator.sizeof",
+            "keyword.operator.logical.python"
+          ],
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "name": "this.self",
+          "scope": "variable.language",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "name": "@Decorator",
+          "scope": [
+            "meta.decorator punctuation.decorator"
+          ],
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": [
+            "punctuation.definition.comment",
+            "comment"
+          ],
+          "settings": {
+            //  ,
+            "fontStyle": "italic"
+          }
+        }
+      ]
+    },
+    "[Halcyon]": {
+      "textMateRules": [
+        {
+          "scope": "emphasis",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "strong",
+          "settings": {
+            "fontStyle": "bold"
+          }
+        },
+        {
+          "scope": "entity.other.attribute-name",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "markup.underline",
+          "settings": {
+            "fontStyle": "underline"
+          }
+        },
+        {
+          "scope": "markup.bold",
+          "settings": {
+            "fontStyle": "bold"
+          }
+        },
+        {
+          "scope": "markup.heading",
+          "settings": {
+            "fontStyle": "bold"
+          }
+        },
+        {
+          "scope": "markup.italic",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "storage.type",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "storage.modifier",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "name": "String interpolation",
+          "scope": [
+            "punctuation.definition.template-expression.begin",
+            "punctuation.definition.template-expression.end",
+            "punctuation.section.embedded"
+          ],
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "keyword.control",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": [
+            "keyword.operator.new",
+            "keyword.operator.expression",
+            "keyword.operator.cast",
+            "keyword.operator.sizeof",
+            "keyword.operator.logical.python"
+          ],
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "name": "this.self",
+          "scope": "variable.language",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "name": "@Decorator",
+          "scope": [
+            "meta.decorator punctuation.decorator"
+          ],
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": [
+            "punctuation.definition.comment",
+            "comment"
+          ],
+          "settings": {
+            //  ,
+            "fontStyle": "italic"
+          }
+        }
+      ]
+    },
+    "[Jetbrains Fleet]": {
+      "textMateRules": [
+        {
+          "scope": "emphasis",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "strong",
+          "settings": {
+            "fontStyle": "bold"
+          }
+        },
+        {
+          "scope": "entity.other.attribute-name",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "markup.underline",
+          "settings": {
+            "fontStyle": "underline"
+          }
+        },
+        {
+          "scope": "markup.bold",
+          "settings": {
+            "fontStyle": "bold"
+          }
+        },
+        {
+          "scope": "markup.heading",
+          "settings": {
+            "fontStyle": "bold"
+          }
+        },
+        {
+          "scope": "markup.italic",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "storage.type",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "storage.modifier",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "name": "String interpolation",
+          "scope": [
+            "punctuation.definition.template-expression.begin",
+            "punctuation.definition.template-expression.end",
+            "punctuation.section.embedded"
+          ],
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "keyword.control",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": [
+            "keyword.operator.new",
+            "keyword.operator.expression",
+            "keyword.operator.cast",
+            "keyword.operator.sizeof",
+            "keyword.operator.logical.python"
+          ],
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "name": "this.self",
+          "scope": "variable.language",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "name": "@Decorator",
+          "scope": [
+            "meta.decorator punctuation.decorator"
+          ],
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": [
+            "punctuation.definition.comment",
+            "comment"
+          ],
+          "settings": {
+            //  ,
+            "fontStyle": "italic"
+          }
+        }
+      ]
+    },
+    "[Material Theme]": {
+      "textMateRules": [
+        {
+          "scope": "emphasis",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "strong",
+          "settings": {
+            "fontStyle": "bold"
+          }
+        },
+        {
+          "scope": "entity.other.attribute-name",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "markup.underline",
+          "settings": {
+            "fontStyle": "underline"
+          }
+        },
+        {
+          "scope": "markup.bold",
+          "settings": {
+            "fontStyle": "bold"
+          }
+        },
+        {
+          "scope": "markup.heading",
+          "settings": {
+            "fontStyle": "bold"
+          }
+        },
+        {
+          "scope": "markup.italic",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "storage.type",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "storage.modifier",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "name": "String interpolation",
+          "scope": [
+            "punctuation.definition.template-expression.begin",
+            "punctuation.definition.template-expression.end",
+            "punctuation.section.embedded"
+          ],
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "keyword.control",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": [
+            "keyword.operator.new",
+            "keyword.operator.expression",
+            "keyword.operator.cast",
+            "keyword.operator.sizeof",
+            "keyword.operator.logical.python"
+          ],
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "name": "this.self",
+          "scope": "variable.language",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "name": "@Decorator",
+          "scope": [
+            "meta.decorator punctuation.decorator"
+          ],
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": [
+            "punctuation.definition.comment",
+            "comment"
+          ],
+          "settings": {
+            "fontStyle": "italic"
+          }
+        }
+      ]
+    },
+    "[Moegi Black]": {
+      "textMateRules": [
+        {
+          "scope": "emphasis",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "strong",
+          "settings": {
+            "fontStyle": "bold"
+          }
+        },
+        {
+          "scope": "entity.other.attribute-name",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "markup.underline",
+          "settings": {
+            "fontStyle": "underline"
+          }
+        },
+        {
+          "scope": "markup.bold",
+          "settings": {
+            "fontStyle": "bold"
+          }
+        },
+        {
+          "scope": "markup.heading",
+          "settings": {
+            "fontStyle": "bold"
+          }
+        },
+        {
+          "scope": "markup.italic",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "storage.type",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "storage.modifier",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "name": "String interpolation",
+          "scope": [
+            "punctuation.definition.template-expression.begin",
+            "punctuation.definition.template-expression.end",
+            "punctuation.section.embedded"
+          ],
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "keyword.control",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": [
+            "keyword.operator.new",
+            "keyword.operator.expression",
+            "keyword.operator.cast",
+            "keyword.operator.sizeof",
+            "keyword.operator.logical.python"
+          ],
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "name": "this.self",
+          "scope": "variable.language",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "name": "@Decorator",
+          "scope": [
+            "meta.decorator punctuation.decorator"
+          ],
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": [
+            "punctuation.definition.comment",
+            "comment"
+          ],
+          "settings": {
+            //  ,
+            "fontStyle": "italic"
+          }
+        }
+      ]
+    },
+    "[Tokyo Night]": {
+      "textMateRules": [
+        {
+          "scope": "emphasis",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "strong",
+          "settings": {
+            "fontStyle": "bold"
+          }
+        },
+        {
+          "scope": "entity.other.attribute-name",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "markup.underline",
+          "settings": {
+            "fontStyle": "underline"
+          }
+        },
+        {
+          "scope": "markup.bold",
+          "settings": {
+            "fontStyle": "bold"
+          }
+        },
+        {
+          "scope": "markup.heading",
+          "settings": {
+            "fontStyle": "bold"
+          }
+        },
+        {
+          "scope": "markup.italic",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "storage.type",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "storage.modifier",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "name": "String interpolation",
+          "scope": [
+            "punctuation.definition.template-expression.begin",
+            "punctuation.definition.template-expression.end",
+            "punctuation.section.embedded"
+          ],
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "keyword.control",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": [
+            "keyword.operator.new",
+            "keyword.operator.expression",
+            "keyword.operator.cast",
+            "keyword.operator.sizeof",
+            "keyword.operator.logical.python"
+          ],
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "name": "this.self",
+          "scope": "variable.language",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "name": "@Decorator",
+          "scope": [
+            "meta.decorator punctuation.decorator"
+          ],
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": [
+            "punctuation.definition.comment",
+            "comment"
+          ],
+          "settings": {
+            //  ,
+            "fontStyle": "italic"
+          }
+        }
+      ]
+    }
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[snippets]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[less]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[lua]": {
+    "editor.defaultFormatter": "yinfei.luahelper"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+  "[shellscript]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  /* neovim start */
+  // neovim的路径
+  "vscode-neovim.neovimExecutablePaths.win32": "C:/Program Files/Neovim/bin/nvim.exe",
+  "vscode-neovim.neovimInitVimPaths.win32": "~/AppData/Local/nvim/init.lua",
+  "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim",
+  "vscode-neovim.neovimInitVimPaths.darwin": "~/.config/nvim/init.lua",
+  "vscode-neovim.ctrlKeysForInsertMode": [
+    // "a",
+    "d",
+    "h",
+    "j",
+    "m",
+    "o",
+    "r",
+    "t",
+    "u",
+    "w"
+  ],
+  "vscode-neovim.ctrlKeysForNormalMode": [
+    // "a",
+    // "b",
+    "d",
+    "e",
+    // "f",
+    "h",
+    "i",
+    "j",
+    "k",
+    "l",
+    "m",
+    "o",
+    "r",
+    "t",
+    "u",
+    "v",
+    "w",
+    "x",
+    "y",
+    // "z",
+    "/",
+    "]"
+  ],
+  "vscode-neovim.compositeKeys": {
+    "jj": {
+      "command": "vscode-neovim.escape",
+      "args": []
+    }
+  },
+  /* neovim end */// auto hide
+  // secondary side bar
+  "autoHide.autoHideAuxiliaryBar": false,
+  // console ninja 使用免费社区版或其他
+  "console-ninja.featureSet": "Community",
+  "console-ninja.showWhatsNew": false,
+  //dev container
+  "dev.containers.executeInWSL": true,
+  "diffEditor.ignoreTrimWhitespace": true,
+  "errorLens.enabledDiagnosticLevels": [
+    "error",
+    "warning"
+    // 隐藏 Code Spell Checker 的提示
+    // "info",
+  ],
+  // 直接复制
+  "explorer.confirmPasteNative": false,
+  // 文件关联方式
+  "files.associations": {},
+  // file utils
+  "fileutils.inputBox.pathType": "workspace",
+  //git 自动拉取
+  "git.autofetch": true,
+  // git
+  "git.openRepositoryInParentFolders": "never",
+  /* github copilot start */
+  "github.copilot.enable": {
+    "*": true,
+    "markdown": true,
+    "plaintext": false,
+    "scminput": false,
+    "vue": true
+  },
+  "github.copilot.nextEditSuggestions.enabled": false,
+  "gitlens.ai.model": "vscode",
+  "gitlens.ai.vscode.model": "copilot:gpt-4o",
+  /* gitlens start */
+  "gitlens.views.commitDetails.files.layout": "list",
+  // haskell
+  "haskell.manageHLS": "GHCup",
+  // js显示参数名
+  "javascript.inlayHints.parameterNames.enabled": "all",
+  // js自动更新应用
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "json.format.keepLines": true,
+  /* powermode start */
+  // "powermode.enabled":true,
+  "powermode.shake.intensity": 0.5,
+  // wsl使用插件的方式
+  "remote.extensionKind": {
+    "GitHub.copilot": [
+      "ui"
+    ],
+    "github.copilot-chat": "ui"
+  },
+  /* security start */
+  "security.promptForLocalFileProtocolHandling": false,
+  "security.workspace.trust.untrustedFiles": "open",
+  // svelte
+  "svelte.enable-ts-plugin": true,
+  // tabnine
+  "tabnine.experimentalAutoImports": true,
+  /* turbo console log start */
+  // 显示文件名
+  "turboConsoleLog.includeFilename": true,
+  // 显示行号
+  "turboConsoleLog.includeLineNum": true,
+  // ts显示参数名
+  "typescript.inlayHints.parameterNames.enabled": "all",
+  //ts自动更新引用
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  // custom css and js
+  "vscode_custom_css.imports": [
+    "file:///Users/caffeinecat/.config/vscode-custom-css-and-js/custom.css",
+    "file:///Users/caffeinecat/.vscode/extensions/brandonkirbyson.vscode-animations-2.0.7/dist/updateHandler.js"
+  ],
+  /* window start */
+  "window.menuBarVisibility": "compact",
+  "window.titleBarStyle": "custom",
+  "terminal.explorerKind": "external",
+  // 使用Warp作为外部终端
+  "terminal.external.osxExec": "Warp.app",
+  /* terminal start */
+  "terminal.integrated.env.osx": {},
+  // 字体
+  "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font Propo'",
+  // 滚动顺滑
+  "terminal.integrated.smoothScrolling": true,
+  // todo tree
+  "todo-tree.highlights.useColourScheme": true,
+  "todo-tree.highlights.customHighlight": {
+    // github dark default
+    "TODO": {
+      "background": "#1f6feb",
+      "iconColour": "#79c0ff"
+    },
+    "BUG": {
+      "background": "#f85149",
+      "iconColour": "#f85149"
+    },
+    "FIXME": {
+      "background": "#e3b341",
+      "foreground": "#fff",
+      "iconColour": "#d29922"
+    }
+    // tokyo night
+    // "TODO": {
+    //   "background": "#7dcfff",
+    //   "iconColour": "#7dcfff",
+    // },
+    // "BUG": {
+    //   "background": "#f7768e",
+    //   "iconColour": "#f7768e"
+    // },
+    // "FIXME": {
+    //   "background": "#e0af68",
+    //   "foreground": "#fff",
+    //   "iconColour": "#e0af68"
+    // },
+    // jetbrains fleet
+    // "TODO": {
+    //   "background": "#75d3ba",
+    //   "iconColour": "#75d3ba",
+    // },
+    // "BUG": {
+    //   "background": "#f14c4c",
+    //   "iconColour": "#f14c4c"
+    // },
+    // "FIXME": {
+    //   "background": "#e5b95c",
+    //   "foreground": "#fff",
+    //   "iconColour": "#e5b95c"
+    // },
+  },
+  "vim.foldfix": true,
+  "vim.easymotion": true,
+  "vim.leader": "<space>",
+  "vim.hlsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.handleKeys": {
+    // enable all Ctrl key bindings
+    // disable if on Windows
+    // "<C-b>": false,
+    // "<C-f>": false,
+    // "<C-p>": false,
+    // "<C-x>": false,
+    // "<C-c>": false,
+    // "<C-v>": false
+  },
+  "vim.insertModeKeyBindings": [
+    {
+      "before": [
+        "j",
+        "j"
+      ],
+      "after": [
+        "<Esc>"
+      ]
+    }
+  ],
+  "vim.normalModeKeyBindings": [
+    {
+      "before": [
+        "g",
+        "s"
+      ],
+      "commands": [
+        "workbench.action.gotoSymbol"
+      ]
+    },
+    {
+      "before": [
+        "[",
+        "e"
+      ],
+      "commands": [
+        "editor.action.marker.prevInFiles"
+      ]
+    },
+    {
+      "before": [
+        "]",
+        "e"
+      ],
+      "commands": [
+        "editor.action.marker.nextInFiles"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "x"
+      ],
+      "commands": [
+        "workbench.view.extensions"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "g"
+      ],
+      "commands": [
+        "workbench.view.scm"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "g",
+        "g"
+      ],
+      "commands": [
+        "git-graph.view"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "g",
+        ","
+      ],
+      "commands": [
+        "gitlens.diffWithPrevious"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "r"
+      ],
+      "commands": [
+        "workbench.action.reloadWindow"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "t"
+      ],
+      "commands": [
+        "workbench.action.selectTheme"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "2"
+      ],
+      "commands": [
+        "workbench.action.editorLayoutTwoColumns"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "3"
+      ],
+      "commands": [
+        "workbench.action.editorLayoutThreeColumns"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "f"
+      ],
+      "commands": [
+        "workbench.action.quickTextSearch"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "a"
+      ],
+      "commands": [
+        "fileutils.newFileAtRoot"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "A"
+      ],
+      "commands": [
+        "fileutils.newFolderAtRoot"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "e",
+        "o"
+      ],
+      "commands": [
+        "outline.focus"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "e",
+        "f"
+      ],
+      "commands": [
+        "workbench.explorer.fileView.focus"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "p"
+      ],
+      "commands": [
+        "workbench.action.showCommands"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "s"
+      ],
+      "commands": [
+        "workbench.action.quickTextSearch"
+      ]
+    }
+  ],
+  //使用affinity，提高性能
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1,
+    "vscodevim.vim": 1
+  },
+  // 样式自定义
+  "workbench.colorCustomizations": {
+    "[Catppuccin Mocha]": {
+      "editorGroup.border": "#4f4f4f3d"
+    },
+    "[Moegi Black]": {
+      "editorCursor.foreground": "#f2d98e",
+      "editorGroup.border": "#4f4f4f6d",
+      "tab.activeBackground": "#66b39520",
+      "tab.activeBorder": "#66b395"
+    },
+    "[Tokyo Night]": {
+      "tab.activeBorder": "default",
+      "tab.activeBorderTop": "#3d59a1"
+      // "tab.activeBackground": "#66b39520"
+    }
+  },
+  "workbench.editor.labelFormat": "short",
+  // 标签自动换行
+  "workbench.editor.wrapTabs": true,
+  "workbench.iconTheme": "catppuccin-mocha",
+  "workbench.layoutControl.enabled": false,
+  // 滚动顺滑
+  "workbench.list.smoothScrolling": true,
+  "workbench.productIconTheme": "fluent-icons",
+  "workbench.activityBar.location": "top",
+  "workbench.colorTheme": "GitHub Dark Default"
+}

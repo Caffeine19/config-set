@@ -1,1 +1,15 @@
-{}
+{
+  "name": "vscode-settings-dot-json",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "tsx ./src/merge.ts"
+  },
+  "type": "module",
+  "devDependencies": {
+    "@types/node": "^22.15.17",
+    "tsx": "^4.19.4"
+  },
+  "dependencies": {
+    "comment-json": "^4.2.5"
+  }
+}

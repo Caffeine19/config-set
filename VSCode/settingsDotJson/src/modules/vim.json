@@ -7,6 +7,8 @@
   "vim.hlsearch": true,
   "vim.useSystemClipboard": true,
   "vim.handleKeys": {
+    // enable all Ctrl key bindings
+    // disable if on Windows
     // "<C-b>": false,
     // "<C-f>": false,
     // "<C-p>": false,
