@@ -1,0 +1,15 @@
+{
+  "$schema": "vscode://schemas/settings/user",
+
+  "animations.Install-Method": "Custom CSS and JS",
+  "animations.UseCursorColorForCursorAnimation": true,
+  "animations.Active": "None",
+  "animations.CursorAnimation": true,
+  "animations.Smooth-Mode": false,
+  "animations.Command-Palette": "Fade",
+  "animations.Scrolling": "None",
+  "animations.Durations": {
+    "Command-Palette": 200
+  },
+  "animations.Enabled": false
+}

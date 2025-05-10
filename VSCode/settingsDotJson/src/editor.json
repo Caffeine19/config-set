@@ -1,0 +1,36 @@
+{
+  "$schema": "vscode://schemas/settings/user",
+
+  // 建议补全通过替换而不是在后面插入
+  // "editor.suggest.insertMode": "replace",
+  // 关闭屏幕阅读
+  "editor.accessibilitySupport": "off",
+  // 保存时的自动化
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "always"
+  },
+  // 光标不停闪烁
+  "editor.cursorBlinking": "smooth",
+  "editor.fontFamily": "'Maple Mono', 'Fira code', 'Cartograph CF', 'Victor Mono', Consolas, 'Courier New', monospace",
+  // 允许字体连体,例如: => <=
+  "editor.fontLigatures": true,
+  // 字体大小 13
+  "editor.fontSize": 13,
+  // 格式化开启或关闭
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  // 匹配括号的彩色标识线
+  "editor.guides.bracketPairs": true,
+  // 相对行号
+  "editor.lineNumbers": "relative",
+  // auto rename tag & auto close tag
+  "editor.linkedEditing": true,
+  //隐藏小地图
+  "editor.minimap.enabled": false,
+  "editor.semanticHighlighting.enabled": true,
+  // 滚动顺滑
+  "editor.smoothScrolling": true,
+  // 自动换行
+  "editor.wordWrap": "on"
+}

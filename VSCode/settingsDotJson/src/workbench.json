@@ -1,0 +1,39 @@
+{
+  "$schema": "vscode://schemas/settings/user",
+
+  // 样式自定义
+  "workbench.colorCustomizations": {
+    "[Catppuccin Mocha]": {
+      "editorGroup.border": "#4f4f4f3d"
+    },
+    "[Moegi Black]": {
+      "editorCursor.foreground": "#f2d98e",
+      "editorGroup.border": "#4f4f4f6d",
+      "tab.activeBackground": "#66b39520",
+      "tab.activeBorder": "#66b395"
+    },
+    "[Tokyo Night]": {
+      "tab.activeBorder": "default",
+      "tab.activeBorderTop": "#3d59a1"
+      // "tab.activeBackground": "#66b39520"
+    }
+  },
+
+  "workbench.editor.labelFormat": "short",
+
+  // 标签自动换行
+  "workbench.editor.wrapTabs": true,
+
+  "workbench.iconTheme": "catppuccin-mocha",
+
+  "workbench.layoutControl.enabled": false,
+
+  // 滚动顺滑
+  "workbench.list.smoothScrolling": true,
+
+  "workbench.productIconTheme": "fluent-icons",
+
+  "workbench.activityBar.location": "top",
+
+  "workbench.colorTheme": "GitHub Dark Default"
+}

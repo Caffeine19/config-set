@@ -1,0 +1,23 @@
+{
+  "$schema": "vscode://schemas/settings/user",
+
+  "catppuccin.accentColor": "lavender",
+  "catppuccin.bracketMode": "monochromatic",
+  "catppuccin.colorOverrides": {
+    "mocha": {
+      //darker
+      "base": "#161621",
+      // "base": "#11111a", //a little darker
+      // "mantle": "#0f101a",
+      "mantle": "#161621",
+      // "mantle": "#11111a",
+      // "crust": "#0f101a"
+      "crust": "#161621"
+      // "crust": "#11111a",
+      //high contrast
+      // "base": "#000000",
+      // "mantle": "#010101",
+      // "crust": "#020202"
+    }
+  }
+}

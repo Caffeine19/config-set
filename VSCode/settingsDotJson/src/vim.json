@@ -1,0 +1,102 @@
+{
+  "$schema": "vscode://schemas/settings/user",
+
+  "vim.foldfix": true,
+  "vim.easymotion": true,
+  "vim.leader": "<space>",
+  "vim.hlsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.handleKeys": {
+    // "<C-b>": false,
+    // "<C-f>": false,
+    // "<C-p>": false,
+    // "<C-x>": false,
+    // "<C-c>": false,
+    // "<C-v>": false
+  },
+  "vim.insertModeKeyBindings": [
+    {
+      "before": ["j", "j"],
+      "after": ["<Esc>"]
+    }
+  ],
+  "vim.normalModeKeyBindings": [
+    {
+      "before": ["g", "s"],
+      "commands": ["workbench.action.gotoSymbol"]
+    },
+    {
+      "before": ["[", "e"],
+      "commands": ["editor.action.marker.prevInFiles"]
+    },
+    {
+      "before": ["]", "e"],
+      "commands": ["editor.action.marker.nextInFiles"]
+    },
+    {
+      "before": ["<leader>", "x"],
+      "commands": ["workbench.view.extensions"]
+    },
+    {
+      "before": ["<leader>", "g"],
+      "commands": ["workbench.view.scm"]
+    },
+    {
+      "before": ["<leader>", "g", "g"],
+      "commands": ["git-graph.view"]
+    },
+    {
+      "before": ["<leader>", "g", ","],
+      "commands": ["gitlens.diffWithPrevious"]
+    },
+    {
+      "before": ["<leader>", "r"],
+      "commands": ["workbench.action.reloadWindow"]
+    },
+    {
+      "before": ["<leader>", "t"],
+      "commands": ["workbench.action.selectTheme"]
+    },
+    {
+      "before": ["<leader>", "2"],
+      "commands": ["workbench.action.editorLayoutTwoColumns"]
+    },
+    {
+      "before": ["<leader>", "3"],
+      "commands": ["workbench.action.editorLayoutThreeColumns"]
+    },
+    {
+      "before": ["<leader>", "f"],
+      "commands": ["workbench.action.quickTextSearch"]
+    },
+    {
+      "before": ["<leader>", "a"],
+      "commands": ["fileutils.newFileAtRoot"]
+    },
+    {
+      "before": ["<leader>", "A"],
+      "commands": ["fileutils.newFolderAtRoot"]
+    },
+    {
+      "before": ["<leader>", "e", "o"],
+      "commands": ["outline.focus"]
+    },
+    {
+      "before": ["<leader>", "e", "f"],
+      "commands": ["workbench.explorer.fileView.focus"]
+    },
+    {
+      "before": ["<leader>", "p"],
+      "commands": ["workbench.action.showCommands"]
+    },
+    {
+      "before": ["<leader>", "s"],
+      "commands": ["workbench.action.quickTextSearch"]
+    }
+  ],
+  //使用affinity，提高性能
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1,
+    "vscodevim.vim": 1
+  }
+}

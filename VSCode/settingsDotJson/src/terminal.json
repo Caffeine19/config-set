@@ -1,0 +1,13 @@
+{
+  "$schema": "vscode://schemas/settings/user",
+
+  "terminal.explorerKind": "external",
+  // 使用Warp作为外部终端
+  "terminal.external.osxExec": "Warp.app",
+  /* terminal start */
+  "terminal.integrated.env.osx": {},
+  // 字体
+  "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font Propo'",
+  // 滚动顺滑
+  "terminal.integrated.smoothScrolling": true
+}
