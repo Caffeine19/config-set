@@ -1485,6 +1485,11 @@
   "vim.leader": "<space>",
   "vim.hlsearch": true,
   "vim.useSystemClipboard": true,
+  // auto switch input method
+  "vim.autoSwitchInputMethod.enable": true,
+  "vim.autoSwitchInputMethod.defaultIM": "com.apple.keylayout.ABC",
+  "vim.autoSwitchInputMethod.obtainIMCmd": "/opt/homebrew/bin/im-select",
+  "vim.autoSwitchInputMethod.switchIMCmd": "/opt/homebrew/bin/im-select {im}",
   "vim.handleKeys": {
     // enable all Ctrl key bindings
     // disable if on Windows
