@@ -1,0 +1,12 @@
+{
+  "$schema": "vscode://schemas/settings/user",
+
+  "github.copilot.enable": {
+    "*": true,
+    "markdown": true,
+    "plaintext": false,
+    "scminput": false,
+    "vue": true
+  },
+  "github.copilot.nextEditSuggestions.enabled": false
+}

@@ -1,5 +1,33 @@
 {
   "$schema": "vscode://schemas/settings/user",
+  //dev container
+  "dev.containers.executeInWSL": true,
+  "diffEditor.ignoreTrimWhitespace": true,
+  // 直接复制
+  "explorer.confirmPasteNative": false,
+  // 文件关联方式
+  "files.associations": { },
+  "inlineChat.enableV2": true,
+  // js显示参数名
+  "javascript.inlayHints.parameterNames.enabled": "all",
+  // js自动更新应用
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "json.format.keepLines": true,
+  // wsl使用插件的方式
+  "remote.extensionKind": {
+    "GitHub.copilot": [
+      "ui"
+    ],
+    "github.copilot-chat": "ui"
+  },
+  /* security start */
+  "security.promptForLocalFileProtocolHandling": false,
+  "security.workspace.trust.untrustedFiles": "open",
+  // ts显示参数名
+  "typescript.inlayHints.parameterNames.enabled": "all",
+  //ts自动更新引用
+  "typescript.updateImportsOnFileMove.enabled": "always",
+
   "animations.Install-Method": "Custom CSS and JS",
   "animations.UseCursorColorForCursorAnimation": true,
   "animations.Active": "None",
@@ -11,6 +39,8 @@
     "Command-Palette": 200
   },
   "animations.Enabled": false,
+  // secondary side bar because we use chat
+  "autoHide.autoHideAuxiliaryBar": false,
   "catppuccin.accentColor": "lavender",
   "catppuccin.bracketMode": "monochromatic",
   "catppuccin.colorOverrides": {
@@ -91,6 +121,10 @@
     "zshconfig",
     "zstyle"
   ],
+  "console-ninja.fontSize": 13,
+  // console ninja 使用免费社区版或其他
+  "console-ninja.featureSet": "Community",
+  // "console-ninja.showWhatsNew": false
   // 建议补全通过替换而不是在后面插入
   // "editor.suggest.insertMode": "replace",
   // 关闭屏幕阅读
@@ -1253,6 +1287,29 @@
       ]
     }
   },
+  "errorLens.enabledDiagnosticLevels": [
+    "error",
+    "warning"
+    // 隐藏 Code Spell Checker 的提示
+    // "info",
+  ],
+  "fileutils.inputBox.pathType": "workspace",
+  //git 自动拉取
+  "git.autofetch": true,
+  // git
+  "git.openRepositoryInParentFolders": "never",
+  "gitlens.views.commitDetails.files.layout": "list",
+  "gitlens.ai.model": "vscode",
+  "gitlens.ai.vscode.model": "copilot:gpt-4o",
+  "github.copilot.enable": {
+    "*": true,
+    "markdown": true,
+    "plaintext": false,
+    "scminput": false,
+    "vue": true
+  },
+  "github.copilot.nextEditSuggestions.enabled": false,
+  "haskell.manageHLS": "GHCup",
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -1298,7 +1355,6 @@
   "[shellscript]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
   },
-  /* neovim start */
   // neovim的路径
   "vscode-neovim.neovimExecutablePaths.win32": "C:/Program Files/Neovim/bin/nvim.exe",
   "vscode-neovim.neovimInitVimPaths.win32": "~/AppData/Local/nvim/init.lua",
@@ -1343,98 +1399,22 @@
   "vscode-neovim.compositeKeys": {
     "jj": {
       "command": "vscode-neovim.escape",
-      "args": []
+      "args": [ ]
     }
   },
-  /* neovim end */// auto hide
-  // secondary side bar
-  "autoHide.autoHideAuxiliaryBar": false,
-  // console ninja 使用免费社区版或其他
-  "console-ninja.featureSet": "Community",
-  "console-ninja.showWhatsNew": false,
-  //dev container
-  "dev.containers.executeInWSL": true,
-  "diffEditor.ignoreTrimWhitespace": true,
-  "errorLens.enabledDiagnosticLevels": [
-    "error",
-    "warning"
-    // 隐藏 Code Spell Checker 的提示
-    // "info",
-  ],
-  // 直接复制
-  "explorer.confirmPasteNative": false,
-  // 文件关联方式
-  "files.associations": {},
-  // file utils
-  "fileutils.inputBox.pathType": "workspace",
-  //git 自动拉取
-  "git.autofetch": true,
-  // git
-  "git.openRepositoryInParentFolders": "never",
-  /* github copilot start */
-  "github.copilot.enable": {
-    "*": true,
-    "markdown": true,
-    "plaintext": false,
-    "scminput": false,
-    "vue": true
-  },
-  "github.copilot.nextEditSuggestions.enabled": false,
-  "gitlens.ai.model": "vscode",
-  "gitlens.ai.vscode.model": "copilot:gpt-4o",
-  /* gitlens start */
-  "gitlens.views.commitDetails.files.layout": "list",
-  // haskell
-  "haskell.manageHLS": "GHCup",
-  // js显示参数名
-  "javascript.inlayHints.parameterNames.enabled": "all",
-  // js自动更新应用
-  "javascript.updateImportsOnFileMove.enabled": "always",
-  "json.format.keepLines": true,
-  /* powermode start */
-  // "powermode.enabled":true,
+  "powermode.enabled": false,
   "powermode.shake.intensity": 0.5,
-  // wsl使用插件的方式
-  "remote.extensionKind": {
-    "GitHub.copilot": [
-      "ui"
-    ],
-    "github.copilot-chat": "ui"
-  },
-  /* security start */
-  "security.promptForLocalFileProtocolHandling": false,
-  "security.workspace.trust.untrustedFiles": "open",
-  // svelte
   "svelte.enable-ts-plugin": true,
-  // tabnine
   "tabnine.experimentalAutoImports": true,
-  /* turbo console log start */
-  // 显示文件名
-  "turboConsoleLog.includeFilename": true,
-  // 显示行号
-  "turboConsoleLog.includeLineNum": true,
-  // ts显示参数名
-  "typescript.inlayHints.parameterNames.enabled": "all",
-  //ts自动更新引用
-  "typescript.updateImportsOnFileMove.enabled": "always",
-  // custom css and js
-  "vscode_custom_css.imports": [
-    "file:///Users/caffeinecat/.config/vscode-custom-css-and-js/custom.css",
-    "file:///Users/caffeinecat/.vscode/extensions/brandonkirbyson.vscode-animations-2.0.7/dist/updateHandler.js"
-  ],
-  /* window start */
-  "window.menuBarVisibility": "compact",
-  "window.titleBarStyle": "custom",
   "terminal.explorerKind": "external",
   // 使用Warp作为外部终端
   "terminal.external.osxExec": "Warp.app",
   /* terminal start */
-  "terminal.integrated.env.osx": {},
+  "terminal.integrated.env.osx": { },
   // 字体
   "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font Propo'",
   // 滚动顺滑
   "terminal.integrated.smoothScrolling": true,
-  // todo tree
   "todo-tree.highlights.useColourScheme": true,
   "todo-tree.highlights.customHighlight": {
     // github dark default
@@ -1480,6 +1460,10 @@
     //   "iconColour": "#e5b95c"
     // },
   },
+  // 显示文件名
+  "turboConsoleLog.includeFilename": true,
+  // 显示行号
+  "turboConsoleLog.includeLineNum": true,
   "vim.foldfix": true,
   "vim.easymotion": true,
   "vim.leader": "<space>",
@@ -1684,6 +1668,12 @@
     "asvetliakov.vscode-neovim": 1,
     "vscodevim.vim": 1
   },
+  "vscode_custom_css.imports": [
+    "file:///Users/caffeinecat/.config/vscode-custom-css-and-js/custom.css",
+    "file:///Users/caffeinecat/.vscode/extensions/brandonkirbyson.vscode-animations-2.0.7/dist/updateHandler.js"
+  ],
+  "window.menuBarVisibility": "compact",
+  "window.titleBarStyle": "custom",
   // 样式自定义
   "workbench.colorCustomizations": {
     "[Catppuccin Mocha]": {
@@ -1708,7 +1698,8 @@
   "workbench.layoutControl.enabled": false,
   // 滚动顺滑
   "workbench.list.smoothScrolling": true,
-  "workbench.productIconTheme": "fluent-icons",
+  // maybe the default icon theme is better
+  // "workbench.productIconTheme": "fluent-icons",
   "workbench.activityBar.location": "top",
   "workbench.colorTheme": "GitHub Dark Default"
 }

@@ -1,0 +1,8 @@
+{
+  "$schema": "vscode://schemas/settings/user",
+
+  "console-ninja.fontSize": 13,
+  // console ninja 使用免费社区版或其他
+  "console-ninja.featureSet": "Community"
+  // "console-ninja.showWhatsNew": false
+}

@@ -31,7 +31,8 @@
   // 滚动顺滑
   "workbench.list.smoothScrolling": true,
 
-  "workbench.productIconTheme": "fluent-icons",
+  // maybe the default icon theme is better
+  // "workbench.productIconTheme": "fluent-icons",
 
   "workbench.activityBar.location": "top",
 

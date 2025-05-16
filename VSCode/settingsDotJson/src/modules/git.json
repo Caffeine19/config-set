@@ -1,0 +1,8 @@
+{
+  "$schema": "vscode://schemas/settings/user",
+
+  //git 自动拉取
+  "git.autofetch": true,
+  // git
+  "git.openRepositoryInParentFolders": "never"
+}

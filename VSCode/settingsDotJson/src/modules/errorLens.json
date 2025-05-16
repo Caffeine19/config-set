@@ -1,0 +1,10 @@
+{
+  "$schema": "vscode://schemas/settings/user",
+
+  "errorLens.enabledDiagnosticLevels": [
+    "error",
+    "warning"
+    // 隐藏 Code Spell Checker 的提示
+    // "info",
+  ]
+}

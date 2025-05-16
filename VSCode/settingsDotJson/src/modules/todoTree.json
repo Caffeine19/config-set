@@ -1,7 +1,6 @@
 {
   "$schema": "vscode://schemas/settings/user",
 
-  // todo tree
   "todo-tree.highlights.useColourScheme": true,
   "todo-tree.highlights.customHighlight": {
     // github dark default

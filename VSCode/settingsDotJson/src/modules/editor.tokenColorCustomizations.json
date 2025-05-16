@@ -1,5 +1,6 @@
 {
   "$schema": "vscode://schemas/settings/user",
+
   // 字体斜体-配合部分字体有连体效果-每个主题需要对应的配置
   "editor.tokenColorCustomizations": {
     "[Ayu Dark Bordered]": {

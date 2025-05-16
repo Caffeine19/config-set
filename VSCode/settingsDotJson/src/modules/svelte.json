@@ -1,0 +1,5 @@
+{
+  "$schema": "vscode://schemas/settings/user",
+
+  "svelte.enable-ts-plugin": true
+}

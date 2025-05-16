@@ -1,11 +1,12 @@
 {
   "$schema": "vscode://schemas/settings/user",
-  /* neovim start */
+
   // neovim的路径
   "vscode-neovim.neovimExecutablePaths.win32": "C:/Program Files/Neovim/bin/nvim.exe",
   "vscode-neovim.neovimInitVimPaths.win32": "~/AppData/Local/nvim/init.lua",
   "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim",
   "vscode-neovim.neovimInitVimPaths.darwin": "~/.config/nvim/init.lua",
+
   "vscode-neovim.ctrlKeysForInsertMode": [
     // "a",
     "d",
@@ -42,11 +43,11 @@
     "/",
     "]"
   ],
+
   "vscode-neovim.compositeKeys": {
     "jj": {
       "command": "vscode-neovim.escape",
       "args": []
     }
   }
-  /* neovim end */
 }

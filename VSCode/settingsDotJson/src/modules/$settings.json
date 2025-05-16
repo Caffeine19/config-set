@@ -1,0 +1,38 @@
+{
+  "$schema": "vscode://schemas/settings/user",
+
+  //dev container
+  "dev.containers.executeInWSL": true,
+
+  "diffEditor.ignoreTrimWhitespace": true,
+
+  // 直接复制
+  "explorer.confirmPasteNative": false,
+
+  // 文件关联方式
+  "files.associations": {},
+
+  "inlineChat.enableV2": true,
+
+  // js显示参数名
+  "javascript.inlayHints.parameterNames.enabled": "all",
+  // js自动更新应用
+  "javascript.updateImportsOnFileMove.enabled": "always",
+
+  "json.format.keepLines": true,
+
+  // wsl使用插件的方式
+  "remote.extensionKind": {
+    "GitHub.copilot": ["ui"],
+    "github.copilot-chat": "ui"
+  },
+
+  /* security start */
+  "security.promptForLocalFileProtocolHandling": false,
+  "security.workspace.trust.untrustedFiles": "open",
+
+  // ts显示参数名
+  "typescript.inlayHints.parameterNames.enabled": "all",
+  //ts自动更新引用
+  "typescript.updateImportsOnFileMove.enabled": "always"
+}

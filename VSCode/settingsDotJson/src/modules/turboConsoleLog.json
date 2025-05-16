@@ -1,0 +1,8 @@
+{
+  "$schema": "vscode://schemas/settings/user",
+
+  // 显示文件名
+  "turboConsoleLog.includeFilename": true,
+  // 显示行号
+  "turboConsoleLog.includeLineNum": true
+}

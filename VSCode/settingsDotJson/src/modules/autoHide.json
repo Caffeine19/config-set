@@ -1,0 +1,6 @@
+{
+  "$schema": "vscode://schemas/settings/user",
+
+  // secondary side bar because we use chat
+  "autoHide.autoHideAuxiliaryBar": false
+}

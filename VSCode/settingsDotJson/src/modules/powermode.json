@@ -1,0 +1,6 @@
+{
+  "$schema": "vscode://schemas/settings/user",
+
+  "powermode.enabled": false,
+  "powermode.shake.intensity": 0.5
+}
