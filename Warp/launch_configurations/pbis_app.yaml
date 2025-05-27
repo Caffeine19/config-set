@@ -22,22 +22,16 @@
 #            - exec: code .
 
 ---
-name: Fuyang Park
-active_window_index: 1
+name: Pbis App
+active_window_index: 0
 windows:
-  - active_tab_index: 1
+  - active_tab_index: 0 
     tabs:
-      - title: fuyang-portal
+      - title: pbis-app
         layout:
-          split_direction: horizontal
-          panes:
-            - cwd: /Users/caffeinecat/Work/fyyq/fuyang-park-portal-next
-            - cwd: /Users/caffeinecat/Work/fyyq/fuyang-park-portal-next
-              is_focused: true
-      - title: fuyang-admin
+          cwd: /Users/caffeinecat/work/pbis/pbis-app
+          is_focused: true
+      - title: pbis-doc
         layout:
-          split_direction: horizontal
-          panes:
-            - cwd: /Users/caffeinecat/Work/fyyq/fuyang-park-admin
-            - cwd: /Users/caffeinecat/Work/fyyq/fuyang-park-admin
-              is_focused: true
+          cwd: /Users/caffeinecat/work/pbis/pbis-doc
+          is_focused: true

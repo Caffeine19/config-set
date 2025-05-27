@@ -22,22 +22,26 @@
 #            - exec: code .
 
 ---
-name: Fuyang Park
-active_window_index: 1
+name: Jike Ding Talk
+active_window_index: 0
 windows:
-  - active_tab_index: 1
+  - active_tab_index: 0
     tabs:
-      - title: fuyang-portal
+      - title: jike-mobile
         layout:
           split_direction: horizontal
           panes:
-            - cwd: /Users/caffeinecat/Work/fyyq/fuyang-park-portal-next
-            - cwd: /Users/caffeinecat/Work/fyyq/fuyang-park-portal-next
+            - cwd: /Users/caffeinecat/work/jike-ding-talk/jike-ding-talk-app
               is_focused: true
-      - title: fuyang-admin
+            - cwd: /Users/caffeinecat/work/jike-ding-talk/jike-ding-talk-app
+      - title: jike-doc
+        layout:
+          cwd: /Users/caffeinecat/work/jike-ding-talk/jike-ding-talk-doc/第三方接口/ICT文档
+          is_focused: true
+      - title: jike-admin
         layout:
           split_direction: horizontal
           panes:
-            - cwd: /Users/caffeinecat/Work/fyyq/fuyang-park-admin
-            - cwd: /Users/caffeinecat/Work/fyyq/fuyang-park-admin
+            - cwd: /Users/caffeinecat/work/jike-ding-talk/jike-ding-talk-vue
               is_focused: true
+            - cwd: /Users/caffeinecat/work/jike-ding-talk/jike-ding-talk-vue
