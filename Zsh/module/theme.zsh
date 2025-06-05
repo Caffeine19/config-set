@@ -20,6 +20,7 @@ ZSH_THEME_BLACKLIST=(
     "darkblood"
     "fino"
     "steeef"
+    "evan"
 )
 
 delete_theme_file_from_blacklist() {

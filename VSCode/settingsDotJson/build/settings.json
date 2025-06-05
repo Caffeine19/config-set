@@ -2,7 +2,9 @@
   "$schema": "vscode://schemas/settings/user",
   //dev container
   "dev.containers.executeInWSL": true,
+  // diff editor
   "diffEditor.ignoreTrimWhitespace": true,
+  "diffEditor.useInlineViewWhenSpaceIsLimited": false,
   // 直接复制
   "explorer.confirmPasteNative": false,
   // 文件关联方式
@@ -20,14 +22,13 @@
     ],
     "github.copilot-chat": "ui"
   },
-  /* security start */
+  // security
   "security.promptForLocalFileProtocolHandling": false,
   "security.workspace.trust.untrustedFiles": "open",
   // ts显示参数名
   "typescript.inlayHints.parameterNames.enabled": "all",
   //ts自动更新引用
   "typescript.updateImportsOnFileMove.enabled": "always",
-
   "animations.Install-Method": "Custom CSS and JS",
   "animations.UseCursorColorForCursorAnimation": true,
   "animations.Active": "None",
@@ -1301,14 +1302,8 @@
   "gitlens.views.commitDetails.files.layout": "list",
   "gitlens.ai.model": "vscode",
   "gitlens.ai.vscode.model": "copilot:gpt-4o",
-  "github.copilot.enable": {
-    "*": true,
-    "markdown": true,
-    "plaintext": false,
-    "scminput": false,
-    "vue": true
-  },
-  "github.copilot.nextEditSuggestions.enabled": false,
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "github.copilot.nextEditSuggestions.fixes": true,
   "haskell.manageHLS": "GHCup",
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
