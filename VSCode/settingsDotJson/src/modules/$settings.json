@@ -1,10 +1,11 @@
 {
   "$schema": "vscode://schemas/settings/user",
-
   //dev container
   "dev.containers.executeInWSL": true,
 
+  // diff editor
   "diffEditor.ignoreTrimWhitespace": true,
+  "diffEditor.useInlineViewWhenSpaceIsLimited": false,
 
   // 直接复制
   "explorer.confirmPasteNative": false,
@@ -27,7 +28,7 @@
     "github.copilot-chat": "ui"
   },
 
-  /* security start */
+  // security
   "security.promptForLocalFileProtocolHandling": false,
   "security.workspace.trust.untrustedFiles": "open",
 
