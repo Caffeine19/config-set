@@ -138,7 +138,7 @@
   },
   // 光标不停闪烁
   "editor.cursorBlinking": "smooth",
-  "editor.fontFamily": "'Maple Mono', 'Fira code', 'Cartograph CF', 'Victor Mono', Consolas, 'Courier New', monospace",
+  "editor.fontFamily": "'Maple Mono', 'Fira Code', 'Cartograph CF', 'Victor Mono', Consolas, 'Courier New', monospace",
   // 允许字体连体,例如: => <=
   "editor.fontLigatures": true,
   // 字体大小 13
