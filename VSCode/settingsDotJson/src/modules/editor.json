@@ -7,7 +7,8 @@
   "editor.accessibilitySupport": "off",
   // 保存时的自动化
   "editor.codeActionsOnSave": {
-    "source.fixAll": "always"
+    "source.fixAll": "always",
+    "source.removeUnusedImports": "always"
   },
   // 光标不停闪烁
   "editor.cursorBlinking": "smooth",

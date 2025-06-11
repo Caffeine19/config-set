@@ -6,6 +6,7 @@
   "vim.leader": "<space>",
   "vim.hlsearch": true,
   "vim.useSystemClipboard": true,
+  "vim.sneak": true,
 
   // auto switch input method
   "vim.autoSwitchInputMethod.enable": true,
