@@ -1472,6 +1472,13 @@
   "vim.autoSwitchInputMethod.defaultIM": "com.apple.keylayout.ABC",
   "vim.autoSwitchInputMethod.obtainIMCmd": "/opt/homebrew/bin/im-select",
   "vim.autoSwitchInputMethod.switchIMCmd": "/opt/homebrew/bin/im-select {im}",
+  // easy motion colors
+  // terminal.ansiRed
+  "vim.easymotionMarkerForegroundColorOneChar": "#ff7b72",
+  // terminal.ansiYellow
+  "vim.easymotionMarkerForegroundColorTwoCharFirst": "#d29922",
+  // terminal.ansiYellowBright
+  "vim.easymotionMarkerForegroundColorTwoCharSecond": "#e3b341",
   "vim.handleKeys": {
     // enable all Ctrl key bindings
     // disable if on Windows
