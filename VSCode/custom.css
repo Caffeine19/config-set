@@ -97,3 +97,8 @@ div.monaco-progress-container.quick-input-progress.done {
     opacity: 1;
   }
 }
+
+/* 修复 welcome page 标题被截断的问题 */
+.monaco-workbench .part.editor > .content .gettingStartedContainer h1 {
+  line-height: 3rem !important;
+}
