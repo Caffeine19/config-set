@@ -18,4 +18,4 @@ alias yw='(git --no-pager log --oneline --no-merges --author="$(git config user.
 # today work
 alias tw='(git --no-pager log --oneline --no-merges  --author="$(git config user.name)" --since=midnight | pbcopy) && echo "Today commits copied to clipboard"'
 
-echo "module alias.zsh loaded"
+echo "[oh-my-zsh] module alias.zsh loaded"

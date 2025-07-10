@@ -43,4 +43,4 @@ copy_current_theme() {
     echo -n "\"$RANDOM_THEME\"" | pbcopy
 }
 
-echo "module theme.zsh loaded"
+echo "[oh-my-zsh] module theme.zsh loaded"

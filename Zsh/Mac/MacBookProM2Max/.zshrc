@@ -129,9 +129,11 @@ export _ZO_ECHO=1
 # console ninja
 PATH=~/.console-ninja/.bin:$PATH
 
-# Created by `pipx` on 2025-02-13 03:42:16
+# jetbrains
+# ___MY_VMOPTIONS_SHELL_FILE="${HOME}/.jetbrains.vmoptions.sh"
+# if [ -f "${___MY_VMOPTIONS_SHELL_FILE}" ]; then . "${___MY_VMOPTIONS_SHELL_FILE}"; fi
+
+# Created by `pipx` on 2025-06-13 02:24:55
 export PATH="$PATH:/Users/caffeinecat/.local/bin"
 
-# jetbrains
-___MY_VMOPTIONS_SHELL_FILE="${HOME}/.jetbrains.vmoptions.sh"
-if [ -f "${___MY_VMOPTIONS_SHELL_FILE}" ]; then . "${___MY_VMOPTIONS_SHELL_FILE}"; fi
+source /Users/caffeinecat/.config/broot/launcher/bash/br
