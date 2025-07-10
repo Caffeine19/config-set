@@ -6,8 +6,8 @@ alias ff="fastfetch"
 alias cat="bat"
 
 alias ls="lsd --group-dirs first"
-alias ll="lsd -1 --group-dirs first"
-alias la="lsd -la --group-dirs first"
+alias ll="lsd -alF --group-dirs first"
+alias la="lsd -A --group-dirs first"
 alias lt='ls --tree --group-dirs first'
 
 alias cz="pnpm czg"
