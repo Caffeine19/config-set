@@ -10,8 +10,10 @@ alias ll="lsd -alF --group-dirs first"
 alias la="lsd -A --group-dirs first"
 alias lt='ls --tree --group-dirs first'
 
-alias cz="pnpm czg"
-alias czw="pnpm -w czg"
+alias czg="pnpm czg"
+alias czgw="pnpm -w czg"
+alias cz="pnpm cz"
+alias czw="pnpm -w cz"
 
 # git yesterday commits and copy to clipboard
 alias yw='(git --no-pager log --oneline --no-merges --author="$(git config user.name)" --since=yesterday.midnight --until=midnight | pbcopy) && echo "Yesterday commits copied to clipboard"'
