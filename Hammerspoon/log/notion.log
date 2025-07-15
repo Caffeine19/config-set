@@ -1,0 +1,27 @@
+2025-07-15 11:40:03:   App: Notion
+2025-07-15 11:40:03:   Title: Notion - Command Search
+2025-07-15 11:40:03:   Frame: { -- hs.geometry.rect(-1657.0,-246.0,755.0,1399.0)
+  _h = 1399.0,
+  _w = 755.0,
+  _x = -1657.0,
+  _y = -246.0
+}
+2025-07-15 11:40:03:   Role: AXWindow
+2025-07-15 11:40:03:   Subrole: AXStandardWindow
+2025-07-15 11:40:03:   ID: 196
+2025-07-15 11:40:03:   Is Standard: true
+2025-07-15 11:40:03:   Is Minimized: false
+2025-07-15 11:40:03:   Is Visible: true
+2025-07-15 11:40:43:   App: Notion
+2025-07-15 11:40:43:   Title: Tools
+2025-07-15 11:40:43:   Frame: { -- hs.geometry.rect(240.0,99.0,1320.0,860.0)
+  _h = 860.0,
+  _w = 1320.0,
+  _x = 240.0,
+  _y = 99.0
+2025-07-15 11:40:43:   Role: AXWindow
+2025-07-15 11:40:43:   Subrole: AXStandardWindow
+2025-07-15 11:40:43:   ID: 32768
+2025-07-15 11:40:43:   Is Standard: true
+2025-07-15 11:40:43:   Is Minimized: false
+2025-07-15 11:40:43:   Is Visible: true
