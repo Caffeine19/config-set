@@ -22,6 +22,12 @@ local function shouldSkipWindow(win, appName)
         return true
     end
 
+    -- Skip dialog windows
+    if win:subrole() == "AXDialog" then
+        print("[SKIP] " .. appName .. " - AXDialog subrole")
+        return true
+    end
+
     -- Add more specific window skip conditions here
     return false
 end
