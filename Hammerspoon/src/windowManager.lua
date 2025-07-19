@@ -6,7 +6,8 @@ local windowManager = {}
 -- Blacklist of applications that should not be maximized
 local launchers = {"Raycast", "Alfred", "Hammerspoon"}
 local games = {"Hearthstone"}
-local baseList = {"Calculator", "System Preferences", "System Settings", "Hammerspoon", "Loop", "Mouseposé", "Shottr"}
+local baseList = {"Calculator", "System Preferences", "System Settings", "Control Center", "Hammerspoon", "Loop",
+                  "Mouseposé", "Shottr"}
 local blacklist = utils.mergeArrays(baseList, launchers, games)
 
 -- Function to check if an application is blacklisted
