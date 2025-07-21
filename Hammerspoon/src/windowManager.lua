@@ -32,16 +32,17 @@ local function shouldSkipWindow(win, appName)
     return false
 end
 
--- Function to attempt window maximization
-local function maximizeWindow(win, appName)
-    print("[AUTO-MAXIMIZE] Processing " .. appName)
+-- Maximize window using Loop
+local function maximizeWindowByLoop(win, appName)
+    print("[MAXIMIZE] Using Loop for " .. appName)
+    hs.execute("open -g loop://direction/maximize")
+end
 
-    -- 1. Check if Window/Fill menu item exists
+-- Maximize window using Window/Fill menu item
+local function maximizeWindowByMenuItem(win, appName)
     local app = win:application()
     local menuItem = app:findMenuItem({"Window", "Fill"})
-
     if menuItem then
-        -- Window/Fill menu exists, use select menu item to maximize the window
         local success = app:selectMenuItem({"Window", "Fill"})
         if success then
             print("[SUCCESS] Window/Fill menu selected for " .. appName)
@@ -49,9 +50,28 @@ local function maximizeWindow(win, appName)
             print("[FAILED] Could not select Window/Fill for " .. appName)
         end
     else
-        -- Window/Fill menu not available, use Raycast maximize command
-        print("[FALLBACK] Using Raycast for " .. appName .. " (no Window/Fill menu)")
-        hs.execute("open -g raycast://extensions/raycast/window-management/maximize")
+        print("[FAILED] No Window/Fill menu for " .. appName)
+    end
+end
+
+-- Maximize window using Raycast
+local function maximizeWindowByRaycast(win, appName)
+    print("[MAXIMIZE] Using Raycast for " .. appName)
+    hs.execute("open -g raycast://extensions/raycast/window-management/maximize")
+end
+
+-- Main maximizeWindow function (choose method)
+local function maximizeWindow(win, appName)
+    -- Example: Try menuItem first, then Loop, then Raycast
+    local app = win:application()
+    local menuItem = app:findMenuItem({"Window", "Fill"})
+    if menuItem then
+        maximizeWindowByMenuItem(win, appName)
+        -- maximizeWindowByLoop(win, appName)
+    else
+        -- You can change the order here if you want Loop or Raycast to be preferred
+        -- maximizeWindowByLoop(win, appName)
+        maximizeWindowByRaycast(win, appName)
     end
 end
 
