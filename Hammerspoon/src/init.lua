@@ -25,3 +25,12 @@ end
 _G.handleCallMaximizeAllWindowFromShortcut = handleCallMaximizeAllWindowFromShortcut
 -- Make the function globally accessible for all spaces
 _G.handleCallMaximizeAllWindowFromAllSpacesFromShortcut = handleCallMaximizeAllWindowFromAllSpacesFromShortcut
+
+-- local space = require("space")
+-- function handleCallRemoveCurrentSpaceFromShortcut()
+--     -- This function can be used to remove the current space
+--     space.removeCurrentSpace()
+--     return "Removed current space successfully"
+-- end
+-- -- Make the function globally accessible for removing current space
+-- _G.handleCallRemoveCurrentSpaceFromShortcut = handleCallRemoveCurrentSpaceFromShortcut
