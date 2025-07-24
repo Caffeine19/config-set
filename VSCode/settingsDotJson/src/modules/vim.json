@@ -7,6 +7,7 @@
   "vim.hlsearch": true,
   "vim.useSystemClipboard": true,
   "vim.sneak": true,
+  "vim.matchpairs": "(:),{:},[:],<:>",
 
   // auto switch input method
   "vim.autoSwitchInputMethod.enable": true,

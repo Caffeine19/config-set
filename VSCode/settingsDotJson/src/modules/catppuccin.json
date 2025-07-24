@@ -19,5 +19,9 @@
       // "mantle": "#010101",
       // "crust": "#020202"
     }
+  },
+
+  "catppuccin-icons.associations.files": {
+    "commitlint.config.mjs": "commitlint"
   }
 }
