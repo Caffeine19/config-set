@@ -8,7 +8,7 @@
   // 直接复制
   "explorer.confirmPasteNative": false,
   // 文件关联方式
-  "files.associations": {},
+  "files.associations": { },
   "inlineChat.enableV2": true,
   // js显示参数名
   "javascript.inlayHints.parameterNames.enabled": "all",
@@ -60,6 +60,9 @@
       // "mantle": "#010101",
       // "crust": "#020202"
     }
+  },
+  "catppuccin-icons.associations.files": {
+    "commitlint.config.mjs": "commitlint"
   },
   // cspell用户词库
   "cSpell.userWords": [
@@ -1306,6 +1309,9 @@
   "gitlens.ai.vscode.model": "copilot:gpt-4o",
   "github.copilot.nextEditSuggestions.enabled": true,
   "github.copilot.nextEditSuggestions.fixes": true,
+  "chat.editing.confirmEditRequestRemoval": false,
+  "chat.mcp.discovery.enabled": true,
+  "chat.mcp.enabled": true,
   "haskell.manageHLS": "GHCup",
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -1396,7 +1402,7 @@
   "vscode-neovim.compositeKeys": {
     "jj": {
       "command": "vscode-neovim.escape",
-      "args": []
+      "args": [ ]
     }
   },
   "powermode.enabled": false,
@@ -1407,7 +1413,7 @@
   // 使用Warp作为外部终端
   "terminal.external.osxExec": "Warp.app",
   /* terminal start */
-  "terminal.integrated.env.osx": {},
+  "terminal.integrated.env.osx": { },
   // 字体
   "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font Propo'",
   // 滚动顺滑
@@ -1467,6 +1473,7 @@
   "vim.hlsearch": true,
   "vim.useSystemClipboard": true,
   "vim.sneak": true,
+  "vim.matchpairs": "(:),{:},[:],<:>",
   // auto switch input method
   "vim.autoSwitchInputMethod.enable": true,
   "vim.autoSwitchInputMethod.defaultIM": "com.apple.keylayout.ABC",

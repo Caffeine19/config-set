@@ -2,5 +2,10 @@
   "$schema": "vscode://schemas/settings/user",
 
   "github.copilot.nextEditSuggestions.enabled": true,
-  "github.copilot.nextEditSuggestions.fixes": true
+  "github.copilot.nextEditSuggestions.fixes": true,
+
+  "chat.editing.confirmEditRequestRemoval": false,
+
+  "chat.mcp.discovery.enabled": true,
+  "chat.mcp.enabled": true
 }
