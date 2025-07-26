@@ -4,11 +4,14 @@ local utils = require("utils")
 local windowManager = {}
 
 -- Blacklist of applications that should not be maximized
-local launchers = {"Raycast", "Alfred", "Hammerspoon"}
-local games = {"Hearthstone"}
-local baseList = {"Calculator", "System Preferences", "System Settings", "Control Center", "Hammerspoon", "Loop",
-                  "Mouseposé", "Shottr"}
-local blacklist = utils.mergeArrays(baseList, launchers, games)
+local systemApps = {
+    "Calculator", "System Preferences", "System Settings", "Control Center"
+}
+local launchers = { "Raycast", "Alfred", "Hammerspoon" }
+local games = { "Hearthstone" }
+local baseList = { "Hammerspoon", "Loop",
+    "Mouseposé", "Shottr", "Pictogram" }
+local blacklist = utils.mergeArrays(systemApps, baseList, launchers, games)
 
 -- Function to check if an application is blacklisted
 local function isBlacklisted(appName)
@@ -39,11 +42,11 @@ local function maximizeWindow(win, appName)
 
     -- 1. Check if Window/Fill menu item exists
     local app = win:application()
-    local menuItem = app:findMenuItem({"Window", "Fill"})
+    local menuItem = app:findMenuItem({ "Window", "Fill" })
 
     if menuItem then
         -- Window/Fill menu exists, use select menu item to maximize the window
-        local success = app:selectMenuItem({"Window", "Fill"})
+        local success = app:selectMenuItem({ "Window", "Fill" })
         if success then
             print("[SUCCESS] Window/Fill menu selected for " .. appName)
         else
@@ -219,7 +222,6 @@ function windowManager.getAllWindowsInfo()
     return info
 end
 
--- 
+--
 
 return windowManager
-
