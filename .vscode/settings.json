@@ -31,5 +31,8 @@
         "wasu",
         "Wasu",
         "zjgyrj"
+    ],
+    "Lua.diagnostics.globals": [
+        "hs"
     ]
 }
