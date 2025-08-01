@@ -22,19 +22,19 @@ end
 local function shouldSkipWindow(win, appName)
     -- Skip Notion Command Search window
     if appName == "Notion" and win:title() == "Notion - Command Search" then
-        print("[SKIP] Notion Command Search window")
+        print("⏭️ [SKIP] Notion Command Search window")
         return true
     end
 
     -- Skip dialog windows
     if win:subrole() == "AXDialog" then
-        print("[SKIP] " .. appName .. " - AXDialog subrole")
+        print("⏭️ [SKIP] " .. appName .. " - AXDialog subrole")
         return true
     end
 
     -- Skip system dialog windows
     if win:subrole() == "AXSystemDialog" then
-        print("[SKIP] " .. appName .. " - AXSystemDialog subrole")
+        print("⏭️ [SKIP] " .. appName .. " - AXSystemDialog subrole")
         return true
     end
 
@@ -44,7 +44,7 @@ end
 
 -- Maximize window using Loop
 local function maximizeWindowByLoop(win, appName)
-    print("[MAXIMIZE] Using Loop for " .. appName)
+    print("🔗 [MAXIMIZE] Using Loop for " .. appName)
     hs.execute("open -g loop://direction/maximize")
 end
 
@@ -57,18 +57,18 @@ local function maximizeWindowByMenuItem(win, appName)
         -- Window/Fill menu exists, use select menu item to maximize the window
         local success = app:selectMenuItem({ "Window", "Fill" })
         if success then
-            print("[SUCCESS] Window/Fill menu selected for " .. appName)
+            print("✅ [SUCCESS] Window/Fill menu selected for " .. appName)
         else
-            print("[FAILED] Could not select Window/Fill for " .. appName)
+            print("❌ [FAILED] Could not select Window/Fill for " .. appName)
         end
     else
-        print("[FAILED] No Window/Fill menu for " .. appName)
+        print("❌ [FAILED] No Window/Fill menu for " .. appName)
     end
 end
 
 -- Maximize window using Raycast
 local function maximizeWindowByRaycast(win, appName)
-    print("[MAXIMIZE] Using Raycast for " .. appName)
+    print("🚀 [MAXIMIZE] Using Raycast for " .. appName)
     hs.execute("open -g raycast://extensions/raycast/window-management/maximize")
 end
 
@@ -92,20 +92,20 @@ local function handleWindowCreated(win)
     local appName = win:application():name()
 
     -- Print window properties for debugging
-    print("[DEBUG] Window created:")
-    print("  App: " .. appName)
-    print("  Title: " .. (win:title() or "No title"))
+    print("🔍 [DEBUG] Window created:")
+    print("  📱 App: " .. appName)
+    print("  📝 Title: " .. (win:title() or "No title"))
     -- print("  Frame: " .. hs.inspect(win:frame()))
-    print("  Role: " .. (win:role() or "No role"))
-    print("  Subrole: " .. (win:subrole() or "No subrole"))
-    print("  ID: " .. (win:id() or "No ID"))
-    print("  Is Standard: " .. tostring(win:isStandard()))
-    print("  Is Minimized: " .. tostring(win:isMinimized()))
-    print("  Is Visible: " .. tostring(win:isVisible()))
+    print("  🎭 Role: " .. (win:role() or "No role"))
+    print("  🎭 Subrole: " .. (win:subrole() or "No subrole"))
+    print("  🆔 ID: " .. (win:id() or "No ID"))
+    print("  📏 Is Standard: " .. tostring(win:isStandard()))
+    print("  👁️ Is Minimized: " .. tostring(win:isMinimized()))
+    print("  👀 Is Visible: " .. tostring(win:isVisible()))
 
     -- Skip blacklisted applications
     if isBlacklisted(appName) then
-        print("[SKIP] " .. appName .. " is blacklisted")
+        print("🚫 [SKIP] " .. appName .. " is blacklisted")
         return
     end
 
@@ -122,7 +122,7 @@ end
 function windowManager.init()
     -- Subscribe to window creation events
     hs.window.filter.default:subscribe(hs.window.filter.windowCreated, handleWindowCreated)
-    print("[WINDOW-MANAGER] Window management initialized")
+    print("🚀 [WINDOW-MANAGER] Window management initialized")
 end
 
 -- Maximize all existing windows
@@ -131,11 +131,11 @@ function windowManager.maximizeAllWindows()
     local processed = 0
     local skipped = 0
 
-    print("[WINDOW-MANAGER] Starting to maximize all existing windows...")
+    print("🔄 [WINDOW-MANAGER] Starting to maximize all existing windows...")
 
     for _, win in ipairs(allWindows) do
         local appName = win:application():name()
-        print("[DEBUG] Processing window for app: " .. appName)
+        print("🔍 [DEBUG] Processing window for app: " .. appName)
 
         -- Skip if window is not standard or not visible
         -- if not win:isStandard() or not win:isVisible() or win:isMinimized() then
@@ -146,7 +146,7 @@ function windowManager.maximizeAllWindows()
 
         -- Skip blacklisted applications
         if isBlacklisted(appName) then
-            print("[SKIP] " .. appName .. " is blacklisted")
+            print("🚫 [SKIP] " .. appName .. " is blacklisted")
             skipped = skipped + 1
             goto continue
         end
@@ -158,7 +158,7 @@ function windowManager.maximizeAllWindows()
         end
 
         -- Focus the window first, then maximize it
-        print("[FOCUS] Bringing " .. appName .. " to front")
+        print("🎯 [FOCUS] Bringing " .. appName .. " to front")
         win:focus()
 
         -- Small delay to ensure window is focused
@@ -171,7 +171,7 @@ function windowManager.maximizeAllWindows()
         ::continue::
     end
 
-    print("[WINDOW-MANAGER] Finished! Processed: " .. processed .. ", Skipped: " .. skipped)
+    print("✅ [WINDOW-MANAGER] Finished! Processed: " .. processed .. ", Skipped: " .. skipped)
 end
 
 -- Maximize all existing windows from all spaces
@@ -179,7 +179,7 @@ function windowManager.maximizeAllWindowsFromAllSpaces()
     local processed = 0
     local skipped = 0
 
-    print("[WINDOW-MANAGER] Starting to maximize all existing windows across all spaces...")
+    print("🌌 [WINDOW-MANAGER] Starting to maximize all existing windows across all spaces...")
 
     -- Get all applications first
     local allApps = hs.application.runningApplications()
@@ -189,18 +189,18 @@ function windowManager.maximizeAllWindowsFromAllSpaces()
         local appWindows = app:allWindows()
 
         for _, win in ipairs(appWindows) do
-            print("[DEBUG] Processing window for app: " .. appName)
+            print("🔍 [DEBUG] Processing window for app: " .. appName)
 
             -- Skip if window is not standard
             if not win:isStandard() then
-                print("[SKIP] " .. appName .. " - not standard window")
+                print("⏭️ [SKIP] " .. appName .. " - not standard window")
                 skipped = skipped + 1
                 goto continue
             end
 
             -- Skip blacklisted applications
             if isBlacklisted(appName) then
-                print("[SKIP] " .. appName .. " is blacklisted")
+                print("🚫 [SKIP] " .. appName .. " is blacklisted")
                 skipped = skipped + 1
                 goto continue
             end
@@ -212,7 +212,7 @@ function windowManager.maximizeAllWindowsFromAllSpaces()
             end
 
             -- Focus the window first, then maximize it
-            print("[FOCUS] Bringing " .. appName .. " to front")
+            print("🎯 [FOCUS] Bringing " .. appName .. " to front")
             win:focus()
 
             -- Small delay to ensure window is focused
@@ -226,7 +226,7 @@ function windowManager.maximizeAllWindowsFromAllSpaces()
         end
     end
 
-    print("[WINDOW-MANAGER] Finished! Processed: " .. processed .. ", Skipped: " .. skipped)
+    print("✅ [WINDOW-MANAGER] Finished! Processed: " .. processed .. ", Skipped: " .. skipped)
 end
 
 -- Get all windows information (for debugging)
