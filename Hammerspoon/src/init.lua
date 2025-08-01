@@ -43,3 +43,10 @@ local function handleCallPinEdgeTabsFromShortcut()
     return result or "Pinned Edge tabs successfully"
 end
 _G.handleCallPinEdgeTabsFromShortcut = handleCallPinEdgeTabsFromShortcut
+
+local function handleCallToggleEdgeTabsFromShortcut()
+    -- This function can be used to toggle Edge tabs
+    local result = toggleEdgeTabsPane.toggle()
+    return result or "Toggled Edge tabs successfully"
+end
+_G.handleCallToggleEdgeTabsFromShortcut = handleCallToggleEdgeTabsFromShortcut

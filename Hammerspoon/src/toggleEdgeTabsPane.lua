@@ -27,6 +27,7 @@ local function findElement(element, targetDescription, targetRole)
 end
 
 
+-- Get the main Edge application element
 local function getEdgeAppElement()
     local edge = hs.application.find("Microsoft Edge")
     if not edge then
@@ -56,10 +57,30 @@ local function getEdgeAppElement()
     return axApp
 end
 
+local function setMouseCenterOnEdgeWindow()
+    local edgeApp = getEdgeAppElement()
+    if not edgeApp then
+        return "Could not access Edge application element"
+    end
+
+    local mainWindow = edgeApp:attributeValue("AXMainWindow")
+    if not mainWindow then
+        return "No main window found in Edge"
+    end
+
+    local frame = mainWindow:attributeValue("AXFrame")
+    if not frame then
+        return "No frame found for Edge main window"
+    end
+
+    local centerX = frame.x + frame.w / 2
+    local centerY = frame.y + frame.h / 2
+
+    hs.mouse.setAbsolutePosition({ x = centerX, y = centerY })
+end
+
 
 function toggleEdgeTabsPane.collapse()
-    print("[DEBUG] Attempting to click collapse pane button in Microsoft Edge")
-
     local axApp = getEdgeAppElement()
     if not axApp then
         return "Could not access Edge accessibility elements"
@@ -158,28 +179,32 @@ function toggleEdgeTabsPane.pin()
     print("[DEBUG] Looking for Pin pane button directly")
     local pinPaneButton = findElement(axApp, "Pin pane", "AXPopUpButton")
 
-    if pinPaneButton then
-        print("[DEBUG] Found Pin pane button, clicking it")
-        local success = pinPaneButton:performAction("AXPress")
-        if success then
-            return "Successfully clicked Pin pane button"
-        else
-            -- Try clicking at the button's position
-            local pinPosition = pinPaneButton:attributeValue("AXPosition")
-            local pinSize = pinPaneButton:attributeValue("AXSize")
-            if pinPosition and pinSize then
-                local pinCenterX = pinPosition.x + pinSize.w / 2
-                local pinCenterY = pinPosition.y + pinSize.h / 2
-                hs.mouse.absolutePosition({ x = pinCenterX, y = pinCenterY })
-                hs.mouse.leftClick({ x = pinCenterX, y = pinCenterY })
-                return "Clicked Pin pane button using mouse click"
-            else
-                return "Found Pin pane button but could not click it"
-            end
-        end
-    else
+    if not pinPaneButton then
         print("[DEBUG] Pin pane button not found in menu")
         return "Pin pane button not found in the Tab Actions Menu"
+    end
+
+    print("[DEBUG] Found Pin pane button, clicking it")
+    local success = pinPaneButton:performAction("AXPress")
+    if success then
+        return "Successfully clicked Pin pane button"
+    end
+    print("[DEBUG] Failed to click Pin pane button")
+
+    setMouseCenterOnEdgeWindow()
+end
+
+function toggleEdgeTabsPane.toggle()
+    local axApp = getEdgeAppElement()
+    if not axApp then
+        return "Could not access Edge accessibility elements"
+    end
+
+    local collapseButton = findElement(axApp, "Collapse pane", "AXPopUpButton")
+    if collapseButton then
+        toggleEdgeTabsPane.collapse()
+    else
+        toggleEdgeTabsPane.pin()
     end
 end
 
