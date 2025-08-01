@@ -4,11 +4,14 @@ local utils = require("utils")
 local windowManager = {}
 
 -- Blacklist of applications that should not be maximized
-local launchers = {"Raycast", "Alfred", "Hammerspoon"}
-local games = {"Hearthstone"}
-local baseList = {"Calculator", "System Preferences", "System Settings", "Control Center", "Hammerspoon", "Loop",
-                  "Mouseposé", "Shottr"}
-local blacklist = utils.mergeArrays(baseList, launchers, games)
+local systemApps = {
+    "Calculator", "System Preferences", "System Settings", "Control Center"
+}
+local launchers = { "Raycast", "Alfred", "Hammerspoon" }
+local games = { "Hearthstone" }
+local baseList = { "Hammerspoon", "Loop",
+    "Mouseposé", "Shottr", "Pictogram" }
+local blacklist = utils.mergeArrays(systemApps, baseList, launchers, games)
 
 -- Function to check if an application is blacklisted
 local function isBlacklisted(appName)
@@ -48,9 +51,11 @@ end
 -- Maximize window using Window/Fill menu item
 local function maximizeWindowByMenuItem(win, appName)
     local app = win:application()
-    local menuItem = app:findMenuItem({"Window", "Fill"})
+    local menuItem = app:findMenuItem({ "Window", "Fill" })
+
     if menuItem then
-        local success = app:selectMenuItem({"Window", "Fill"})
+        -- Window/Fill menu exists, use select menu item to maximize the window
+        local success = app:selectMenuItem({ "Window", "Fill" })
         if success then
             print("[SUCCESS] Window/Fill menu selected for " .. appName)
         else
@@ -71,7 +76,7 @@ end
 local function maximizeWindow(win, appName)
     -- Example: Try menuItem first, then Loop, then Raycast
     local app = win:application()
-    local menuItem = app:findMenuItem({"Window", "Fill"})
+    local menuItem = app:findMenuItem({ "Window", "Fill" })
     if menuItem then
         maximizeWindowByMenuItem(win, appName)
         -- maximizeWindowByLoop(win, appName)
@@ -245,7 +250,6 @@ function windowManager.getAllWindowsInfo()
     return info
 end
 
--- 
+--
 
 return windowManager
-
