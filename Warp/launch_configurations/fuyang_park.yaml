@@ -41,3 +41,10 @@ windows:
             - cwd: /Users/caffeinecat/Work/fyyq/fuyang-park-admin
             - cwd: /Users/caffeinecat/Work/fyyq/fuyang-park-admin
               is_focused: true
+      - title: fuyang-mobile
+        layout:
+          split_direction: horizontal
+          panes:
+            - cwd: /Users/caffeinecat/Work/fyyq/fuyang-park-mobile
+            - cwd: /Users/caffeinecat/Work/fyyq/fuyang-park-mobile
+              is_focused: true
