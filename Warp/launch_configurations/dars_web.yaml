@@ -23,85 +23,14 @@
 
 ---
 name: Dars Web
-active_window_index: 2
+active_window_index: 1
 windows:
-  - active_tab_index: 3
-    tabs:
-      - title: front-screen
-        layout:
-          split_direction: horizontal
-          panes:
-            - cwd: /Users/caffeinecat/Work/front-base/apps/screen
-              is_focused: true
-            - cwd: /Users/caffeinecat/Work/front-base/apps/screen
-      - title: front-admin
-        layout:
-          split_direction: horizontal
-          panes:
-            - cwd: /Users/caffeinecat/Work/front-base/apps/admin
-              is_focused: true
-            - cwd: /Users/caffeinecat/Work/front-base/apps/admin
-      - title: front-business
-        layout:
-          cwd: /Users/caffeinecat/Work/front-base/packages/business
-          is_focused: true
-      - title: front-mobile
-        layout:
-          split_direction: horizontal
-          panes:
-            - cwd: /Users/caffeinecat/Work/front-base/apps/mobile
-              is_focused: true
-            - cwd: /Users/caffeinecat/Work/front-base/apps/mobile
-  - active_tab_index: 2
-    tabs:
-      - title: binjiang-mobile
-        layout:
-          split_direction: horizontal
-          panes:
-            - split_direction: vertical
-              panes:
-                - cwd: /Users/caffeinecat/Work/binjaing-community/binjiang-community-mobile
-                  is_focused: true
-                - cwd: ""
-            - cwd: /Users/caffeinecat/Work/binjaing-community/binjiang-community-mobile
-      - title: binjiang-business
-        layout:
-          split_direction: horizontal
-          panes:
-            - cwd: /Users/caffeinecat/Work/binjaing-community/bingjiang-community-desktop/packages/business
-            - cwd: /Users/caffeinecat/Work/binjaing-community/bingjiang-community-desktop/packages/business
-              is_focused: true
-      - title: binjiang-admin
-        layout:
-          split_direction: horizontal
-          panes:
-            - cwd: /Users/caffeinecat/Work/binjaing-community/bingjiang-community-desktop/apps/admin
-              is_focused: true
-            - cwd: /Users/caffeinecat/Work/binjaing-community/bingjiang-community-desktop/apps/admin
-      - title: binjiang-screen
-        layout:
-          split_direction: horizontal
-          panes:
-            - cwd: /Users/caffeinecat/Work/binjaing-community/bingjiang-community-desktop/apps/screen
-              is_focused: true
-            - cwd: /Users/caffeinecat/Work/binjaing-community/bingjiang-community-desktop/apps/screen
-      - title: binjiang-platform
-        layout:
-          split_direction: horizontal
-          panes:
-            - cwd: /Users/caffeinecat/Work/binjaing-community/bingjiang-community-desktop/apps/platform
-            - cwd: /Users/caffeinecat/Work/binjaing-community/bingjiang-community-desktop/apps/platform
-              is_focused: true
-      - title: binjiang-java
-        layout:
-          cwd: /Users/caffeinecat/Work/binjaing-community/bj-community-java
-          is_focused: true
-      - title: binjiang-doc
-        layout:
-          cwd: /Users/caffeinecat/Work/binjaing-community/binjiang-community-doc
-          is_focused: true
   - active_tab_index: 1
     tabs:
+      - title: dars-server
+        layout:
+          cwd: /Users/caffeinecat/work/dars/dars-server
+          is_focused: true
       - title: dars-business
         layout:
           split_direction: horizontal
@@ -116,7 +45,3 @@ windows:
             - cwd: /Users/caffeinecat/work/dars/dars-web/apps/admin
               is_focused: true
             - cwd: /Users/caffeinecat/work/dars/dars-web/apps/admin
-      - title: dars-server
-        layout:
-          cwd: /Users/caffeinecat/work/dars/dars-server
-          is_focused: true
