@@ -115,10 +115,27 @@ esac
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+nvm use node
 # nvm end
 
 # zoxide
 eval "$(zoxide init zsh)"
 # zoxide en
 
+# console-ninja
 PATH=~/.console-ninja/.bin:$PATH
+
+# deno
+. "/Users/caffeinecat/.deno/env"
+# Added by Windsurf
+export PATH="/Users/caffeinecat/.codeium/windsurf/bin:$PATH"
+
+# Created by `pipx` on 2025-05-25 06:59:04
+export PATH="$PATH:/Users/caffeinecat/.local/bin"
+
+# bun completions
+[ -s "/Users/caffeinecat/.bun/_bun" ] && source "/Users/caffeinecat/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
