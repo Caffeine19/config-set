@@ -16,6 +16,10 @@ const main = () => {
     mergedJson = assign(mergedJson, json);
   });
 
+  // Add build timestamp comment inside the JSON object
+  const buildTimestamp = new Date().toISOString();
+  mergedJson["// build at"] = buildTimestamp;
+
   const mergedFilePath = join(__dirname, "../build/settings.json");
 
   writeFileSync(mergedFilePath, stringify(mergedJson, null, 2));
