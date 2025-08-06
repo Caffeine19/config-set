@@ -32,7 +32,7 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[lua]": {
-    "editor.defaultFormatter": "yinfei.luahelper"
+    "editor.defaultFormatter": "sumneko.lua"
   },
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"

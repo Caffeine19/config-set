@@ -2,5 +2,7 @@
   "$schema": "vscode://schemas/settings/user",
 
   "window.menuBarVisibility": "compact",
-  "window.titleBarStyle": "custom"
+  "window.titleBarStyle": "custom",
+
+  "window.newWindowProfile": "Default"
 }

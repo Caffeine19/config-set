@@ -1,7 +1,8 @@
 {
   "$schema": "vscode://schemas/settings/user",
 
-  "gitlens.views.commitDetails.files.layout": "list",
+  "gitlens.views.commitDetails.files.layout": "tree",
+  "gitlens.graph.layout": "editor",
   "gitlens.ai.model": "vscode",
   "gitlens.ai.vscode.model": "copilot:gpt-4o"
 }

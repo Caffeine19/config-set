@@ -1,6 +1,15 @@
 {
   "$schema": "vscode://schemas/settings/user",
 
+  // 为了在vue的template中对于component标签的特殊高亮,用于区分普通的html元素
+  "editor.semanticTokenColorCustomizations": {
+    "[GitHub Dark Default]": {
+      "rules": {
+        "component": "#FFA657"
+      }
+    }
+  },
+
   // 字体斜体-配合部分字体有连体效果-每个主题需要对应的配置
   "editor.tokenColorCustomizations": {
     "[Ayu Dark Bordered]": {

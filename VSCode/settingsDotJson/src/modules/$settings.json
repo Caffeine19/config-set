@@ -9,9 +9,16 @@
 
   // 直接复制
   "explorer.confirmPasteNative": false,
+  "explorer.compactFolders": false,
 
   // 文件关联方式
-  "files.associations": {},
+  "files.associations": {
+    // UniApp
+    "pages.json": "jsonc",
+    "manifest.json": "jsonc"
+
+    // ".env*": "dotenv"
+  },
 
   "inlineChat.enableV2": true,
 

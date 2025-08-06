@@ -7,8 +7,14 @@
   "diffEditor.useInlineViewWhenSpaceIsLimited": false,
   // 直接复制
   "explorer.confirmPasteNative": false,
+  "explorer.compactFolders": false,
   // 文件关联方式
-  "files.associations": { },
+  "files.associations": {
+    // UniApp
+    "pages.json": "jsonc",
+    "manifest.json": "jsonc"
+    // ".env*": "dotenv"
+  },
   "inlineChat.enableV2": true,
   // js显示参数名
   "javascript.inlayHints.parameterNames.enabled": "all",
@@ -163,6 +169,14 @@
   "editor.smoothScrolling": true,
   // 自动换行
   "editor.wordWrap": "on",
+  // 为了在vue的template中对于component标签的特殊高亮,用于区分普通的html元素
+  "editor.semanticTokenColorCustomizations": {
+    "[GitHub Dark Default]": {
+      "rules": {
+        "component": "#FFA657"
+      }
+    }
+  },
   // 字体斜体-配合部分字体有连体效果-每个主题需要对应的配置
   "editor.tokenColorCustomizations": {
     "[Ayu Dark Bordered]": {
@@ -1304,14 +1318,23 @@
   "git.autofetch": true,
   // git
   "git.openRepositoryInParentFolders": "never",
-  "gitlens.views.commitDetails.files.layout": "list",
+  "gitlens.views.commitDetails.files.layout": "tree",
+  "gitlens.graph.layout": "editor",
   "gitlens.ai.model": "vscode",
   "gitlens.ai.vscode.model": "copilot:gpt-4o",
-  "github.copilot.nextEditSuggestions.enabled": true,
-  "github.copilot.nextEditSuggestions.fixes": true,
   "chat.editing.confirmEditRequestRemoval": false,
+  "chat.editor.wordWrap": "on",
   "chat.mcp.discovery.enabled": true,
   "chat.mcp.enabled": true,
+  "chat.todoListTool.enabled": true,
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "github.copilot.nextEditSuggestions.fixes": true,
+  "github.copilot.chat.agent.thinkingTool": true,
+  "github.copilot.chat.edits.temporalContext.enabled": true,
+  "github.copilot.chat.editor.temporalContext.enabled": true,
+  "github.copilot.chat.languageContext.fix.typescript.enabled": true,
+  "github.copilot.chat.languageContext.inline.typescript.enabled": true,
+  "github.copilot.chat.languageContext.typescript.enabled": true,
   "haskell.manageHLS": "GHCup",
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -1344,7 +1367,7 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[lua]": {
-    "editor.defaultFormatter": "yinfei.luahelper"
+    "editor.defaultFormatter": "sumneko.lua"
   },
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -1686,6 +1709,9 @@
   ],
   "window.menuBarVisibility": "compact",
   "window.titleBarStyle": "custom",
+  "window.newWindowProfile": "Default",
+  "workbench.startupEditor": "none",
+  "workbench.tree.indent": 16,
   // 样式自定义
   "workbench.colorCustomizations": {
     "[Catppuccin Mocha]": {

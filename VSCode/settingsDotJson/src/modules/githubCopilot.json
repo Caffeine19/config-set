@@ -1,11 +1,22 @@
 {
   "$schema": "vscode://schemas/settings/user",
 
+  "chat.editing.confirmEditRequestRemoval": false,
+  "chat.editor.wordWrap": "on",
+
+  "chat.mcp.discovery.enabled": true,
+  "chat.mcp.enabled": true,
+
+  "chat.todoListTool.enabled": true,
+
   "github.copilot.nextEditSuggestions.enabled": true,
   "github.copilot.nextEditSuggestions.fixes": true,
 
-  "chat.editing.confirmEditRequestRemoval": false,
+  "github.copilot.chat.agent.thinkingTool": true,
+  "github.copilot.chat.edits.temporalContext.enabled": true,
+  "github.copilot.chat.editor.temporalContext.enabled": true,
 
-  "chat.mcp.discovery.enabled": true,
-  "chat.mcp.enabled": true
+  "github.copilot.chat.languageContext.fix.typescript.enabled": true,
+  "github.copilot.chat.languageContext.inline.typescript.enabled": true,
+  "github.copilot.chat.languageContext.typescript.enabled": true
 }
