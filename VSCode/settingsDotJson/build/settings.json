@@ -8,7 +8,7 @@
   // 直接复制
   "explorer.confirmPasteNative": false,
   // 文件关联方式
-  "files.associations": {},
+  "files.associations": { },
   "inlineChat.enableV2": true,
   // js显示参数名
   "javascript.inlayHints.parameterNames.enabled": "all",
@@ -1402,7 +1402,7 @@
   "vscode-neovim.compositeKeys": {
     "jj": {
       "command": "vscode-neovim.escape",
-      "args": []
+      "args": [ ]
     }
   },
   "powermode.enabled": false,
@@ -1413,7 +1413,7 @@
   // 使用Warp作为外部终端
   "terminal.external.osxExec": "Warp.app",
   /* terminal start */
-  "terminal.integrated.env.osx": {},
+  "terminal.integrated.env.osx": { },
   // 字体
   "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font Propo'",
   // 滚动顺滑
