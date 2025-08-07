@@ -77,7 +77,7 @@ div.monaco-progress-container.quick-input-progress.done {
   border-radius: 0px 0px 10px 10px !important;
 }
 
-.quick-input-tree{
+.quick-input-tree {
   background-color: var(--vscode-quickInput-background) !important;
   border-radius: 0px 0px 10px 10px !important;
 }
@@ -119,9 +119,139 @@ div.monaco-progress-container.quick-input-progress.done {
   line-height: 3rem !important;
 }
 
-
-.titlebar{
+/* at right */
+/* .titlebar {
   background-color: unset !important;
-background-image:  radial-gradient(200px 305.23% at 100px -144.12%, rgba(from var(--vscode-terminal-ansiCyan) r g b / 0.4) 0%, rgba(13, 17, 23, 0.4) 100%),
-    linear-gradient(45deg,#0D1117,#0D1117);
+  background-image: radial-gradient(
+      240px 305.23% at 96% -144.12%,
+      rgba(from var(--vscode-terminal-ansiBlue) r g b / 0.75) 0%,
+      var(--vscode-titleBar-activeBackground) 100%
+    ),
+    linear-gradient( 45deg,
+      var(--vscode-titleBar-activeBackground),
+      var(--vscode-titleBar-activeBackground)
+    );
+} */
+
+.titlebar {
+  background-color: unset !important;
+  background-image: radial-gradient(
+      240px 405.23% at 200px -144.12%,
+      rgba(from var(--vscode-terminal-ansiBlue) r g b / 0.55) 0%,
+      transparent 90%,
+      transparent 100%
+    ),
+    radial-gradient(
+      280px 405.23% at 320px 300%,
+      rgba(from var(--vscode-terminal-ansiCyan) r g b / 0.45) 0%,
+      transparent 90%,
+      transparent 100%
+    ),
+    linear-gradient(
+      45deg,
+      var(--vscode-titleBar-activeBackground),
+      var(--vscode-titleBar-activeBackground)
+    );
+}
+
+.titlebar-left {
+  display: none !important;
+}
+
+.titlebar-center {
+  margin-left: 90px !important;
+}
+
+.monaco-workbench
+  .part.titlebar
+  > .titlebar-container
+  > .titlebar-center
+  > .window-title
+  > .command-center
+  .action-item.command-center-center {
+  background-color: unset !important;
+  border: none !important;
+}
+
+.monaco-workbench
+  .part.titlebar
+  > .titlebar-container
+  > .titlebar-center
+  > .window-title
+  > .command-center
+  .action-item.command-center-center
+  .action-item.command-center-quick-pick {
+  justify-content: start !important;
+  align-items: end !important;
+}
+
+.monaco-workbench
+  .part.titlebar
+  > .titlebar-container
+  > .titlebar-center
+  > .window-title
+  > .command-center
+  .action-item.command-center-center:only-child {
+  justify-content: start !important;
+}
+
+.monaco-workbench
+  .part.titlebar
+  > .titlebar-container
+  > .titlebar-center
+  > .window-title
+  > .command-center
+  .action-item.command-center-center {
+  justify-content: start !important;
+  margin-left: 10px !important;
+}
+
+.monaco-workbench
+  .part.titlebar
+  > .titlebar-container
+  > .titlebar-center
+  > .window-title
+  > .command-center
+  .action-item.command-center-center
+  .action-item.command-center-quick-pick
+  .search-label {
+  font-size: 13px;
+  /* margin-left: 8px; */
+}
+
+/* .monaco-workbench
+  .part.statusbar
+  > .items-container
+  > .statusbar-item.remote-kind {
+  color: var(--vscode-statusBarItem-remoteBackground);
+  background-color: rgba(
+    from var(--vscode-statusBarItem-remoteBackground) r g b / 0.45
+  );
+  background-color: unset !important;
+  background-image: radial-gradient(
+    100% 305.23% at 100px -144.12%,
+    rgba(from var(--vscode-statusBarItem-remoteBackground) r g b / 0.15) 0%,
+    var(--vscode-statusBarItem-remoteBackground) 20%
+  );
+} */
+
+.monaco-workbench
+  .part.titlebar
+  > .titlebar-container
+  > .titlebar-center
+  > .window-title
+  > .command-center
+  .action-item.command-center-center {
+  color: var(--vscode-tab-activeForeground) !important;
+}
+
+.monaco-workbench
+  .part.titlebar
+  > .titlebar-container
+  > .titlebar-center
+  > .window-title
+  > .command-center
+  .action-item.command-center-center {
+  width: 24vw !important;
+  max-width: 400px !important;
 }
