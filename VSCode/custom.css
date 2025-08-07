@@ -77,6 +77,11 @@ div.monaco-progress-container.quick-input-progress.done {
   border-radius: 0px 0px 10px 10px !important;
 }
 
+.quick-input-tree{
+  background-color: var(--vscode-quickInput-background) !important;
+  border-radius: 0px 0px 10px 10px !important;
+}
+
 /* 侧边栏按钮居中 */
 .composite-bar-container {
   justify-content: center !important;
@@ -112,4 +117,11 @@ div.monaco-progress-container.quick-input-progress.done {
 /* 修复 welcome page 标题被截断的问题 */
 .monaco-workbench .part.editor > .content .gettingStartedContainer h1 {
   line-height: 3rem !important;
+}
+
+
+.titlebar{
+  background-color: unset !important;
+background-image:  radial-gradient(200px 305.23% at 100px -144.12%, rgba(from var(--vscode-terminal-ansiCyan) r g b / 0.4) 0%, rgba(13, 17, 23, 0.4) 100%),
+    linear-gradient(45deg,#0D1117,#0D1117);
 }
