@@ -1,10 +1,6 @@
 {
   "$schema": "vscode://schemas/settings/user",
-  //dev container
-  "dev.containers.executeInWSL": true,
-  // diff editor
-  "diffEditor.ignoreTrimWhitespace": true,
-  "diffEditor.useInlineViewWhenSpaceIsLimited": false,
+  "search.defaultViewMode": "tree",
   // 直接复制
   "explorer.confirmPasteNative": false,
   "explorer.compactFolders": false,
@@ -15,12 +11,17 @@
     "manifest.json": "jsonc"
     // ".env*": "dotenv"
   },
-  "inlineChat.enableV2": true,
   // js显示参数名
   "javascript.inlayHints.parameterNames.enabled": "all",
   // js自动更新应用
   "javascript.updateImportsOnFileMove.enabled": "always",
+  // ts显示参数名
+  "typescript.inlayHints.parameterNames.enabled": "all",
+  //ts自动更新引用
+  "typescript.updateImportsOnFileMove.enabled": "always",
   "json.format.keepLines": true,
+  //dev container
+  "dev.containers.executeInWSL": true,
   // wsl使用插件的方式
   "remote.extensionKind": {
     "GitHub.copilot": [
@@ -31,10 +32,6 @@
   // security
   "security.promptForLocalFileProtocolHandling": false,
   "security.workspace.trust.untrustedFiles": "open",
-  // ts显示参数名
-  "typescript.inlayHints.parameterNames.enabled": "all",
-  //ts自动更新引用
-  "typescript.updateImportsOnFileMove.enabled": "always",
   "animations.Install-Method": "Custom CSS and JS",
   "animations.UseCursorColorForCursorAnimation": true,
   "animations.Active": "None",
@@ -1314,15 +1311,18 @@
     // "info",
   ],
   "fileutils.inputBox.pathType": "workspace",
-  //git 自动拉取
   "git.autofetch": true,
   "git.openRepositoryInParentFolders": "never",
   // 侧边栏/source control/changes 默认以tree的形式而不是list
   "scm.defaultViewMode": "tree",
+  // gitlens
   "gitlens.views.commitDetails.files.layout": "tree",
   "gitlens.graph.layout": "editor",
   "gitlens.ai.model": "vscode",
   "gitlens.ai.vscode.model": "copilot:gpt-4o",
+  // diff editor
+  "diffEditor.ignoreTrimWhitespace": true,
+  "diffEditor.useInlineViewWhenSpaceIsLimited": false,
   // 隐藏标题栏上的copilot按钮
   "chat.commandCenter.enabled": false,
   "chat.editing.confirmEditRequestRemoval": false,
@@ -1338,6 +1338,7 @@
   "github.copilot.chat.languageContext.fix.typescript.enabled": true,
   "github.copilot.chat.languageContext.inline.typescript.enabled": true,
   "github.copilot.chat.languageContext.typescript.enabled": true,
+  "inlineChat.enableV2": true,
   "haskell.manageHLS": "GHCup",
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -1349,7 +1350,7 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[jsonc]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -1428,7 +1429,7 @@
   "vscode-neovim.compositeKeys": {
     "jj": {
       "command": "vscode-neovim.escape",
-      "args": [ ]
+      "args": []
     }
   },
   "powermode.enabled": false,
@@ -1439,7 +1440,7 @@
   // 使用Warp作为外部终端
   "terminal.external.osxExec": "Warp.app",
   /* terminal start */
-  "terminal.integrated.env.osx": { },
+  "terminal.integrated.env.osx": {},
   // 字体
   "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font Propo'",
   // 滚动顺滑
@@ -1743,5 +1744,5 @@
   // "workbench.productIconTheme": "fluent-icons",
   "workbench.activityBar.location": "top",
   "workbench.colorTheme": "GitHub Dark Default",
-  // build at: "2025-08-08T03:24:31.724Z"
+  "// build at": "2025-08-08T04:48:37.165Z"
 }

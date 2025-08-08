@@ -20,7 +20,7 @@ const main = () => {
   const buildTimestamp = new Date().toISOString();
   mergedJson["// build at"] = buildTimestamp;
 
-  const mergedFilePath = join(__dirname, "../build/settings.json");
+  const mergedFilePath = join(__dirname, "../build/dist.json");
 
   writeFileSync(mergedFilePath, stringify(mergedJson, null, 2));
   console.log(`Merged ${jsonFiles.length} files into ${mergedFilePath}`);

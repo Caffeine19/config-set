@@ -1,11 +1,7 @@
 {
   "$schema": "vscode://schemas/settings/user",
-  //dev container
-  "dev.containers.executeInWSL": true,
 
-  // diff editor
-  "diffEditor.ignoreTrimWhitespace": true,
-  "diffEditor.useInlineViewWhenSpaceIsLimited": false,
+  "search.defaultViewMode": "tree",
 
   // 直接复制
   "explorer.confirmPasteNative": false,
@@ -20,14 +16,20 @@
     // ".env*": "dotenv"
   },
 
-  "inlineChat.enableV2": true,
-
   // js显示参数名
   "javascript.inlayHints.parameterNames.enabled": "all",
   // js自动更新应用
   "javascript.updateImportsOnFileMove.enabled": "always",
 
+  // ts显示参数名
+  "typescript.inlayHints.parameterNames.enabled": "all",
+  //ts自动更新引用
+  "typescript.updateImportsOnFileMove.enabled": "always",
+
   "json.format.keepLines": true,
+
+  //dev container
+  "dev.containers.executeInWSL": true,
 
   // wsl使用插件的方式
   "remote.extensionKind": {
@@ -37,10 +39,5 @@
 
   // security
   "security.promptForLocalFileProtocolHandling": false,
-  "security.workspace.trust.untrustedFiles": "open",
-
-  // ts显示参数名
-  "typescript.inlayHints.parameterNames.enabled": "all",
-  //ts自动更新引用
-  "typescript.updateImportsOnFileMove.enabled": "always"
+  "security.workspace.trust.untrustedFiles": "open"
 }

@@ -1,11 +1,19 @@
 {
   "$schema": "vscode://schemas/settings/user",
 
-  //git 自动拉取
   "git.autofetch": true,
-
   "git.openRepositoryInParentFolders": "never",
 
   // 侧边栏/source control/changes 默认以tree的形式而不是list
-  "scm.defaultViewMode": "tree"
+  "scm.defaultViewMode": "tree",
+
+  // gitlens
+  "gitlens.views.commitDetails.files.layout": "tree",
+  "gitlens.graph.layout": "editor",
+  "gitlens.ai.model": "vscode",
+  "gitlens.ai.vscode.model": "copilot:gpt-4o",
+
+  // diff editor
+  "diffEditor.ignoreTrimWhitespace": true,
+  "diffEditor.useInlineViewWhenSpaceIsLimited": false
 }

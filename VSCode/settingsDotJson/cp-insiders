@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SOURCE_FILE="$HOME/Code/config-set/VSCode/settingsDotJson/build/dist.json"
+
+# VS Code Insiders only
+INSIDERS_DIR="$HOME/Library/Application Support/Code - Insiders/User"
+INSIDERS_TARGET="$INSIDERS_DIR/settings.json"
+
+copy_settings() {
+    local target="$1"
+    local source="$2"
+    local dir
+    dir="$(dirname "$target")"
+
+    mkdir -p "$dir"
+
+    if [ -e "$target" ]; then
+        rm -f "$target"
+    fi
+
+    cp "$source" "$target"
+    echo "Copied $source -> $target"
+}
+
+if [ -d "$INSIDERS_DIR" ]; then
+    copy_settings "$INSIDERS_TARGET" "$SOURCE_FILE"
+else
+    echo "VS Code Insiders not detected, skipped copying."
+fi

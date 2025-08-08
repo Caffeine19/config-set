@@ -2,7 +2,8 @@
   "name": "vscode-settings-dot-json",
   "version": "1.0.0",
   "scripts": {
-    "build": "tsx ./src/merge.ts"
+    "build": "tsx ./src/merge.ts && sh ./cp.sh",
+    "build-insiders": "tsx ./src/merge.ts && sh ./cp-insiders.sh"
   },
   "type": "module",
   "devDependencies": {
