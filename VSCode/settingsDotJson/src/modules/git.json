@@ -3,6 +3,9 @@
 
   //git 自动拉取
   "git.autofetch": true,
-  // git
-  "git.openRepositoryInParentFolders": "never"
+
+  "git.openRepositoryInParentFolders": "never",
+
+  // 侧边栏/source control/changes 默认以tree的形式而不是list
+  "scm.defaultViewMode": "tree"
 }

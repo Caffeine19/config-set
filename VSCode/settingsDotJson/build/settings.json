@@ -1316,16 +1316,19 @@
   "fileutils.inputBox.pathType": "workspace",
   //git 自动拉取
   "git.autofetch": true,
-  // git
   "git.openRepositoryInParentFolders": "never",
+  // 侧边栏/source control/changes 默认以tree的形式而不是list
+  "scm.defaultViewMode": "tree",
   "gitlens.views.commitDetails.files.layout": "tree",
   "gitlens.graph.layout": "editor",
   "gitlens.ai.model": "vscode",
   "gitlens.ai.vscode.model": "copilot:gpt-4o",
+  // 隐藏标题栏上的copilot按钮
+  "chat.commandCenter.enabled": false,
   "chat.editing.confirmEditRequestRemoval": false,
   "chat.editor.wordWrap": "on",
-  "chat.mcp.discovery.enabled": true,
   "chat.mcp.enabled": true,
+  "chat.agent.maxRequests": 1000,
   "chat.todoListTool.enabled": true,
   "github.copilot.nextEditSuggestions.enabled": true,
   "github.copilot.nextEditSuggestions.fixes": true,
@@ -1740,5 +1743,5 @@
   // "workbench.productIconTheme": "fluent-icons",
   "workbench.activityBar.location": "top",
   "workbench.colorTheme": "GitHub Dark Default",
-  // build at: "2025-08-06T21:16:28.998Z"
+  // build at: "2025-08-08T03:24:31.724Z"
 }

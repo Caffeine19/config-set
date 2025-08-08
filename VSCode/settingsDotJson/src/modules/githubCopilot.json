@@ -1,11 +1,15 @@
 {
   "$schema": "vscode://schemas/settings/user",
 
+  // 隐藏标题栏上的copilot按钮
+  "chat.commandCenter.enabled": false,
+
   "chat.editing.confirmEditRequestRemoval": false,
   "chat.editor.wordWrap": "on",
 
-  "chat.mcp.discovery.enabled": true,
   "chat.mcp.enabled": true,
+
+  "chat.agent.maxRequests": 1000,
 
   "chat.todoListTool.enabled": true,
 
