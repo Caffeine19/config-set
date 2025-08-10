@@ -7,10 +7,10 @@ local windowManager = {}
 local systemApps = {
     "Calculator", "System Preferences", "System Settings", "Control Center"
 }
-local launchers = { "Raycast", "Alfred", "Hammerspoon" }
+local launchers = { "Raycast", "Alfred" }
 local games = { "Hearthstone" }
 local baseList = { "Hammerspoon", "Loop",
-    "Mouseposé", "Shottr", "Pictogram" }
+    "Mouseposé", "Shottr", "Pictogram", "Xiaomi Home" }
 local blacklist = utils.mergeArrays(systemApps, baseList, launchers, games)
 
 -- Function to check if an application is blacklisted
