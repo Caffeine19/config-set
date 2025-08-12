@@ -24,9 +24,7 @@
   "dev.containers.executeInWSL": true,
   // wsl使用插件的方式
   "remote.extensionKind": {
-    "GitHub.copilot": [
-      "ui"
-    ],
+    "GitHub.copilot": ["ui"],
     "github.copilot-chat": "ui"
   },
   // security
@@ -270,18 +268,13 @@
         },
         {
           "name": "@Decorator",
-          "scope": [
-            "meta.decorator punctuation.decorator"
-          ],
+          "scope": ["meta.decorator punctuation.decorator"],
           "settings": {
             "fontStyle": "italic"
           }
         },
         {
-          "scope": [
-            "punctuation.definition.comment",
-            "comment"
-          ],
+          "scope": ["punctuation.definition.comment", "comment"],
           "settings": {
             "fontStyle": "italic"
           }
@@ -382,18 +375,13 @@
         },
         {
           "name": "@Decorator",
-          "scope": [
-            "meta.decorator punctuation.decorator"
-          ],
+          "scope": ["meta.decorator punctuation.decorator"],
           "settings": {
             "fontStyle": "italic"
           }
         },
         {
-          "scope": [
-            "punctuation.definition.comment",
-            "comment"
-          ],
+          "scope": ["punctuation.definition.comment", "comment"],
           "settings": {
             "fontStyle": "italic"
           }
@@ -494,18 +482,13 @@
         },
         {
           "name": "@Decorator",
-          "scope": [
-            "meta.decorator punctuation.decorator"
-          ],
+          "scope": ["meta.decorator punctuation.decorator"],
           "settings": {
             "fontStyle": "italic"
           }
         },
         {
-          "scope": [
-            "punctuation.definition.comment",
-            "comment"
-          ],
+          "scope": ["punctuation.definition.comment", "comment"],
           "settings": {
             //  ,
             "fontStyle": "italic"
@@ -607,18 +590,13 @@
         },
         {
           "name": "@Decorator",
-          "scope": [
-            "meta.decorator punctuation.decorator"
-          ],
+          "scope": ["meta.decorator punctuation.decorator"],
           "settings": {
             "fontStyle": "italic"
           }
         },
         {
-          "scope": [
-            "punctuation.definition.comment",
-            "comment"
-          ],
+          "scope": ["punctuation.definition.comment", "comment"],
           "settings": {
             //  ,
             "fontStyle": "italic"
@@ -720,18 +698,13 @@
         },
         {
           "name": "@Decorator",
-          "scope": [
-            "meta.decorator punctuation.decorator"
-          ],
+          "scope": ["meta.decorator punctuation.decorator"],
           "settings": {
             "fontStyle": "italic"
           }
         },
         {
-          "scope": [
-            "punctuation.definition.comment",
-            "comment"
-          ],
+          "scope": ["punctuation.definition.comment", "comment"],
           "settings": {
             //  ,
             "fontStyle": "italic"
@@ -833,18 +806,13 @@
         },
         {
           "name": "@Decorator",
-          "scope": [
-            "meta.decorator punctuation.decorator"
-          ],
+          "scope": ["meta.decorator punctuation.decorator"],
           "settings": {
             "fontStyle": "italic"
           }
         },
         {
-          "scope": [
-            "punctuation.definition.comment",
-            "comment"
-          ],
+          "scope": ["punctuation.definition.comment", "comment"],
           "settings": {
             //  ,
             "fontStyle": "italic"
@@ -946,18 +914,13 @@
         },
         {
           "name": "@Decorator",
-          "scope": [
-            "meta.decorator punctuation.decorator"
-          ],
+          "scope": ["meta.decorator punctuation.decorator"],
           "settings": {
             "fontStyle": "italic"
           }
         },
         {
-          "scope": [
-            "punctuation.definition.comment",
-            "comment"
-          ],
+          "scope": ["punctuation.definition.comment", "comment"],
           "settings": {
             //  ,
             "fontStyle": "italic"
@@ -1059,18 +1022,13 @@
         },
         {
           "name": "@Decorator",
-          "scope": [
-            "meta.decorator punctuation.decorator"
-          ],
+          "scope": ["meta.decorator punctuation.decorator"],
           "settings": {
             "fontStyle": "italic"
           }
         },
         {
-          "scope": [
-            "punctuation.definition.comment",
-            "comment"
-          ],
+          "scope": ["punctuation.definition.comment", "comment"],
           "settings": {
             "fontStyle": "italic"
           }
@@ -1171,18 +1129,13 @@
         },
         {
           "name": "@Decorator",
-          "scope": [
-            "meta.decorator punctuation.decorator"
-          ],
+          "scope": ["meta.decorator punctuation.decorator"],
           "settings": {
             "fontStyle": "italic"
           }
         },
         {
-          "scope": [
-            "punctuation.definition.comment",
-            "comment"
-          ],
+          "scope": ["punctuation.definition.comment", "comment"],
           "settings": {
             //  ,
             "fontStyle": "italic"
@@ -1284,18 +1237,13 @@
         },
         {
           "name": "@Decorator",
-          "scope": [
-            "meta.decorator punctuation.decorator"
-          ],
+          "scope": ["meta.decorator punctuation.decorator"],
           "settings": {
             "fontStyle": "italic"
           }
         },
         {
-          "scope": [
-            "punctuation.definition.comment",
-            "comment"
-          ],
+          "scope": ["punctuation.definition.comment", "comment"],
           "settings": {
             //  ,
             "fontStyle": "italic"
@@ -1525,181 +1473,82 @@
   },
   "vim.insertModeKeyBindings": [
     {
-      "before": [
-        "j",
-        "j"
-      ],
-      "after": [
-        "<Esc>"
-      ]
+      "before": ["j", "j"],
+      "after": ["<Esc>"]
     }
   ],
   "vim.normalModeKeyBindings": [
     {
-      "before": [
-        "g",
-        "s"
-      ],
-      "commands": [
-        "workbench.action.gotoSymbol"
-      ]
+      "before": ["g", "s"],
+      "commands": ["workbench.action.gotoSymbol"]
     },
     {
-      "before": [
-        "[",
-        "e"
-      ],
-      "commands": [
-        "editor.action.marker.prevInFiles"
-      ]
+      "before": ["[", "e"],
+      "commands": ["editor.action.marker.prevInFiles"]
     },
     {
-      "before": [
-        "]",
-        "e"
-      ],
-      "commands": [
-        "editor.action.marker.nextInFiles"
-      ]
+      "before": ["]", "e"],
+      "commands": ["editor.action.marker.nextInFiles"]
     },
     {
-      "before": [
-        "<leader>",
-        "x"
-      ],
-      "commands": [
-        "workbench.view.extensions"
-      ]
+      "before": ["<leader>", "x"],
+      "commands": ["workbench.view.extensions"]
     },
     {
-      "before": [
-        "<leader>",
-        "g"
-      ],
-      "commands": [
-        "workbench.view.scm"
-      ]
+      "before": ["<leader>", "g"],
+      "commands": ["workbench.view.scm"]
     },
     {
-      "before": [
-        "<leader>",
-        "g",
-        "g"
-      ],
-      "commands": [
-        "git-graph.view"
-      ]
+      "before": ["<leader>", "g", "g"],
+      "commands": ["git-graph.view"]
     },
     {
-      "before": [
-        "<leader>",
-        "g",
-        ","
-      ],
-      "commands": [
-        "gitlens.diffWithPrevious"
-      ]
+      "before": ["<leader>", "g", ","],
+      "commands": ["gitlens.diffWithPrevious"]
     },
     {
-      "before": [
-        "<leader>",
-        "r"
-      ],
-      "commands": [
-        "workbench.action.reloadWindow"
-      ]
+      "before": ["<leader>", "r"],
+      "commands": ["workbench.action.reloadWindow"]
     },
     {
-      "before": [
-        "<leader>",
-        "t"
-      ],
-      "commands": [
-        "workbench.action.selectTheme"
-      ]
+      "before": ["<leader>", "t"],
+      "commands": ["workbench.action.selectTheme"]
     },
     {
-      "before": [
-        "<leader>",
-        "2"
-      ],
-      "commands": [
-        "workbench.action.editorLayoutTwoColumns"
-      ]
+      "before": ["<leader>", "2"],
+      "commands": ["workbench.action.editorLayoutTwoColumns"]
     },
     {
-      "before": [
-        "<leader>",
-        "3"
-      ],
-      "commands": [
-        "workbench.action.editorLayoutThreeColumns"
-      ]
+      "before": ["<leader>", "3"],
+      "commands": ["workbench.action.editorLayoutThreeColumns"]
     },
     {
-      "before": [
-        "<leader>",
-        "f"
-      ],
-      "commands": [
-        "workbench.action.quickTextSearch"
-      ]
+      "before": ["<leader>", "f"],
+      "commands": ["workbench.action.quickTextSearch"]
     },
     {
-      "before": [
-        "<leader>",
-        "a"
-      ],
-      "commands": [
-        "fileutils.newFileAtRoot"
-      ]
+      "before": ["<leader>", "a"],
+      "commands": ["fileutils.newFileAtRoot"]
     },
     {
-      "before": [
-        "<leader>",
-        "A"
-      ],
-      "commands": [
-        "fileutils.newFolderAtRoot"
-      ]
+      "before": ["<leader>", "A"],
+      "commands": ["fileutils.newFolderAtRoot"]
     },
     {
-      "before": [
-        "<leader>",
-        "e",
-        "o"
-      ],
-      "commands": [
-        "outline.focus"
-      ]
+      "before": ["<leader>", "e", "o"],
+      "commands": ["outline.focus"]
     },
     {
-      "before": [
-        "<leader>",
-        "e",
-        "f"
-      ],
-      "commands": [
-        "workbench.explorer.fileView.focus"
-      ]
+      "before": ["<leader>", "e", "f"],
+      "commands": ["workbench.explorer.fileView.focus"]
     },
     {
-      "before": [
-        "<leader>",
-        "p"
-      ],
-      "commands": [
-        "workbench.action.showCommands"
-      ]
+      "before": ["<leader>", "p"],
+      "commands": ["workbench.action.showCommands"]
     },
     {
-      "before": [
-        "<leader>",
-        "s"
-      ],
-      "commands": [
-        "workbench.action.quickTextSearch"
-      ]
+      "before": ["<leader>", "s"],
+      "commands": ["workbench.action.quickTextSearch"]
     }
   ],
   //使用affinity，提高性能
