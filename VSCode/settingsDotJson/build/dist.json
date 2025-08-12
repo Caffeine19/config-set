@@ -1387,12 +1387,16 @@
   "terminal.explorerKind": "external",
   // 使用Warp作为外部终端
   "terminal.external.osxExec": "Warp.app",
-  /* terminal start */
   "terminal.integrated.env.osx": {},
   // 字体
   "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font Propo'",
   // 滚动顺滑
   "terminal.integrated.smoothScrolling": true,
+  "terminal.integrated.lineHeight": 1.4,
+  "terminal.integrated.fontLigatures.enabled": true,
+  "terminal.integrated.stickyScroll.enabled": false,
+  "terminal.integrated.cursorStyle": "line",
+  "terminal.integrated.cursorStyleInactive": "underline",
   "todo-tree.highlights.useColourScheme": true,
   "todo-tree.highlights.customHighlight": {
     // github dark default
@@ -1592,6 +1596,6 @@
   // maybe the default icon theme is better
   // "workbench.productIconTheme": "fluent-icons",
   "workbench.activityBar.location": "top",
-  "workbench.colorTheme": "GitHub Dark Default",
-  "// build at": "2025-08-08T04:48:37.165Z"
+  "workbench.colorTheme": "GitHub Dark Default"
+  // build at": "2025-08-12T03:15:25.302Z"
 }

@@ -255,3 +255,11 @@ div.monaco-progress-container.quick-input-progress.done {
   width: 24vw !important;
   max-width: 400px !important;
 }
+
+/* add space between chat and terminal */
+.part.auxiliarybar.basepanel.right.pane-composite-part
+  .split-view-container
+  .split-view-view:nth-child(2).visible
+  .pane.expanded.vertical {
+  padding-top: 8px !important;
+}

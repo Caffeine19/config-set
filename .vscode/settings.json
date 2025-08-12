@@ -1,39 +1,39 @@
 {
-    "files.associations": {
-        "config": "shellscript"
-    },
-    "cSpell.words": [
-        "bingjiang",
-        "binjaing",
-        "binjiang",
-        "Binjiang",
-        "charwise",
-        "ctermbg",
-        "cursorline",
-        "darkblood",
-        "guibg",
-        "Hammerspoon",
-        "inputbox",
-        "linuxonly",
-        "liststyle",
-        "Mouseposé",
-        "netrw",
-        "networksetup",
-        "oneline",
-        "setairportnetwork",
-        "Shottr",
-        "spacebar",
-        "subrole",
-        "Subrole",
-        "sumneko",
-        "termguicolors",
-        "trapd",
-        "usleep",
-        "wasu",
-        "Wasu",
-        "zjgyrj"
-    ],
-    "Lua.diagnostics.globals": [
-        "hs"
-    ]
+  "files.associations": {
+    "config": "shellscript"
+  },
+  "cSpell.words": [
+    "auxiliarybar",
+    "basepanel",
+    "bingjiang",
+    "binjaing",
+    "binjiang",
+    "Binjiang",
+    "charwise",
+    "ctermbg",
+    "cursorline",
+    "darkblood",
+    "guibg",
+    "Hammerspoon",
+    "inputbox",
+    "linuxonly",
+    "liststyle",
+    "Mouseposé",
+    "netrw",
+    "networksetup",
+    "oneline",
+    "setairportnetwork",
+    "Shottr",
+    "spacebar",
+    "subrole",
+    "Subrole",
+    "sumneko",
+    "termguicolors",
+    "trapd",
+    "usleep",
+    "wasu",
+    "Wasu",
+    "zjgyrj"
+  ],
+  "Lua.diagnostics.globals": ["hs"]
 }
