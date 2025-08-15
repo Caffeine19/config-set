@@ -11,9 +11,10 @@
   "files.associations": {
     // UniApp
     "pages.json": "jsonc",
-    "manifest.json": "jsonc"
+    "manifest.json": "jsonc",
 
-    // ".env*": "dotenv"
+    // env
+    ".env.*": "env"
   },
 
   // js显示参数名
