@@ -1,0 +1,21 @@
+{
+  "description": "Command + Control + Space to Hyper + Space",
+  "manipulators": [
+    {
+      "type": "basic",
+      "from": {
+        "key_code": "spacebar",
+        "modifiers": {
+          "mandatory": ["command", "control"],
+          "optional": ["any"]
+        }
+      },
+      "to": [
+        {
+          "key_code": "spacebar",
+          "modifiers": ["command", "right_control", "option", "shift"]
+        }
+      ]
+    }
+  ]
+}

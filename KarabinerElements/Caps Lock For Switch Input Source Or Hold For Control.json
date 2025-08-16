@@ -11,7 +11,7 @@
       },
       "to": [
         {
-          "key_code": "left_control",
+          "key_code": "right_control",
           "modifiers": ["command"]
         }
       ],
@@ -24,17 +24,17 @@
       },
       "to": [
         {
-          "key_code": "left_control",
+          "key_code": "right_control",
           "lazy": false
         }
       ],
       "to_if_alone": [
         {
           "key_code": "spacebar",
-          "modifiers": ["left_control"]
+          "modifiers": ["right_control"]
         }
       ],
-      "to_if_held_down": [{ "key_code": "left_control" }],
+      "to_if_held_down": [{ "key_code": "right_control" }],
       "type": "basic"
     }
   ]
