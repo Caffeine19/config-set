@@ -1,104 +1,26 @@
 {
   "actions" : [
     {
+      "direction" : "BottomLeftQuarter",
       "keybind" : [
-        30
-      ],
-      "cycle" : [
-        {
-          "direction" : "NextScreen",
-          "keybind" : [
-
-          ]
-        },
-        {
-          "keybind" : [
-
-          ],
-          "sizeMode" : 0,
-          "name" : "Custom Center",
-          "direction" : "Custom",
-          "width" : 80,
-          "height" : 80,
-          "positionMode" : 0,
-          "unit" : 1,
-          "anchor" : 8
-        }
-      ],
-      "name" : "Next Screen And Maximize ",
-      "direction" : "Cycle"
+        4,
+        38
+      ]
     },
     {
+      "direction" : "BottomRightQuarter",
       "keybind" : [
-        33
-      ],
-      "cycle" : [
-        {
-          "direction" : "PreviousScreen",
-          "keybind" : [
-
-          ]
-        },
-        {
-          "keybind" : [
-
-          ],
-          "sizeMode" : 0,
-          "name" : "Custom Center",
-          "direction" : "Custom",
-          "width" : 80,
-          "height" : 80,
-          "positionMode" : 0,
-          "unit" : 1,
-          "anchor" : 8
-        }
-      ],
-      "name" : "Previous Screen And Maximize",
-      "direction" : "Cycle"
+        37,
+        38
+      ]
     },
     {
-      "keybind" : [
-        49
-      ],
-      "direction" : "Maximize"
-    },
-    {
+      "direction" : "Center",
       "keybind" : [
         36
-      ],
-      "direction" : "Center"
+      ]
     },
     {
-      "keybind" : [
-        40
-      ],
-      "cycle" : [
-        {
-          "direction" : "TopHalf",
-          "keybind" : [
-
-          ]
-        },
-        {
-          "direction" : "TopThird",
-          "keybind" : [
-
-          ]
-        },
-        {
-          "direction" : "TopTwoThirds",
-          "keybind" : [
-
-          ]
-        }
-      ],
-      "name" : "Top Cycle",
-      "direction" : "Cycle"
-    },
-    {
-      "keybind" : [
-        38
-      ],
       "cycle" : [
         {
           "direction" : "BottomHalf",
@@ -119,69 +41,107 @@
           ]
         }
       ],
-      "name" : "Bottom Cycle",
-      "direction" : "Cycle"
+      "direction" : "Cycle",
+      "keybind" : [
+        38
+      ],
+      "name" : "Bottom Cycle"
     },
     {
+      "cycle" : [
+        {
+          "direction" : "LeftHalf",
+          "keybind" : [
+
+          ]
+        },
+        {
+          "direction" : "LeftThird",
+          "keybind" : [
+
+          ]
+        },
+        {
+          "direction" : "LeftTwoThirds",
+          "keybind" : [
+
+          ]
+        }
+      ],
+      "direction" : "Cycle",
+      "keybind" : [
+        4
+      ],
+      "name" : "Left Cycle"
+    },
+    {
+      "cycle" : [
+        {
+          "direction" : "RightHalf",
+          "keybind" : [
+
+          ]
+        },
+        {
+          "direction" : "RightThird",
+          "keybind" : [
+
+          ]
+        },
+        {
+          "direction" : "RightTwoThirds",
+          "keybind" : [
+
+          ]
+        }
+      ],
+      "direction" : "Cycle",
       "keybind" : [
         37
       ],
-      "cycle" : [
-        {
-          "keybind" : [
-
-          ],
-          "direction" : "RightHalf"
-        },
-        {
-          "keybind" : [
-
-          ],
-          "direction" : "RightThird"
-        },
-        {
-          "keybind" : [
-
-          ],
-          "direction" : "RightTwoThirds"
-        }
-      ],
-      "name" : "Right Cycle",
-      "direction" : "Cycle"
+      "name" : "Right Cycle"
     },
     {
-      "keybind" : [
-        4
-      ],
       "cycle" : [
         {
+          "direction" : "TopHalf",
           "keybind" : [
 
-          ],
-          "direction" : "LeftHalf"
+          ]
         },
         {
+          "direction" : "TopThird",
           "keybind" : [
 
-          ],
-          "direction" : "LeftThird"
+          ]
         },
         {
+          "direction" : "TopTwoThirds",
           "keybind" : [
 
-          ],
-          "direction" : "LeftTwoThirds"
+          ]
         }
       ],
-      "name" : "Left Cycle",
-      "direction" : "Cycle"
+      "direction" : "Cycle",
+      "keybind" : [
+        40
+      ],
+      "name" : "Top Cycle"
     },
     {
+      "direction" : "Maximize",
       "keybind" : [
-        40,
-        4
-      ],
-      "direction" : "TopLeftQuarter"
+        49,
+        56,
+        58
+      ]
+    },
+    {
+      "direction" : "TopLeftQuarter",
+      "keybind" : [
+        4,
+        40
+      ]
     },
     {
       "direction" : "TopRightQuarter",
@@ -189,25 +149,11 @@
         37,
         40
       ]
-    },
-    {
-      "direction" : "BottomRightQuarter",
-      "keybind" : [
-        37,
-        38
-      ]
-    },
-    {
-      "direction" : "BottomLeftQuarter",
-      "keybind" : [
-        4,
-        38
-      ]
     }
   ],
-  "version" : "1.2.0",
   "triggerKey" : [
-    59,
-    55
-  ]
+    55,
+    62
+  ],
+  "version" : "1.3.0"
 }
