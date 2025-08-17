@@ -25,7 +25,7 @@
       "to": [
         {
           "key_code": "right_control",
-          "lazy": false
+          "lazy": true
         }
       ],
       "to_if_alone": [
@@ -34,7 +34,6 @@
           "modifiers": ["right_control"]
         }
       ],
-      "to_if_held_down": [{ "key_code": "right_control" }],
       "type": "basic"
     }
   ]
