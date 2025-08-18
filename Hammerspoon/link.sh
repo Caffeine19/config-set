@@ -3,26 +3,24 @@
 # Create ~/.hammerspoon directory if it doesn't exist
 mkdir -p ~/.hammerspoon
 
-# Remove existing files if they exist
-rm -f ~/.hammerspoon/init.lua
-rm -f ~/.hammerspoon/utils.lua
-rm -f ~/.hammerspoon/windowManager.lua
-rm -f ~/.hammerspoon/callInShortcut.lua
-rm -f ~/.hammerspoon/space.lua
-rm -f ~/.hammerspoon/toggleEdgeTabsPane.lua
+# Link all Lua modules from src directory
+for lua_file in ~/Code/config-set/Hammerspoon/src/*.lua; do
+    target_file=~/.hammerspoon/$(basename "$lua_file")
 
-# Create symlinks from src directory
-ln -s ~/Code/config-set/Hammerspoon/src/init.lua ~/.hammerspoon/init.lua
-ln -s ~/Code/config-set/Hammerspoon/src/utils.lua ~/.hammerspoon/utils.lua
-ln -s ~/Code/config-set/Hammerspoon/src/windowManager.lua ~/.hammerspoon/windowManager.lua
-ln -s ~/Code/config-set/Hammerspoon/src/callInShortcut.lua ~/.hammerspoon/callInShortcut.lua
-ln -s ~/Code/config-set/Hammerspoon/src/space.lua ~/.hammerspoon/space.lua
-ln -s ~/Code/config-set/Hammerspoon/src/toggleEdgeTabsPane.lua ~/.hammerspoon/toggleEdgeTabsPane.lua
+    # Check if the link already exists
+    if [ -L "$target_file" ]; then
+        echo "Link already exists, skipping $(basename "$lua_file")"
+        continue
+    fi
+
+    # Remove existing file if it's not a symlink
+    if [ -f "$target_file" ]; then
+        echo "Removing existing file $(basename "$lua_file")"
+        rm -f "$target_file"
+    fi
+
+    echo "Linking $(basename "$lua_file")"
+    ln -s "$lua_file" "$target_file"
+done
 
 echo "Hammerspoon configuration linked successfully!"
-echo "init.lua -> ~/.hammerspoon/init.lua"
-echo "utils.lua -> ~/.hammerspoon/utils.lua"
-echo "windowManager.lua -> ~/.hammerspoon/windowManager.lua"
-echo "callInShortcut.lua -> ~/.hammerspoon/callInShortcut.lua"
-echo "space.lua -> ~/.hammerspoon/space.lua"
-echo "toggleEdgeTabsPane.lua -> ~/.hammerspoon/toggleEdgeTabsPane.lua"

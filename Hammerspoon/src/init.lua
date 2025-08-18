@@ -22,6 +22,13 @@ local function handleCallMaximizeAllWindowFromAllSpacesFromShortcut()
 end
 _G.handleCallMaximizeAllWindowFromAllSpacesFromShortcut = handleCallMaximizeAllWindowFromAllSpacesFromShortcut
 
+local function handleCallMaximizeAllWindowInCurrentSpaceFromShortcut()
+    -- This function can be used to maximize all windows in current space only
+    windowManager.maximizeAllWindowInCurrentSpace()
+    return "Maximized all windows in current space successfully"
+end
+_G.handleCallMaximizeAllWindowInCurrentSpaceFromShortcut = handleCallMaximizeAllWindowInCurrentSpaceFromShortcut
+
 
 -- local space = require("space")
 -- function handleCallRemoveCurrentSpaceFromShortcut()
