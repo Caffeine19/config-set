@@ -165,7 +165,8 @@ local function processAndMaximizeWindows(windowList)
 
     -- Show success notification via Raycast with delay
     hs.timer.doAfter(0.2, function()
-        local title = string.format("☘️ Window Processing Complete - Processed: %d", processed)
+        local total = processed + skipped
+        local title = string.format("☘️ Window Processing Complete - %d / %d", processed, total)
         raycastNotification.showHUD(title, true)
     end)
 
