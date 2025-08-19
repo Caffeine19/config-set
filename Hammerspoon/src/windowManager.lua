@@ -123,15 +123,15 @@ local function handleWindowCreated(win)
 
     -- Print window properties for debugging
     print("🔍 [DEBUG] Window created:")
-    print("  📱 App: " .. appName)
+    print("  📘 App: " .. appName)
     print("  📝 Title: " .. (win:title() or "No title"))
     -- print("  Frame: " .. hs.inspect(win:frame()))
-    print("  🎭 Role: " .. (win:role() or "No role"))
-    print("  🎭 Subrole: " .. (win:subrole() or "No subrole"))
-    print("  🆔 ID: " .. (win:id() or "No ID"))
-    print("  📏 Is Standard: " .. tostring(win:isStandard()))
-    print("  👁️ Is Minimized: " .. tostring(win:isMinimized()))
-    print("  👀 Is Visible: " .. tostring(win:isVisible()))
+    print("  💼 Role: " .. (win:role() or "No role"))
+    print("  💼 Subrole: " .. (win:subrole() or "No subrole"))
+    -- print("  🆔 ID: " .. (win:id() or "No ID"))
+    print("  📏 Is Standard: " ..
+        tostring(win:isStandard()) ..
+        "  👁️ Is Minimized: " .. tostring(win:isMinimized()) .. "  👀 Is Visible: " .. tostring(win:isVisible()))
 
     -- Check if window should be skipped
     if checkWindow(win, appName) then
