@@ -1,10 +1,12 @@
 -- Window Manager Module for Hammerspoon
--- Automatically manages new windows with configurable rules and blacklist
+-- Provides automatic window management with configurable rules and application filtering
+-- Features: auto-maximize on creation, bulk window processing, blacklist management
 local utils = require("utils")
 local raycastNotification = require("raycastNotification")
 local windowManager = {}
 
--- Blacklist of applications that should not be maximized
+-- Application blacklist - windows from these apps will not be auto-maximized
+-- Organized by category for easier maintenance
 local systemApps = {
     "Calculator", "System Preferences", "System Settings", "Control Center"
 }
@@ -14,7 +16,7 @@ local baseList = { "Hammerspoon", "Loop",
     "Mouseposé", "Shottr", "Pictogram", "Xiaomi Home", "AutoSwitchInput Pro" }
 local blacklist = utils.mergeArrays(systemApps, baseList, launchers, games)
 
--- Function to check if an application is blacklisted
+-- Check if application is in the blacklist
 local function isBlacklisted(appName)
     return utils.includes(blacklist, appName)
 end
@@ -102,6 +104,19 @@ local function maximizeWindow(win, appName)
     -- maximizeWindowByLoop(win, appName)
 end
 
+-- Calculate optimal delay before applying window management
+-- Prevents visual glitches when windows have built-in scale/fade transitions
+-- Applying window management too early can cause sluggish or jerky animations
+local function getExtraDelay(win, appName)
+    local delay = 0.1 -- Default delay in milliseconds
+
+    -- This is the weChat image preview window
+    if appName == "WeChat" and win:title() == "window" then
+        delay = 0.2 -- 1 second delay
+    end
+    return delay
+end
+
 -- Main window creation handler
 local function handleWindowCreated(win)
     local appName = win:application():name()
@@ -123,8 +138,12 @@ local function handleWindowCreated(win)
         return
     end
 
-    -- Attempt to maximize the window
-    maximizeWindow(win, appName)
+    local delay = getExtraDelay(win, appName)
+
+    hs.timer.doAfter(delay, function()
+        -- Attempt to maximize the window
+        maximizeWindow(win, appName)
+    end)
 end
 
 -- Initialize the window management functionality
