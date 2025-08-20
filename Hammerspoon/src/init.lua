@@ -26,26 +26,26 @@ local windowManager = require("windowManager")
 
 windowManager.init()
 
-local function handleCallMaximizeAllWindowFromShortcut()
+local function handleCallTidyAllScreensFromShortcut()
     -- When create an Apple Shortcut, this function will be called
-    windowManager.maximizeAllWindows()
-    return "Maximized all windows successfully"
+    windowManager.tidyAllScreens()
+    return "Tidied all screens successfully"
 end
-_G.handleCallMaximizeAllWindowFromShortcut = handleCallMaximizeAllWindowFromShortcut
+_G.handleCallTidyAllScreensFromShortcut = handleCallTidyAllScreensFromShortcut
 
-local function handleCallMaximizeAllWindowFromAllSpacesFromShortcut()
-    -- This function can be used to maximize all windows across all spaces
-    windowManager.maximizeAllWindowsFromAllSpaces()
-    return "Maximized all windows across all spaces successfully"
+local function handleCallTidyAllSpacesFromShortcut()
+    -- This function can be used to tidy all windows across all spaces
+    windowManager.tidyAllSpaces()
+    return "Tidied all spaces successfully"
 end
-_G.handleCallMaximizeAllWindowFromAllSpacesFromShortcut = handleCallMaximizeAllWindowFromAllSpacesFromShortcut
+_G.handleCallTidyAllSpacesFromShortcut = handleCallTidyAllSpacesFromShortcut
 
-local function handleCallMaximizeAllWindowInCurrentSpaceFromShortcut()
-    -- This function can be used to maximize all windows in current space only
-    windowManager.maximizeAllWindowInCurrentSpace()
-    return "Maximized all windows in current space successfully"
+local function handleCallTidyMainScreenFromShortcut()
+    -- This function can be used to tidy the main screen by maximizing all windows
+    windowManager.tidyMainScreen()
+    return "Tidied main screen successfully"
 end
-_G.handleCallMaximizeAllWindowInCurrentSpaceFromShortcut = handleCallMaximizeAllWindowInCurrentSpaceFromShortcut
+_G.handleCallTidyMainScreenFromShortcut = handleCallTidyMainScreenFromShortcut
 
 
 -- local space = require("space")
