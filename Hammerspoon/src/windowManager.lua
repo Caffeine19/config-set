@@ -108,12 +108,14 @@ end
 -- Prevents visual glitches when windows have built-in scale/fade transitions
 -- Applying window management too early can cause sluggish or jerky animations
 local function getExtraDelay(win, appName)
-    local delay = 0.1 -- Default delay in milliseconds
+    local delay = 0.16
 
     -- This is the weChat image preview window
-    if appName == "WeChat" and win:title() == "window" then
-        delay = 0.2 -- 1 second delay
+    if appName == "WeChat" and win:title() == "Window" then
+        print("⏳ [DELAY] WeChat image preview detected, applying longer delay")
+        delay = 0.32
     end
+    print("⏳ [DELAY] Applying delay of " .. delay .. " seconds for " .. appName)
     return delay
 end
 
