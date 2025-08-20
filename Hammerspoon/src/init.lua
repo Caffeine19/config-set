@@ -47,6 +47,13 @@ local function handleCallTidyMainScreenFromShortcut()
 end
 _G.handleCallTidyMainScreenFromShortcut = handleCallTidyMainScreenFromShortcut
 
+local function handleCallMessUpAllWindowsFromShortcut()
+    -- This function can be used to randomly position and size all windows (chaos mode!)
+    windowManager.messUpAllWindows()
+    return "Messed up all windows successfully"
+end
+_G.handleCallMessUpAllWindowsFromShortcut = handleCallMessUpAllWindowsFromShortcut
+
 
 -- local space = require("space")
 -- function handleCallRemoveCurrentSpaceFromShortcut()
