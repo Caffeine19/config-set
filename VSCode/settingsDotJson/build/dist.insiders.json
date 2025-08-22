@@ -1572,7 +1572,7 @@
   },
   "vscode_custom_css.imports": [
     "file:///Users/caffeinecat/.config/vscode-custom-css-and-js/custom.css",
-    "file:///Users/caffeinecat/.vscode/extensions/brandonkirbyson.vscode-animations-2.0.7/dist/updateHandler.js"
+    "file:///Users/caffeinecat/.vscode-insiders/extensions/brandonkirbyson.vscode-animations-2.0.7/dist/updateHandler.js"
   ],
   "window.menuBarVisibility": "compact",
   "window.titleBarStyle": "custom",
@@ -1613,5 +1613,5 @@
   // "workbench.productIconTheme": "fluent-icons",
   "workbench.activityBar.location": "top",
   "workbench.colorTheme": "GitHub Dark Default"
-  // build at": "2025-08-22T04:19:30.626Z"
+  // build at": "2025-08-22T04:19:14.437Z (insiders)"
 }

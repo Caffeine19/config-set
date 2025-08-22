@@ -20,6 +20,13 @@
       "tab.activeBorder": "default",
       "tab.activeBorderTop": "#3d59a1"
       // "tab.activeBackground": "#66b39520"
+    },
+    "[Halcyon]": {
+      // "scrollbar.shadow": "#00030f", // default
+      "scrollbar.shadow": "#00030F66", // softer
+
+      // "widget.shadow": "#00030f", // default
+      "widget.shadow": "#00030F99" // softer
     }
   },
 

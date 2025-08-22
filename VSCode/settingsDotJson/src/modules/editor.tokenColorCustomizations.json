@@ -7,6 +7,11 @@
       "rules": {
         "component": "#FFA657"
       }
+    },
+    "[cursor-darker]": {
+      "rules": {
+        "component": "#B48EAD"
+      }
     }
   },
 

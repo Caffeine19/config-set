@@ -8,10 +8,16 @@
   "scm.defaultViewMode": "tree",
 
   // gitlens
+  "gitlens.views.branches.files.layout": "tree",
   "gitlens.views.commitDetails.files.layout": "tree",
+  "gitlens.views.pullRequest.files.layout": "tree",
+  "gitlens.views.remotes.files.layout": "tree",
+  "gitlens.views.repositories.files.layout": "tree",
+  "gitlens.views.searchAndCompare.files.layout": "tree",
+
   "gitlens.graph.layout": "editor",
   "gitlens.ai.model": "vscode",
-  "gitlens.ai.vscode.model": "copilot:gpt-4o",
+  "gitlens.ai.vscode.model": "copilot:claude-sonnet-4",
 
   // diff editor
   "diffEditor.ignoreTrimWhitespace": true,

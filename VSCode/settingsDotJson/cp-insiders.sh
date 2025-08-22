@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-SOURCE_FILE="$HOME/Code/config-set/VSCode/settingsDotJson/build/dist.json"
+SOURCE_FILE="$HOME/Code/config-set/VSCode/settingsDotJson/build/dist.insiders.json"
 
 # VS Code Insiders only
 INSIDERS_DIR="$HOME/Library/Application Support/Code - Insiders/User"

@@ -20,7 +20,7 @@
 
   "terminal.integrated.cursorStyle": "line",
   "terminal.integrated.cursorStyleInactive": "underline",
-  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.cursorBlinking": true
 
-  "terminal.integrated.tabs.enabled": false
+  // "terminal.integrated.tabs.enabled": false
 }

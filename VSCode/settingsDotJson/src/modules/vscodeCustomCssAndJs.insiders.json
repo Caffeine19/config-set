@@ -1,0 +1,8 @@
+{
+  "$schema": "vscode://schemas/settings/user",
+
+  "vscode_custom_css.imports": [
+    "file:///Users/caffeinecat/.config/vscode-custom-css-and-js/custom.css",
+    "file:///Users/caffeinecat/.vscode-insiders/extensions/brandonkirbyson.vscode-animations-2.0.7/dist/updateHandler.js"
+  ]
+}
