@@ -1,91 +1,101 @@
 {
   "actions": [
     {
+      "keybind": [48],
+      "direction": "Maximize"
+    },
+    {
+      "name": "Next Screen And Maximize",
       "cycle": [
         {
-          "direction": "NextScreen",
-          "keybind": []
+          "keybind": [],
+          "direction": "NextScreen"
         },
         {
-          "anchor": 8,
-          "keybind": [],
-          "height": 80,
-          "width": 80,
-          "direction": "Custom",
-          "positionMode": 0,
           "unit": 1,
+          "keybind": [],
+          "anchor": 8,
+          "width": 80,
+          "name": "Custom Center",
+          "height": 80,
           "sizeMode": 0,
-          "name": "Custom Center"
+          "positionMode": 0,
+          "direction": "Custom"
         }
       ],
-      "direction": "Cycle",
-      "name": "Next Screen And Maximize",
-      "keybind": [30]
+      "keybind": [30],
+      "direction": "Cycle"
     },
     {
-      "direction": "PreviousScreen",
-      "keybind": [27]
+      "keybind": [27],
+      "direction": "PreviousScreen"
     },
     {
-      "direction": "NextScreen",
-      "keybind": [24]
+      "keybind": [24],
+      "direction": "NextScreen"
     },
     {
+      "name": "Previous Screen And Maximize",
       "cycle": [
         {
           "keybind": [],
           "direction": "PreviousScreen"
         },
         {
-          "anchor": 8,
-          "keybind": [],
-          "height": 80,
-          "width": 80,
-          "direction": "Custom",
-          "positionMode": 0,
           "unit": 1,
+          "keybind": [],
+          "anchor": 8,
+          "width": 80,
+          "name": "Custom Center",
+          "height": 80,
           "sizeMode": 0,
-          "name": "Custom Center"
+          "positionMode": 0,
+          "direction": "Custom"
         }
       ],
-      "direction": "Cycle",
-      "name": "Previous Screen And Maximize",
-      "keybind": [33]
+      "keybind": [33],
+      "direction": "Cycle"
     },
     {
-      "direction": "BottomLeftQuarter",
-      "keybind": [38, 4]
+      "keybind": [38, 4],
+      "direction": "BottomLeftQuarter"
     },
     {
-      "direction": "BottomRightQuarter",
-      "keybind": [38, 37]
+      "keybind": [37, 38],
+      "direction": "BottomRightQuarter"
     },
     {
-      "direction": "Center",
-      "keybind": [36]
+      "unit": 1,
+      "keybind": [36],
+      "anchor": 8,
+      "width": 80,
+      "name": "Custom Center",
+      "height": 80,
+      "sizeMode": 1,
+      "positionMode": 0,
+      "direction": "Custom"
     },
     {
+      "name": "Bottom Cycle",
       "cycle": [
         {
           "direction": "BottomHalf",
           "keybind": []
         },
         {
-          "keybind": [],
-          "direction": "BottomThird"
+          "direction": "BottomThird",
+          "keybind": []
         },
         {
-          "keybind": [],
-          "direction": "BottomTwoThirds"
+          "direction": "BottomTwoThirds",
+          "keybind": []
         }
       ],
-      "direction": "Cycle",
-      "name": "Bottom Cycle",
-      "keybind": [38]
+      "keybind": [38],
+      "direction": "Cycle"
     },
     {
       "name": "Left Cycle",
-      "keybind": [4],
       "cycle": [
         {
           "keybind": [],
@@ -100,11 +110,11 @@
           "direction": "LeftTwoThirds"
         }
       ],
+      "keybind": [4],
       "direction": "Cycle"
     },
     {
-      "direction": "Cycle",
-      "keybind": [37],
+      "name": "Right Cycle",
       "cycle": [
         {
           "keybind": [],
@@ -119,15 +129,15 @@
           "direction": "RightTwoThirds"
         }
       ],
-      "name": "Right Cycle"
+      "keybind": [37],
+      "direction": "Cycle"
     },
     {
-      "direction": "Cycle",
-      "keybind": [40],
+      "name": "Top Cycle",
       "cycle": [
         {
-          "direction": "TopHalf",
-          "keybind": []
+          "keybind": [],
+          "direction": "TopHalf"
         },
         {
           "keybind": [],
@@ -138,21 +148,22 @@
           "direction": "TopTwoThirds"
         }
       ],
-      "name": "Top Cycle"
+      "keybind": [40],
+      "direction": "Cycle"
     },
     {
-      "direction": "Maximize",
-      "keybind": [56, 58, 49]
+      "keybind": [58, 49, 56],
+      "direction": "Maximize"
     },
     {
-      "direction": "TopLeftQuarter",
-      "keybind": [4, 40]
+      "keybind": [40, 4],
+      "direction": "TopLeftQuarter"
     },
     {
-      "direction": "TopRightQuarter",
-      "keybind": [40, 37]
+      "keybind": [37, 40],
+      "direction": "TopRightQuarter"
     }
   ],
   "version": "1.2.0",
-  "triggerKey": [55, 62]
+  "triggerKey": [62, 55]
 }
