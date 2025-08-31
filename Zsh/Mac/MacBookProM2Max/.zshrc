@@ -137,3 +137,10 @@ PATH=~/.console-ninja/.bin:$PATH
 export PATH="$PATH:/Users/caffeinecat/.local/bin"
 
 source /Users/caffeinecat/.config/broot/launcher/bash/br
+
+# bun completions
+[ -s "/Users/caffeinecat/.bun/_bun" ] && source "/Users/caffeinecat/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
