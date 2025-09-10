@@ -109,22 +109,19 @@ function toggleEdgeTabsPane.pin()
     print("[DEBUG] Hovering over Tab Actions Menu at position: " .. centerX .. ", " .. centerY)
 
     -- Move mouse to starting position
-    hs.mouse.absolutePosition({ x = centerX + 50, y = centerY + 50 })
+    hs.mouse.absolutePosition({ x = centerX + 4, y = centerY + 4 })
     hs.timer.usleep(100000) -- Wait 100ms
 
-    -- Create mouse move events to simulate real movement
-    local startX = centerX - 50
-    local startY = centerY - 50
-    local steps = 15
-
-
+    -- -- Create mouse move events to simulate real movement
+    -- local startX = centerX - 50
+    -- local startY = centerY - 50
+    -- local steps = 15
 
     local moveEvent = hs.eventtap.event.newMouseEvent(
         hs.eventtap.event.types.mouseMoved,
         { x = centerX, y = centerY }
     )
     moveEvent:post()
-
 
     -- for i = 1, steps do
     --     local progress = i / steps
@@ -145,7 +142,7 @@ function toggleEdgeTabsPane.pin()
     -- hs.mouse.absolutePosition({ x = centerX, y = centerY })
 
     -- Wait for hover effect to trigger
-    hs.timer.usleep(1000000) -- Wait 1 second
+    hs.timer.usleep(1000000 / 2) -- Wait 0.5 seconds
 
     print("[DEBUG] Eventtap movement completed, checking for menu")
 
