@@ -63,6 +63,7 @@ _G.handleCallMessUpAllWindowsFromShortcut = handleCallMessUpAllWindowsFromShortc
 -- _G.handleCallRemoveCurrentSpaceFromShortcut = handleCallRemoveCurrentSpaceFromShortcut
 
 local toggleEdgeTabsPane = require("toggleEdgeTabsPane")
+
 local function handleCallCollapseEdgeTabsFromShortcut()
     -- This function can be used to toggle Edge tabs
     local result = toggleEdgeTabsPane.collapse()
@@ -82,3 +83,21 @@ local function handleCallToggleEdgeTabsFromShortcut()
     return result or "Toggled Edge tabs successfully"
 end
 _G.handleCallToggleEdgeTabsFromShortcut = handleCallToggleEdgeTabsFromShortcut
+
+local wormhole = require("wormhole")
+
+local function handleCallToggleSleepDisplayFromShortcut()
+    wormhole.toggleSleepDisplay()
+end
+_G.handleCallToggleSleepDisplayFromShortcut = handleCallToggleSleepDisplayFromShortcut
+
+
+
+
+local picEdge = require("picEdge")
+
+local function handleCallSetEdgeIconFromShortcut()
+    local result = picEdge.setEdgeIcon()
+    return result and "Edge icon set successfully" or "Failed to set Edge icon"
+end
+_G.handleCallSetEdgeIconFromShortcut = handleCallSetEdgeIconFromShortcut
