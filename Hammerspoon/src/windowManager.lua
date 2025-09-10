@@ -3,6 +3,8 @@
 -- Features: auto-maximize on creation, bulk window processing, blacklist management
 local utils = require("utils")
 local raycastNotification = require("raycastNotification")
+local ms = require("ms")
+
 local windowManager = {}
 
 -- Application blacklist - windows from these apps will not be auto-maximized
@@ -175,7 +177,7 @@ local function processAndMaximizeWindows(windowList)
         win:focus()
 
         -- Small delay to ensure window is focused
-        hs.timer.usleep(100000) -- 0.1 seconds
+        hs.timer.usleep(ms.ms('0.1s'))
 
         -- Use existing maximizeWindow function (Loop/Raycast/MenuItem)
         maximizeWindow(win, appName)

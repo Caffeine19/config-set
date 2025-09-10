@@ -1,5 +1,7 @@
-local toggleEdgeTabsPane = {}
 local find = require("find")
+local ms = require("ms")
+
+local toggleEdgeTabsPane = {}
 
 -- Get the main Edge application element
 local function getEdgeAppElement()
@@ -110,7 +112,7 @@ function toggleEdgeTabsPane.pin()
 
     -- Move mouse to starting position
     hs.mouse.absolutePosition({ x = centerX + 4, y = centerY + 4 })
-    hs.timer.usleep(100000) -- Wait 100ms
+    hs.timer.usleep(ms.ms('100ms'))
 
     -- -- Create mouse move events to simulate real movement
     -- local startX = centerX - 50
@@ -142,7 +144,7 @@ function toggleEdgeTabsPane.pin()
     -- hs.mouse.absolutePosition({ x = centerX, y = centerY })
 
     -- Wait for hover effect to trigger
-    hs.timer.usleep(1000000 / 2) -- Wait 0.5 seconds
+    hs.timer.usleep(ms.ms('0.5s'))
 
     print("[DEBUG] Eventtap movement completed, checking for menu")
 

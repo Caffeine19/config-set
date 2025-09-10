@@ -1,7 +1,9 @@
-local picEdge = {}
+local find = require("find")
+local ms = require("ms")
 local raycastNotification = require("raycastNotification")
 local utils = require("utils")
-local find = require("find")
+
+local picEdge = {}
 
 -- Main function to set Edge icon using Pictogram
 function picEdge.setEdgeIcon()
@@ -19,14 +21,14 @@ function picEdge.setEdgeIcon()
 
     -- Wait for app to fully load
     print("⏰ [PICEDGE] Waiting for app to load...")
-    hs.timer.usleep(1500000) -- Wait 1.5 seconds
+    hs.timer.usleep(ms.ms('1.5s'))
 
     -- Step 2: Type "Edge" (input should be auto-focused)
     print("⌨️ [PICEDGE] Typing 'Edge'...")
     hs.eventtap.keyStrokes("Edge")
 
     -- Wait for search to process
-    hs.timer.usleep(500000) -- Wait 0.5 seconds
+    hs.timer.usleep(ms.ms('0.5s'))
 
     -- Step 3: Find and click "Select Custom Icon" button
     print("🔍 [PICEDGE] Looking for 'Select Custom Icon' button...")
@@ -57,21 +59,21 @@ function picEdge.setEdgeIcon()
     end
 
     -- Wait for file dialog to open
-    hs.timer.usleep(1000000) -- Wait 1 second
+    hs.timer.usleep(ms.ms('0.5s'))
 
     -- Step 4: Press Cmd+F to focus search in file dialog
     print("🔍 [PICEDGE] Opening search in file dialog (Cmd+F)...")
     hs.eventtap.keyStroke({ "cmd" }, "f")
 
     -- Wait for search field to be ready
-    hs.timer.usleep(300000) -- Wait 0.3 seconds
+    hs.timer.usleep(ms.ms('0.3s'))
 
     -- Step 5: Type "edge" to search for the icon
     print("⌨️ [PICEDGE] Searching for 'edge'...")
     hs.eventtap.keyStrokes("edge")
 
     -- Wait for search results
-    hs.timer.usleep(800000) -- Wait 0.8 seconds
+    hs.timer.usleep(ms.ms('0.8s'))
 
     -- Step 6: Find and click MicrosoftEdge.icns image
     print("🖼️ [PICEDGE] Looking for MicrosoftEdge.icns image...")
@@ -86,7 +88,7 @@ function picEdge.setEdgeIcon()
 
     -- Click the image
     print("🖱️ [PICEDGE] Clicking MicrosoftEdge.icns...")
-    
+
     -- Debug: Check available actions and properties
     local actions = edgeIcon:actionNames()
     if actions then
@@ -95,18 +97,18 @@ function picEdge.setEdgeIcon()
             print("  - " .. action)
         end)
     end
-    
+
     edgeIcon:performAction("AXOpen")
 
     -- Wait before confirming
-    hs.timer.usleep(3000000) -- Wait 0.3 seconds
+    hs.timer.usleep(ms.ms('1s'))
 
     -- Step 7: Press Return to confirm selection
     print("✅ [PICEDGE] Confirming selection with Return...")
     hs.eventtap.keyStroke({}, "return")
 
     -- Wait for action to complete
-    hs.timer.usleep(1000000) -- Wait 1 second
+    hs.timer.usleep(ms.ms('0.5s'))
 
     -- Step 8: Quit Pictogram app
     print("🚪 [PICEDGE] Quitting Pictogram app...")
