@@ -1,31 +1,5 @@
 local toggleEdgeTabsPane = {}
-
--- Search for elements
-local function findElement(element, targetDescription, targetRole)
-    if not element then return nil end
-
-    local role = element:attributeValue("AXRole")
-    local description = element:attributeValue("AXDescription")
-
-    print("[DEBUG] Checking element: ", description, role)
-
-    if description == targetDescription and role == targetRole then
-        print("[DEBUG] Found target element: " .. targetDescription)
-        return element
-    end
-
-    -- Recursively search children
-    local children = element:attributeValue("AXChildren")
-    if children then
-        for _, child in ipairs(children) do
-            local result = findElement(child, targetDescription, targetRole)
-            if result then return result end
-        end
-    end
-
-    return nil
-end
-
+local find = require("find")
 
 -- Get the main Edge application element
 local function getEdgeAppElement()
@@ -86,7 +60,7 @@ function toggleEdgeTabsPane.collapse()
         return "Could not access Edge accessibility elements"
     end
 
-    local collapseButton = findElement(axApp, "Collapse pane", "AXPopUpButton")
+    local collapseButton = find.byDescriptionAndRole(axApp, "Collapse pane", "AXPopUpButton")
 
     if collapseButton then
         -- Click the button
@@ -113,7 +87,7 @@ function toggleEdgeTabsPane.pin()
 
     -- Step 1: Find and hover over the Tab Actions Menu button
     print("[DEBUG] Looking for Tab Actions Menu button")
-    local tabActionsMenu = findElement(axApp, "Tab Actions Menu", "AXPopUpButton")
+    local tabActionsMenu = find.byDescriptionAndRole(axApp, "Tab Actions Menu", "AXPopUpButton")
 
     if not tabActionsMenu then
         print("[DEBUG] Tab Actions Menu not found")
@@ -177,7 +151,7 @@ function toggleEdgeTabsPane.pin()
 
     -- Step 2: First try to find Pin pane button directly without menu
     print("[DEBUG] Looking for Pin pane button directly")
-    local pinPaneButton = findElement(axApp, "Pin pane", "AXPopUpButton")
+    local pinPaneButton = find.byDescriptionAndRole(axApp, "Pin pane", "AXPopUpButton")
 
     if not pinPaneButton then
         print("[DEBUG] Pin pane button not found in menu")
@@ -200,7 +174,7 @@ function toggleEdgeTabsPane.toggle()
         return "Could not access Edge accessibility elements"
     end
 
-    local collapseButton = findElement(axApp, "Collapse pane", "AXPopUpButton")
+    local collapseButton = find.byDescriptionAndRole(axApp, "Collapse pane", "AXPopUpButton")
     if collapseButton then
         toggleEdgeTabsPane.collapse()
     else
