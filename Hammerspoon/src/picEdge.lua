@@ -1,35 +1,7 @@
 local picEdge = {}
 local raycastNotification = require("raycastNotification")
-
--- Function to recursively search for elements by role and title/label
-local function findElement(element, targetRole, targetTitle)
-    if not element then return nil end
-
-    local role = element:attributeValue("AXRole")
-    local title = element:attributeValue("AXTitle") or element:attributeValue("AXLabel")
-
-    -- Debug output
-    if role and title then
-        print("🔎 [PICEDGE] Checking: Role=" .. role .. ", Title=" .. title)
-    end
-
-    -- Check if this element matches our criteria
-    if role == targetRole and title and string.find(title, targetTitle) then
-        print("🎯 [PICEDGE] Found target element: " .. title)
-        return element
-    end
-
-    -- Search in children
-    local children = element:attributeValue("AXChildren") or {}
-    for _, child in ipairs(children) do
-        local result = findElement(child, targetRole, targetTitle)
-        if result then
-            return result
-        end
-    end
-
-    return nil
-end
+local utils = require("utils")
+local find = require("find")
 
 -- Main function to set Edge icon using Pictogram
 function picEdge.setEdgeIcon()
@@ -41,7 +13,7 @@ function picEdge.setEdgeIcon()
 
     if not pictogramApp then
         print("❌ [PICEDGE] Failed to launch Pictogram app")
-        raycastNotification.showFailure("❌ Failed to launch Pictogram")
+        raycastNotification.showHUD("❌ Failed to launch Pictogram")
         return false
     end
 
@@ -62,15 +34,15 @@ function picEdge.setEdgeIcon()
     local axApp = hs.axuielement.applicationElement(pictogramApp)
     if not axApp then
         print("❌ [PICEDGE] Cannot access Pictogram UI elements")
-        raycastNotification.showFailure("❌ Cannot access Pictogram UI")
+        raycastNotification.showHUD("❌ Cannot access Pictogram UI")
         return false
     end
 
-    local customIconButton = findElement(axApp, "AXButton", "Select Custom Icon")
+    local customIconButton = find.byRoleAndTitle(axApp, "AXButton", "Select Custom Icon")
 
     if not customIconButton then
         print("❌ [PICEDGE] Custom Icon button not found")
-        raycastNotification.showFailure("❌ Custom Icon button not found")
+        raycastNotification.showHUD("❌ Custom Icon button not found")
         return false
     end
 
@@ -80,7 +52,7 @@ function picEdge.setEdgeIcon()
 
     if not success then
         print("❌ [PICEDGE] Failed to click Custom Icon button")
-        raycastNotification.showFailure("❌ Failed to click button")
+        raycastNotification.showHUD("❌ Failed to click button")
         return false
     end
 
@@ -104,26 +76,30 @@ function picEdge.setEdgeIcon()
     -- Step 6: Find and click MicrosoftEdge.icns image
     print("🖼️ [PICEDGE] Looking for MicrosoftEdge.icns image...")
 
-    local edgeIcon = findElement(axApp, "AXImage", "MicrosoftEdge.icns")
+    local edgeIcon = find.byRoleAndTitle(axApp, "AXImage", "MicrosoftEdge.icns")
 
     if not edgeIcon then
         print("❌ [PICEDGE] MicrosoftEdge.icns image not found")
-        raycastNotification.showFailure("❌ Edge icon not found")
+        raycastNotification.showHUD("❌ Edge icon not found")
         return false
     end
 
     -- Click the image
     print("🖱️ [PICEDGE] Clicking MicrosoftEdge.icns...")
-    local clickSuccess = edgeIcon:performAction("AXPress")
-
-    if not clickSuccess then
-        print("❌ [PICEDGE] Failed to click Edge icon")
-        raycastNotification.showFailure("❌ Failed to select icon")
-        return false
+    
+    -- Debug: Check available actions and properties
+    local actions = edgeIcon:actionNames()
+    if actions then
+        print("🔍 [PICEDGE] Available actions:")
+        utils.forEach(actions, function(action)
+            print("  - " .. action)
+        end)
     end
+    
+    edgeIcon:performAction("AXOpen")
 
     -- Wait before confirming
-    hs.timer.usleep(300000) -- Wait 0.3 seconds
+    hs.timer.usleep(3000000) -- Wait 0.3 seconds
 
     -- Step 7: Press Return to confirm selection
     print("✅ [PICEDGE] Confirming selection with Return...")

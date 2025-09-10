@@ -84,12 +84,12 @@ local function handleCallToggleEdgeTabsFromShortcut()
 end
 _G.handleCallToggleEdgeTabsFromShortcut = handleCallToggleEdgeTabsFromShortcut
 
-local wormhole = require("wormhole")
+-- local wormhole = require("wormhole")
 
-local function handleCallToggleSleepDisplayFromShortcut()
-    wormhole.toggleSleepDisplay()
-end
-_G.handleCallToggleSleepDisplayFromShortcut = handleCallToggleSleepDisplayFromShortcut
+-- local function handleCallToggleSleepDisplayFromShortcut()
+--     wormhole.toggleSleepDisplay()
+-- end
+-- _G.handleCallToggleSleepDisplayFromShortcut = handleCallToggleSleepDisplayFromShortcut
 
 
 
