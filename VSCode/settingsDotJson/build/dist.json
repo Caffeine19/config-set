@@ -31,6 +31,8 @@
   // security
   "security.promptForLocalFileProtocolHandling": false,
   "security.workspace.trust.untrustedFiles": "open",
+  // fix auth failed
+  "microsoft-authentication.implementation": "classic",
   "animations.Install-Method": "Custom CSS and JS",
   "animations.UseCursorColorForCursorAnimation": true,
   "animations.Active": "None",
@@ -1340,6 +1342,15 @@
   "[shellscript]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
   },
+  "[dockercompose]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced",
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
   // neovim的路径
   "vscode-neovim.neovimExecutablePaths.win32": "C:/Program Files/Neovim/bin/nvim.exe",
   "vscode-neovim.neovimInitVimPaths.win32": "~/AppData/Local/nvim/init.lua",
@@ -1581,6 +1592,8 @@
   "workbench.tree.indent": 16,
   // 样式自定义
   "workbench.colorCustomizations": {
+    // transparent, to fix render error in terminal background on display with custom cal profile
+    "terminal.background": "#00000000",
     "[Catppuccin Mocha]": {
       "editorGroup.border": "#4f4f4f3d"
     },
@@ -1602,7 +1615,7 @@
       "widget.shadow": "#00030F99" // softer
     }
   },
-  "workbench.editor.labelFormat": "short",
+  "workbench.editor.labelFormat": "medium",
   // 标签自动换行
   "workbench.editor.wrapTabs": true,
   "workbench.iconTheme": "catppuccin-mocha",
@@ -1613,5 +1626,5 @@
   // "workbench.productIconTheme": "fluent-icons",
   "workbench.activityBar.location": "top",
   "workbench.colorTheme": "GitHub Dark Default"
-  // build at": "2025-08-22T04:19:30.626Z"
+  // build at": "2025-09-26T02:52:07.316Z"
 }

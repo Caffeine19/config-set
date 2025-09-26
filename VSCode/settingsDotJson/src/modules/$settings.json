@@ -40,5 +40,8 @@
 
   // security
   "security.promptForLocalFileProtocolHandling": false,
-  "security.workspace.trust.untrustedFiles": "open"
+  "security.workspace.trust.untrustedFiles": "open",
+
+  // fix auth failed
+  "microsoft-authentication.implementation": "classic"
 }

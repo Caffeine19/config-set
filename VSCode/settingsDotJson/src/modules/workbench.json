@@ -7,6 +7,9 @@
 
   // 样式自定义
   "workbench.colorCustomizations": {
+    // transparent, to fix render error in terminal background on display with custom cal profile
+    "terminal.background": "#00000000",
+
     "[Catppuccin Mocha]": {
       "editorGroup.border": "#4f4f4f3d"
     },
@@ -30,7 +33,7 @@
     }
   },
 
-  "workbench.editor.labelFormat": "short",
+  "workbench.editor.labelFormat": "medium",
 
   // 标签自动换行
   "workbench.editor.wrapTabs": true,
