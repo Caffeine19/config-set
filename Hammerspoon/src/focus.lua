@@ -2,6 +2,7 @@
 
 local focus = {}
 local ax = hs.axuielement
+local utils = require("utils")
 
 local DOUBLE_TAP_TIMEOUT = 0.32 -- seconds allowed between Command taps
 
@@ -19,7 +20,7 @@ end
 local function firstWindowUnderPointByOrderedWindows(point)
     local ordered = hs.window.orderedWindows()
 
-    for index, win in ipairs(ordered) do
+    return utils.find(ordered, function(win, index)
         print(string.format("[FOCUS] ordered window %d -> %s | %s",
             index,
             (win:application() and win:application():name()) or "Unknown",
@@ -27,11 +28,12 @@ local function firstWindowUnderPointByOrderedWindows(point)
 
         if win:isStandard() and win:isVisible() and not win:isMinimized() then
             if pointInsideFrame(point, win:frame()) then
-                return win
+                return true
             end
         end
-    end
-    return nil
+
+        return false
+    end)
 end
 
 local function windowFromAccessibilityAtPoint(point)
@@ -59,7 +61,7 @@ local function windowFromAccessibilityAtPoint(point)
             return nil
         end
 
-        if role == "AXWindow" or role == "AXSheet" then
+        if utils.includes({ "AXWindow", "AXSheet" }, role) then
             local win = asWindow(element)
             if win then
                 return win
@@ -104,13 +106,12 @@ local function onlyCommandActive(flags)
         return false
     end
 
-    for _, modifier in ipairs({ "alt", "ctrl", "fn", "shift", "capslock" }) do
-        if flags[modifier] then
-            return false
-        end
-    end
+    local disallowedModifiers = { "alt", "ctrl", "fn", "shift", "capslock" }
+    local activeModifier = utils.find(disallowedModifiers, function(modifier)
+        return flags[modifier]
+    end)
 
-    return true
+    return activeModifier == nil
 end
 
 local function handleCommandDoubleTap(flags)
