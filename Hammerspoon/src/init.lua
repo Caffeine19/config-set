@@ -64,6 +64,9 @@ _G.handleCallMessUpAllWindowsFromShortcut = handleCallMessUpAllWindowsFromShortc
 
 local toggleEdgeTabsPane = require("toggleEdgeTabsPane")
 
+local focus = require("focus")
+focus.init()
+
 local function handleCallCollapseEdgeTabsFromShortcut()
     -- This function can be used to toggle Edge tabs
     local result = toggleEdgeTabsPane.collapse()
