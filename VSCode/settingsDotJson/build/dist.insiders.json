@@ -32,7 +32,7 @@
   "security.promptForLocalFileProtocolHandling": false,
   "security.workspace.trust.untrustedFiles": "open",
   // fix auth failed
-  "microsoft-authentication.implementation": "classic",
+  // "microsoft-authentication.implementation": "classic"
   "animations.Install-Method": "Custom CSS and JS",
   "animations.UseCursorColorForCursorAnimation": true,
   "animations.Active": "None",
@@ -1628,6 +1628,6 @@
   // maybe the default icon theme is better
   // "workbench.productIconTheme": "fluent-icons",
   "workbench.activityBar.location": "top",
-  "workbench.colorTheme": "GitHub Dark Default"
-  // build at: "2025-10-16T01:18:58.113Z (insiders)"
+  "workbench.colorTheme": "GitHub Dark Default",
+  "// build at": "2025-10-16T01:23:03.733Z (insiders)"
 }
