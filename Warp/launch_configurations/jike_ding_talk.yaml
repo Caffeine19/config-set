@@ -25,15 +25,29 @@
 name: Jike Ding Talk
 active_window_index: 0
 windows:
-  - active_tab_index: 0
+  - active_tab_index: 2
     tabs:
-      - title: jike-mobile
+      - title: jike-ding
         layout:
           split_direction: horizontal
           panes:
-            - cwd: /Users/caffeinecat/work/jike-ding-talk/jike-ding-talk-app
+            - cwd: /Users/caffeinecat/work/jike-ding-talk/jike-ding-talk-app/apps/ding
+            - cwd: /Users/caffeinecat/work/jike-ding-talk/jike-ding-talk-app/apps/ding
               is_focused: true
-            - cwd: /Users/caffeinecat/work/jike-ding-talk/jike-ding-talk-app
+      - title: jike-business
+        layout:
+          split_direction: horizontal
+          panes:
+            - cwd: /Users/caffeinecat/work/jike-ding-talk/jike-ding-talk-app/packages/business
+              is_focused: true
+            - cwd: /Users/caffeinecat/work/jike-ding-talk/jike-ding-talk-app/packages/business
+      - title: jike-export
+        layout:
+          split_direction: horizontal
+          panes:
+            - cwd: /Users/caffeinecat/work/jike-ding-talk/jike-ding-talk-app/apps/export
+            - cwd: /Users/caffeinecat/work/jike-ding-talk/jike-ding-talk-app/apps/export
+              is_focused: true
       - title: jike-doc
         layout:
           cwd: /Users/caffeinecat/work/jike-ding-talk/jike-ding-talk-doc/第三方接口/ICT文档
