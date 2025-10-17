@@ -16,8 +16,8 @@ alias cz="pnpm cz"
 alias czw="pnpm -w cz"
 
 # git yesterday commits and copy to clipboard
-alias yw='(git --no-pager log --oneline --no-merges --author="$(git config user.name)" --since=yesterday.midnight --until=midnight | pbcopy) && echo "Yesterday commits copied to clipboard"'
+alias yw='git --no-pager log --oneline --no-merges --author="$(git config user.name)" --since=yesterday.midnight --until=midnight | tr "()" "  " | pbcopy && echo "Yesterday commits copied to clipboard"'
 # today work
-alias tw='(git --no-pager log --oneline --no-merges  --author="$(git config user.name)" --since=midnight | pbcopy) && echo "Today commits copied to clipboard"'
+alias tw='git --no-pager log --oneline --no-merges  --author="$(git config user.name)" --since=midnight | tr "()" "  " | pbcopy && echo "Today commits copied to clipboard"'
 
 echo "[oh-my-zsh] module alias.zsh loaded"
