@@ -1,0 +1,10 @@
+{
+  "description": "Change Page Down To Fn",
+  "manipulators": [
+    {
+      "from": { "key_code": "page_down" },
+      "to": [{ "key_code": "fn" }],
+      "type": "basic"
+    }
+  ]
+}
