@@ -22,33 +22,37 @@
 #            - exec: code .
 
 ---
-name: Front Base
+name: Base Platform
 active_window_index: 0
 windows:
   - active_tab_index: 0
     tabs:
-      - title: front-business
+      - title: bp-business
         layout:
-          cwd: /Users/caffeinecat/Work/front-base/packages/business
+          cwd: /Users/caffeinecat/Work/base-platform/bp-web/packages/business
           is_focused: true
-      - title: front-screen
+      - title: bp-screen
         layout:
           split_direction: horizontal
           panes:
-            - cwd: /Users/caffeinecat/Work/front-base/apps/screen
+            - cwd: /Users/caffeinecat/Work/base-platform/bp-web/apps/screen
               is_focused: true
-            - cwd: /Users/caffeinecat/Work/front-base/apps/screen
-      - title: front-admin
+            - cwd: /Users/caffeinecat/Work/base-platform/bp-web/apps/screen
+      - title: bp-admin
         layout:
           split_direction: horizontal
           panes:
-            - cwd: /Users/caffeinecat/Work/front-base/apps/admin
+            - cwd: /Users/caffeinecat/Work/base-platform/bp-web/apps/admin
               is_focused: true
-            - cwd: /Users/caffeinecat/Work/front-base/apps/admin
-      - title: front-mobile
+            - cwd: /Users/caffeinecat/Work/base-platform/bp-web/apps/admin
+      - title: bp-mobile
         layout:
           split_direction: horizontal
           panes:
-            - cwd: /Users/caffeinecat/Work/front-base/apps/mobile
+            - cwd: /Users/caffeinecat/Work/base-platform/bp-web/apps/mobile
               is_focused: true
-            - cwd: /Users/caffeinecat/Work/front-base/apps/mobile
+            - cwd: /Users/caffeinecat/Work/base-platform/bp-web/apps/mobile
+      - title: bp-server
+        layout:
+          cwd: /Users/caffeinecat/Work/base-platform/bp-server
+          is_focused: true
