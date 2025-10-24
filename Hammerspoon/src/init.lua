@@ -87,16 +87,6 @@ local function handleCallToggleEdgeTabsFromShortcut()
 end
 _G.handleCallToggleEdgeTabsFromShortcut = handleCallToggleEdgeTabsFromShortcut
 
--- local wormhole = require("wormhole")
-
--- local function handleCallToggleSleepDisplayFromShortcut()
---     wormhole.toggleSleepDisplay()
--- end
--- _G.handleCallToggleSleepDisplayFromShortcut = handleCallToggleSleepDisplayFromShortcut
-
-
-
-
 local picEdge = require("picEdge")
 
 local function handleCallSetEdgeIconFromShortcut()
