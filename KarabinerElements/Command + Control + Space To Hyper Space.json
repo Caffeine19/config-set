@@ -1,5 +1,5 @@
 {
-  "description": "Command + Control + Space to Hyper + Space",
+  "description": "Command + Control + Space to Hyper Space",
   "manipulators": [
     {
       "type": "basic",
