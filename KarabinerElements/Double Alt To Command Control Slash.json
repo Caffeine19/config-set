@@ -1,0 +1,63 @@
+{
+  "description": "Double Option To Command Control Slash",
+  "manipulators": [
+    {
+      "conditions": [
+        {
+          "name": "left_option pressed",
+          "type": "variable_if",
+          "value": 1
+        }
+      ],
+      "from": {
+        "key_code": "left_option",
+        "modifiers": { "optional": ["any"] }
+      },
+      "to": [
+        {
+          "key_code": "slash",
+          "modifiers": ["left_command", "left_control"]
+        }
+      ],
+      "type": "basic"
+    },
+    {
+      "from": {
+        "key_code": "left_option",
+        "modifiers": { "optional": ["any"] }
+      },
+      "parameters": {
+        "basic.to_delayed_action_delay_milliseconds": 800,
+        "basic.to_if_alone_timeout_milliseconds": 300
+      },
+      "to": [
+        {
+          "set_variable": {
+            "name": "left_option pressed",
+            "value": 1
+          }
+        },
+        { "key_code": "left_option" }
+      ],
+      "to_delayed_action": {
+        "to_if_canceled": [
+          {
+            "set_variable": {
+              "name": "left_option pressed",
+              "value": 0
+            }
+          }
+        ],
+        "to_if_invoked": [
+          {
+            "set_variable": {
+              "name": "left_option pressed",
+              "value": 0
+            }
+          }
+        ]
+      },
+      "type": "basic"
+    }
+  ]
+}
