@@ -1,0 +1,4 @@
+- make it more common
+- change the picEdge to pictogram
+- allow pic any app
+  - pictogram('ege','edge.icns')

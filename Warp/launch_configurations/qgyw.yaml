@@ -1,0 +1,51 @@
+# Warp Launch Configuration
+#
+#
+# Use this to start a certain configuration of windows, tabs, and panes.
+# Open the launch configuration palette to access and open any launch configuration.
+#
+# This file defines your launch configuration.
+# More on how to do so here:
+# https://docs.warp.dev/features/sessions/launch-configurations
+#
+# All launch configurations are stored under ~/.warp/launch_configurations.
+# Edit them anytime!
+#
+# You can also add commands that run on-start for your launch configurations like so:
+# ---
+# name: Example with Command
+# windows:
+#  - tabs:
+#      - layout:
+#          cwd: /Users/warp-user/project
+#          commands:
+#            - exec: code .
+
+---
+name: Qgyw
+active_window_index: 0
+windows:
+  - active_tab_index: 3
+    tabs:
+      - title: qgyw-admin
+        layout:
+          split_direction: horizontal
+          panes:
+            - cwd: /Users/caffeinecat/work/qgyw/qgyw-web/apps/admin
+              is_focused: true
+            - cwd: /Users/caffeinecat/work/qgyw/qgyw-web/apps/admin
+      - title: qgyw-business
+        layout:
+          split_direction: horizontal
+          panes:
+            - cwd: /Users/caffeinecat/work/qgyw/qgyw-web/packages/business
+              is_focused: true
+            - cwd: /Users/caffeinecat/work/qgyw/qgyw-web/packages/business
+      - title: qgyw-doc
+        layout:
+          cwd: /Users/caffeinecat/work/qgyw/doc
+          is_focused: true
+      - title: qgyw-server
+        layout:
+          cwd: /Users/caffeinecat/work/qgyw/qgyw-server-oracle
+          is_focused: true
