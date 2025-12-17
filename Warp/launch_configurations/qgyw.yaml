@@ -22,18 +22,11 @@
 #            - exec: code .
 
 ---
-name: Qgyw
+name: QGYW Web
 active_window_index: 0
 windows:
-  - active_tab_index: 3
+  - active_tab_index: 0
     tabs:
-      - title: qgyw-admin
-        layout:
-          split_direction: horizontal
-          panes:
-            - cwd: /Users/caffeinecat/work/qgyw/qgyw-web/apps/admin
-              is_focused: true
-            - cwd: /Users/caffeinecat/work/qgyw/qgyw-web/apps/admin
       - title: qgyw-business
         layout:
           split_direction: horizontal
@@ -41,11 +34,26 @@ windows:
             - cwd: /Users/caffeinecat/work/qgyw/qgyw-web/packages/business
               is_focused: true
             - cwd: /Users/caffeinecat/work/qgyw/qgyw-web/packages/business
-      - title: qgyw-doc
+              commands:
+                - exec: git status
+      - title: qgyw-admin
         layout:
-          cwd: /Users/caffeinecat/work/qgyw/doc
-          is_focused: true
+          split_direction: horizontal
+          panes:
+            - cwd: /Users/caffeinecat/work/qgyw/qgyw-web/apps/admin
+              is_focused: true
+            - cwd: /Users/caffeinecat/work/qgyw/qgyw-web/apps/admin
+              commands:
+                - exec: git status
       - title: qgyw-server
         layout:
           cwd: /Users/caffeinecat/work/qgyw/qgyw-server-oracle
           is_focused: true
+          commands:
+            - exec: git status
+      - title: qgyw-doc
+        layout:
+          cwd: /Users/caffeinecat/work/qgyw/doc
+          is_focused: true
+          commands:
+            - exec: git pull
