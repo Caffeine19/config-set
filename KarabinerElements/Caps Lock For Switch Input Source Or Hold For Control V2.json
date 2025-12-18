@@ -1,0 +1,68 @@
+{
+  "description": "Caps Lock For Switch Input Source Or Hold For Control",
+  "manipulators": [
+    {
+      "from": {
+        "key_code": "caps_lock",
+        "modifiers": {
+          "mandatory": ["command"],
+          "optional": ["any"]
+        }
+      },
+      "to": [
+        {
+          "key_code": "right_control",
+          "modifiers": ["command"]
+        }
+      ],
+      "type": "basic"
+    },
+    {
+      "description": "In iPhone Mirroring: Caps Lock alone sends Fn (for input source switching)",
+      "conditions": [
+        {
+          "bundle_identifiers": ["^com\\.apple\\.ScreenContinuity$"],
+          "type": "frontmost_application_if"
+        }
+      ],
+      "from": {
+        "key_code": "caps_lock",
+        "modifiers": { "optional": ["any"] }
+      },
+      "to": [
+        {
+          "key_code": "right_control",
+          "lazy": true
+        }
+      ],
+      "to_if_alone": [{ "key_code": "fn" }],
+      "type": "basic"
+    },
+    {
+      "description": "iPhone Mirroring didn't support switch input source with Control Space, so we need to keep the Caps Lock as Unmapped",
+      "conditions": [
+        {
+          "bundle_identifiers": ["^com\\.apple\\.ScreenContinuity$"],
+          "type": "frontmost_application_unless"
+        }
+      ],
+      "from": {
+        "key_code": "caps_lock",
+        "modifiers": { "optional": ["any"] }
+      },
+      "to": [
+        {
+          "key_code": "right_control",
+          "lazy": true
+        }
+      ],
+      "to_if_alone": [
+        {
+          "key_code": "spacebar",
+          "modifiers": ["right_control"]
+        }
+      ],
+      "type": "basic"
+    }
+  ]
+}
