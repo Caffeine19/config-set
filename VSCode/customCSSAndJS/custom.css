@@ -5,6 +5,11 @@
   font-family: "FiraMono Nerd Font Propo";
 }
 
+/* patch for vscode chat symbols span, see './images/chatSymbols.png' */
+.main span {
+  font-family: "FiraMono Nerd Font Propo" !important;
+}
+
 .quick-input-widget {
   top: 20% !important;
   /* half of the width  */
