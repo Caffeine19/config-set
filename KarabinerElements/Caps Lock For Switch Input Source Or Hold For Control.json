@@ -1,5 +1,5 @@
 {
-  "description": "Caps Lock For Switch Input Source Or Hold For Control",
+  "description": "Caps Lock For Switch Input Source Or Hold For Control (Fixed)",
   "manipulators": [
     {
       "from": {
@@ -18,13 +18,6 @@
       "type": "basic"
     },
     {
-      "description": "iPhone Mirroring didn't support switch input source with Control Space, so we need to keep the Caps Lock as Unmapped",
-      "conditions": [
-        {
-          "bundle_identifiers": ["^com\\.apple\\.ScreenContinuity$"],
-          "type": "frontmost_application_unless"
-        }
-      ],
       "from": {
         "key_code": "caps_lock",
         "modifiers": { "optional": ["any"] }
