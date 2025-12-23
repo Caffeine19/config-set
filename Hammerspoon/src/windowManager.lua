@@ -10,7 +10,7 @@ local windowManager = {}
 -- Application blacklist - windows from these apps will not be auto-maximized
 -- Organized by category for easier maintenance
 local systemApps = {
-    "Calculator", "System Preferences", "System Settings", "Control Center"
+    "Calculator", "System Preferences", "Control Center"
 }
 local launchers = { "Raycast", "Alfred" }
 local games = { "Hearthstone" }
