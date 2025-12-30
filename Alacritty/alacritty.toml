@@ -18,6 +18,9 @@ blur = true                  # macOS only
 decorations = "Buttonless"   # 保留窗口阴影，隐藏标题栏按钮
 dynamic_padding = true
 padding = { x = 16, y = 16 }
+level = "AlwaysOnTop"
+
+# catppuccin_mocha theme
 
 [colors.primary]
 background = '#1E1E2E' # base
