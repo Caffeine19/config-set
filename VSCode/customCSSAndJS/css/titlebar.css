@@ -1,28 +1,14 @@
-/* at right */
-/* .titlebar {
-  background-color: unset !important;
-  background-image: radial-gradient(
-      240px 305.23% at 96% -144.12%,
-      rgba(from var(--vscode-terminal-ansiBlue) r g b / 0.75) 0%,
-      var(--vscode-titleBar-activeBackground) 100%
-    ),
-    linear-gradient( 45deg,
-      var(--vscode-titleBar-activeBackground),
-      var(--vscode-titleBar-activeBackground)
-    );
-} */
-
 .titlebar {
   background-color: unset !important;
   background-image: radial-gradient(
       240px 405.23% at 200px -144.12%,
-      rgba(from var(--vscode-terminal-ansiBlue) r g b / 0.55) 0%,
+      rgba(from var(--vscode-terminal-ansiBlue) r g b / 0.35) 0%,
       transparent 90%,
       transparent 100%
     ),
     radial-gradient(
       280px 405.23% at 320px 300%,
-      rgba(from var(--vscode-terminal-ansiWhite) r g b / 0.45) 0%,
+      rgba(from var(--vscode-terminal-ansiWhite) r g b / 0.25) 0%,
       transparent 90%,
       transparent 100%
     ),
