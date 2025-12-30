@@ -250,6 +250,10 @@ div.monaco-progress-container.quick-input-progress.done {
   color: var(--vscode-tab-activeForeground) !important;
 }
 
+body > div > div.part.titlebar.inactive > div > div.titlebar-center > div {
+  color: var(--vscode-tab-activeForeground) !important;
+}
+
 .monaco-workbench
   .part.titlebar
   > .titlebar-container
