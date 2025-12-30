@@ -1,0 +1,6 @@
+/* update icon style in chat summary list */
+.chat-summary-list .monaco-icon-label:before {
+  /* make the icon smaller */
+  background-size: 14px !important;
+  margin-left: 6px !important;
+}

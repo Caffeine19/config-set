@@ -1,0 +1,93 @@
+.quick-input-widget {
+  top: 20% !important;
+  /* half of the width  */
+  left: calc(50% - 400px) !important;
+
+  /* 600px */
+  width: 800px !important;
+  /* 300px */
+  margin-left: 0px !important;
+
+  border: 0px solid transparent !important;
+}
+
+.quick-input-widget::after {
+  content: "";
+  position: absolute;
+  inset: -0.625em;
+  z-index: -1;
+
+  background: linear-gradient(
+    60deg,
+    var(--vscode-terminal-ansiBlue),
+    var(--vscode-terminal-ansiMagenta),
+    var(--vscode-terminal-ansiCyan)
+  );
+  filter: blur(64px);
+  animation: breathing 4s infinite ease-in-out;
+}
+
+/* title-bar */
+.quick-input-titlebar {
+  background-color: var(--vscode-quickInput-background) !important;
+  padding-top: 4px;
+  padding-bottom: 4px !important;
+  margin-bottom: -8px;
+  border-radius: 8px 8px 0 0 !important;
+}
+
+/* field */
+.quick-input-header {
+  background-color: var(--vscode-quickInput-background);
+  padding: 8px !important;
+  border-radius: 10px 10px 0px 0px !important;
+}
+
+/* input element container */
+.quick-input-header > .quick-input-and-message .monaco-inputbox {
+  border-radius: 4px !important;
+  border-color: transparent !important;
+}
+
+div.monaco-progress-container.quick-input-progress.done {
+  background-color: var(--vscode-quickInput-background);
+}
+
+/* list of results */
+.quick-input-list > .monaco-list > .monaco-scrollable-element {
+  padding: 0px !important;
+}
+
+.quick-input-list {
+  margin-top: 0px !important;
+  padding: 8px !important;
+  background-color: var(--vscode-quickInput-background);
+  border-radius: 0px 0px 10px 10px !important;
+}
+
+.quick-input-html-widget {
+  background-color: var(--vscode-quickInput-background) !important;
+  border-radius: 0px 0px 10px 10px !important;
+}
+
+.quick-input-tree {
+  background-color: var(--vscode-quickInput-background) !important;
+  border-radius: 0px 0px 10px 10px !important;
+}
+
+@keyframes breathing {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.2);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+}

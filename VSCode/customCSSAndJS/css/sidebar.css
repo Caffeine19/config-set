@@ -1,0 +1,14 @@
+/* 侧边栏按钮居中 */
+.composite-bar-container {
+  justify-content: center !important;
+}
+
+/* 侧边栏按钮增加一点间距 */
+#workbench\.parts\.sidebar
+  > div.composite.has-composite-bar.header-or-footer.header
+  > div
+  > div
+  > div
+  > ul {
+  gap: 4px !important;
+}

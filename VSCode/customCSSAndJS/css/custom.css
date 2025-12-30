@@ -1,0 +1,18 @@
+/* 修复 welcome page 标题被截断的问题 */
+.monaco-workbench .part.editor > .content .gettingStartedContainer h1 {
+  line-height: 3rem !important;
+}
+
+/* add space between chat and terminal */
+.part.auxiliarybar.basepanel.right.pane-composite-part
+  .split-view-container
+  .split-view-view:nth-child(2).visible
+  .pane.expanded.vertical {
+  padding-top: 8px !important;
+}
+
+/* todo need to add comment don;t what this do */
+.scm-view .scm-input .scm-editor .scm-editor-toolbar {
+  display: none;
+  cursor: none;
+}

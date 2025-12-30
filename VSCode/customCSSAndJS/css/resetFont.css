@@ -1,0 +1,11 @@
+/* Reset Font Family */
+.mac,
+.windows,
+.linux {
+  font-family: "FiraMono Nerd Font Propo";
+}
+
+/* patch for vscode chat symbols span, see './images/resetFontInChat.after.png' */
+.main span {
+  font-family: "FiraMono Nerd Font Propo" !important;
+}

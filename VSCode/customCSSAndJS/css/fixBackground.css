@@ -1,0 +1,80 @@
+/* fix wrong background in editor */
+#workbench\.parts\.editor
+  > div.content
+  > div
+  > div
+  > div
+  > div
+  > div.monaco-scrollable-element.mac
+  > div.split-view-container
+  > div
+  > div
+  > div.editor-container
+  > div
+  > div
+  > div.overflow-guard
+  > div.monaco-scrollable-element.editor-scrollable.vs-dark.mac {
+  background-color: var(--vscode-editor-background);
+}
+
+/* fix wrong background in editor */
+#workbench\.parts\.editor
+  > div.content
+  > div
+  > div.monaco-scrollable-element.mac
+  > div.split-view-container
+  > div:nth-child(2)
+  > div
+  > div
+  > div
+  > div
+  > div.monaco-scrollable-element.mac
+  > div.split-view-container
+  > div
+  > div
+  > div.editor-container
+  > div
+  > div
+  > div.overflow-guard
+  > div.monaco-scrollable-element.editor-scrollable.vs-dark.mac
+  > div.lines-content.monaco-editor-background {
+  background-color: unset;
+}
+
+/* fix wrong background in editor */
+#workbench\.parts\.editor
+  > div.content
+  > div
+  > div
+  > div
+  > div
+  > div.monaco-scrollable-element.mac
+  > div.split-view-container
+  > div
+  > div
+  > div.editor-container
+  > div
+  > div
+  > div.overflow-guard
+  > div.monaco-scrollable-element.editor-scrollable.vs-dark.mac
+  > div.lines-content.monaco-editor-background {
+  background-color: unset;
+}
+
+/* fix wrong background in chat view terminal */
+.interactive-response
+  .interactive-result-code-block
+  .interactive-result-editor
+  .monaco-editor,
+.interactive-response
+  .interactive-result-code-block
+  .interactive-result-editor
+  .monaco-editor
+  .margin,
+.interactive-response
+  .interactive-result-code-block
+  .interactive-result-editor
+  .monaco-editor
+  .monaco-editor-background {
+  background-color: unset !important;
+}
