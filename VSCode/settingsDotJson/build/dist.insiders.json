@@ -1290,14 +1290,18 @@
   "chat.agent.maxRequests": 1000,
   "chat.agent.thinkingStyle": "collapsedPreview",
   "chat.todoListTool.enabled": true,
-  "github.copilot.nextEditSuggestions.enabled": true,
-  "github.copilot.nextEditSuggestions.fixes": true,
+  "chat.checkpoints.showFileChanges": true,
+  "chat.viewSessions.orientation": "stacked",
+  "github.copilot.chat.agent.autoFix": true,
   "github.copilot.chat.agent.thinkingTool": true,
-  "github.copilot.chat.edits.temporalContext.enabled": true,
   "github.copilot.chat.editor.temporalContext.enabled": true,
+  "github.copilot.chat.edits.temporalContext.enabled": true,
   "github.copilot.chat.languageContext.fix.typescript.enabled": true,
   "github.copilot.chat.languageContext.inline.typescript.enabled": true,
   "github.copilot.chat.languageContext.typescript.enabled": true,
+  "github.copilot.chat.tools.memory.enabled": true,
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "github.copilot.nextEditSuggestions.fixes": true,
   "inlineChat.enableV2": true,
   "haskell.manageHLS": "GHCup",
   "[javascript]": {
@@ -1628,6 +1632,6 @@
   // maybe the default icon theme is better
   // "workbench.productIconTheme": "fluent-icons",
   "workbench.activityBar.location": "top",
-  "workbench.colorTheme": "GitHub Dark Default",
-  "// build at": "2025-10-16T01:23:03.733Z (insiders)"
+  "workbench.colorTheme": "GitHub Dark Default"
+  // build at": "2025-12-30T17:33:20.462Z (insiders)
 }
