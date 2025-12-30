@@ -2,7 +2,13 @@
   "$schema": "vscode://schemas/settings/user",
 
   "vscode_custom_css.imports": [
-    "file:///Users/caffeinecat/.config/vscode-custom-css-and-js/custom.css",
-    "file:///Users/caffeinecat/.vscode/extensions/brandonkirbyson.vscode-animations-2.0.7/dist/updateHandler.js"
+    "file://${userHome}/.config/vscode-custom-css-and-js/chatSummary.css",
+    "file://${userHome}/.config/vscode-custom-css-and-js/custom.css",
+    "file://${userHome}/.config/vscode-custom-css-and-js/fixBackground.css",
+    "file://${userHome}/.config/vscode-custom-css-and-js/quickInput.css",
+    "file://${userHome}/.config/vscode-custom-css-and-js/resetFont.css",
+    "file://${userHome}/.config/vscode-custom-css-and-js/sidebar.css",
+    "file://${userHome}/.config/vscode-custom-css-and-js/titlebar.css",
+    "file://${userHome}/.vscode/extensions/brandonkirbyson.vscode-animations-2.0.7/dist/updateHandler.js"
   ]
 }

@@ -1,3 +1,5 @@
-# link custom css
+# link all custom css files
 mkdir -p ~/.config/vscode-custom-css-and-js
-ln -s ~/Code/config-set/VSCode/customCSSAndJS/custom.css ~/.config/vscode-custom-css-and-js/custom.css
+for cssfile in ~/Code/config-set/VSCode/customCSSAndJS/css/*.css; do
+    ln -s "$cssfile" ~/.config/vscode-custom-css-and-js/$(basename "$cssfile")
+done
