@@ -74,11 +74,10 @@ local function inspectWinInfo(win)
     -- Print window properties for debugging
     print("🔍 [DEBUG] Window created:")
     print("  📘 App: " .. appName)
-    print("  📝 Title: " .. (win:title() or "No title"))
-    -- print("  Frame: " .. hs.inspect(win:frame()))
-    print("  💼 Role: " .. (win:role() or "No role"))
-    print("  💼 Subrole: " .. (win:subrole() or "No subrole"))
-    -- print("  🆔 ID: " .. (win:id() or "No ID"))
+    print("  📝 Title: " .. (win:title() or "None"))
+    print("  💼 Role: " .. (win:role() or "None"))
+    print("  💼 Subrole: " .. (win:subrole() or "None"))
+
     print("  📏 Is Standard: " ..
         tostring(win:isStandard()) ..
         "  👁️ Is Minimized: " .. tostring(win:isMinimized()) .. "  👀 Is Visible: " .. tostring(win:isVisible()))
