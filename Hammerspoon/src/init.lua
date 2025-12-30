@@ -22,7 +22,7 @@ hs.console.consoleFont({ name = "JetBrainsMono Nerd Font Propo", size = 14 })
 -- The Raycast Hammerspoon extension need this to be enabled
 hs.allowAppleScript(true)
 
-local windowManager = require("windowManager")
+local windowManager = require("windowManager.windowManager")
 
 windowManager.init()
 
@@ -94,3 +94,5 @@ local function handleCallSetEdgeIconFromShortcut()
     return result and "Edge icon set successfully" or "Failed to set Edge icon"
 end
 _G.handleCallSetEdgeIconFromShortcut = handleCallSetEdgeIconFromShortcut
+
+-- local macMouseFix = require("macMouseFix")

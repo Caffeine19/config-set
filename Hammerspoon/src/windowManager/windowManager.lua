@@ -4,24 +4,10 @@
 local utils = require("utils")
 local raycastNotification = require("raycastNotification")
 local ms = require("ms")
+local blacklist = require("windowManager.blacklist")
+local method = require("windowManager.method")
 
 local windowManager = {}
-
--- Application blacklist - windows from these apps will not be auto-maximized
--- Organized by category for easier maintenance
-local systemApps = {
-    "Calculator", "System Preferences", "Control Center"
-}
-local launchers = { "Raycast", "Alfred" }
-local games = { "Hearthstone" }
-local baseList = { "Hammerspoon", "Loop",
-    "Mouseposé", "Shottr", "Pictogram", "Xiaomi Home", "AutoSwitchInput Pro" }
-local blacklist = utils.mergeArrays(systemApps, baseList, launchers, games)
-
--- Check if application is in the blacklist
-local function isBlacklisted(appName)
-    return utils.includes(blacklist, appName)
-end
 
 -- Unified function to check if a window should be skipped for processing
 local function checkWindow(win, appName)
@@ -44,7 +30,7 @@ local function checkWindow(win, appName)
     end
 
     -- Skip blacklisted applications
-    if isBlacklisted(appName) then
+    if blacklist.isBlacklisted(appName) then
         print("🚫 [SKIP] " .. appName .. " is blacklisted")
         return true
     end
@@ -60,52 +46,6 @@ local function checkWindow(win, appName)
     return false
 end
 
--- Maximize window using Loop
-local function maximizeWindowByLoop(win, appName)
-    print("🔗 [MAXIMIZE] Using Loop for " .. appName)
-    hs.execute("open -g loop://direction/maximize")
-end
-
--- Maximize window using Window/Fill menu item
-local function maximizeWindowByMenuItem(win, appName)
-    local app = win:application()
-    local menuItem = app:findMenuItem({ "Window", "Fill" })
-
-    if not menuItem then
-        print("❌ [FAILED] No Window/Fill menu for " .. appName)
-        return false
-    end
-
-    -- Window/Fill menu exists, use select menu item to maximize the window
-    local success = app:selectMenuItem({ "Window", "Fill" })
-    if success then
-        print("✅ [SUCCESS] Window/Fill menu selected for " .. appName)
-        return true
-    else
-        print("❌ [FAILED] Could not select Window/Fill for " .. appName)
-        return false
-    end
-end
-
--- Maximize window using Raycast
-local function maximizeWindowByRaycast(win, appName)
-    print("🚀 [MAXIMIZE] Using Raycast for " .. appName)
-    hs.execute("open -g raycast://extensions/raycast/window-management/maximize")
-end
-
--- Main maximizeWindow function (choose method)
-local function maximizeWindow(win, appName)
-    -- Try menuItem first, then fallback to Raycast
-    if maximizeWindowByMenuItem(win, appName) then
-        return
-    end
-
-    -- Fallback to Raycast if menuItem method failed
-    maximizeWindowByRaycast(win, appName)
-    -- Alternative: You can also try Loop method
-    -- maximizeWindowByLoop(win, appName)
-end
-
 -- Calculate optimal delay before applying window management
 -- Prevents visual glitches when windows have built-in scale/fade transitions
 -- Applying window management too early can cause sluggish or jerky animations
@@ -117,6 +57,12 @@ local function getExtraDelay(win, appName)
         print("⏳ [DELAY] WeChat image preview detected, applying longer delay")
         delay = 0.32
     end
+
+    if appName == "Alacritty" then
+        print("⏳ [DELAY] Alacritty detected, applying longer delay")
+        delay = 0
+    end
+
     print("⏳ [DELAY] Applying delay of " .. delay .. " seconds for " .. appName)
     return delay
 end
@@ -145,8 +91,17 @@ local function handleWindowCreated(win)
     local delay = getExtraDelay(win, appName)
 
     hs.timer.doAfter(delay, function()
-        -- Attempt to maximize the window
-        maximizeWindow(win, appName)
+        local shouldCenter = blacklist.shouldCenterInsteadOfMax(appName)
+        if shouldCenter then
+            method.centerWindow(win, appName)
+        else
+            -- Attempt to maximize the window
+            method.maximizeWindow(win, appName)
+        end
+
+        local action = shouldCenter and "Centered" or "Maximized"
+        local title = string.format("💫 %s: %s", action, appName)
+        raycastNotification.showHUD(title, true)
     end)
 end
 
@@ -172,15 +127,20 @@ local function processAndMaximizeWindows(windowList)
             return
         end
 
-        -- Focus the window first, then maximize it
+        -- Focus the window first, then maximize/center it
         print("🎯 [FOCUS] Bringing " .. appName .. " to front")
         win:focus()
 
         -- Small delay to ensure window is focused
         hs.timer.usleep(ms.ms('0.1s'))
 
-        -- Use existing maximizeWindow function (Loop/Raycast/MenuItem)
-        maximizeWindow(win, appName)
+        -- Check if app should be centered instead of maximized
+        if blacklist.shouldCenterInsteadOfMax(appName) then
+            method.centerWindow(win, appName)
+        else
+            -- Use existing maximizeWindow function (Loop/Raycast/MenuItem)
+            method.maximizeWindow(win, appName)
+        end
         processed = processed + 1
     end)
 
@@ -194,6 +154,23 @@ local function processAndMaximizeWindows(windowList)
     end)
 
     return processed, skipped
+end
+
+-- Maximize all windows in the current screen
+function windowManager.tidyMainScreen()
+    print("🌟 [WINDOW-MANAGER] Starting to tidy main screen...")
+
+    local title = string.format("🌟 Starting to Tidy Main Screen")
+    raycastNotification.showHUD(title, true)
+
+    -- Get the main (active) screen
+    local mainScreen = hs.screen.mainScreen()
+
+    local mainScreenWindows = hs.window.filter.new():setCurrentSpace(true):setScreens(mainScreen:getUUID()):getWindows()
+
+    print("🔢 [DEBUG] Total windows found: " .. #mainScreenWindows)
+
+    processAndMaximizeWindows(mainScreenWindows)
 end
 
 -- Maximize all existing windows
@@ -509,23 +486,6 @@ function windowManager.messUpAllWindows()
 
     -- Start messing up non-visible spaces
     messUpNextNonVisibleSpace()
-end
-
--- Maximize all windows in the current screen
-function windowManager.tidyMainScreen()
-    print("🌟 [WINDOW-MANAGER] Starting to tidy main screen...")
-
-    local title = string.format("🌟 Starting to Tidy Main Screen")
-    raycastNotification.showHUD(title, true)
-
-    -- Get the main (active) screen
-    local mainScreen = hs.screen.mainScreen()
-
-    local mainScreenWindows = hs.window.filter.new():setCurrentSpace(true):setScreens(mainScreen:getUUID()):getWindows()
-
-    print("🔢 [DEBUG] Total windows found: " .. #mainScreenWindows)
-
-    processAndMaximizeWindows(mainScreenWindows)
 end
 
 return windowManager
