@@ -67,10 +67,10 @@ local function getExtraDelay(win, appName)
     return delay
 end
 
--- Main window creation handler
-local function handleWindowCreated(win)
-    local appName = win:application():name()
 
+-- Inspect window properties
+local function inspectWinInfo(win)
+    local appName = win:application():name()
     -- Print window properties for debugging
     print("🔍 [DEBUG] Window created:")
     print("  📘 App: " .. appName)
@@ -82,11 +82,21 @@ local function handleWindowCreated(win)
     print("  📏 Is Standard: " ..
         tostring(win:isStandard()) ..
         "  👁️ Is Minimized: " .. tostring(win:isMinimized()) .. "  👀 Is Visible: " .. tostring(win:isVisible()))
+end
+
+-- Main window creation handler
+local function handleWindowCreated(win)
+    inspectWinInfo(win)
+
+    local appName = win:application():name()
 
     -- Check if window should be skipped
     if checkWindow(win, appName) then
         return
     end
+
+    -- some window isn't focused when created, so focus it first
+    win:focus()
 
     local delay = getExtraDelay(win, appName)
 
