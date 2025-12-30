@@ -3,7 +3,7 @@ local utils = {}
 
 -- Function to merge arrays
 -- Similar to JS [...array]
-function utils.mergeArrays(...)
+function utils.merge(...)
     local result = {}
     for _, array in ipairs({ ... }) do
         for _, value in ipairs(array) do
@@ -109,6 +109,12 @@ end
 function utils.flatMap(array, func)
     local mapped = utils.map(array, func)
     return utils.flat(mapped, 1)
+end
+
+function utils.forEachEntries(object, func)
+    for k, v in pairs(object) do
+        func(k, v)
+    end
 end
 
 return utils

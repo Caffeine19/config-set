@@ -218,14 +218,23 @@ function windowManager.tidyAllSpaces()
 
     -- STEP 2: Calculate non-visible spaces that need individual processing
     local nonVisibleSpaces = {}
-    for screenUUID, allSpaceIDs in pairs(spacesTable) do
+
+
+
+    utils.forEachEntries(spacesTable, function(screenUUID, allSpaceIDs)
         local activeSpaceID = activeSpaces[screenUUID]
-        for _, spaceID in ipairs(allSpaceIDs) do
-            if spaceID ~= activeSpaceID then
-                table.insert(nonVisibleSpaces, spaceID)
-            end
-        end
-    end
+
+        nonVisibleSpaces = utils.merge(
+            nonVisibleSpaces,
+            utils.filter(
+                allSpaceIDs,
+                function(spaceID)
+                    print("comparing spaceID", spaceID, "to activeSpaceID", activeSpaceID)
+                    return spaceID ~= activeSpaceID
+                end
+            )
+        )
+    end)
 
     print("🌐 [DEBUG] Non-visible spaces to process: " .. #nonVisibleSpaces)
     print("��� [DEBUG] Non-visible space IDs: " .. hs.inspect(nonVisibleSpaces))
@@ -244,13 +253,15 @@ function windowManager.tidyAllSpaces()
         if currentSpaceIndex > #nonVisibleSpaces then
             -- All non-visible spaces processed - restore original active spaces
             print("🔄 [RESTORE] Restoring original active spaces...")
-            for screenUUID, originalSpaceID in pairs(activeSpaces) do
+
+            utils.forEachEntries(activeSpaces, function(screenUUID, originalSpaceID)
                 hs.spaces.gotoSpace(originalSpaceID)
-            end
+            end)
 
             local totalProcessed = visibleProcessed + totalNonVisibleProcessed
             local finalTitle = string.format("🌌 Tidy All Spaces Complete - %d windows", totalProcessed)
             raycastNotification.showHUD(finalTitle, true)
+
             return
         end
 
@@ -276,14 +287,17 @@ function windowManager.tidyAllSpaces()
 
             -- Convert window IDs to window objects (now accessible since we're in this space)
             local spaceWindows = {}
-            for _, windowID in ipairs(windowIDs) do
+
+            utils.forEach(windowIDs, function(windowID)
                 local window = hs.window.get(windowID)
-                if window then
-                    table.insert(spaceWindows, window)
-                    print("✅ [DEBUG] Added window: " ..
-                        (window:title() or "No title") .. " from " .. window:application():name())
+                if not window then
+                    return
                 end
-            end
+
+                table.insert(spaceWindows, window)
+                print("✅ [DEBUG] Added window: " ..
+                    (window:title() or "No title") .. " from " .. window:application():name())
+            end)
 
             -- Process windows in this space
             if #spaceWindows > 0 then

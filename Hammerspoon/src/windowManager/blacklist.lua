@@ -24,7 +24,7 @@ local baseList = {
     "AutoSwitchInput Pro",
 }
 
-blacklist.blacklist = utils.mergeArrays(systemApps, baseList, launchers, games)
+blacklist.blacklist = utils.merge(systemApps, baseList, launchers, games)
 
 -- Apps that should be centered instead of maximized
 blacklist.centerList = {
