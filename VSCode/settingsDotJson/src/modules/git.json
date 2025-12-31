@@ -17,7 +17,7 @@
 
   "gitlens.graph.layout": "editor",
   "gitlens.ai.model": "vscode",
-  "gitlens.ai.vscode.model": "copilot:claude-sonnet-4",
+  "gitlens.ai.vscode.model": "copilot:claude-opus-4.5",
 
   // diff editor
   "diffEditor.ignoreTrimWhitespace": true,

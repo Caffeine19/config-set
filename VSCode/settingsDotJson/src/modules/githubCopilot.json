@@ -1,23 +1,19 @@
 {
   "$schema": "vscode://schemas/settings/user",
 
-  // 隐藏标题栏上的copilot按钮
-  "chat.commandCenter.enabled": false,
-
+  "chat.agent.maxRequests": 1000,
+  "chat.agent.thinkingStyle": "collapsedPreview",
+  "chat.checkpoints.showFileChanges": true,
+  "chat.commandCenter.enabled": false, // 隐藏标题栏上的copilot按钮
   "chat.editing.confirmEditRequestRemoval": false,
   "chat.editor.wordWrap": "on",
 
-  "chat.mcp.enabled": true,
   "chat.mcp.access": "all",
   "chat.mcp.autostart": "never",
-
-  "chat.agent.maxRequests": 1000,
-  "chat.agent.thinkingStyle": "collapsedPreview",
+  "chat.mcp.enabled": true,
+  "chat.mcp.gallery.enabled": true,
 
   "chat.todoListTool.enabled": true,
-
-  "chat.checkpoints.showFileChanges": true,
-
   "chat.viewSessions.orientation": "stacked",
 
   "github.copilot.chat.agent.autoFix": true,

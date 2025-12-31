@@ -1276,21 +1276,21 @@
   "gitlens.views.searchAndCompare.files.layout": "tree",
   "gitlens.graph.layout": "editor",
   "gitlens.ai.model": "vscode",
-  "gitlens.ai.vscode.model": "copilot:claude-sonnet-4",
+  "gitlens.ai.vscode.model": "copilot:claude-opus-4.5",
   // diff editor
   "diffEditor.ignoreTrimWhitespace": true,
   "diffEditor.useInlineViewWhenSpaceIsLimited": false,
-  // 隐藏标题栏上的copilot按钮
-  "chat.commandCenter.enabled": false,
-  "chat.editing.confirmEditRequestRemoval": false,
-  "chat.editor.wordWrap": "on",
-  "chat.mcp.enabled": true,
-  "chat.mcp.access": "all",
-  "chat.mcp.autostart": "never",
   "chat.agent.maxRequests": 1000,
   "chat.agent.thinkingStyle": "collapsedPreview",
-  "chat.todoListTool.enabled": true,
   "chat.checkpoints.showFileChanges": true,
+  "chat.commandCenter.enabled": false, // 隐藏标题栏上的copilot按钮
+  "chat.editing.confirmEditRequestRemoval": false,
+  "chat.editor.wordWrap": "on",
+  "chat.mcp.access": "all",
+  "chat.mcp.autostart": "never",
+  "chat.mcp.enabled": true,
+  "chat.mcp.gallery.enabled": true,
+  "chat.todoListTool.enabled": true,
   "chat.viewSessions.orientation": "stacked",
   "github.copilot.chat.agent.autoFix": true,
   "github.copilot.chat.agent.thinkingTool": true,
@@ -1304,34 +1304,31 @@
   "github.copilot.nextEditSuggestions.fixes": true,
   "inlineChat.enableV2": true,
   "haskell.manageHLS": "GHCup",
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[dockercompose]": {
+    "editor.autoIndent": "advanced",
+    "editor.defaultFormatter": "redhat.vscode-yaml",
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2
+  },
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[vue]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "[snippets]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[css]": {
+  "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[less]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[scss]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[lua]": {
@@ -1340,23 +1337,29 @@
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "[html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "[python]": {
     "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[shellscript]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
   },
-  "[dockercompose]": {
-    "editor.insertSpaces": true,
-    "editor.tabSize": 2,
-    "editor.autoIndent": "advanced",
-    "editor.defaultFormatter": "redhat.vscode-yaml"
+  "[snippets]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "[github-actions-workflow]": {
-    "editor.defaultFormatter": "redhat.vscode-yaml"
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   // neovim的路径
   "vscode-neovim.neovimExecutablePaths.win32": "C:/Program Files/Neovim/bin/nvim.exe",
@@ -1638,6 +1641,6 @@
   // maybe the default icon theme is better
   // "workbench.productIconTheme": "fluent-icons",
   "workbench.activityBar.location": "top",
-  "workbench.colorTheme": "GitHub Dark Default"
-  // build at": "2025-12-30T18:16:15.572Z (insiders)"
+  "workbench.colorTheme": "GitHub Dark Default",
+  "// build at": "2025-12-31T01:24:26.567Z (insiders)"
 }
