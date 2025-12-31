@@ -96,3 +96,13 @@ end
 _G.handleCallSetEdgeIconFromShortcut = handleCallSetEdgeIconFromShortcut
 
 -- local macMouseFix = require("macMouseFix")
+
+
+local endel = require("endel")
+
+local function handleCallToggleEndelPlayPauseFromShortcut()
+    endel.togglePlayOrPause()
+    return "Toggled Endel play/pause successfully"
+end
+
+_G.handleCallToggleEndelPlayPauseFromShortcut = handleCallToggleEndelPlayPauseFromShortcut
