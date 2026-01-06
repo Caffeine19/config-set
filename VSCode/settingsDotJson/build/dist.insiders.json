@@ -1518,6 +1518,10 @@
       "commands": ["workbench.action.gotoSymbol"]
     },
     {
+      "before": ["g", "m"],
+      "commands": ["editor.action.goToImplementation"]
+    },
+    {
       "before": ["[", "e"],
       "commands": ["editor.action.marker.prevInFiles"]
     },
@@ -1641,6 +1645,6 @@
   // maybe the default icon theme is better
   // "workbench.productIconTheme": "fluent-icons",
   "workbench.activityBar.location": "top",
-  "workbench.colorTheme": "GitHub Dark Default",
-  "// build at": "2025-12-31T01:24:26.567Z (insiders)"
+  "workbench.colorTheme": "GitHub Dark Default"
+  // build at": "2026-01-05T02:44:01.577Z (insiders)"
 }
