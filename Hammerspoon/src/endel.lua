@@ -1,4 +1,5 @@
 local find = require('find')
+local ms = require("ms")
 local raycastNotifications = require('raycastNotification')
 local utils = require("utils")
 
@@ -62,14 +63,23 @@ function endel.togglePlayOrPause()
 end
 
 -- tab:"Focus"|"Relax"|"Sleep"
-local function toggleTabs(tab, endelApp)
-    local tabElement = find.byRoleAndTitle(endelApp, tab)
+local function toggleTabs(tab, axApp)
+    local tabElement = find.byDescriptionAndRole(axApp, tab, 'AXButton')
 
     if not tabElement then
-        return
+        print("❌ [ENDEL] Tab element not found for tab: " .. tab)
+        return nil
     end
 
-    tabElement:click()
+    print("🔊 [ENDEL] toggleTabs - tabElement=" .. hs.inspect(tabElement))
+
+    local success = tabElement:performAction("AXPress")
+    if not success then
+        print("❌ [ENDEL] Failed to toggle tab: " .. tab)
+        return nil
+    end
+
+    return tabElement
 end
 
 local modeGroupList = {
@@ -87,6 +97,16 @@ function endel.setMode(mode)
         return
     end
 
+    print("🔊 [ENDEL] togglePlayOrPause - endelApp=" .. hs.inspect(endelApp))
+
+    local axApp = getEndelAxApp(endelApp)
+    if not axApp then
+        return
+    end
+
+    print("🔊 [ENDEL] togglePlayOrPause - axApp=" .. hs.inspect(axApp))
+
+
     local tabName = nil
     utils.forEachEntries(modeGroupList, function(k, modes)
         if not tabName and utils.includes(modes, mode) then
@@ -97,13 +117,34 @@ function endel.setMode(mode)
     if not tabName then
         return
     end
+    print("🔊 [ENDEL] setMode - tabName=", tabName)
 
-    toggleTabs(tabName, endelApp)
-
-    local modeElement = find.byRoleAndTitle(endelApp, mode)
-    if modeElement and modeElement.click then
-        modeElement:click()
+    local tabElement = toggleTabs(tabName, axApp)
+    if not tabElement then
+        return
     end
+
+    -- Find all candidate mode buttons and choose one that is not the tab element
+    local candidates = find.allElements(axApp, { role = 'AXButton', description = mode })
+    print("🔊 [ENDEL] setMode - found " .. tostring(#candidates) .. " candidate(s) for mode: " .. mode)
+
+    local target = nil
+    for _, c in ipairs(candidates) do
+        print("🔊 [ENDEL] setMode - candidate element=", tostring(c), tostring(tabElement))
+        if tostring(c) ~= tostring(tabElement) then
+            target = c
+            break
+        end
+    end
+
+    if not target then
+        print("❌ [ENDEL] No suitable mode button found (candidates may all be the tab)")
+        return
+    end
+
+    hs.timer.usleep(ms.ms('0.8s'))
+    print("🔊 [ENDEL] setMode - selected mode element=" .. hs.inspect(target))
+    target:performAction("AXPress")
 end
 
 return endel

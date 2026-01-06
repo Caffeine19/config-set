@@ -1,82 +1,18 @@
 {
   "actions": [
     {
-      "keybind": [48],
-      "direction": "Maximize"
+      "direction": "BottomLeftQuarter",
+      "keybind": [4, 38]
     },
     {
-      "name": "Next Screen And Maximize",
-      "cycle": [
-        {
-          "keybind": [],
-          "direction": "NextScreen"
-        },
-        {
-          "unit": 1,
-          "keybind": [],
-          "anchor": 8,
-          "width": 80,
-          "name": "Custom Center",
-          "height": 80,
-          "sizeMode": 0,
-          "positionMode": 0,
-          "direction": "Custom"
-        }
-      ],
-      "keybind": [30],
-      "direction": "Cycle"
+      "direction": "BottomRightQuarter",
+      "keybind": [37, 38]
     },
     {
-      "keybind": [27],
-      "direction": "PreviousScreen"
+      "direction": "Center",
+      "keybind": [36]
     },
     {
-      "keybind": [24],
-      "direction": "NextScreen"
-    },
-    {
-      "name": "Previous Screen And Maximize",
-      "cycle": [
-        {
-          "keybind": [],
-          "direction": "PreviousScreen"
-        },
-        {
-          "unit": 1,
-          "keybind": [],
-          "anchor": 8,
-          "width": 80,
-          "name": "Custom Center",
-          "height": 80,
-          "sizeMode": 0,
-          "positionMode": 0,
-          "direction": "Custom"
-        }
-      ],
-      "keybind": [33],
-      "direction": "Cycle"
-    },
-    {
-      "keybind": [38, 4],
-      "direction": "BottomLeftQuarter"
-    },
-    {
-      "keybind": [37, 38],
-      "direction": "BottomRightQuarter"
-    },
-    {
-      "unit": 1,
-      "keybind": [36],
-      "anchor": 8,
-      "width": 80,
-      "name": "Custom Center",
-      "height": 80,
-      "sizeMode": 1,
-      "positionMode": 0,
-      "direction": "Custom"
-    },
-    {
-      "name": "Bottom Cycle",
       "cycle": [
         {
           "direction": "BottomHalf",
@@ -91,79 +27,92 @@
           "keybind": []
         }
       ],
+      "direction": "Cycle",
       "keybind": [38],
-      "direction": "Cycle"
+      "name": "Bottom Cycle"
     },
     {
-      "name": "Left Cycle",
       "cycle": [
         {
-          "keybind": [],
-          "direction": "LeftHalf"
+          "direction": "LeftHalf",
+          "keybind": []
         },
         {
-          "keybind": [],
-          "direction": "LeftThird"
+          "direction": "LeftThird",
+          "keybind": []
         },
         {
-          "keybind": [],
-          "direction": "LeftTwoThirds"
+          "direction": "LeftTwoThirds",
+          "keybind": []
         }
       ],
+      "direction": "Cycle",
       "keybind": [4],
-      "direction": "Cycle"
+      "name": "Left Cycle"
     },
     {
-      "name": "Right Cycle",
       "cycle": [
         {
-          "keybind": [],
-          "direction": "RightHalf"
+          "direction": "RightHalf",
+          "keybind": []
         },
         {
-          "keybind": [],
-          "direction": "RightThird"
+          "direction": "RightThird",
+          "keybind": []
         },
         {
-          "keybind": [],
-          "direction": "RightTwoThirds"
+          "direction": "RightTwoThirds",
+          "keybind": []
         }
       ],
+      "direction": "Cycle",
       "keybind": [37],
-      "direction": "Cycle"
+      "name": "Right Cycle"
     },
     {
-      "name": "Top Cycle",
       "cycle": [
         {
-          "keybind": [],
-          "direction": "TopHalf"
+          "direction": "TopHalf",
+          "keybind": []
         },
         {
-          "keybind": [],
-          "direction": "TopThird"
+          "direction": "TopThird",
+          "keybind": []
         },
         {
-          "keybind": [],
-          "direction": "TopTwoThirds"
+          "direction": "TopTwoThirds",
+          "keybind": []
         }
       ],
+      "direction": "Cycle",
       "keybind": [40],
-      "direction": "Cycle"
+      "name": "Top Cycle"
     },
     {
-      "keybind": [58, 49, 56],
-      "direction": "Maximize"
+      "direction": "FocusNextInStack",
+      "keybind": [24]
     },
     {
-      "keybind": [40, 4],
-      "direction": "TopLeftQuarter"
+      "direction": "Maximize",
+      "keybind": [49, 56, 58]
     },
     {
-      "keybind": [37, 40],
-      "direction": "TopRightQuarter"
+      "direction": "NextScreen",
+      "keybind": [30]
+    },
+    {
+      "direction": "PreviousScreen",
+      "keybind": [33]
+    },
+    {
+      "direction": "TopLeftQuarter",
+      "keybind": [4, 40]
+    },
+    {
+      "direction": "TopRightQuarter",
+      "keybind": [37, 40]
     }
   ],
-  "version": "1.2.0",
-  "triggerKey": [62, 55]
+  "triggerKey": [55, 62],
+  "version": "🧪 1.4.0"
 }

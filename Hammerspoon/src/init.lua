@@ -106,3 +106,11 @@ local function handleCallToggleEndelPlayPauseFromShortcut()
 end
 
 _G.handleCallToggleEndelPlayPauseFromShortcut = handleCallToggleEndelPlayPauseFromShortcut
+
+
+local function handleCallSetEndelModeFromShortcut(mode)
+    endel.setMode(mode)
+    return "Set Endel mode to " .. mode .. " successfully"
+end
+
+_G.handleCallSetEndelModeFromShortcut = handleCallSetEndelModeFromShortcut
