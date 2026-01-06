@@ -109,7 +109,7 @@ local function handleWindowCreated(win)
         end
 
         local action = shouldCenter and "Centered" or "Maximized"
-        local title = string.format("💫 %s: %s", action, appName)
+        local title = string.format("💫 Auto %s: %s", action, appName)
         raycastNotification.showHUD(title, true)
     end)
 end
@@ -155,13 +155,6 @@ local function processAndMaximizeWindows(windowList)
 
     print("✅ [WINDOW-MANAGER] Finished! Processed: " .. processed .. ", Skipped: " .. skipped)
 
-    -- Show success notification via Raycast with delay
-    hs.timer.doAfter(0.2, function()
-        local total = processed + skipped
-        local title = string.format("☘️ Window Processing Complete - %d / %d", processed, total)
-        raycastNotification.showHUD(title, true)
-    end)
-
     return processed, skipped
 end
 
@@ -169,12 +162,9 @@ end
 function windowManager.tidyMainScreen()
     print("🌟 [WINDOW-MANAGER] Starting to tidy main screen...")
 
-    local title = string.format("🌟 Starting to Tidy Main Screen")
-    raycastNotification.showHUD(title, true)
+    raycastNotification.showHUD("🌟 Starting to Tidy Main Screen", true)
 
-    -- Get the main (active) screen
     local mainScreen = hs.screen.mainScreen()
-
     local mainScreenWindows = hs.window.filter.new():setCurrentSpace(true):setScreens(mainScreen:getUUID()):getWindows()
 
     print("🔢 [DEBUG] Total windows found: " .. #mainScreenWindows)
@@ -186,8 +176,7 @@ end
 function windowManager.tidyAllScreens()
     print("💎 [WINDOW-MANAGER] Starting to tidy all screens...")
 
-    local title = string.format("💎 Starting to Tidy All Screens")
-    raycastNotification.showHUD(title, true)
+    raycastNotification.showHUD("💎 Starting to Tidy All Screens", true)
 
     local allWindows = hs.window.allWindows()
 
@@ -196,10 +185,9 @@ end
 
 -- Maximize all existing windows from all spaces
 function windowManager.tidyAllSpaces()
-    print("🌌 [WINDOW-MANAGER] Starting to tidy all spaces...")
+    print("🪩 [WINDOW-MANAGER] Starting to tidy all spaces...")
 
-    local title = string.format("🌌 Starting to Tidy All Spaces")
-    raycastNotification.showHUD(title, true)
+    raycastNotification.showHUD("🪩 Starting to Tidy All Spaces", true)
 
     -- Get all spaces across all screens
     -- Example: screen1: [space 1, space 2 * active, space 3], screen2: [space 4, space 5 * active]
@@ -217,7 +205,7 @@ function windowManager.tidyAllSpaces()
     print("📊 [DEBUG] All spaces: " .. hs.inspect(spacesTable))
     print("👁️ [DEBUG] Active spaces: " .. hs.inspect(activeSpaces))
 
-    -- STEP 1: Process all windows in currently visible spaces efficiently
+    -- STEP 1: Process all windows in currently visible spaces
     print("⚡ [STEP 1] Processing visible spaces...")
     local visibleWindows = hs.window.allWindows()
     print("🪟 [DEBUG] Found " .. #visibleWindows .. " windows in visible spaces")
@@ -225,10 +213,13 @@ function windowManager.tidyAllSpaces()
     local visibleProcessed, visibleSkipped = processAndMaximizeWindows(visibleWindows)
     print("✅ [STEP 1] Visible spaces complete: " .. visibleProcessed .. " processed, " .. visibleSkipped .. " skipped")
 
+
+
+    raycastNotification.showHUD("⌛ Visible Spaces Complete", true)
+    hs.timer.usleep(ms.ms('1s'))
+
     -- STEP 2: Calculate non-visible spaces that need individual processing
     local nonVisibleSpaces = {}
-
-
 
     utils.forEachEntries(spacesTable, function(screenUUID, allSpaceIDs)
         local activeSpaceID = activeSpaces[screenUUID]
@@ -246,11 +237,11 @@ function windowManager.tidyAllSpaces()
     end)
 
     print("🌐 [DEBUG] Non-visible spaces to process: " .. #nonVisibleSpaces)
-    print("��� [DEBUG] Non-visible space IDs: " .. hs.inspect(nonVisibleSpaces))
+    print("📋 [DEBUG] Non-visible space IDs: " .. hs.inspect(nonVisibleSpaces))
 
     if #nonVisibleSpaces == 0 then
         print("🎉 [COMPLETE] All windows processed from visible spaces only")
-        raycastNotification.showHUD("🎉 Tidy All Spaces Complete - " .. visibleProcessed .. " windows", true)
+        raycastNotification.showHUD("🎉 Tidy All Spaces Complete", true)
         return
     end
 
@@ -259,20 +250,22 @@ function windowManager.tidyAllSpaces()
     local totalNonVisibleProcessed = 0
 
     local function processNextNonVisibleSpace()
+        -- All non-visible spaces processed
         if currentSpaceIndex > #nonVisibleSpaces then
-            -- All non-visible spaces processed - restore original active spaces
             print("🔄 [RESTORE] Restoring original active spaces...")
 
-            utils.forEachEntries(activeSpaces, function(screenUUID, originalSpaceID)
+            -- restore original active spaces
+            utils.forEachEntries(activeSpaces, function(_, originalSpaceID)
                 hs.spaces.gotoSpace(originalSpaceID)
             end)
 
-            local totalProcessed = visibleProcessed + totalNonVisibleProcessed
-            local finalTitle = string.format("🌌 Tidy All Spaces Complete - %d windows", totalProcessed)
-            raycastNotification.showHUD(finalTitle, true)
+            raycastNotification.showHUD("🪩 Tidy All Spaces Complete", true)
 
             return
         end
+
+        raycastNotification.showHUD("⏳ Still running... (" .. currentSpaceIndex .. "/" .. #nonVisibleSpaces .. ")", true)
+        hs.timer.usleep(ms.ms('1s'))
 
         local spaceID = nonVisibleSpaces[currentSpaceIndex]
         print("🌐 [STEP 3] Processing non-visible space " ..
@@ -280,46 +273,50 @@ function windowManager.tidyAllSpaces()
 
         -- Switch to this specific space
         hs.spaces.gotoSpace(spaceID)
+        hs.timer.usleep(ms.ms('0.2s'))
 
-        -- Small delay to ensure space switch is complete
-        hs.timer.doAfter(0.5, function()
-            -- Get windows ONLY from this specific space (not all visible)
-            local windowIDs = hs.spaces.windowsForSpace(spaceID)
-            if not windowIDs then
-                print("⚠️ [DEBUG] No windows found in space " .. spaceID)
-                currentSpaceIndex = currentSpaceIndex + 1
-                processNextNonVisibleSpace()
-                return
-            end
+        local windowIDs = hs.spaces.windowsForSpace(spaceID)
+        if not windowIDs then
+            print("⚠️ [DEBUG] No windows found in space " .. spaceID)
+            currentSpaceIndex = currentSpaceIndex + 1
+            processNextNonVisibleSpace()
+            return
+        end
 
-            print("🪟 [DEBUG] Found " .. #windowIDs .. " windows in space " .. spaceID)
+        print("🪟 [DEBUG] Found " .. #windowIDs .. " windows in space " .. spaceID)
 
-            -- Convert window IDs to window objects (now accessible since we're in this space)
-            local spaceWindows = {}
-
-            utils.forEach(windowIDs, function(windowID)
+        -- Convert window IDs to window objects (now accessible since we're in this space)
+        local spaceWindows = utils.filter(utils.map(windowIDs, function(windowID)
                 local window = hs.window.get(windowID)
+                -- thw window maybe nil
                 if not window then
-                    return
+                    return nil
                 end
 
-                table.insert(spaceWindows, window)
                 print("✅ [DEBUG] Added window: " ..
                     (window:title() or "No title") .. " from " .. window:application():name())
-            end)
+                return window
+            end),
 
-            -- Process windows in this space
-            if #spaceWindows > 0 then
-                local processed, skipped = processAndMaximizeWindows(spaceWindows)
-                totalNonVisibleProcessed = totalNonVisibleProcessed + processed
-                print("✅ [DEBUG] Space " ..
-                    spaceID .. " complete: " .. processed .. " processed, " .. skipped .. " skipped")
+            function(window)
+                return window ~= nil
             end
+        )
 
-            -- Continue to next space
-            currentSpaceIndex = currentSpaceIndex + 1
-            hs.timer.doAfter(0.2, processNextNonVisibleSpace)
-        end)
+        -- Process windows in this space
+        if #spaceWindows > 0 then
+            local processed, skipped = processAndMaximizeWindows(spaceWindows)
+
+            totalNonVisibleProcessed = totalNonVisibleProcessed + processed
+            print("✅ [DEBUG] Space " ..
+                spaceID .. " complete: " .. processed .. " processed, " .. skipped .. " skipped")
+        end
+
+        -- Continue to next space
+        currentSpaceIndex = currentSpaceIndex + 1
+
+        hs.timer.usleep(0.2)
+        processNextNonVisibleSpace()
     end
 
     -- Start processing non-visible spaces
@@ -380,13 +377,10 @@ local function processAndMessUpWindows(windowList)
         processed = processed + 1
     end)
 
-    print("🎭 [WINDOW-MANAGER] Mess up finished! Processed: " .. processed .. ", Skipped: " .. skipped)
+    print("👻 [WINDOW-MANAGER] Mess up finished! Processed: " .. processed .. ", Skipped: " .. skipped)
 
-    -- Show completion notification
     hs.timer.doAfter(0.2, function()
-        local total = processed + skipped
-        local title = string.format("🎭 Window Chaos Complete - %d / %d", processed, total)
-        raycastNotification.showHUD(title, true)
+        raycastNotification.showHUD("👻 Window Chaos Completed", true)
     end)
 
     return processed, skipped
@@ -417,6 +411,7 @@ function windowManager.messUpAllWindows()
 
     -- STEP 1: Process all windows in currently visible spaces efficiently
     print("⚡ [STEP 1] Messing up visible spaces...")
+
     local visibleWindows = hs.window.allWindows()
     print("🪟 [DEBUG] Found " .. #visibleWindows .. " windows in visible spaces")
 
@@ -452,13 +447,11 @@ function windowManager.messUpAllWindows()
         if currentSpaceIndex > #nonVisibleSpaces then
             -- All non-visible spaces processed - restore original active spaces
             print("🔄 [RESTORE] Restoring original active spaces...")
-            for screenUUID, originalSpaceID in pairs(activeSpaces) do
+            for _, originalSpaceID in pairs(activeSpaces) do
                 hs.spaces.gotoSpace(originalSpaceID)
             end
 
-            local totalProcessed = visibleProcessed + totalNonVisibleProcessed
-            local finalTitle = string.format("👻 Window Chaos Complete - %d windows messed up", totalProcessed)
-            raycastNotification.showHUD(finalTitle, true)
+            raycastNotification.showHUD("👻 Window Chaos Complete", true)
             return
         end
 
