@@ -69,14 +69,6 @@
       "commands": ["gitlens.diffWithPrevious"]
     },
     {
-      "before": ["<leader>", "r"],
-      "commands": ["workbench.action.reloadWindow"]
-    },
-    {
-      "before": ["<leader>", "t"],
-      "commands": ["workbench.action.selectTheme"]
-    },
-    {
       "before": ["<leader>", "2"],
       "commands": ["workbench.action.editorLayoutTwoColumns"]
     },
