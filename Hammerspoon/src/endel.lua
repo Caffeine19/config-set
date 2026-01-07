@@ -1,19 +1,25 @@
 local find = require('find')
+local ms = require("ms")
 local raycastNotifications = require('raycastNotification')
-local uitls=require("utils")
+local utils = require("utils")
 
 local endel = {}
 
-function openEndel()
+local function openEndel()
     hs.application.launchOrFocus("Endel")
 end
 
-function getEndelApp()
+local function getEndelApp()
     local endelApp = hs.application.find("Endel")
     return endelApp
 end
 
-function togglePlayOrPause()
+local function getEndelAxApp(endelApp)
+    local axApp = hs.axuielement.applicationElement(endelApp)
+    return axApp
+end
+
+function endel.togglePlayOrPause()
     openEndel()
 
     local endelApp = getEndelApp()
@@ -21,66 +27,124 @@ function togglePlayOrPause()
         return
     end
 
+    print("🔊 [ENDEL] togglePlayOrPause - endelApp=" .. hs.inspect(endelApp))
 
-    local playOrPauseButton = find.byRoleAndTitle(endelApp, "Play/Pause")
-
-    if not playOrPauseButton then
+    local axApp = getEndelAxApp(endelApp)
+    if not axApp then
         return
     end
 
-    playOrPauseButton:click()
+    print("🔊 [ENDEL] togglePlayOrPause - axApp=" .. hs.inspect(axApp))
+
+
+    local playButton = find.byDescriptionAndRole(axApp, "Play", 'AXButton')
+    local pauseButton = find.byDescriptionAndRole(axApp, "Pause", 'AXButton')
+
+    local playOrPauseButton = playButton or pauseButton
+
+    if (not playOrPauseButton) then
+        print("❌ [ENDEL] Play/Pause button not found")
+        return
+    end
+
+    local success = playOrPauseButton:performAction("AXPress")
+    if not success then
+        print("❌ [ENDEL] Failed to toggle play/pause")
+        raycastNotifications.showHUD("❌ Failed to toggle Endel play/pause")
+        return
+    end
+
+    print("🎉 [ENDEL] Toggled play/pause successfully")
+    if playButton then
+        raycastNotifications.showHUD("🔊 Endel play started")
+    else
+        raycastNotifications.showHUD("🔇 Endel paused")
+    end
 end
 
 -- tab:"Focus"|"Relax"|"Sleep"
-function toggleTabs(
-    tab,endelApp)
-
-    local tabElement = find.byRoleAndTitle(endelApp, tab)
+local function toggleTabs(tab, axApp)
+    local tabElement = find.byDescriptionAndRole(axApp, tab, 'AXButton')
 
     if not tabElement then
-        return
+        print("❌ [ENDEL] Tab element not found for tab: " .. tab)
+        return nil
     end
 
-    tabElement:click()
+    print("🔊 [ENDEL] toggleTabs - tabElement=" .. hs.inspect(tabElement))
+
+    local success = tabElement:performAction("AXPress")
+    if not success then
+        print("❌ [ENDEL] Failed to toggle tab: " .. tab)
+        return nil
+    end
+
+    return tabElement
 end
 
-
-local modeList={
-    "Focus":{
-        "Focus",
-        "Dynamic Focus",
-        "Study",
-        "Deeper Focus",
-    },
-    "Relax":{
-        "Relax",
-    },
-    "Sleep":{
-        "Sleeep"
-    }
+local modeGroupList = {
+    Focus = { "Focus", "Dynamic Focus", "Study", "Deeper Focus" },
+    Relax = { "Relax" },
+    Sleep = { "Sleep" },
 }
 
-function setMode (mode)
+function endel.setMode(mode)
     openEndel()
 
-    local endelApp=getEndelApp()
+
+    local endelApp = getEndelApp()
     if not endelApp then
         return
     end
 
-    local tab= utils.find(
-        modeList,
-        function (modesGroup)
-            return
-            modesGroup[1]==mode
+    print("🔊 [ENDEL] togglePlayOrPause - endelApp=" .. hs.inspect(endelApp))
+
+    local axApp = getEndelAxApp(endelApp)
+    if not axApp then
+        return
+    end
+
+    print("🔊 [ENDEL] togglePlayOrPause - axApp=" .. hs.inspect(axApp))
+
+
+    local tabName = nil
+    utils.forEachEntries(modeGroupList, function(k, modes)
+        if not tabName and utils.includes(modes, mode) then
+            tabName = k
         end
-    )
+    end)
 
-    toggleTabs(tab,endelApp)
+    if not tabName then
+        return
+    end
+    print("🔊 [ENDEL] setMode - tabName=", tabName)
 
-    local modeElement = find.byRoleAndTitle(endelApp, mode)
+    local tabElement = toggleTabs(tabName, axApp)
+    if not tabElement then
+        return
+    end
 
-    modeElement.click()
+    -- Find all candidate mode buttons and choose one that is not the tab element
+    local candidates = find.allElements(axApp, { role = 'AXButton', description = mode })
+    print("🔊 [ENDEL] setMode - found " .. tostring(#candidates) .. " candidate(s) for mode: " .. mode)
+
+    local target = nil
+    for _, c in ipairs(candidates) do
+        print("🔊 [ENDEL] setMode - candidate element=", tostring(c), tostring(tabElement))
+        if tostring(c) ~= tostring(tabElement) then
+            target = c
+            break
+        end
+    end
+
+    if not target then
+        print("❌ [ENDEL] No suitable mode button found (candidates may all be the tab)")
+        return
+    end
+
+    hs.timer.usleep(ms.ms('0.8s'))
+    print("🔊 [ENDEL] setMode - selected mode element=" .. hs.inspect(target))
+    target:performAction("AXPress")
 end
 
 return endel

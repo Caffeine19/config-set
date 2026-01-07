@@ -45,6 +45,10 @@
       "commands": ["workbench.action.gotoSymbol"]
     },
     {
+      "before": ["g", "m"],
+      "commands": ["editor.action.goToImplementation"]
+    },
+    {
       "before": ["[", "e"],
       "commands": ["editor.action.marker.prevInFiles"]
     },

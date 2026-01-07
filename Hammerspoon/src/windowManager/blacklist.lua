@@ -6,21 +6,25 @@ local blacklist = {}
 -- Application blacklist - windows from these apps will not be auto-maximized
 -- Organized by category for easier maintenance
 local systemApps = {
-    "Calculator", "System Preferences", "Control Center"
+    "System Preferences",
+    "Control Center",
+    "UASharedPasteboardProgressUI"
 }
+
 local launchers = {
     "Raycast",
     "Alfred",
 }
+
 local games = {
     "Hearthstone",
 }
+
 local baseList = {
     "Hammerspoon",
     "Loop",
     "Mouseposé",
     "Shottr",
-    "Pictogram",
     "AutoSwitchInput Pro",
 }
 
@@ -28,6 +32,13 @@ blacklist.blacklist = utils.merge(systemApps, baseList, launchers, games)
 
 -- Apps that should be centered instead of maximized
 blacklist.centerList = {
+    -- system apps
+    "Calculator",
+
+    -- third-party apps
+
+    -- it can be filled, but looked wired, so use center
+    "Pictogram",
     "Alacritty",
     "Xiaomi Home",
 }
