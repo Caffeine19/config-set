@@ -26,91 +26,90 @@ local windowManager = require("windowManager.windowManager")
 
 windowManager.init()
 
-local function handleCallTidyAllScreensFromShortcut()
-    -- When create an Apple Shortcut, this function will be called
+local function handleCallTidyAllScreens()
     windowManager.tidyAllScreens()
     return "Tidied all screens successfully"
 end
-_G.handleCallTidyAllScreensFromShortcut = handleCallTidyAllScreensFromShortcut
+_G.handleCallTidyAllScreens = handleCallTidyAllScreens
 
-local function handleCallTidyAllSpacesFromShortcut()
+local function handleCallTidyAllSpaces()
     -- This function can be used to tidy all windows across all spaces
     windowManager.tidyAllSpaces()
     return "Tidied all spaces successfully"
 end
-_G.handleCallTidyAllSpacesFromShortcut = handleCallTidyAllSpacesFromShortcut
+_G.handleCallTidyAllSpaces = handleCallTidyAllSpaces
 
-local function handleCallTidyMainScreenFromShortcut()
+local function handleCallTidyMainScreen()
     -- This function can be used to tidy the main screen by maximizing all windows
     windowManager.tidyMainScreen()
     return "Tidied main screen successfully"
 end
-_G.handleCallTidyMainScreenFromShortcut = handleCallTidyMainScreenFromShortcut
+_G.handleCallTidyMainScreen = handleCallTidyMainScreen
 
-local function handleCallMessUpAllWindowsFromShortcut()
+local function handleCallMessUpAllWindows()
     -- This function can be used to randomly position and size all windows (chaos mode!)
     windowManager.messUpAllWindows()
     return "Messed up all windows successfully"
 end
-_G.handleCallMessUpAllWindowsFromShortcut = handleCallMessUpAllWindowsFromShortcut
+_G.handleCallMessUpAllWindows = handleCallMessUpAllWindows
 
 
 -- local space = require("space")
--- function handleCallRemoveCurrentSpaceFromShortcut()
+-- function handleCallRemoveCurrentSpace()
 --     space.removeCurrentSpace()
 --     return "Removed current space successfully"
 -- end
--- _G.handleCallRemoveCurrentSpaceFromShortcut = handleCallRemoveCurrentSpaceFromShortcut
+-- _G.handleCallRemoveCurrentSpace = handleCallRemoveCurrentSpace
 
 local toggleEdgeTabsPane = require("toggleEdgeTabsPane")
 
-local focus = require("focus")
-focus.init()
+-- local focus = require("focus")
+-- focus.init()
 
-local function handleCallCollapseEdgeTabsFromShortcut()
+local function handleCallCollapseEdgeTabs()
     -- This function can be used to toggle Edge tabs
     local result = toggleEdgeTabsPane.collapse()
     return result or "Toggled Edge tabs successfully"
 end
 
-_G.handleCallCollapseEdgeTabsFromShortcut = handleCallCollapseEdgeTabsFromShortcut
-local function handleCallPinEdgeTabsFromShortcut()
+_G.handleCallCollapseEdgeTabs = handleCallCollapseEdgeTabs
+local function handleCallPinEdgeTabs()
     local result = toggleEdgeTabsPane.pin()
     return result or "Pinned Edge tabs successfully"
 end
-_G.handleCallPinEdgeTabsFromShortcut = handleCallPinEdgeTabsFromShortcut
+_G.handleCallPinEdgeTabs = handleCallPinEdgeTabs
 
-local function handleCallToggleEdgeTabsFromShortcut()
+local function handleCallToggleEdgeTabs()
     -- This function can be used to toggle Edge tabs
     local result = toggleEdgeTabsPane.toggle()
     return result or "Toggled Edge tabs successfully"
 end
-_G.handleCallToggleEdgeTabsFromShortcut = handleCallToggleEdgeTabsFromShortcut
+_G.handleCallToggleEdgeTabs = handleCallToggleEdgeTabs
 
 local picEdge = require("picEdge")
 
-local function handleCallSetEdgeIconFromShortcut()
+local function handleCallSetEdgeIcon()
     local result = picEdge.setEdgeIcon()
     return result and "Edge icon set successfully" or "Failed to set Edge icon"
 end
-_G.handleCallSetEdgeIconFromShortcut = handleCallSetEdgeIconFromShortcut
+_G.handleCallSetEdgeIcon = handleCallSetEdgeIcon
 
 -- local macMouseFix = require("macMouseFix")
 
 
 local endel = require("endel")
 
-local function handleCallToggleEndelPlayPauseFromShortcut()
+local function handleCallToggleEndelPlayPause()
     endel.togglePlayOrPause()
     return "Toggled Endel play/pause successfully"
 end
 
-_G.handleCallToggleEndelPlayPauseFromShortcut = handleCallToggleEndelPlayPauseFromShortcut
+_G.handleCallToggleEndelPlayPause = handleCallToggleEndelPlayPause
 
 
-local function handleCallSetEndelModeFromShortcut(mode)
+local function handleCallSetEndelMode(mode)
     endel.setMode(mode)
     return "Set Endel mode to " .. mode .. " successfully"
 end
 
-_G.handleCallSetEndelModeFromShortcut = handleCallSetEndelModeFromShortcut
+_G.handleCallSetEndelMode = handleCallSetEndelMode
