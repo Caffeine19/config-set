@@ -170,6 +170,8 @@ function windowManager.tidyMainScreen()
     print("🔢 [DEBUG] Total windows found: " .. #mainScreenWindows)
 
     processAndMaximizeWindows(mainScreenWindows)
+
+    raycastNotification.showHUD("🌟 Tidy Main Screen Complete", true)
 end
 
 -- Maximize all existing windows
@@ -181,6 +183,8 @@ function windowManager.tidyAllScreens()
     local allWindows = hs.window.allWindows()
 
     processAndMaximizeWindows(allWindows)
+
+    raycastNotification.showHUD("💎 Tidy All Screens Complete", true)
 end
 
 -- Maximize all existing windows from all spaces
