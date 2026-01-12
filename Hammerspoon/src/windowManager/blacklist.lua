@@ -26,6 +26,7 @@ local baseList = {
     "Mouseposé",
     "Shottr",
     "AutoSwitchInput Pro",
+    "Endel"
 }
 
 blacklist.blacklist = utils.merge(systemApps, baseList, launchers, games)
