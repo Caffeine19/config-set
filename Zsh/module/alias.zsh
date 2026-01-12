@@ -5,6 +5,8 @@ alias th="theme"
 alias ff="fastfetch"
 alias cat="bat"
 
+alias codei="code-insiders"
+
 alias ls="lsd --group-dirs first"
 alias ll="lsd -alF --group-dirs first"
 alias la="lsd -A --group-dirs first"
