@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=./warp-keysets.json
+---
+"workspace:show_theme_chooser": alt-cmd-t
+"workspace:show_keybinding_settings": alt-cmd-k
+"workspace:rename_active_tab": shift-cmd-R
+"workspace:toggle_launch_config_palette": alt-cmd-l

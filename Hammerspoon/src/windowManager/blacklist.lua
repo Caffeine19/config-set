@@ -35,6 +35,7 @@ blacklist.blacklist = utils.merge(systemApps, baseList, launchers, games)
 blacklist.centerList = {
     -- system apps
     "Calculator",
+    "iPhone Mirroring",
 
     -- third-party apps
 
