@@ -4,10 +4,10 @@
 
 # Font configuration
 [font]
-normal = { family = "JetBrainsMono Nerd Font Propo", style = "Regular" }
-bold = { family = "JetBrainsMono Nerd Font Propo", style = "Bold" }
-italic = { family = "JetBrainsMono Nerd Font Propo", style = "Italic" }
-bold_italic = { family = "JetBrainsMono Nerd Font Propo", style = "Bold Italic" }
+normal = { family = "Maple Mono", style = "Regular" }
+bold = { family = "Maple Mono", style = "Bold" }
+italic = { family = "Maple Mono", style = "Italic" }
+bold_italic = { family = "Maple Mono", style = "Bold Italic" }
 size = 14.0
 offset = { x = 0, y = 12 }
 
