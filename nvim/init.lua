@@ -56,12 +56,12 @@ if vim.g.vscode then
     end)
 
     -- [ + e -> prev problem
-    vim.keymap.set({'n', 'i'}, '[e', function()
+    vim.keymap.set({ 'n', 'i' }, '[e', function()
         vscode.action("editor.action.marker.prevInFiles")
     end)
 
     -- ] + e -> next problem
-    vim.keymap.set({'n', 'i'}, ']e', function()
+    vim.keymap.set({ 'n', 'i' }, ']e', function()
         vscode.action("editor.action.marker.nextInFiles")
     end)
 
@@ -139,7 +139,6 @@ if vim.g.vscode then
     vim.keymap.set('n', '<leader>p', function()
         vscode.action("workbench.action.showCommands")
     end)
-
 else
     -- ordinary neovim
 
