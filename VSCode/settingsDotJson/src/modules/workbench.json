@@ -16,8 +16,8 @@
     "[Moegi Black]": {
       "editorCursor.foreground": "#f2d98e",
       "editorGroup.border": "#4f4f4f6d",
-      "tab.activeBackground": "#66b39520",
-      "tab.activeBorder": "#66b395"
+      "tab.activeBorder": "default",
+      "tab.activeBorderTop": "#66b395"
     },
     "[Tokyo Night]": {
       "tab.activeBorder": "default",
