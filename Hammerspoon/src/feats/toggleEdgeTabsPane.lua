@@ -1,5 +1,5 @@
-local find = require("find")
-local ms = require("ms")
+local find = require("utils.find")
+local ms = require("utils.ms")
 
 local toggleEdgeTabsPane = {}
 

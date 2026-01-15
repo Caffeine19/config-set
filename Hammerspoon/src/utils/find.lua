@@ -1,32 +1,34 @@
+local js = require("utils.js")
+
 -- Utility functions for finding accessibility elements
 local find = {}
-local utils = require("utils")
+
 
 -- Generic function to recursively search for elements by multiple criteria
 -- @param element: The root element to search from
 -- @param criteria: Table with search criteria (role, title, description, etc.)
 function find.element(element, criteria)
     if not element then return nil end
-    
+
     local role = element:attributeValue("AXRole")
     local title = element:attributeValue("AXTitle") or element:attributeValue("AXLabel")
     local description = element:attributeValue("AXDescription")
-    
+
     -- Debug output
     if (role and title) or (role and description) then
-        print("[FIND] Checking: Role=" .. (role or "nil") .. 
-              ", Title=" .. (title or "nil") .. 
-              ", Description=" .. (description or "nil"))
+        print("[FIND] Checking: Role=" .. (role or "nil") ..
+            ", Title=" .. (title or "nil") ..
+            ", Description=" .. (description or "nil"))
     end
-    
+
     -- Check if this element matches our criteria
     local matches = true
-    
+
     -- Check role if specified
     if criteria.role and role ~= criteria.role then
         matches = false
     end
-    
+
     -- Check title if specified (supports partial matching)
     if criteria.title and title then
         if criteria.exactTitle then
@@ -41,18 +43,18 @@ function find.element(element, criteria)
     elseif criteria.title then
         matches = false
     end
-    
+
     -- Check description if specified (exact match)
     if criteria.description and description ~= criteria.description then
         matches = false
     end
-    
+
     if matches then
         local foundText = title or description or "unknown"
         print("[FIND] Found target element: " .. foundText)
         return element
     end
-    
+
     -- Search in children
     local children = element:attributeValue("AXChildren") or {}
     for _, child in ipairs(children) do
@@ -61,7 +63,7 @@ function find.element(element, criteria)
             return result
         end
     end
-    
+
     return nil
 end
 
@@ -93,20 +95,20 @@ end
 -- @param criteria: Table with search criteria
 function find.allElements(element, criteria)
     if not element then return {} end
-    
+
     local results = {}
-    
+
     local role = element:attributeValue("AXRole")
     local title = element:attributeValue("AXTitle") or element:attributeValue("AXLabel")
     local description = element:attributeValue("AXDescription")
-    
+
     -- Check if this element matches our criteria
     local matches = true
-    
+
     if criteria.role and role ~= criteria.role then
         matches = false
     end
-    
+
     if criteria.title and title then
         if criteria.exactTitle then
             if title ~= criteria.title then
@@ -120,24 +122,24 @@ function find.allElements(element, criteria)
     elseif criteria.title then
         matches = false
     end
-    
+
     if criteria.description and description ~= criteria.description then
         matches = false
     end
-    
+
     if matches then
         table.insert(results, element)
     end
-    
+
     -- Search in children
     local children = element:attributeValue("AXChildren") or {}
-    utils.forEach(children, function(child)
+    js.forEach(children, function(child)
         local childResults = find.allElements(child, criteria)
-        utils.forEach(childResults, function(result)
+        js.forEach(childResults, function(result)
             table.insert(results, result)
         end)
     end)
-    
+
     return results
 end
 

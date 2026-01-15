@@ -1,7 +1,7 @@
--- Blacklist and CenterList configuration for Window Manager
-local utils = require("utils")
+-- Config for Window Manager
+local js = require("utils.js")
 
-local blacklist = {}
+local config = {}
 
 -- Application blacklist - windows from these apps will not be auto-maximized
 -- Organized by category for easier maintenance
@@ -29,10 +29,10 @@ local baseList = {
     "Endel"
 }
 
-blacklist.blacklist = utils.merge(systemApps, baseList, launchers, games)
+config.blacklist = js.merge(systemApps, baseList, launchers, games)
 
 -- Apps that should be centered instead of maximized
-blacklist.centerList = {
+config.centerList = {
     -- system apps
     "Calculator",
     "iPhone Mirroring",
@@ -46,13 +46,13 @@ blacklist.centerList = {
 }
 
 -- Check if application is in the blacklist
-function blacklist.isBlacklisted(appName)
-    return utils.includes(blacklist.blacklist, appName)
+function config.isBlacklisted(appName)
+    return js.includes(config.blacklist, appName)
 end
 
 -- Check if application should be centered instead of maximized
-function blacklist.shouldCenterInsteadOfMax(appName)
-    return utils.includes(blacklist.centerList, appName)
+function config.shouldCenterInsteadOfMax(appName)
+    return js.includes(config.centerList, appName)
 end
 
-return blacklist
+return config

@@ -1,8 +1,9 @@
--- Focus utilities for interacting with windows near the mouse cursor
-
-local focus = {}
 local ax = hs.axuielement
-local utils = require("utils")
+
+local js = require("utils.js")
+
+-- Focus utilities for interacting with windows near the mouse cursor
+local focus = {}
 
 local DOUBLE_TAP_TIMEOUT = 0.32 -- seconds allowed between Command taps
 
@@ -20,7 +21,7 @@ end
 local function firstWindowUnderPointByOrderedWindows(point)
     local ordered = hs.window.orderedWindows()
 
-    return utils.find(ordered, function(win, index)
+    return js.find(ordered, function(win, index)
         print(string.format("[FOCUS] ordered window %d -> %s | %s",
             index,
             (win:application() and win:application():name()) or "Unknown",
@@ -61,7 +62,7 @@ local function windowFromAccessibilityAtPoint(point)
             return nil
         end
 
-        if utils.includes({ "AXWindow", "AXSheet" }, role) then
+        if js.includes({ "AXWindow", "AXSheet" }, role) then
             local win = asWindow(element)
             if win then
                 return win
@@ -107,7 +108,7 @@ local function onlyCommandActive(flags)
     end
 
     local disallowedModifiers = { "alt", "ctrl", "fn", "shift", "capslock" }
-    local activeModifier = utils.find(disallowedModifiers, function(modifier)
+    local activeModifier = js.find(disallowedModifiers, function(modifier)
         return flags[modifier]
     end)
 

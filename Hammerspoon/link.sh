@@ -3,7 +3,6 @@
 # Create ~/.hammerspoon directory if it doesn't exist
 mkdir -p ~/.hammerspoon
 
-
 # Recursively link all .lua files from src (including subfolders) to ~/.hammerspoon, preserving directory structure
 find ~/Code/config-set/Hammerspoon/src -type f -name '*.lua' | while read -r lua_file; do
     # Compute relative path from src

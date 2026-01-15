@@ -1,7 +1,7 @@
-local find = require("find")
-local ms = require("ms")
-local raycastNotification = require("raycastNotification")
-local utils = require("utils")
+local find = require("utils.find")
+local ms = require("utils.ms")
+local raycastNotification = require("utils.raycastNotification")
+local js = require("utils.js")
 
 local picEdge = {}
 
@@ -93,7 +93,7 @@ function picEdge.setEdgeIcon()
     local actions = edgeIcon:actionNames()
     if actions then
         print("🔍 [PICEDGE] Available actions:")
-        utils.forEach(actions, function(action)
+        js.forEach(actions, function(action)
             print("  - " .. action)
         end)
     end
