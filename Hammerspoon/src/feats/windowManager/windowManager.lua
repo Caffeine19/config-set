@@ -1,11 +1,12 @@
 -- Window Manager Module for Hammerspoon
 -- Provides automatic window management with configurable rules and application filtering
 -- Features: auto-maximize on creation, bulk window processing, blacklist management
-local utils = require("utils")
-local raycastNotification = require("raycastNotification")
-local ms = require("ms")
-local blacklist = require("windowManager.blacklist")
-local method = require("windowManager.method")
+local config = require("feats.windowManager.config")
+
+local js = require("utils.js")
+local method = require("feats.windowManager.method")
+local ms = require("utils.ms")
+local raycastNotification = require("utils.raycastNotification")
 
 local windowManager = {}
 
@@ -30,7 +31,7 @@ local function checkWindow(win, appName)
     end
 
     -- Skip blacklisted applications
-    if blacklist.isBlacklisted(appName) then
+    if config.isBlacklisted(appName) then
         print("🚫 [SKIP] " .. appName .. " is blacklisted")
         return true
     end
@@ -100,7 +101,7 @@ local function handleWindowCreated(win)
     local delay = getExtraDelay(win, appName)
 
     hs.timer.doAfter(delay, function()
-        local shouldCenter = blacklist.shouldCenterInsteadOfMax(appName)
+        local shouldCenter = config.shouldCenterInsteadOfMax(appName)
         if shouldCenter then
             method.centerWindow(win, appName)
         else
@@ -126,7 +127,7 @@ local function processAndMaximizeWindows(windowList)
     local processed = 0
     local skipped = 0
 
-    utils.forEach(windowList, function(win)
+    js.forEach(windowList, function(win)
         local appName = win:application():name()
         print("🔍 [DEBUG] Processing window for app: " .. appName)
 
@@ -144,7 +145,7 @@ local function processAndMaximizeWindows(windowList)
         hs.timer.usleep(ms.ms('0.1s'))
 
         -- Check if app should be centered instead of maximized
-        if blacklist.shouldCenterInsteadOfMax(appName) then
+        if config.shouldCenterInsteadOfMax(appName) then
             method.centerWindow(win, appName)
         else
             -- Use existing maximizeWindow function (Loop/Raycast/MenuItem)
@@ -225,12 +226,12 @@ function windowManager.tidyAllSpaces()
     -- STEP 2: Calculate non-visible spaces that need individual processing
     local nonVisibleSpaces = {}
 
-    utils.forEachEntries(spacesTable, function(screenUUID, allSpaceIDs)
+    js.forEachEntries(spacesTable, function(screenUUID, allSpaceIDs)
         local activeSpaceID = activeSpaces[screenUUID]
 
-        nonVisibleSpaces = utils.merge(
+        nonVisibleSpaces = js.merge(
             nonVisibleSpaces,
-            utils.filter(
+            js.filter(
                 allSpaceIDs,
                 function(spaceID)
                     print("comparing spaceID", spaceID, "to activeSpaceID", activeSpaceID)
@@ -259,7 +260,7 @@ function windowManager.tidyAllSpaces()
             print("🔄 [RESTORE] Restoring original active spaces...")
 
             -- restore original active spaces
-            utils.forEachEntries(activeSpaces, function(_, originalSpaceID)
+            js.forEachEntries(activeSpaces, function(_, originalSpaceID)
                 hs.spaces.gotoSpace(originalSpaceID)
             end)
 
@@ -290,7 +291,7 @@ function windowManager.tidyAllSpaces()
         print("🪟 [DEBUG] Found " .. #windowIDs .. " windows in space " .. spaceID)
 
         -- Convert window IDs to window objects (now accessible since we're in this space)
-        local spaceWindows = utils.filter(utils.map(windowIDs, function(windowID)
+        local spaceWindows = js.filter(js.map(windowIDs, function(windowID)
                 local window = hs.window.get(windowID)
                 -- thw window maybe nil
                 if not window then
@@ -332,7 +333,7 @@ local function processAndMessUpWindows(windowList)
     local processed = 0
     local skipped = 0
 
-    utils.forEach(windowList, function(win)
+    js.forEach(windowList, function(win)
         local appName = win:application():name()
         print("🔍 [DEBUG] Messing up window for app: " .. appName)
 

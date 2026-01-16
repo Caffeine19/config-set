@@ -1,7 +1,7 @@
-local find = require('find')
-local ms = require("ms")
-local raycastNotifications = require('raycastNotification')
-local utils = require("utils")
+local find = require('utils.find')
+local js = require("utils.js")
+local ms = require("utils.ms")
+local raycastNotifications = require('utils.raycastNotification')
 
 local endel = {}
 
@@ -108,8 +108,8 @@ function endel.setMode(mode)
 
 
     local tabName = nil
-    utils.forEachEntries(modeGroupList, function(k, modes)
-        if not tabName and utils.includes(modes, mode) then
+    js.forEachEntries(modeGroupList, function(k, modes)
+        if not tabName and js.includes(modes, mode) then
             tabName = k
         end
     end)

@@ -22,7 +22,7 @@ hs.console.consoleFont({ name = "JetBrainsMono Nerd Font Propo", size = 14 })
 -- The Raycast Hammerspoon extension need this to be enabled
 hs.allowAppleScript(true)
 
-local windowManager = require("windowManager.windowManager")
+local windowManager = require("feats.windowManager.windowManager")
 
 windowManager.init()
 
@@ -61,18 +61,15 @@ _G.handleCallMessUpAllWindows = handleCallMessUpAllWindows
 -- end
 -- _G.handleCallRemoveCurrentSpace = handleCallRemoveCurrentSpace
 
-local toggleEdgeTabsPane = require("toggleEdgeTabsPane")
-
--- local focus = require("focus")
--- focus.init()
+local toggleEdgeTabsPane = require("feats.toggleEdgeTabsPane")
 
 local function handleCallCollapseEdgeTabs()
     -- This function can be used to toggle Edge tabs
     local result = toggleEdgeTabsPane.collapse()
     return result or "Toggled Edge tabs successfully"
 end
-
 _G.handleCallCollapseEdgeTabs = handleCallCollapseEdgeTabs
+
 local function handleCallPinEdgeTabs()
     local result = toggleEdgeTabsPane.pin()
     return result or "Pinned Edge tabs successfully"
@@ -86,7 +83,7 @@ local function handleCallToggleEdgeTabs()
 end
 _G.handleCallToggleEdgeTabs = handleCallToggleEdgeTabs
 
-local picEdge = require("picEdge")
+local picEdge = require("feats.picEdge")
 
 local function handleCallSetEdgeIcon()
     local result = picEdge.setEdgeIcon()
@@ -97,13 +94,12 @@ _G.handleCallSetEdgeIcon = handleCallSetEdgeIcon
 -- local macMouseFix = require("macMouseFix")
 
 
-local endel = require("endel")
+local endel = require("feats.endel")
 
 local function handleCallToggleEndelPlayPause()
     endel.togglePlayOrPause()
     return "Toggled Endel play/pause successfully"
 end
-
 _G.handleCallToggleEndelPlayPause = handleCallToggleEndelPlayPause
 
 
@@ -111,7 +107,6 @@ local function handleCallSetEndelMode(mode)
     endel.setMode(mode)
     return "Set Endel mode to " .. mode .. " successfully"
 end
-
 _G.handleCallSetEndelMode = handleCallSetEndelMode
 
 
