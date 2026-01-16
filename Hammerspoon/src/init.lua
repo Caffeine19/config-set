@@ -113,3 +113,22 @@ local function handleCallSetEndelMode(mode)
 end
 
 _G.handleCallSetEndelMode = handleCallSetEndelMode
+
+
+local portChats = require("windowManager.portChats")
+
+-- Expose portChats globally for console access
+_G.portChats = portChats
+
+local function handleCallListDisplays()
+    portChats.listDisplays()
+    return "Listed all displays"
+end
+_G.handleCallListDisplays = handleCallListDisplays
+
+
+local function handleCallMoveChatsToDisplay(displayIndex)
+    portChats.moveChatsToDisplay(displayIndex)
+    return "Moved chat windows to display " .. displayIndex
+end
+_G.handleCallMoveChatsToDisplay = handleCallMoveChatsToDisplay
