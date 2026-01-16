@@ -1,5 +1,7 @@
 local find = require("utils.find")
-local ms = require("utils.ms")
+local promise = require("utils.promise")
+
+local async, await = promise.async, promise.await
 
 local toggleEdgeTabsPane = {}
 
@@ -79,92 +81,94 @@ function toggleEdgeTabsPane.collapse()
     end
 end
 
-function toggleEdgeTabsPane.pin()
-    print("[DEBUG] Attempting to pin pane in Microsoft Edge")
+function toggleEdgeTabsPane.pin_async()
+    return async(function()
+        print("[DEBUG] Attempting to pin pane in Microsoft Edge")
 
-    local axApp = getEdgeAppElement()
-    if not axApp then
-        return "Could not access Edge accessibility elements"
-    end
+        local axApp = getEdgeAppElement()
+        if not axApp then
+            return "Could not access Edge accessibility elements"
+        end
 
-    -- Step 1: Find and hover over the Tab Actions Menu button
-    print("[DEBUG] Looking for Tab Actions Menu button")
-    local tabActionsMenu = find.byDescriptionAndRole(axApp, "Tab Actions Menu", "AXPopUpButton")
+        -- Step 1: Find and hover over the Tab Actions Menu button
+        print("[DEBUG] Looking for Tab Actions Menu button")
+        local tabActionsMenu = find.byDescriptionAndRole(axApp, "Tab Actions Menu", "AXPopUpButton")
 
-    if not tabActionsMenu then
-        print("[DEBUG] Tab Actions Menu not found")
-        return "Tab Actions Menu not found"
-    end
+        if not tabActionsMenu then
+            print("[DEBUG] Tab Actions Menu not found")
+            return "Tab Actions Menu not found"
+        end
 
-    -- Get the position of the Tab Actions Menu button and hover over it
-    local position = tabActionsMenu:attributeValue("AXPosition")
-    local size = tabActionsMenu:attributeValue("AXSize")
+        -- Get the position of the Tab Actions Menu button and hover over it
+        local position = tabActionsMenu:attributeValue("AXPosition")
+        local size = tabActionsMenu:attributeValue("AXSize")
 
-    if not position or not size then
-        print("[DEBUG] Could not get position/size of Tab Actions Menu")
-        return "Could not determine Tab Actions Menu position"
-    end
+        if not position or not size then
+            print("[DEBUG] Could not get position/size of Tab Actions Menu")
+            return "Could not determine Tab Actions Menu position"
+        end
 
-    local centerX = position.x + size.w / 2
-    local centerY = position.y + size.h / 2
+        local centerX = position.x + size.w / 2
+        local centerY = position.y + size.h / 2
 
-    print("[DEBUG] Hovering over Tab Actions Menu at position: " .. centerX .. ", " .. centerY)
+        print("[DEBUG] Hovering over Tab Actions Menu at position: " .. centerX .. ", " .. centerY)
 
-    -- Move mouse to starting position
-    hs.mouse.absolutePosition({ x = centerX + 4, y = centerY + 4 })
-    hs.timer.usleep(ms.ms('100ms'))
+        -- Move mouse to starting position
+        hs.mouse.absolutePosition({ x = centerX + 4, y = centerY + 4 })
+        await(promise.sleep(0.1))
 
-    -- -- Create mouse move events to simulate real movement
-    -- local startX = centerX - 50
-    -- local startY = centerY - 50
-    -- local steps = 15
+        -- -- Create mouse move events to simulate real movement
+        -- local startX = centerX - 50
+        -- local startY = centerY - 50
+        -- local steps = 15
 
-    local moveEvent = hs.eventtap.event.newMouseEvent(
-        hs.eventtap.event.types.mouseMoved,
-        { x = centerX, y = centerY }
-    )
-    moveEvent:post()
+        local moveEvent = hs.eventtap.event.newMouseEvent(
+            hs.eventtap.event.types.mouseMoved,
+            { x = centerX, y = centerY }
+        )
+        moveEvent:post()
 
-    -- for i = 1, steps do
-    --     local progress = i / steps
-    --     local currentX = startX + (50 * progress)
-    --     local currentY = startY + (50 * progress)
+        -- for i = 1, steps do
+        --     local progress = i / steps
+        --     local currentX = startX + (50 * progress)
+        --     local currentY = startY + (50 * progress)
 
-    --     -- Create and post mouse move event
-    --     local moveEvent = hs.eventtap.event.newMouseEvent(
-    --         hs.eventtap.event.types.mouseMoved,
-    --         { x = currentX, y = currentY }
-    --     )
-    --     moveEvent:post()
+        --     -- Create and post mouse move event
+        --     local moveEvent = hs.eventtap.event.newMouseEvent(
+        --         hs.eventtap.event.types.mouseMoved,
+        --         { x = currentX, y = currentY }
+        --     )
+        --     moveEvent:post()
 
-    --     hs.timer.usleep(30000) -- Wait 30ms between moves
-    -- end
+        --     hs.timer.usleep(30000) -- Wait 30ms between moves
+        -- end
 
-    -- -- Final hover at exact position
-    -- hs.mouse.absolutePosition({ x = centerX, y = centerY })
+        -- -- Final hover at exact position
+        -- hs.mouse.absolutePosition({ x = centerX, y = centerY })
 
-    -- Wait for hover effect to trigger
-    hs.timer.usleep(ms.ms('0.5s'))
+        -- Wait for hover effect to trigger
+        await(promise.sleep(0.5))
 
-    print("[DEBUG] Eventtap movement completed, checking for menu")
+        print("[DEBUG] Eventtap movement completed, checking for menu")
 
-    -- Step 2: First try to find Pin pane button directly without menu
-    print("[DEBUG] Looking for Pin pane button directly")
-    local pinPaneButton = find.byDescriptionAndRole(axApp, "Pin pane", "AXPopUpButton")
+        -- Step 2: First try to find Pin pane button directly without menu
+        print("[DEBUG] Looking for Pin pane button directly")
+        local pinPaneButton = find.byDescriptionAndRole(axApp, "Pin pane", "AXPopUpButton")
 
-    if not pinPaneButton then
-        print("[DEBUG] Pin pane button not found in menu")
-        return "Pin pane button not found in the Tab Actions Menu"
-    end
+        if not pinPaneButton then
+            print("[DEBUG] Pin pane button not found in menu")
+            return "Pin pane button not found in the Tab Actions Menu"
+        end
 
-    print("[DEBUG] Found Pin pane button, clicking it")
-    local success = pinPaneButton:performAction("AXPress")
-    if success then
-        return "Successfully clicked Pin pane button"
-    end
-    print("[DEBUG] Failed to click Pin pane button")
+        print("[DEBUG] Found Pin pane button, clicking it")
+        local success = pinPaneButton:performAction("AXPress")
+        if success then
+            return "Successfully clicked Pin pane button"
+        end
+        print("[DEBUG] Failed to click Pin pane button")
 
-    setMouseCenterOnEdgeWindow()
+        setMouseCenterOnEdgeWindow()
+    end)
 end
 
 function toggleEdgeTabsPane.toggle()

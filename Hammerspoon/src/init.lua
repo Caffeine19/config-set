@@ -27,21 +27,21 @@ local windowManager = require("feats.windowManager.windowManager")
 windowManager.init()
 
 local function handleCallTidyAllScreens()
-    windowManager.tidyAllScreens()
+    windowManager.tidyAllScreens_async()
     return "Tidied all screens successfully"
 end
 _G.handleCallTidyAllScreens = handleCallTidyAllScreens
 
 local function handleCallTidyAllSpaces()
     -- This function can be used to tidy all windows across all spaces
-    windowManager.tidyAllSpaces()
+    windowManager.tidyAllSpaces_async()
     return "Tidied all spaces successfully"
 end
 _G.handleCallTidyAllSpaces = handleCallTidyAllSpaces
 
 local function handleCallTidyMainScreen()
     -- This function can be used to tidy the main screen by maximizing all windows
-    windowManager.tidyMainScreen()
+    windowManager.tidyMainScreen_async()
     return "Tidied main screen successfully"
 end
 _G.handleCallTidyMainScreen = handleCallTidyMainScreen
@@ -71,7 +71,7 @@ end
 _G.handleCallCollapseEdgeTabs = handleCallCollapseEdgeTabs
 
 local function handleCallPinEdgeTabs()
-    local result = toggleEdgeTabsPane.pin()
+    local result = toggleEdgeTabsPane.pin_async()
     return result or "Pinned Edge tabs successfully"
 end
 _G.handleCallPinEdgeTabs = handleCallPinEdgeTabs
@@ -86,7 +86,7 @@ _G.handleCallToggleEdgeTabs = handleCallToggleEdgeTabs
 local picEdge = require("feats.picEdge")
 
 local function handleCallSetEdgeIcon()
-    local result = picEdge.setEdgeIcon()
+    local result = picEdge.setEdgeIcon_async()
     return result and "Edge icon set successfully" or "Failed to set Edge icon"
 end
 _G.handleCallSetEdgeIcon = handleCallSetEdgeIcon
@@ -104,13 +104,13 @@ _G.handleCallToggleEndelPlayPause = handleCallToggleEndelPlayPause
 
 
 local function handleCallSetEndelMode(mode)
-    endel.setMode(mode)
+    endel.setMode_async(mode)
     return "Set Endel mode to " .. mode .. " successfully"
 end
 _G.handleCallSetEndelMode = handleCallSetEndelMode
 
 
-local portChats = require("windowManager.portChats")
+local portChats = require("feats.windowManager.portChats")
 
 -- Expose portChats globally for console access
 _G.portChats = portChats

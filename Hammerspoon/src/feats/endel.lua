@@ -1,7 +1,9 @@
 local find = require('utils.find')
 local js = require("utils.js")
-local ms = require("utils.ms")
+local promise = require("utils.promise")
 local raycastNotifications = require('utils.raycastNotification')
+
+local async, await = promise.async, promise.await
 
 local endel = {}
 
@@ -88,63 +90,65 @@ local modeGroupList = {
     Sleep = { "Sleep" },
 }
 
-function endel.setMode(mode)
-    openEndel()
+function endel.setMode_async(mode)
+    return async(function()
+        openEndel()
 
 
-    local endelApp = getEndelApp()
-    if not endelApp then
-        return
-    end
-
-    print("🔊 [ENDEL] togglePlayOrPause - endelApp=" .. hs.inspect(endelApp))
-
-    local axApp = getEndelAxApp(endelApp)
-    if not axApp then
-        return
-    end
-
-    print("🔊 [ENDEL] togglePlayOrPause - axApp=" .. hs.inspect(axApp))
-
-
-    local tabName = nil
-    js.forEachEntries(modeGroupList, function(k, modes)
-        if not tabName and js.includes(modes, mode) then
-            tabName = k
+        local endelApp = getEndelApp()
+        if not endelApp then
+            return
         end
+
+        print("🔊 [ENDEL] togglePlayOrPause - endelApp=" .. hs.inspect(endelApp))
+
+        local axApp = getEndelAxApp(endelApp)
+        if not axApp then
+            return
+        end
+
+        print("🔊 [ENDEL] togglePlayOrPause - axApp=" .. hs.inspect(axApp))
+
+
+        local tabName = nil
+        js.forEachEntries(modeGroupList, function(k, modes)
+            if not tabName and js.includes(modes, mode) then
+                tabName = k
+            end
+        end)
+
+        if not tabName then
+            return
+        end
+        print("🔊 [ENDEL] setMode - tabName=", tabName)
+
+        local tabElement = toggleTabs(tabName, axApp)
+        if not tabElement then
+            return
+        end
+
+        -- Find all candidate mode buttons and choose one that is not the tab element
+        local candidates = find.allElements(axApp, { role = 'AXButton', description = mode })
+        print("🔊 [ENDEL] setMode - found " .. tostring(#candidates) .. " candidate(s) for mode: " .. mode)
+
+        local target = nil
+        for _, c in ipairs(candidates) do
+            print("🔊 [ENDEL] setMode - candidate element=", tostring(c), tostring(tabElement))
+            if tostring(c) ~= tostring(tabElement) then
+                target = c
+                break
+            end
+        end
+
+        if not target then
+            print("❌ [ENDEL] No suitable mode button found (candidates may all be the tab)")
+            return
+        end
+
+        await(promise.sleep(0.8))
+        print("🔊 [ENDEL] setMode - selected mode element=" .. hs.inspect(target))
+        target:performAction("AXPress")
     end)
-
-    if not tabName then
-        return
-    end
-    print("🔊 [ENDEL] setMode - tabName=", tabName)
-
-    local tabElement = toggleTabs(tabName, axApp)
-    if not tabElement then
-        return
-    end
-
-    -- Find all candidate mode buttons and choose one that is not the tab element
-    local candidates = find.allElements(axApp, { role = 'AXButton', description = mode })
-    print("🔊 [ENDEL] setMode - found " .. tostring(#candidates) .. " candidate(s) for mode: " .. mode)
-
-    local target = nil
-    for _, c in ipairs(candidates) do
-        print("🔊 [ENDEL] setMode - candidate element=", tostring(c), tostring(tabElement))
-        if tostring(c) ~= tostring(tabElement) then
-            target = c
-            break
-        end
-    end
-
-    if not target then
-        print("❌ [ENDEL] No suitable mode button found (candidates may all be the tab)")
-        return
-    end
-
-    hs.timer.usleep(ms.ms('0.8s'))
-    print("🔊 [ENDEL] setMode - selected mode element=" .. hs.inspect(target))
-    target:performAction("AXPress")
 end
 
 return endel

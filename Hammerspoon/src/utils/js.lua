@@ -117,4 +117,33 @@ function js.forEachEntries(object, func)
     end
 end
 
+-- Async version of forEach that works with await
+-- Usage: await(js.forEachAsync(array, function(value) await(asyncOp()) end))
+-- Note: Requires promise module and must be called within async context
+function js.forEachAsync(array, func)
+    local promise = require("utils.promise")
+    return promise.async(function()
+        for i, value in ipairs(array) do
+            promise.await(promise.async(function()
+                func(value, i, array)
+            end))
+        end
+    end)
+end
+
+-- Async version of map that works with await
+-- Usage: local results = await(js.mapAsync(array, function(value) return await(asyncOp()) end))
+function js.mapAsync(array, func)
+    local promise = require("utils.promise")
+    return promise.async(function()
+        local result = {}
+        for i, value in ipairs(array) do
+            result[i] = promise.await(promise.async(function()
+                return func(value, i, array)
+            end))
+        end
+        return result
+    end)
+end
+
 return js

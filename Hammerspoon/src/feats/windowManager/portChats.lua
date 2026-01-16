@@ -1,7 +1,11 @@
 -- Port Chat Windows Module
 -- Move chat app windows to a specific display
+--
+-- NOTE: utils has been split into modules. Use `js` for collection helpers
+-- and `find` as a standalone finder function.
 
-local utils = require("utils")
+local js = require("utils.js")
+local find = require("utils.find")
 
 local portChats = {}
 
@@ -19,7 +23,7 @@ function portChats.listDisplays()
     print("📺 [DISPLAYS] Found " .. #screens .. " display(s):")
     print("=" .. string.rep("=", 60))
 
-    utils.forEach(screens, function(screen, i)
+    js.forEach(screens, function(screen, i)
         local name = screen:name()
         local id = screen:id()
         local frame = screen:frame()
@@ -44,7 +48,7 @@ end
 
 -- Find all windows belonging to chat apps
 function portChats.findChatWindows()
-    local chatWindows = utils.flatMap(portChats.appList, function(appName)
+    local chatWindows = js.flatMap(portChats.appList, function(appName)
         local app = hs.application.get(appName)
         if not app then
             print(string.format("⚠️ [NOT RUNNING] %s", appName))
@@ -52,11 +56,11 @@ function portChats.findChatWindows()
         end
 
         local windows = app:allWindows()
-        local validWindows = utils.filter(windows, function(win)
+        local validWindows = js.filter(windows, function(win)
             return win:isStandard() and win:isVisible()
         end)
 
-        return utils.map(validWindows, function(win)
+        return js.map(validWindows, function(win)
             print(string.format("💬 [FOUND] %s - %s", appName, win:title() or "Untitled"))
             return {
                 window = win,
@@ -73,7 +77,7 @@ end
 -- Move all chat windows to the Sidecar display
 function portChats.moveChatsToSidecar()
     local screens = hs.screen.allScreens()
-    local targetScreen = utils.find(screens, function(screen)
+    local targetScreen = find(screens, function(screen)
         return screen:name() == "Sidecar Display (AirPlay)"
     end)
 
@@ -89,7 +93,7 @@ function portChats.moveChatsToSidecar()
     local chatWindows = portChats.findChatWindows()
     local movedCount = 0
 
-    utils.forEach(chatWindows, function(chatWin)
+    js.forEach(chatWindows, function(chatWin)
         local win = chatWin.window
         local currentScreen = win:screen()
 
@@ -122,14 +126,14 @@ end
 function portChats.moveChatsToDisplayByName(displayName)
     local screens = hs.screen.allScreens()
 
-    local matchedScreen = utils.find(screens, function(screen)
+    local matchedScreen = find(screens, function(screen)
         return string.find(string.lower(screen:name()), string.lower(displayName))
     end)
 
     if matchedScreen then
         -- Find the index of the matched screen
         local matchedIndex = nil
-        utils.forEach(screens, function(screen, i)
+        js.forEach(screens, function(screen, i)
             if screen:id() == matchedScreen:id() then
                 matchedIndex = i
             end
@@ -151,12 +155,12 @@ end
 
 -- Remove an app from the chat list
 function portChats.removeApp(appName)
-    local found = utils.find(portChats.appList, function(name)
+    local found = find(portChats.appList, function(name)
         return name == appName
     end)
 
     if found then
-        portChats.appList = utils.filter(portChats.appList, function(name)
+        portChats.appList = js.filter(portChats.appList, function(name)
             return name ~= appName
         end)
         print(string.format("➖ [REMOVED] %s from chat app list", appName))

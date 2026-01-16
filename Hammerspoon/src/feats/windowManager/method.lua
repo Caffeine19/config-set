@@ -44,7 +44,7 @@ function method.maximizeWindow(win, appName)
     -- Fallback to Raycast if menuItem method failed
     method.maximizeWindowByRaycast(win, appName)
     -- Alternative: You can also try Loop method
-    -- M.maximizeWindowByLoop(win, appName)
+    -- method.maximizeWindowByLoop(win, appName)
 end
 
 -- Center window using Raycast
