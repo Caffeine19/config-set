@@ -129,6 +129,9 @@ export _ZO_ECHO=1
 # console ninja
 PATH=~/.console-ninja/.bin:$PATH
 
+# deno
+. "/Users/caffeinecat/.deno/env"
+
 # jetbrains
 # ___MY_VMOPTIONS_SHELL_FILE="${HOME}/.jetbrains.vmoptions.sh"
 # if [ -f "${___MY_VMOPTIONS_SHELL_FILE}" ]; then . "${___MY_VMOPTIONS_SHELL_FILE}"; fi

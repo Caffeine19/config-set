@@ -127,6 +127,7 @@ PATH=~/.console-ninja/.bin:$PATH
 
 # deno
 . "/Users/caffeinecat/.deno/env"
+
 # Added by Windsurf
 export PATH="/Users/caffeinecat/.codeium/windsurf/bin:$PATH"
 
