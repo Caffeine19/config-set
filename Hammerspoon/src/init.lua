@@ -1,3 +1,6 @@
+-- Load EmmyLua annotations for IDE autocompletion (must be loaded before pathwatchers)
+hs.loadSpoon("EmmyLua")
+
 hs.console.maxOutputHistory(100000000)
 hs.console.darkMode(true)
 

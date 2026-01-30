@@ -44,6 +44,21 @@ local function checkWindow(win, appName)
         return true
     end
 
+    if appName == "迅雷" and (win:title() == "新建任务" or win:title() == "新建下载任务") then
+        print("⏭️ [SKIP] 迅雷 new task or open file window")
+        return true
+    end
+
+    if appName == "夸克网盘" and win:title() == "通知" then
+        print("⏭️ [SKIP] 夸克网盘 notification window")
+        return true
+    end
+
+    -- Skip Transmission non-main windows (e.g., hash-titled windows)
+    if appName == "Transmission" and win:title() ~= "Transmission" then
+        print("⏭️ [SKIP] Transmission non-main window: " .. (win:title() or "Unknown"))
+        return true
+    end
 
     -- Add more specific window skip conditions here
     return false
@@ -222,6 +237,11 @@ function windowManager.tidyAllSpaces_async()
         -- Get currently active (visible) spaces - subset of spacesTable
         -- Example: activeSpaces = {screen1UUID: space2, screen2UUID: space5}
         local activeSpaces = hs.spaces.activeSpaces()
+        if not activeSpaces then
+            print("❌ [ERROR] Could not get active spaces")
+            raycastNotification.showHUD("❌ Error: Could not get active spaces", true)
+            return
+        end
 
         print("📊 [DEBUG] All spaces: " .. hs.inspect(spacesTable))
         print("👁️ [DEBUG] Active spaces: " .. hs.inspect(activeSpaces))
@@ -408,6 +428,11 @@ function windowManager.messUpAllWindows()
 
     -- Get currently active (visible) spaces
     local activeSpaces = hs.spaces.activeSpaces()
+    if not activeSpaces then
+        print("❌ [ERROR] Could not get active spaces")
+        raycastNotification.showHUD("❌ Error: Could not get active spaces", true)
+        return
+    end
 
     print("📊 [DEBUG] All spaces: " .. hs.inspect(spacesTable))
     print("👁️ [DEBUG] Active spaces: " .. hs.inspect(activeSpaces))
