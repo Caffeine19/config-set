@@ -22,6 +22,6 @@ alias yw='git --no-pager log --oneline --no-merges --author="$(git config user.n
 # today work
 alias tw='git --no-pager log --oneline --no-merges  --author="$(git config user.name)" --since=midnight | tr "()" "  " | pbcopy && echo "Today commits copied to clipboard"'
 
-alias list_functions='eval $(print -l ${(k)functions} | grep -v "^_" | fzf)'
+alias run_fn='eval $(print -l ${(k)functions} | grep -v "^_" | fzf)'
 
 echo "[oh-my-zsh] module alias.zsh loaded"
