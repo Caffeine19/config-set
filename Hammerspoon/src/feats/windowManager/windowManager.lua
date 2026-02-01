@@ -32,31 +32,10 @@ local function checkWindow(win, appName)
         return true
     end
 
-    -- Skip blacklisted applications
-    if config.isBlacklisted(appName) then
-        print("🚫 [SKIP] " .. appName .. " is blacklisted")
-        return true
-    end
-
-    -- Skip Notion Command Search window
-    if appName == "Notion" and win:title() == "Notion - Command Search" then
-        print("⏭️ [SKIP] Notion Command Search window")
-        return true
-    end
-
-    if appName == "迅雷" and (win:title() == "新建任务" or win:title() == "新建下载任务") then
-        print("⏭️ [SKIP] 迅雷 new task or open file window")
-        return true
-    end
-
-    if appName == "夸克网盘" and win:title() == "通知" then
-        print("⏭️ [SKIP] 夸克网盘 notification window")
-        return true
-    end
-
-    -- Skip Transmission non-main windows (e.g., hash-titled windows)
-    if appName == "Transmission" and win:title() ~= "Transmission" then
-        print("⏭️ [SKIP] Transmission non-main window: " .. (win:title() or "Unknown"))
+    -- Skip blacklisted applications (supports both simple and conditional rules)
+    local isBlacklisted, reason = config.isBlacklisted(appName, win)
+    if isBlacklisted then
+        print("🚫 [SKIP] " .. reason)
         return true
     end
 
@@ -96,7 +75,7 @@ local function inspectWinInfo(win)
     print("  💼 Role: " .. (win:role() or "None"))
     print("  💼 Subrole: " .. (win:subrole() or "None"))
 
-    print("  📏 Is Standard: " ..
+    print("   Is Standard: " ..
         tostring(win:isStandard()) ..
         "  👁️ Is Minimized: " .. tostring(win:isMinimized()) .. "  👀 Is Visible: " .. tostring(win:isVisible()))
 end
