@@ -17,11 +17,11 @@ alias czgw="pnpm -w czg"
 alias cz="pnpm cz"
 alias czw="pnpm -w cz"
 
-# git yesterday commits and copy to clipboard
+# yesterday work
 alias yw='git --no-pager log --oneline --no-merges --author="$(git config user.name)" --since=yesterday.midnight --until=midnight | tr "()" "  " | pbcopy && echo "Yesterday commits copied to clipboard"'
 # today work
 alias tw='git --no-pager log --oneline --no-merges  --author="$(git config user.name)" --since=midnight | tr "()" "  " | pbcopy && echo "Today commits copied to clipboard"'
 
-alias run_fn='eval $(print -l ${(k)functions} | grep -v "^_" | fzf)'
+alias run_fn='fn=$(print -l ${(k)functions} | grep -v "^_" | fzf) && [ -n "$fn" ] && echo "Running >> $fn" && eval "$fn"'
 
 echo "[oh-my-zsh] module alias.zsh loaded"
