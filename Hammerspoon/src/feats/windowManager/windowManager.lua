@@ -49,18 +49,18 @@ local function checkWindow(win, appName)
     end
 
     if appName == "迅雷" and (win:title() == "新建任务" or win:title() == "新建下载任务") then
-        print("⏭️ [SKIP] 迅雷 new task or open file window")
+        logger.custom("⏭︎", "Skip:", appName, "- new task or open file window")
         return true
     end
 
     if appName == "夸克网盘" and win:title() == "通知" then
-        print("⏭️ [SKIP] 夸克网盘 notification window")
+        logger.custom("⏭︎", "Skip:", appName, "- notification window")
         return true
     end
 
     -- Skip Transmission non-main windows (e.g., hash-titled windows)
     if appName == "Transmission" and win:title() ~= "Transmission" then
-        print("⏭️ [SKIP] Transmission non-main window: " .. (win:title() or "Unknown"))
+        logger.custom("⏭︎", "Skip:", appName, "- non-main window:", (win:title() or "Unknown"))
         return true
     end
 
@@ -241,7 +241,7 @@ function windowManager.tidyAllSpaces_async()
         -- Example: activeSpaces = {screen1UUID: space2, screen2UUID: space5}
         local activeSpaces = hs.spaces.activeSpaces()
         if not activeSpaces then
-            print("❌ [ERROR] Could not get active spaces")
+            logger.error("Could not get active spaces")
             raycastNotification.showHUD("❌ Error: Could not get active spaces", true)
             return
         end
@@ -394,7 +394,8 @@ local function processAndMessUpWindows(windowList)
             h = randomHeight
         }
 
-        logger.custom("🎲", appName, "-> pos(" .. randomX .. "," .. randomY .. ") size(" .. randomWidth .. "x" .. randomHeight .. ")")
+        logger.custom("🎲", appName,
+            "-> pos(" .. randomX .. "," .. randomY .. ") size(" .. randomWidth .. "x" .. randomHeight .. ")")
 
         -- Apply the random frame
         win:setFrame(randomFrame)
@@ -430,7 +431,7 @@ function windowManager.messUpAllWindows()
     -- Get currently active (visible) spaces
     local activeSpaces = hs.spaces.activeSpaces()
     if not activeSpaces then
-        print("❌ [ERROR] Could not get active spaces")
+        logger.error("Could not get active spaces")
         raycastNotification.showHUD("❌ Error: Could not get active spaces", true)
         return
     end

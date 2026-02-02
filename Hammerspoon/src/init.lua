@@ -2,8 +2,12 @@
 local console = require("console")
 console.init()
 
--- Load EmmyLua annotations for IDE autocompletion (must be loaded before pathwatchers)
-hs.loadSpoon("EmmyLua")
+-- Load SpoonInstall for managing Spoons
+hs.loadSpoon("SpoonInstall")
+spoon.SpoonInstall.use_syncinstall = true -- Install synchronously to avoid race conditions
+
+-- Install and load EmmyLua for IDE autocompletion (provides hs.* type hints)
+spoon.SpoonInstall:andUse("EmmyLua")
 
 -- The Raycast Hammerspoon extension need this to be enabled
 hs.allowAppleScript(true)

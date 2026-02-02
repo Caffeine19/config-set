@@ -28,4 +28,25 @@ find ~/Code/config-set/Hammerspoon/src -type f -name '*.lua' | while read -r lua
     ln -s "$lua_file" "$target_file"
 done
 
+# Link all .spoon directories from spoons to ~/.hammerspoon/Spoons
+mkdir -p ~/.hammerspoon/Spoons
+for spoon_dir in ~/Code/config-set/Hammerspoon/spoons/*.spoon; do
+    [ -d "$spoon_dir" ] || continue
+    spoon_name=$(basename "$spoon_dir")
+    target_spoon=~/.hammerspoon/Spoons/$spoon_name
+
+    if [ -L "$target_spoon" ]; then
+        echo "Spoon link already exists, skipping $spoon_name"
+        continue
+    fi
+
+    if [ -d "$target_spoon" ]; then
+        echo "Removing existing spoon directory $spoon_name"
+        rm -rf "$target_spoon"
+    fi
+
+    echo "Linking Spoon: $spoon_name"
+    ln -s "$spoon_dir" "$target_spoon"
+done
+
 echo "Hammerspoon configuration linked successfully!"
