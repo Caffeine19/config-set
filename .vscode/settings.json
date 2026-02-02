@@ -28,11 +28,13 @@
     "Karabiner",
     "linuxonly",
     "liststyle",
+    "maxnyby",
     "Mouseposé",
     "netrw",
     "networksetup",
     "oneline",
     "osascript",
+    "pathwatchers",
     "PICEDGE",
     "setairportnetwork",
     "Shottr",
@@ -47,5 +49,9 @@
     "Wasu",
     "zjgyrj"
   ],
-  "Lua.diagnostics.globals": ["hs", "vim"]
+
+  "Lua.diagnostics.globals": ["hs", "vim"],
+  "Lua.workspace.library": [
+    "/Users/caffeinecat/.hammerspoon/Spoons/EmmyLua.spoon/annotations"
+  ]
 }

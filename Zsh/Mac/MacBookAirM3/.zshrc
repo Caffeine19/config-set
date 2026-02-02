@@ -140,3 +140,6 @@ export PATH="$PATH:/Users/caffeinecat/.local/bin"
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# ghcup
+[ -f "/Users/caffeinecat/.ghcup/env" ] && . "/Users/caffeinecat/.ghcup/env" # ghcup-env

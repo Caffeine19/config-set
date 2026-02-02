@@ -68,22 +68,6 @@ JSON files in `KarabinerElements/` define advanced key mappings:
 - **Caps Lock transformations**: Context-aware modifier key behavior
 - Uses Karabiner's variable system for stateful key handling
 
-### Hammerspoon Integration 🔨
-
-Lua scripts in `Hammerspoon/src/` provide:
-
-- Window management functions exposed to Apple Shortcuts via `_G` globals
-- Integration with Raycast for automation triggers
-- Edge browser tab management via accessibility APIs
-
-### Window Management Stack 🎛️
-
-**yabai** (window manager) + **skhd** (hotkeys) + **Hammerspoon** (advanced scripting):
-
-- yabai configured for stack layout with specific padding/gaps
-- skhd provides alt+hjkl navigation and alt+shift+hjkl swapping
-- Hammerspoon handles complex window operations not possible in yabai
-
 ## Key Files to Reference 📁
 
 - `VSCode/settingsDotJson/src/merge.ts` - JSON module merge logic

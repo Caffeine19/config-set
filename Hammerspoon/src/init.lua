@@ -2,6 +2,9 @@
 local console = require("console")
 console.init()
 
+-- Load EmmyLua annotations for IDE autocompletion (must be loaded before pathwatchers)
+hs.loadSpoon("EmmyLua")
+
 -- The Raycast Hammerspoon extension need this to be enabled
 hs.allowAppleScript(true)
 
