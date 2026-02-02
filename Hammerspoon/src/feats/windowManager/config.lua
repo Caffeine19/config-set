@@ -68,21 +68,25 @@ config.blacklist = js.merge(systemApps, baseList, launchers, games, conditionalL
 -- Check if window should be blacklisted
 -- Returns: shouldSkip (boolean), reason (string or nil)
 function config.isBlacklisted(appName, win)
-    for _, item in ipairs(config.blacklist) do
+    local match = js.find(config.blacklist, function(item)
         if type(item) == "string" then
-            -- Simple string match
-            if item == appName then
-                return true, appName .. " is blacklisted"
-            end
+            return item == appName
         elseif type(item) == "table" then
-            -- Conditional match: {appName, callback}
             local blacklistAppName = item[1]
             local callback = item[2]
-            if blacklistAppName == appName and callback and callback(win) then
-                return true, appName .. " - conditional blacklist matched"
-            end
+            return blacklistAppName == appName and callback and callback(win)
+        end
+        return false
+    end)
+
+    if match then
+        if type(match) == "string" then
+            return true, match .. " is blacklisted"
+        else
+            return true, match[1] .. " - conditional blacklist matched"
         end
     end
+
     return false, nil
 end
 
