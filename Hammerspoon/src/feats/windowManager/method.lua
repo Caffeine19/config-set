@@ -1,9 +1,14 @@
 -- Window operation methods for Window Manager
+local log = require("utils.log")
+
 local method = {}
+
+-- Create a scoped logger for this module
+local logger = log.createLogger("WINDOW-MANAGER")
 
 -- Maximize window using Loop
 function method.maximizeWindowByLoop(win, appName)
-    print("🔗 [MAXIMIZE] Using Loop for " .. appName)
+    logger.link("Using Loop for", appName)
     hs.execute("open -g loop://direction/maximize")
 end
 
@@ -13,24 +18,24 @@ function method.maximizeWindowByMenuItem(win, appName)
     local menuItem = app:findMenuItem({ "Window", "Fill" })
 
     if not menuItem then
-        print("❌ [FAILED] No Window/Fill menu for " .. appName)
+        logger.error("No Window/Fill menu for", appName)
         return false
     end
 
     -- Window/Fill menu exists, use select menu item to maximize the window
     local success = app:selectMenuItem({ "Window", "Fill" })
     if success then
-        print("✅ [SUCCESS] Window/Fill menu selected for " .. appName)
+        logger.success("Window/Fill menu selected for", appName)
         return true
     else
-        print("❌ [FAILED] Could not select Window/Fill for " .. appName)
+        logger.error("Could not select Window/Fill for", appName)
         return false
     end
 end
 
 -- Maximize window using Raycast
 function method.maximizeWindowByRaycast(win, appName)
-    print("🚀 [MAXIMIZE] Using Raycast for " .. appName)
+    logger.start("Using Raycast for", appName)
     hs.execute("open -g raycast://extensions/raycast/window-management/maximize")
 end
 
@@ -49,12 +54,12 @@ end
 
 -- Center window using Raycast
 function method.centerWindowByRaycast(win, appName)
-    print("🎯 [CENTER] Using Raycast for " .. appName)
+    logger.target("Using Raycast for", appName)
     hs.execute("open -g raycast://extensions/raycast/window-management/center")
 end
 
 function method.centerWindowByLoop(win, appName)
-    print("🔗 [CENTER] Using Loop for " .. appName)
+    logger.link("Using Loop for", appName)
     hs.execute("open -g loop://direction/center")
 end
 

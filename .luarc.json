@@ -1,7 +1,7 @@
 {
-  "diagnostics.globals": ["hs",
-        "vim"],
-    "diagnostics.disable": [
-        "different-requires"
-    ]
+  "diagnostics.globals": ["hs", "vim"],
+  "diagnostics.disable": ["different-requires"],
+  "Lua.workspace.library": [
+    "/Users/caffeinecat/.hammerspoon/Spoons/EmmyLua.spoon/annotations"
+  ]
 }

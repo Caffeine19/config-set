@@ -2,8 +2,12 @@ local find = require('utils.find')
 local js = require("utils.js")
 local promise = require("utils.promise")
 local raycastNotifications = require('utils.raycastNotification')
+local log = require('utils.log')
 
 local async, await = promise.async, promise.await
+
+-- Create a scoped logger for this module
+local logger = log.createLogger("ENDEL")
 
 local endel = {}
 
@@ -29,14 +33,14 @@ function endel.togglePlayOrPause()
         return
     end
 
-    print("🔊 [ENDEL] togglePlayOrPause - endelApp=" .. hs.inspect(endelApp))
+    logger.debug("togglePlayOrPause - endelApp=", endelApp)
 
     local axApp = getEndelAxApp(endelApp)
     if not axApp then
         return
     end
 
-    print("🔊 [ENDEL] togglePlayOrPause - axApp=" .. hs.inspect(axApp))
+    logger.debug("togglePlayOrPause - axApp=", axApp)
 
 
     local playButton = find.byDescriptionAndRole(axApp, "Play", 'AXButton')
@@ -45,18 +49,18 @@ function endel.togglePlayOrPause()
     local playOrPauseButton = playButton or pauseButton
 
     if (not playOrPauseButton) then
-        print("❌ [ENDEL] Play/Pause button not found")
+        logger.error("Play/Pause button not found")
         return
     end
 
     local success = playOrPauseButton:performAction("AXPress")
     if not success then
-        print("❌ [ENDEL] Failed to toggle play/pause")
+        logger.error("Failed to toggle play/pause")
         raycastNotifications.showHUD("❌ Failed to toggle Endel play/pause")
         return
     end
 
-    print("🎉 [ENDEL] Toggled play/pause successfully")
+    logger.celebrate("Toggled play/pause successfully")
     if playButton then
         raycastNotifications.showHUD("🔊 Endel play started")
     else
@@ -69,15 +73,15 @@ local function toggleTabs(tab, axApp)
     local tabElement = find.byDescriptionAndRole(axApp, tab, 'AXButton')
 
     if not tabElement then
-        print("❌ [ENDEL] Tab element not found for tab: " .. tab)
+        logger.error("Tab element not found for tab:", tab)
         return nil
     end
 
-    print("🔊 [ENDEL] toggleTabs - tabElement=" .. hs.inspect(tabElement))
+    logger.debug("toggleTabs - tabElement=", tabElement)
 
     local success = tabElement:performAction("AXPress")
     if not success then
-        print("❌ [ENDEL] Failed to toggle tab: " .. tab)
+        logger.error("Failed to toggle tab:", tab)
         return nil
     end
 
@@ -100,14 +104,14 @@ function endel.setMode_async(mode)
             return
         end
 
-        print("🔊 [ENDEL] togglePlayOrPause - endelApp=" .. hs.inspect(endelApp))
+        logger.debug("setMode - endelApp=", endelApp)
 
         local axApp = getEndelAxApp(endelApp)
         if not axApp then
             return
         end
 
-        print("🔊 [ENDEL] togglePlayOrPause - axApp=" .. hs.inspect(axApp))
+        logger.debug("setMode - axApp=", axApp)
 
 
         local tabName = nil
@@ -120,7 +124,7 @@ function endel.setMode_async(mode)
         if not tabName then
             return
         end
-        print("🔊 [ENDEL] setMode - tabName=", tabName)
+        logger.debug("setMode - tabName=", tabName)
 
         local tabElement = toggleTabs(tabName, axApp)
         if not tabElement then
@@ -129,11 +133,11 @@ function endel.setMode_async(mode)
 
         -- Find all candidate mode buttons and choose one that is not the tab element
         local candidates = find.allElements(axApp, { role = 'AXButton', description = mode })
-        print("🔊 [ENDEL] setMode - found " .. tostring(#candidates) .. " candidate(s) for mode: " .. mode)
+        logger.debug("setMode - found", #candidates, "candidate(s) for mode:", mode)
 
         local target = nil
         for _, c in ipairs(candidates) do
-            print("🔊 [ENDEL] setMode - candidate element=", tostring(c), tostring(tabElement))
+            logger.debug("setMode - candidate element=", c, tabElement)
             if tostring(c) ~= tostring(tabElement) then
                 target = c
                 break
@@ -141,12 +145,12 @@ function endel.setMode_async(mode)
         end
 
         if not target then
-            print("❌ [ENDEL] No suitable mode button found (candidates may all be the tab)")
+            logger.error("No suitable mode button found (candidates may all be the tab)")
             return
         end
 
         await(promise.sleep(0.8))
-        print("🔊 [ENDEL] setMode - selected mode element=" .. hs.inspect(target))
+        logger.debug("setMode - selected mode element=", target)
         target:performAction("AXPress")
     end)
 end

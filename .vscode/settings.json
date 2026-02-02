@@ -3,6 +3,7 @@
     "config": "shellscript"
   },
   "cSpell.words": [
+    "audiodevice",
     "auxiliarybar",
     "axuielement",
     "basepanel",
@@ -42,6 +43,7 @@
     "subrole",
     "Subrole",
     "sumneko",
+    "syncinstall",
     "termguicolors",
     "trapd",
     "usleep",

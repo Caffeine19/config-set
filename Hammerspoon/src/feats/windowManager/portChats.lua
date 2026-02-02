@@ -6,8 +6,12 @@
 
 local js = require("utils.js")
 local find = require("utils.find")
+local log = require("utils.log")
 
 local portChats = {}
+
+-- Create a scoped logger for this module
+local logger = log.createLogger("PORT-CHATS")
 
 -- List of chat applications to manage
 portChats.appList = {
@@ -20,8 +24,7 @@ portChats.appList = {
 -- Call this function to identify which display you want to use
 function portChats.listDisplays()
     local screens = hs.screen.allScreens()
-    print("📺 [DISPLAYS] Found " .. #screens .. " display(s):")
-    print("=" .. string.rep("=", 60))
+    logger.custom("📺", "Found", #screens, "display(s):")
 
     js.forEach(screens, function(screen, i)
         local name = screen:name()
@@ -30,18 +33,16 @@ function portChats.listDisplays()
         local uuid = screen:getUUID()
         local isMain = screen == hs.screen.mainScreen()
 
-        print(string.format("  [%d] %s", i, name))
-        print(string.format("      ID: %s", id))
-        print(string.format("      UUID: %s", uuid))
-        print(string.format("      Frame: x=%d, y=%d, w=%d, h=%d",
+        logger.info(string.format("[%d] %s", i, name))
+        logger.debug(string.format("    ID: %s", id))
+        logger.debug(string.format("    UUID: %s", uuid))
+        logger.debug(string.format("    Frame: x=%d, y=%d, w=%d, h=%d",
             frame.x, frame.y, frame.w, frame.h))
-        print(string.format("      Main: %s", tostring(isMain)))
-        print("")
+        logger.debug(string.format("    Main: %s", tostring(isMain)))
     end)
 
-    print("=" .. string.rep("=", 60))
-    print("💡 Use portChats.moveChatsToDisplay(index) to move chat windows")
-    print("   Example: portChats.moveChatsToDisplay(2)")
+    logger.info("Use portChats.moveChatsToDisplay(index) to move chat windows")
+    logger.info("Example: portChats.moveChatsToDisplay(2)")
 
     return screens
 end
@@ -51,7 +52,7 @@ function portChats.findChatWindows()
     local chatWindows = js.flatMap(portChats.appList, function(appName)
         local app = hs.application.get(appName)
         if not app then
-            print(string.format("⚠️ [NOT RUNNING] %s", appName))
+            logger.error(appName, "not running")
             return {}
         end
 
@@ -61,7 +62,7 @@ function portChats.findChatWindows()
         end)
 
         return js.map(validWindows, function(win)
-            print(string.format("💬 [FOUND] %s - %s", appName, win:title() or "Untitled"))
+            logger.custom("💬", "Found:", appName, "-", win:title() or "Untitled")
             return {
                 window = win,
                 appName = appName,
@@ -70,7 +71,7 @@ function portChats.findChatWindows()
         end)
     end)
 
-    print(string.format("📊 [TOTAL] Found %d chat window(s)", #chatWindows))
+    logger.info("Total: Found", #chatWindows, "chat window(s)")
     return chatWindows
 end
 
@@ -82,13 +83,13 @@ function portChats.moveChatsToSidecar()
     end)
 
     if not targetScreen then
-        print("❌ [ERROR] Sidecar Display (AirPlay) not found")
+        logger.error("Sidecar Display (AirPlay) not found")
         return false
     end
 
     local targetFrame = targetScreen:frame()
 
-    print(string.format("🎯 [TARGET] Moving chat windows to: %s", targetScreen:name()))
+    logger.target("Moving chat windows to:", targetScreen:name())
 
     local chatWindows = portChats.findChatWindows()
     local movedCount = 0
@@ -110,14 +111,14 @@ function portChats.moveChatsToSidecar()
                 h = winFrame.h
             })
 
-            print(string.format("✅ [MOVED] %s - %s", chatWin.appName, chatWin.title or "Untitled"))
+            logger.success("Moved:", chatWin.appName, "-", chatWin.title or "Untitled")
             movedCount = movedCount + 1
         else
-            print(string.format("⏭️ [SKIP] %s already on target display", chatWin.appName))
+            logger.custom("⏭︎", "Skip:", chatWin.appName, "already on target display")
         end
     end)
 
-    print(string.format("📦 [DONE] Moved %d window(s) to %s", movedCount, targetScreen:name()))
+    logger.celebrate("Moved", movedCount, "window(s) to", targetScreen:name())
     return true
 end
 
@@ -139,18 +140,18 @@ function portChats.moveChatsToDisplayByName(displayName)
             end
         end)
 
-        print(string.format("🔍 [MATCH] Found display: %s", matchedScreen:name()))
+        logger.search("Found display:", matchedScreen:name())
         return portChats.moveChatsToDisplay(matchedIndex)
     end
 
-    print(string.format("❌ [ERROR] No display found matching: %s", displayName))
+    logger.error("No display found matching:", displayName)
     return false
 end
 
 -- Add an app to the chat list
 function portChats.addApp(appName)
     table.insert(portChats.appList, appName)
-    print(string.format("➕ [ADDED] %s to chat app list", appName))
+    logger.custom("➕", "Added", appName, "to chat app list")
 end
 
 -- Remove an app from the chat list
@@ -163,19 +164,19 @@ function portChats.removeApp(appName)
         portChats.appList = js.filter(portChats.appList, function(name)
             return name ~= appName
         end)
-        print(string.format("➖ [REMOVED] %s from chat app list", appName))
+        logger.custom("➖", "Removed", appName, "from chat app list")
         return true
     end
 
-    print(string.format("⚠️ [NOT FOUND] %s in chat app list", appName))
+    logger.error(appName, "not found in chat app list")
     return false
 end
 
 -- Show current app list
 function portChats.showAppList()
-    print("📋 [APP LIST] Chat applications:")
+    logger.custom("📋", "Chat applications:")
     for i, name in ipairs(portChats.appList) do
-        print(string.format("  [%d] %s", i, name))
+        logger.info(string.format("[%d] %s", i, name))
     end
 end
 

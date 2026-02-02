@@ -1267,6 +1267,7 @@
   "git.openRepositoryInParentFolders": "never",
   // 侧边栏/source control/changes 默认以tree的形式而不是list
   "scm.defaultViewMode": "tree",
+  "scm.repositories.selectionMode": "single",
   // gitlens
   "gitlens.views.branches.files.layout": "tree",
   "gitlens.views.commitDetails.files.layout": "tree",
@@ -1513,6 +1514,7 @@
     }
   ],
   "vim.normalModeKeyBindings": [
+    // navigation
     {
       "before": ["g", "s"],
       "commands": ["workbench.action.gotoSymbol"]
@@ -1530,29 +1532,50 @@
       "commands": ["editor.action.marker.nextInFiles"]
     },
     {
-      "before": ["<leader>", "x"],
-      "commands": ["workbench.view.extensions"]
+      "before": ["<leader>", "s"],
+      "commands": ["workbench.action.quickTextSearch"]
+    },
+    // file explorer
+    {
+      "before": ["<leader>", "e", "f"],
+      "commands": ["workbench.view.explorer"]
     },
     {
-      "before": ["<leader>", "g"],
+      "before": ["<leader>", "e", "o"],
+      "commands": ["outline.focus"]
+    },
+    // git
+    {
+      // changes view
+      "before": ["<leader>", "g", "c"],
       "commands": ["workbench.view.scm"]
     },
     {
+      // git graph
       "before": ["<leader>", "g", "g"],
       "commands": ["git-graph.view"]
     },
     {
-      "before": ["<leader>", "g", ","],
+      // diff with previous
+      "before": ["<leader>", "g", ";"],
       "commands": ["gitlens.diffWithPrevious"]
     },
     {
-      "before": ["<leader>", "r"],
-      "commands": ["workbench.action.reloadWindow"]
+      // toggle diff editor
+      "before": ["<leader>", "g", "'"],
+      "commands": ["chatEditor.action.toggleDiff"]
     },
     {
-      "before": ["<leader>", "t"],
-      "commands": ["workbench.action.selectTheme"]
+      // switch side
+      "before": ["<leader>", "g", "s"],
+      "commands": ["diffEditor.switchSide"]
     },
+    {
+      // discard changes
+      "before": ["<leader>", "g", "d"],
+      "commands": ["git.clean"]
+    },
+    // layout
     {
       "before": ["<leader>", "2"],
       "commands": ["workbench.action.editorLayoutTwoColumns"]
@@ -1561,33 +1584,39 @@
       "before": ["<leader>", "3"],
       "commands": ["workbench.action.editorLayoutThreeColumns"]
     },
+    // close editors
     {
-      "before": ["<leader>", "f"],
-      "commands": ["workbench.action.quickTextSearch"]
+      "before": ["<leader>", "x"],
+      "commands": ["workbench.action.closeActiveEditor"]
     },
     {
-      "before": ["<leader>", "a"],
+      "before": ["<leader>", "x", "g"],
+      "commands": ["workbench.action.closeEditorsInGroup"]
+    },
+    {
+      "before": ["<leader>", "x", "a"],
+      "commands": ["workbench.action.closeAllEditors"]
+    },
+    {
+      "before": ["<leader>", "x", "o"],
+      "commands": ["workbench.action.closeOtherEditors"]
+    },
+    // file utils
+    {
+      "before": ["<leader>", "f", "a"],
       "commands": ["fileutils.newFileAtRoot"]
     },
     {
-      "before": ["<leader>", "A"],
+      "before": ["<leader>", "f", "A"],
       "commands": ["fileutils.newFolderAtRoot"]
     },
     {
-      "before": ["<leader>", "e", "o"],
-      "commands": ["outline.focus"]
+      "before": ["<leader>", "f", "r"],
+      "commands": ["fileutils.renameFile"]
     },
     {
-      "before": ["<leader>", "e", "f"],
-      "commands": ["workbench.explorer.fileView.focus"]
-    },
-    {
-      "before": ["<leader>", "p"],
-      "commands": ["workbench.action.showCommands"]
-    },
-    {
-      "before": ["<leader>", "s"],
-      "commands": ["workbench.action.quickTextSearch"]
+      "before": ["<leader>", "f", "d"],
+      "commands": ["fileutils.removeFile"]
     }
   ],
   //使用affinity，提高性能
@@ -1620,8 +1649,8 @@
     "[Moegi Black]": {
       "editorCursor.foreground": "#f2d98e",
       "editorGroup.border": "#4f4f4f6d",
-      "tab.activeBackground": "#66b39520",
-      "tab.activeBorder": "#66b395"
+      "tab.activeBorder": "default",
+      "tab.activeBorderTop": "#66b395"
     },
     "[Tokyo Night]": {
       "tab.activeBorder": "default",
@@ -1646,5 +1675,5 @@
   // "workbench.productIconTheme": "fluent-icons",
   "workbench.activityBar.location": "top",
   "workbench.colorTheme": "GitHub Dark Default"
-  // build at": "2026-01-05T02:43:56.746Z"
+  // build at": "2026-01-28T08:53:22.976Z"
 }

@@ -1,7 +1,11 @@
 local js = require("utils.js")
+local log = require("utils.log")
 
 -- Utility functions for finding accessibility elements
 local find = {}
+
+-- Create a scoped logger for this module
+local logger = log.createLogger("FIND")
 
 
 -- Generic function to recursively search for elements by multiple criteria
@@ -16,7 +20,7 @@ function find.element(element, criteria)
 
     -- Debug output
     if (role and title) or (role and description) then
-        print("[FIND] Checking: Role=" .. (role or "nil") ..
+        logger.debug("Checking: Role=" .. (role or "nil") ..
             ", Title=" .. (title or "nil") ..
             ", Description=" .. (description or "nil"))
     end
@@ -51,7 +55,7 @@ function find.element(element, criteria)
 
     if matches then
         local foundText = title or description or "unknown"
-        print("[FIND] Found target element: " .. foundText)
+        logger.success("Found target element:", foundText)
         return element
     end
 
