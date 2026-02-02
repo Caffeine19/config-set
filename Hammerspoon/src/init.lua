@@ -13,7 +13,6 @@ spoon.SpoonInstall:andUse("EmmyLua")
 hs.allowAppleScript(true)
 
 local windowManager = require("feats.windowManager.windowManager")
-
 windowManager.init()
 
 local function handleCallTidyAllScreens()
@@ -117,3 +116,7 @@ local function handleCallMoveChatsToDisplay(displayIndex)
     return "Moved chat windows to display " .. displayIndex
 end
 _G.handleCallMoveChatsToDisplay = handleCallMoveChatsToDisplay
+
+
+-- local airPods = require("feats.airPods")
+-- airPods.init()
