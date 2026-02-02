@@ -1,11 +1,16 @@
 -- Raycast Notification Module for Hammerspoon
 -- Provides convenient functions to send notifications via Raycast Notification extension
+local log = require("utils.log")
+
 local raycastNotification = {}
+
+-- Create a scoped logger for this module
+local logger = log.createLogger("RAYCAST-NOTIFICATION")
 
 -- Base function to send notification via Raycast
 local function sendNotification(notificationType, background, title, message)
     if not title or title == "" then
-        print("❌ [RAYCAST-NOTIFICATION] Title is required")
+        logger.error("Title is required")
         return false
     end
 
@@ -33,16 +38,16 @@ local function sendNotification(notificationType, background, title, message)
     end
 
     local raycastUrl = baseUrl .. "?" .. params
-    print("🔗 [RAYCAST-NOTIFICATION] URL: " .. raycastUrl)
+    logger.link("URL:", raycastUrl)
 
     -- Execute the command
     local success = hs.execute("open -g \"" .. raycastUrl .. "\"")
 
     if success then
-        print("✅ [RAYCAST-NOTIFICATION] Sent: " .. title)
+        logger.success("Sent:", title)
         return true
     else
-        print("❌ [RAYCAST-NOTIFICATION] Failed to send: " .. title)
+        logger.error("Failed to send:", title)
         return false
     end
 end

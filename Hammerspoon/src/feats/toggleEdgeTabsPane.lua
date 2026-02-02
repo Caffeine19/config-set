@@ -1,7 +1,11 @@
 local find = require("utils.find")
 local promise = require("utils.promise")
+local log = require("utils.log")
 
 local async, await = promise.async, promise.await
+
+-- Create a scoped logger for this module
+local logger = log.createLogger("EDGE-TABS")
 
 local toggleEdgeTabsPane = {}
 
@@ -9,7 +13,7 @@ local toggleEdgeTabsPane = {}
 local function getEdgeAppElement()
     local edge = hs.application.find("Microsoft Edge")
     if not edge then
-        print("[ERROR] Microsoft Edge not found")
+        logger.error("Microsoft Edge not found")
         return "Microsoft Edge not found"
     end
 
@@ -83,7 +87,7 @@ end
 
 function toggleEdgeTabsPane.pin_async()
     return async(function()
-        print("[DEBUG] Attempting to pin pane in Microsoft Edge")
+        logger.debug("Attempting to pin pane in Microsoft Edge")
 
         local axApp = getEdgeAppElement()
         if not axApp then
@@ -91,11 +95,11 @@ function toggleEdgeTabsPane.pin_async()
         end
 
         -- Step 1: Find and hover over the Tab Actions Menu button
-        print("[DEBUG] Looking for Tab Actions Menu button")
+        logger.search("Looking for Tab Actions Menu button")
         local tabActionsMenu = find.byDescriptionAndRole(axApp, "Tab Actions Menu", "AXPopUpButton")
 
         if not tabActionsMenu then
-            print("[DEBUG] Tab Actions Menu not found")
+            logger.debug("Tab Actions Menu not found")
             return "Tab Actions Menu not found"
         end
 
@@ -104,14 +108,14 @@ function toggleEdgeTabsPane.pin_async()
         local size = tabActionsMenu:attributeValue("AXSize")
 
         if not position or not size then
-            print("[DEBUG] Could not get position/size of Tab Actions Menu")
+            logger.debug("Could not get position/size of Tab Actions Menu")
             return "Could not determine Tab Actions Menu position"
         end
 
         local centerX = position.x + size.w / 2
         local centerY = position.y + size.h / 2
 
-        print("[DEBUG] Hovering over Tab Actions Menu at position: " .. centerX .. ", " .. centerY)
+        logger.debug("Hovering over Tab Actions Menu at position:", centerX, ",", centerY)
 
         -- Move mouse to starting position
         hs.mouse.absolutePosition({ x = centerX + 4, y = centerY + 4 })
@@ -149,23 +153,23 @@ function toggleEdgeTabsPane.pin_async()
         -- Wait for hover effect to trigger
         await(promise.sleep(0.5))
 
-        print("[DEBUG] Eventtap movement completed, checking for menu")
+        logger.debug("Eventtap movement completed, checking for menu")
 
         -- Step 2: First try to find Pin pane button directly without menu
-        print("[DEBUG] Looking for Pin pane button directly")
+        logger.search("Looking for Pin pane button directly")
         local pinPaneButton = find.byDescriptionAndRole(axApp, "Pin pane", "AXPopUpButton")
 
         if not pinPaneButton then
-            print("[DEBUG] Pin pane button not found in menu")
+            logger.debug("Pin pane button not found in menu")
             return "Pin pane button not found in the Tab Actions Menu"
         end
 
-        print("[DEBUG] Found Pin pane button, clicking it")
+        logger.debug("Found Pin pane button, clicking it")
         local success = pinPaneButton:performAction("AXPress")
         if success then
             return "Successfully clicked Pin pane button"
         end
-        print("[DEBUG] Failed to click Pin pane button")
+        logger.error("Failed to click Pin pane button")
 
         setMouseCenterOnEdgeWindow()
     end)

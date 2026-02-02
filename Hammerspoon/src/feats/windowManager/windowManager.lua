@@ -4,11 +4,15 @@
 local config = require("feats.windowManager.config")
 
 local js = require("utils.js")
+local log = require("utils.log")
 local method = require("feats.windowManager.method")
 local promise = require("utils.promise")
 local raycastNotification = require("utils.raycastNotification")
 
 local async, await = promise.async, promise.await
+
+-- Create a scoped logger for this module
+local logger = log.createLogger("WINDOW-MANAGER")
 
 local windowManager = {}
 
@@ -16,31 +20,31 @@ local windowManager = {}
 local function checkWindow(win, appName)
     -- Skip if window is not standard or not visible
     if not win:isStandard() or not win:isVisible() or win:isMinimized() then
-        print("⏭️ [SKIP] " .. appName .. " - not standard/visible or is minimized")
+        logger.custom("⏭︎", "Skip:", appName, "- not standard/visible or is minimized")
         return true
     end
 
     -- Skip dialog windows
     if win:subrole() == "AXDialog" then
-        print("⏭️ [SKIP] " .. appName .. " - AXDialog subrole")
+        logger.custom("⏭︎", "Skip:", appName, "- AXDialog subrole")
         return true
     end
 
     -- Skip system dialog windows
     if win:subrole() == "AXSystemDialog" then
-        print("⏭️ [SKIP] " .. appName .. " - AXSystemDialog subrole")
+        logger.custom("⏭︎", "Skip:", appName, "- AXSystemDialog subrole")
         return true
     end
 
     -- Skip blacklisted applications
     if config.isBlacklisted(appName) then
-        print("🚫 [SKIP] " .. appName .. " is blacklisted")
+        logger.custom("🚫", "Skip:", appName, "is blacklisted")
         return true
     end
 
     -- Skip Notion Command Search window
     if appName == "Notion" and win:title() == "Notion - Command Search" then
-        print("⏭️ [SKIP] Notion Command Search window")
+        logger.custom("⏭︎", "Skip: Notion Command Search window")
         return true
     end
 
@@ -57,16 +61,16 @@ local function getExtraDelay(win, appName)
 
     -- This is the weChat image preview window
     if appName == "WeChat" and win:title() == "Window" then
-        print("⏳ [DELAY] WeChat image preview detected, applying longer delay")
+        logger.wait("WeChat image preview detected, applying longer delay")
         delay = 0.32
     end
 
     if appName == "Alacritty" then
-        print("⏳ [DELAY] Alacritty detected, applying longer delay")
+        logger.wait("Alacritty detected, applying longer delay")
         delay = 0
     end
 
-    print("⏳ [DELAY] Applying delay of " .. delay .. " seconds for " .. appName)
+    logger.wait("Applying delay of", delay, "seconds for", appName)
     return delay
 end
 
@@ -74,16 +78,15 @@ end
 -- Inspect window properties
 local function inspectWinInfo(win)
     local appName = win:application():name()
+    local title = win:title()
+    -- Handle nil or empty string for title
+    local displayTitle = (title and title ~= "") and title or "(empty)"
     -- Print window properties for debugging
-    print("🔍 [DEBUG] Window created:")
-    print("  📘 App: " .. appName)
-    print("  📝 Title: " .. (win:title() or "None"))
-    print("  💼 Role: " .. (win:role() or "None"))
-    print("  💼 Subrole: " .. (win:subrole() or "None"))
-
-    print("  📏 Is Standard: " ..
-        tostring(win:isStandard()) ..
-        "  👁️ Is Minimized: " .. tostring(win:isMinimized()) .. "  👀 Is Visible: " .. tostring(win:isVisible()))
+    logger.custom("🥑", "Window created:")
+    logger.custom("📦", "App:", appName, "| Title:", displayTitle)
+    logger.debug("Role:", win:role() or "None", "| Subrole:", win:subrole() or "None")
+    logger.debug("Is Standard:", win:isStandard(),
+        "Is Minimized:", win:isMinimized(), "Is Visible:", win:isVisible())
 end
 
 -- Main window creation handler
@@ -92,7 +95,7 @@ local function handleWindowCreated(win)
 
     local app = win:application()
     if not app then
-        print("⚠️ Application not found")
+        logger.error("Application not found")
         return
     end
 
@@ -127,7 +130,7 @@ end
 function windowManager.init()
     -- Subscribe to window creation events
     hs.window.filter.default:subscribe(hs.window.filter.windowCreated, handleWindowCreated)
-    print("🚀 [WINDOW-MANAGER] Window management initialized")
+    logger.start("Window management initialized")
 end
 
 -- Common function to process and maximize a list of windows
@@ -138,7 +141,7 @@ local function processAndMaximizeWindows_async(windowList)
 
         await(js.forEachAsync(windowList, function(win)
             local appName = win:application():name()
-            print("🔍 [DEBUG] Processing window for app: " .. appName)
+            logger.debug("Processing window for app:", appName)
 
             -- Check if window should be skipped (unified function)
             if checkWindow(win, appName) then
@@ -147,7 +150,7 @@ local function processAndMaximizeWindows_async(windowList)
             end
 
             -- Focus the window first, then maximize/center it
-            print("🎯 [FOCUS] Bringing " .. appName .. " to front")
+            logger.target("Bringing", appName, "to front")
             win:focus()
 
             -- Small delay to ensure window is focused
@@ -163,7 +166,7 @@ local function processAndMaximizeWindows_async(windowList)
             processed = processed + 1
         end))
 
-        print("✅ [WINDOW-MANAGER] Finished! Processed: " .. processed .. ", Skipped: " .. skipped)
+        logger.success("Finished! Processed:", processed, ", Skipped:", skipped)
 
         return { processed, skipped }
     end)
@@ -172,7 +175,7 @@ end
 -- Maximize all windows in the current screen
 function windowManager.tidyMainScreen_async()
     return async(function()
-        print("🌟 [WINDOW-MANAGER] Starting to tidy main screen...")
+        logger.custom("🌟", "Starting to tidy main screen...")
 
         raycastNotification.showHUD("🌟 Starting to Tidy Main Screen", true)
 
@@ -180,7 +183,7 @@ function windowManager.tidyMainScreen_async()
         local mainScreenWindows = hs.window.filter.new():setCurrentSpace(true):setScreens(mainScreen:getUUID())
             :getWindows()
 
-        print("🔢 [DEBUG] Total windows found: " .. #mainScreenWindows)
+        logger.debug("Total windows found:", #mainScreenWindows)
 
         await(processAndMaximizeWindows_async(mainScreenWindows))
 
@@ -191,7 +194,7 @@ end
 -- Maximize all existing windows
 function windowManager.tidyAllScreens_async()
     return async(function()
-        print("💎 [WINDOW-MANAGER] Starting to tidy all screens...")
+        logger.custom("💎", "Starting to tidy all screens...")
 
         raycastNotification.showHUD("💎 Starting to Tidy All Screens", true)
 
@@ -206,7 +209,7 @@ end
 -- Maximize all existing windows from all spaces
 function windowManager.tidyAllSpaces_async()
     return async(function()
-        print("🪩 [WINDOW-MANAGER] Starting to tidy all spaces...")
+        logger.custom("🪩", "Starting to tidy all spaces...")
 
         raycastNotification.showHUD("🪩 Starting to Tidy All Spaces", true)
 
@@ -214,7 +217,7 @@ function windowManager.tidyAllSpaces_async()
         -- Example: screen1: [space 1, space 2 * active, space 3], screen2: [space 4, space 5 * active]
         local spacesTable = hs.spaces.allSpaces()
         if not spacesTable then
-            print("❌ [ERROR] Could not get spaces table")
+            logger.error("Could not get spaces table")
             raycastNotification.showHUD("❌ Error: Could not get spaces", true)
             return
         end
@@ -223,18 +226,18 @@ function windowManager.tidyAllSpaces_async()
         -- Example: activeSpaces = {screen1UUID: space2, screen2UUID: space5}
         local activeSpaces = hs.spaces.activeSpaces()
 
-        print("📊 [DEBUG] All spaces: " .. hs.inspect(spacesTable))
-        print("👁️ [DEBUG] Active spaces: " .. hs.inspect(activeSpaces))
+        logger.debug("All spaces:", spacesTable)
+        logger.debug("Active spaces:", activeSpaces)
 
         -- STEP 1: Process all windows in currently visible spaces
-        print("⚡ [STEP 1] Processing visible spaces...")
+        logger.custom("⚡", "[STEP 1] Processing visible spaces...")
         local visibleWindows = hs.window.allWindows()
-        print("🪟 [DEBUG] Found " .. #visibleWindows .. " windows in visible spaces")
+        logger.debug("Found", #visibleWindows, "windows in visible spaces")
 
         local result = await(processAndMaximizeWindows_async(visibleWindows))
         local visibleProcessed, visibleSkipped = result[1], result[2]
-        print("✅ [STEP 1] Visible spaces complete: " ..
-            visibleProcessed .. " processed, " .. visibleSkipped .. " skipped")
+        logger.success("[STEP 1] Visible spaces complete:",
+            visibleProcessed, "processed,", visibleSkipped, "skipped")
 
         raycastNotification.showHUD("⌛ Visible Spaces Complete", true)
         await(promise.sleep(1))
@@ -250,18 +253,18 @@ function windowManager.tidyAllSpaces_async()
                 js.filter(
                     allSpaceIDs,
                     function(spaceID)
-                        print("comparing spaceID", spaceID, "to activeSpaceID", activeSpaceID)
+                        logger.debug("comparing spaceID", spaceID, "to activeSpaceID", activeSpaceID)
                         return spaceID ~= activeSpaceID
                     end
                 )
             )
         end)
 
-        print("🌐 [DEBUG] Non-visible spaces to process: " .. #nonVisibleSpaces)
-        print("📋 [DEBUG] Non-visible space IDs: " .. hs.inspect(nonVisibleSpaces))
+        logger.debug("Non-visible spaces to process:", #nonVisibleSpaces)
+        logger.debug("Non-visible space IDs:", nonVisibleSpaces)
 
         if #nonVisibleSpaces == 0 then
-            print("🎉 [COMPLETE] All windows processed from visible spaces only")
+            logger.celebrate("All windows processed from visible spaces only")
             raycastNotification.showHUD("🎉 Tidy All Spaces Complete", true)
             return
         end
@@ -273,7 +276,7 @@ function windowManager.tidyAllSpaces_async()
             raycastNotification.showHUD("⏳ Still running... (" .. i .. "/" .. #nonVisibleSpaces .. ")", true)
             await(promise.sleep(1))
 
-            print("🌐 [STEP 3] Processing non-visible space " .. i .. "/" .. #nonVisibleSpaces .. ": " .. spaceID)
+            logger.custom("🌐", "[STEP 3] Processing non-visible space", i .. "/" .. #nonVisibleSpaces .. ":", spaceID)
 
             -- Switch to this specific space
             hs.spaces.gotoSpace(spaceID)
@@ -281,7 +284,7 @@ function windowManager.tidyAllSpaces_async()
 
             local windowIDs = hs.spaces.windowsForSpace(spaceID)
             if windowIDs then
-                print("🪟 [DEBUG] Found " .. #windowIDs .. " windows in space " .. spaceID)
+                logger.debug("Found", #windowIDs, "windows in space", spaceID)
 
                 -- Convert window IDs to window objects (now accessible since we're in this space)
                 local spaceWindows = js.filter(js.map(windowIDs, function(windowID)
@@ -291,8 +294,8 @@ function windowManager.tidyAllSpaces_async()
                             return nil
                         end
 
-                        print("✅ [DEBUG] Added window: " ..
-                            (window:title() or "No title") .. " from " .. window:application():name())
+                        logger.debug("Added window:",
+                            (window:title() or "No title"), "from", window:application():name())
                         return window
                     end),
                     function(window)
@@ -306,18 +309,17 @@ function windowManager.tidyAllSpaces_async()
                     local processed, skipped = spaceResult[1], spaceResult[2]
 
                     totalNonVisibleProcessed = totalNonVisibleProcessed + processed
-                    print("✅ [DEBUG] Space " ..
-                        spaceID .. " complete: " .. processed .. " processed, " .. skipped .. " skipped")
+                    logger.debug("Space", spaceID, "complete:", processed, "processed,", skipped, "skipped")
                 end
             else
-                print("⚠️ [DEBUG] No windows found in space " .. spaceID)
+                logger.error("No windows found in space", spaceID)
             end
 
             await(promise.sleep(0.2))
         end
 
         -- Restore original active spaces
-        print("🔄 [RESTORE] Restoring original active spaces...")
+        logger.custom("🔄", "Restoring original active spaces...")
         js.forEachEntries(activeSpaces, function(_, originalSpaceID)
             hs.spaces.gotoSpace(originalSpaceID)
         end)
@@ -333,7 +335,7 @@ local function processAndMessUpWindows(windowList)
 
     js.forEach(windowList, function(win)
         local appName = win:application():name()
-        print("🔍 [DEBUG] Messing up window for app: " .. appName)
+        logger.debug("Messing up window for app:", appName)
 
         -- Check if window should be skipped (unified function)
         if checkWindow(win, appName) then
@@ -372,15 +374,14 @@ local function processAndMessUpWindows(windowList)
             h = randomHeight
         }
 
-        print("🎲 [MESS] " ..
-            appName .. " -> pos(" .. randomX .. "," .. randomY .. ") size(" .. randomWidth .. "x" .. randomHeight .. ")")
+        logger.custom("🎲", appName, "-> pos(" .. randomX .. "," .. randomY .. ") size(" .. randomWidth .. "x" .. randomHeight .. ")")
 
         -- Apply the random frame
         win:setFrame(randomFrame)
         processed = processed + 1
     end)
 
-    print("👻 [WINDOW-MANAGER] Mess up finished! Processed: " .. processed .. ", Skipped: " .. skipped)
+    logger.custom("👻", "Mess up finished! Processed:", processed, ", Skipped:", skipped)
 
     hs.timer.doAfter(0.2, function()
         raycastNotification.showHUD("👻 Window Chaos Completed", true)
@@ -391,7 +392,7 @@ end
 
 -- Randomly position and size all windows across all spaces (chaos mode!)
 function windowManager.messUpAllWindows()
-    print("👻 [WINDOW-MANAGER] Starting to mess up all windows...")
+    logger.custom("👻", nil, "Starting to mess up all windows...")
 
     local title = string.format("👻 Starting Window Chaos Mode")
     raycastNotification.showHUD(title, true)
@@ -401,7 +402,7 @@ function windowManager.messUpAllWindows()
     -- Get all spaces across all screens
     local spacesTable = hs.spaces.allSpaces()
     if not spacesTable then
-        print("❌ [ERROR] Could not get spaces table")
+        logger.error("Could not get spaces table")
         raycastNotification.showHUD("❌ Error: Could not get spaces", true)
         return
     end
@@ -409,18 +410,18 @@ function windowManager.messUpAllWindows()
     -- Get currently active (visible) spaces
     local activeSpaces = hs.spaces.activeSpaces()
 
-    print("📊 [DEBUG] All spaces: " .. hs.inspect(spacesTable))
-    print("👁️ [DEBUG] Active spaces: " .. hs.inspect(activeSpaces))
+    logger.debug("All spaces:", spacesTable)
+    logger.debug("Active spaces:", activeSpaces)
 
     -- STEP 1: Process all windows in currently visible spaces efficiently
-    print("⚡ [STEP 1] Messing up visible spaces...")
+    logger.custom("⚡", nil, "[STEP 1] Messing up visible spaces...")
 
     local visibleWindows = hs.window.allWindows()
-    print("🪟 [DEBUG] Found " .. #visibleWindows .. " windows in visible spaces")
+    logger.debug("Found", #visibleWindows, "windows in visible spaces")
 
     local visibleProcessed, visibleSkipped = processAndMessUpWindows(visibleWindows)
-    print("✅ [STEP 1] Visible spaces chaos complete: " ..
-        visibleProcessed .. " messed up, " .. visibleSkipped .. " skipped")
+    logger.success("[STEP 1] Visible spaces chaos complete:",
+        visibleProcessed, "messed up,", visibleSkipped, "skipped")
 
     -- STEP 2: Calculate non-visible spaces that need individual processing
     local nonVisibleSpaces = {}
@@ -433,11 +434,11 @@ function windowManager.messUpAllWindows()
         end
     end
 
-    print("🌐 [DEBUG] Non-visible spaces to mess up: " .. #nonVisibleSpaces)
-    print("📋 [DEBUG] Non-visible space IDs: " .. hs.inspect(nonVisibleSpaces))
+    logger.debug("Non-visible spaces to mess up:", #nonVisibleSpaces)
+    logger.debug("Non-visible space IDs:", nonVisibleSpaces)
 
     if #nonVisibleSpaces == 0 then
-        print("🎉 [COMPLETE] All windows messed up from visible spaces only")
+        logger.celebrate("All windows messed up from visible spaces only")
         raycastNotification.showHUD("👻 Window Chaos Complete - " .. visibleProcessed .. " windows", true)
         return
     end
@@ -449,7 +450,7 @@ function windowManager.messUpAllWindows()
     local function messUpNextNonVisibleSpace()
         if currentSpaceIndex > #nonVisibleSpaces then
             -- All non-visible spaces processed - restore original active spaces
-            print("🔄 [RESTORE] Restoring original active spaces...")
+            logger.custom("🔄", nil, "Restoring original active spaces...")
             for _, originalSpaceID in pairs(activeSpaces) do
                 hs.spaces.gotoSpace(originalSpaceID)
             end
@@ -459,8 +460,8 @@ function windowManager.messUpAllWindows()
         end
 
         local spaceID = nonVisibleSpaces[currentSpaceIndex]
-        print("🌐 [STEP 3] Messing up non-visible space " ..
-            currentSpaceIndex .. "/" .. #nonVisibleSpaces .. ": " .. spaceID)
+        logger.custom("🌐", nil, "[STEP 3] Messing up non-visible space",
+            currentSpaceIndex .. "/" .. #nonVisibleSpaces .. ":", spaceID)
 
         -- Switch to this specific space
         hs.spaces.gotoSpace(spaceID)
@@ -470,13 +471,13 @@ function windowManager.messUpAllWindows()
             -- Get windows ONLY from this specific space
             local windowIDs = hs.spaces.windowsForSpace(spaceID)
             if not windowIDs then
-                print("⚠️ [DEBUG] No windows found in space " .. spaceID)
+                logger.error("No windows found in space", spaceID)
                 currentSpaceIndex = currentSpaceIndex + 1
                 messUpNextNonVisibleSpace()
                 return
             end
 
-            print("🪟 [DEBUG] Found " .. #windowIDs .. " windows in space " .. spaceID)
+            logger.debug("Found", #windowIDs, "windows in space", spaceID)
 
             -- Convert window IDs to window objects
             local spaceWindows = {}
@@ -484,8 +485,8 @@ function windowManager.messUpAllWindows()
                 local window = hs.window.get(windowID)
                 if window then
                     table.insert(spaceWindows, window)
-                    print("✅ [DEBUG] Added window: " ..
-                        (window:title() or "No title") .. " from " .. window:application():name())
+                    logger.debug("Added window:",
+                        (window:title() or "No title"), "from", window:application():name())
                 end
             end
 
@@ -493,8 +494,7 @@ function windowManager.messUpAllWindows()
             if #spaceWindows > 0 then
                 local processed, skipped = processAndMessUpWindows(spaceWindows)
                 totalNonVisibleProcessed = totalNonVisibleProcessed + processed
-                print("✅ [DEBUG] Space " ..
-                    spaceID .. " chaos complete: " .. processed .. " messed up, " .. skipped .. " skipped")
+                logger.debug("Space", spaceID, "chaos complete:", processed, "messed up,", skipped, "skipped")
             end
 
             -- Continue to next space

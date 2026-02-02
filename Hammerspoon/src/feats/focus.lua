@@ -1,9 +1,13 @@
 local ax = hs.axuielement
 
 local js = require("utils.js")
+local log = require("utils.log")
 
 -- Focus utilities for interacting with windows near the mouse cursor
 local focus = {}
+
+-- Create a scoped logger for this module
+local logger = log.createLogger("FOCUS")
 
 local DOUBLE_TAP_TIMEOUT = 0.32 -- seconds allowed between Command taps
 
@@ -22,7 +26,7 @@ local function firstWindowUnderPointByOrderedWindows(point)
     local ordered = hs.window.orderedWindows()
 
     return js.find(ordered, function(win, index)
-        print(string.format("[FOCUS] ordered window %d -> %s | %s",
+        logger.debug(string.format("ordered window %d -> %s | %s",
             index,
             (win:application() and win:application():name()) or "Unknown",
             win:title() or "(no title)"))
@@ -156,7 +160,7 @@ end
 
 function focus.init()
     ensureWatcher()
-    print("🎯 [FOCUS] Double Command watcher enabled")
+    logger.target("Double Command watcher enabled")
 end
 
 function focus.stop()

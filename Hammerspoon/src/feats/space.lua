@@ -1,12 +1,17 @@
 -- space.lua: Space management utilities for Hammerspoon
+local log = require('utils.log')
+
 local space = {}
+
+-- Create a scoped logger for this module
+local logger = log.createLogger("SPACE")
 
 -- Remove the current space (move to previous, then remove original)
 function space.removeCurrentSpace()
     local currentFocusedSpaceId = hs.spaces.focusedSpace()
     local currentScreen = hs.screen.mainScreen()
     local spacesInCurrentScreen = hs.spaces.spacesForScreen(currentScreen)
-    print(hs.inspect(spacesInCurrentScreen))
+    logger.debug("spacesInCurrentScreen=", spacesInCurrentScreen)
 
     local prevSpaceId = nil
     for i, id in ipairs(spacesInCurrentScreen) do
@@ -16,19 +21,19 @@ function space.removeCurrentSpace()
         end
     end
     if prevSpaceId then
-        print("Switching to previous space: ", prevSpaceId)
+        logger.info("Switching to previous space:", prevSpaceId)
         hs.spaces.gotoSpace(prevSpaceId)
         hs.timer.doAfter(1, function()
-            print("Removing original space: ", currentFocusedSpaceId)
+            logger.info("Removing original space:", currentFocusedSpaceId)
             local ok, err = hs.spaces.removeSpace(currentFocusedSpaceId)
             if not ok then
-                print("Remove failed: " .. tostring(err))
+                logger.error("Remove failed:", err)
             else
-                print("Space removed successfully!")
+                logger.success("Space removed successfully!")
             end
         end)
     else
-        print("No previous space found, cannot remove current space.")
+        logger.error("No previous space found, cannot remove current space.")
     end
 end
 
