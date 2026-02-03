@@ -15,15 +15,16 @@
       },
       "to": [
         {
+          "hold_down_milliseconds": 300,
           "key_code": "spacebar",
-          "lazy": true,
           "modifiers": [
             "right_control",
             "left_option",
             "left_shift",
             "left_command"
           ]
-        }
+        },
+        { "key_code": "vk_none" }
       ],
       "type": "basic"
     },
