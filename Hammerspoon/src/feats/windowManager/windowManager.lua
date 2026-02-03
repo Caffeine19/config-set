@@ -37,34 +37,12 @@ local function checkWindow(win, appName)
     end
 
     -- Skip blacklisted applications
-    if config.isBlacklisted(appName) then
-        logger.custom("🚫", "Skip:", appName, "is blacklisted")
+    local isBlacklisted, reason = config.isBlacklisted(appName, win)
+    if isBlacklisted then
+        logger.custom("⏭", "Skip:", reason)
         return true
     end
 
-    -- Skip Notion Command Search window
-    if appName == "Notion" and win:title() == "Notion - Command Search" then
-        logger.custom("⏭︎", "Skip: Notion Command Search window")
-        return true
-    end
-
-    if appName == "迅雷" and (win:title() == "新建任务" or win:title() == "新建下载任务") then
-        logger.custom("⏭︎", "Skip:", appName, "- new task or open file window")
-        return true
-    end
-
-    if appName == "夸克网盘" and win:title() == "通知" then
-        logger.custom("⏭︎", "Skip:", appName, "- notification window")
-        return true
-    end
-
-    -- Skip Transmission non-main windows (e.g., hash-titled windows)
-    if appName == "Transmission" and win:title() ~= "Transmission" then
-        logger.custom("⏭︎", "Skip:", appName, "- non-main window:", (win:title() or "Unknown"))
-        return true
-    end
-
-    -- Add more specific window skip conditions here
     return false
 end
 
@@ -99,9 +77,20 @@ local function inspectWinInfo(win)
     -- Print window properties for debugging
     logger.custom("🥑", "Window created:")
     logger.custom("📦", "App:", appName, "| Title:", displayTitle)
-    logger.debug("Role:", win:role() or "None", "| Subrole:", win:subrole() or "None")
-    logger.debug("Is Standard:", win:isStandard(),
-        "Is Minimized:", win:isMinimized(), "Is Visible:", win:isVisible())
+    logger.debug(
+        "Role:",
+        win:role() or "None",
+        "| Subrole:",
+        win:subrole() or "None"
+    )
+    logger.debug(
+        "Is Standard:",
+        win:isStandard(),
+        "Is Minimized:",
+        win:isMinimized(),
+        "Is Visible:",
+        win:isVisible()
+    )
 end
 
 -- Main window creation handler
