@@ -27,8 +27,8 @@
         "modifiers": { "optional": ["any"] }
       },
       "parameters": {
-        "basic.to_delayed_action_delay_milliseconds": 800,
-        "basic.to_if_alone_timeout_milliseconds": 300
+        "basic.to_delayed_action_delay_milliseconds": 300,
+        "basic.to_if_alone_timeout_milliseconds": 400
       },
       "to": [
         {
