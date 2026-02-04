@@ -3,18 +3,19 @@
 
   "chat.agent.maxRequests": 1000,
   "chat.agent.thinkingStyle": "collapsedPreview",
+  "chat.agentsControl.enabled": false,
   "chat.checkpoints.showFileChanges": true,
   "chat.commandCenter.enabled": false, // 隐藏标题栏上的copilot按钮
   "chat.editing.confirmEditRequestRemoval": false,
   "chat.editor.wordWrap": "on",
+  "chat.todoListTool.enabled": true,
+  "chat.tools.terminal.outputLocation": "terminal",
+  "chat.viewSessions.orientation": "stacked",
 
   "chat.mcp.access": "all",
   "chat.mcp.autostart": "never",
   "chat.mcp.enabled": true,
   "chat.mcp.gallery.enabled": true,
-
-  "chat.todoListTool.enabled": true,
-  "chat.viewSessions.orientation": "stacked",
 
   "github.copilot.chat.agent.autoFix": true,
   "github.copilot.chat.agent.thinkingTool": true,
