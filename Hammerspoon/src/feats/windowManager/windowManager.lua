@@ -227,91 +227,82 @@ function windowManager.tidyAllSpaces_async()
 
 		raycastNotification.showHUD("🪩 Starting to Tidy All Spaces", true)
 
-		-- Get all spaces across all screens
-		-- Example: screen1: [space 1, space 2 * active, space 3], screen2: [space 4, space 5 * active]
-		local spacesTable = hs.spaces.allSpaces()
-		if not spacesTable then
-			logger.error("Could not get spaces table")
-			raycastNotification.showHUD("❌ Error: Could not get spaces", true)
-			return
-		end
-
-		-- Get currently active (visible) spaces - subset of spacesTable
-		-- Example: activeSpaces = {screen1UUID: space2, screen2UUID: space5}
-		local activeSpaces = hs.spaces.activeSpaces()
-		if not activeSpaces then
-			logger.error("Could not get active spaces")
+		-- All spaces ids
+		-- Form: {screen1: [space 1, space 2 * active, space 3], screen2: [space 4, space 5 * active]}
+		-- To: [space1, space2, space3, space4, space5]
+		local allSpaceIds = js.flat(js.values(hs.spaces.allSpaces() or {}))
+		logger.debug("All space IDs:", allSpaceIds)
+		if #allSpaceIds == 0 then
+			logger.error("Could not get all spaces")
 			raycastNotification.showHUD(
-				"❌ Error: Could not get active spaces",
+				"⚠️ Error: Could not get all spaces",
 				true
 			)
 			return
 		end
 
-		logger.debug("All spaces:", spacesTable)
-		logger.debug("Active spaces:", activeSpaces)
-
-		-- STEP 1: Process all windows in currently visible spaces
-		logger.custom("⚡", "[STEP 1] Processing visible spaces...")
-		local visibleWindows = hs.window.allWindows()
-		logger.debug("Found", #visibleWindows, "windows in visible spaces")
-
-		local result = await(processAndMaximizeWindows_async(visibleWindows))
-		local visibleProcessed, visibleSkipped = result[1], result[2]
-		logger.success(
-			"[STEP 1] Visible spaces complete:",
-			visibleProcessed,
-			"processed,",
-			visibleSkipped,
-			"skipped"
-		)
-
-		raycastNotification.showHUD("⌛ Visible Spaces Complete", true)
-		await(promise.sleep(1))
-
-		-- STEP 2: Calculate non-visible spaces that need individual processing
-		local nonVisibleSpaces = {}
-
-		js.forEachEntries(spacesTable, function(screenUUID, allSpaceIDs)
-			local activeSpaceID = activeSpaces[screenUUID]
-
-			nonVisibleSpaces = js.merge(
-				nonVisibleSpaces,
-				js.filter(allSpaceIDs, function(spaceID)
-					logger.debug(
-						"comparing spaceID",
-						spaceID,
-						"to activeSpaceID",
-						activeSpaceID
-					)
-					return spaceID ~= activeSpaceID
-				end)
+		-- Active(visible) space ids
+		-- From: {screen1: space 2 *active, screen2: space 5 *active}
+		-- To: [space2, space5]
+		local activeSpaceIds = js.values(hs.spaces.activeSpaces() or {})
+		logger.debug("Active space IDs:", activeSpaceIds)
+		if #activeSpaceIds == 0 then
+			logger.error("Could not get active spaces")
+			raycastNotification.showHUD(
+				"⚠️ Error: Could not get active spaces",
+				true
 			)
-		end)
-
-		logger.debug("Non-visible spaces to process:", #nonVisibleSpaces)
-		logger.debug("Non-visible space IDs:", nonVisibleSpaces)
-
-		if #nonVisibleSpaces == 0 then
-			logger.celebrate("All windows processed from visible spaces only")
-			raycastNotification.showHUD("🎉 Tidy All Spaces Complete", true)
 			return
 		end
 
-		-- STEP 3: Process each non-visible space individually
-		local totalNonVisibleProcessed = 0
+		-- STEP 1: Process all windows in currently active(visible) spaces
+		logger.custom("⚡", "[STEP 1] Processing active spaces...")
+		local activeWindows = hs.window.allWindows()
+		logger.debug("Found", #activeWindows, "windows in active spaces")
 
-		for i, spaceID in ipairs(nonVisibleSpaces) do
+		local result = await(processAndMaximizeWindows_async(activeWindows))
+		local activeProcessed, activeSkipped = result[1], result[2]
+		logger.success(
+			"[STEP 1] Active spaces complete:",
+			activeProcessed,
+			"processed,",
+			activeSkipped,
+			"skipped"
+		)
+
+		raycastNotification.showHUD("⌛ Active Spaces Complete", true)
+		await(promise.sleep(1))
+
+		-- STEP 2: Calculate non-active spaces (all - active)
+		local nonActiveSpaceIds = js.diff(allSpaceIds, activeSpaceIds)
+
+		logger.debug("Non-active spaces to process:", #nonActiveSpaceIds)
+		logger.debug("Non-active space IDs:", nonActiveSpaceIds)
+
+		if #nonActiveSpaceIds == 0 then
+			logger.celebrate("All windows processed from active spaces only")
+			raycastNotification.showHUD("🪩 Tidy All Spaces Complete", true)
+			return
+		end
+
+		-- STEP 3: Process each non-active space individually
+		local totalNonActiveProcessed = 0
+
+		await(js.forEachAsync(nonActiveSpaceIds, function(spaceID, i)
 			raycastNotification.showHUD(
-				"⏳ Still running... (" .. i .. "/" .. #nonVisibleSpaces .. ")",
+				"⏳ Still running... ("
+					.. i
+					.. "/"
+					.. #nonActiveSpaceIds
+					.. ")",
 				true
 			)
 			await(promise.sleep(1))
 
 			logger.custom(
 				"🌐",
-				"[STEP 3] Processing non-visible space",
-				i .. "/" .. #nonVisibleSpaces .. ":",
+				"[STEP 3] Processing non-active space",
+				i .. "/" .. #nonActiveSpaceIds .. ":",
 				spaceID
 			)
 
@@ -320,64 +311,99 @@ function windowManager.tidyAllSpaces_async()
 			await(promise.sleep(0.2))
 
 			local windowIDs = hs.spaces.windowsForSpace(spaceID)
-			if windowIDs then
-				logger.debug("Found", #windowIDs, "windows in space", spaceID)
-
-				-- Convert window IDs to window objects (now accessible since we're in this space)
-				local spaceWindows = js.filter(
-					js.map(windowIDs, function(windowID)
-						local window = hs.window.get(windowID)
-						-- the window maybe nil
-						if not window then
-							return nil
-						end
-
-						logger.debug(
-							"Added window:",
-							(window:title() or "No title"),
-							"from",
-							window:application():name()
-						)
-						return window
-					end),
-					function(window)
-						return window ~= nil
-					end
-				)
-
-				-- Process windows in this space
-				if #spaceWindows > 0 then
-					local spaceResult =
-						await(processAndMaximizeWindows_async(spaceWindows))
-					local processed, skipped = spaceResult[1], spaceResult[2]
-
-					totalNonVisibleProcessed = totalNonVisibleProcessed
-						+ processed
-					logger.debug(
-						"Space",
-						spaceID,
-						"complete:",
-						processed,
-						"processed,",
-						skipped,
-						"skipped"
-					)
-				end
-			else
+			if not windowIDs then
 				logger.error("No windows found in space", spaceID)
+				return
+			end
+
+			logger.debug("Found", #windowIDs, "windows in space", spaceID)
+
+			-- Convert window IDs to window objects (now accessible since we're in this space)
+			local spaceWindows = js.filter(
+				js.map(windowIDs, function(windowID)
+					local window = hs.window.get(windowID)
+					if not window then
+						return nil
+					end
+
+					logger.debug(
+						"Added window:",
+						(window:title() or "No title"),
+						"from",
+						window:application():name()
+					)
+					return window
+				end),
+				function(window)
+					return window ~= nil
+				end
+			)
+
+			-- Process windows in this space
+			if #spaceWindows > 0 then
+				local spaceResult =
+					await(processAndMaximizeWindows_async(spaceWindows))
+				local processed, skipped = spaceResult[1], spaceResult[2]
+
+				totalNonActiveProcessed = totalNonActiveProcessed + processed
+				logger.debug(
+					"Space",
+					spaceID,
+					"complete:",
+					processed,
+					"processed,",
+					skipped,
+					"skipped"
+				)
 			end
 
 			await(promise.sleep(0.2))
-		end
+		end))
 
 		-- Restore original active spaces
 		logger.custom("🔄", "Restoring original active spaces...")
-		js.forEachEntries(activeSpaces, function(_, originalSpaceID)
-			hs.spaces.gotoSpace(originalSpaceID)
+		js.forEach(activeSpaceIds, function(spaceId)
+			hs.spaces.gotoSpace(spaceId)
 		end)
 
 		raycastNotification.showHUD("🪩 Tidy All Spaces Complete", true)
 	end)
+end
+
+-- Generate a random frame for a window within its screen bounds
+local function getRandomFrame(win)
+	-- Get the screen this window is on
+	local screen = win:screen()
+	local screenFrame = screen:frame()
+
+	-- Generate random position and size
+	-- Keep window at least 200x150 pixels and at most 80% of screen
+	local minWidth, minHeight = 200, 150
+	local maxWidth = math.floor(screenFrame.w * 0.8)
+	local maxHeight = math.floor(screenFrame.h * 0.8)
+
+	local randomWidth = math.random(minWidth, maxWidth)
+	local randomHeight = math.random(minHeight, maxHeight)
+
+	-- Random position but keep at least 50px visible on screen
+	local margin = 50
+	local maxX = screenFrame.x + screenFrame.w - randomWidth - margin
+	local maxY = screenFrame.y + screenFrame.h - randomHeight - margin
+	local minX = screenFrame.x + margin
+	local minY = screenFrame.y + margin
+
+	local randomX = math.random(minX, maxX)
+	local randomY = math.random(minY, maxY)
+
+	-- Create the random frame
+	local randomFrame = {
+		x = randomX,
+		y = randomY,
+		w = randomWidth,
+		h = randomHeight,
+	}
+
+	return randomFrame
 end
 
 -- Common function to process and randomize a list of windows
@@ -395,50 +421,7 @@ local function processAndMessUpWindows(windowList)
 			return
 		end
 
-		-- Get the screen this window is on
-		local screen = win:screen()
-		local screenFrame = screen:frame()
-
-		-- Generate random position and size
-		-- Keep window at least 200x150 pixels and at most 80% of screen
-		local minWidth, minHeight = 200, 150
-		local maxWidth = math.floor(screenFrame.w * 0.8)
-		local maxHeight = math.floor(screenFrame.h * 0.8)
-
-		local randomWidth = math.random(minWidth, maxWidth)
-		local randomHeight = math.random(minHeight, maxHeight)
-
-		-- Random position but keep at least 50px visible on screen
-		local margin = 50
-		local maxX = screenFrame.x + screenFrame.w - randomWidth - margin
-		local maxY = screenFrame.y + screenFrame.h - randomHeight - margin
-		local minX = screenFrame.x + margin
-		local minY = screenFrame.y + margin
-
-		local randomX = math.random(minX, maxX)
-		local randomY = math.random(minY, maxY)
-
-		-- Create the random frame
-		local randomFrame = {
-			x = randomX,
-			y = randomY,
-			w = randomWidth,
-			h = randomHeight,
-		}
-
-		logger.custom(
-			"🎲",
-			appName,
-			"-> pos("
-				.. randomX
-				.. ","
-				.. randomY
-				.. ") size("
-				.. randomWidth
-				.. "x"
-				.. randomHeight
-				.. ")"
-		)
+		local randomFrame = getRandomFrame(win)
 
 		-- Apply the random frame
 		win:setFrame(randomFrame)
@@ -461,8 +444,8 @@ local function processAndMessUpWindows(windowList)
 end
 
 -- Randomly position and size all windows across all spaces (chaos mode!)
-function windowManager.messUpAllWindows()
-	logger.custom("👻", nil, "Starting to mess up all windows...")
+function windowManager.messUpAllSpaces()
+	logger.custom("👻", nil, "Starting to mess up all spaces...")
 
 	local title = string.format("👻 Starting Window Chaos Mode")
 	raycastNotification.showHUD(title, true)
@@ -473,7 +456,7 @@ function windowManager.messUpAllWindows()
 	local spacesTable = hs.spaces.allSpaces()
 	if not spacesTable then
 		logger.error("Could not get spaces table")
-		raycastNotification.showHUD("❌ Error: Could not get spaces", true)
+		raycastNotification.showHUD("⚠️ Error: Could not get spaces", true)
 		return
 	end
 
@@ -482,7 +465,7 @@ function windowManager.messUpAllWindows()
 	if not activeSpaces then
 		logger.error("Could not get active spaces")
 		raycastNotification.showHUD(
-			"❌ Error: Could not get active spaces",
+			"⚠️ Error: Could not get active spaces",
 			true
 		)
 		return
