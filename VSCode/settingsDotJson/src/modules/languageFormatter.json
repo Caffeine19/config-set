@@ -28,7 +28,7 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[lua]": {
-    "editor.defaultFormatter": "sumneko.lua"
+    "editor.defaultFormatter": "JohnnyMorganz.stylua"
   },
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"

@@ -149,6 +149,12 @@
     {
       "before": ["<leader>", "f", "d"],
       "commands": ["fileutils.removeFile"]
+    },
+
+    // codes
+    {
+      "before": ["<leader>", "c", "r"],
+      "commands": ["editor.action.rename"]
     }
   ],
   //使用affinity，提高性能

@@ -1,0 +1,6 @@
+{
+  "$schema": "vscode://schemas/settings/user",
+
+  "stylua.searchBinaryInPATH": true,
+  "stylua.disableVersionCheck": true
+}
