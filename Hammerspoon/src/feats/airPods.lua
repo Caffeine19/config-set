@@ -5,6 +5,7 @@ local raycastNotification = require("utils.raycastNotification")
 local logger = log.createLogger("AIR-PODS")
 
 -- Thanks https://blog.tonyding.net/archives/39/
+-- And https://www.reddit.com/r/MacOS/comments/16wkyvu/airpods_defaulting_to_half_volume_whenever_they/
 
 local airPods = {}
 
