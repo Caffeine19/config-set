@@ -476,7 +476,10 @@
         {
           "scope": "markup.bold",
           "settings": {
-            "fontStyle": "bold"
+            "fontStyle": "bold",
+
+            // 额外配置颜色
+            "foreground": "#FF6B6B"
           }
         },
         {

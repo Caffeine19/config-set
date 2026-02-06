@@ -1296,6 +1296,8 @@
   "chat.mcp.gallery.enabled": true,
   "github.copilot.chat.agent.autoFix": true,
   "github.copilot.chat.agent.thinkingTool": true,
+  "github.copilot.chat.anthropic.contextEditing.enabled": true,
+  "github.copilot.chat.copilotMemory.enabled": true,
   "github.copilot.chat.editor.temporalContext.enabled": true,
   "github.copilot.chat.edits.temporalContext.enabled": true,
   "github.copilot.chat.languageContext.fix.typescript.enabled": true,
@@ -1334,7 +1336,7 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[lua]": {
-    "editor.defaultFormatter": "sumneko.lua"
+    "editor.defaultFormatter": "JohnnyMorganz.stylua"
   },
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -1412,6 +1414,8 @@
   },
   "powermode.enabled": false,
   "powermode.shake.intensity": 0.5,
+  "stylua.searchBinaryInPATH": true,
+  "stylua.disableVersionCheck": true,
   "svelte.enable-ts-plugin": true,
   "tabnine.experimentalAutoImports": true,
   "terminal.explorerKind": "external",
@@ -1618,6 +1622,11 @@
     {
       "before": ["<leader>", "f", "d"],
       "commands": ["fileutils.removeFile"]
+    },
+    // codes
+    {
+      "before": ["<leader>", "c", "r"],
+      "commands": ["editor.action.rename"]
     }
   ],
   //使用affinity，提高性能
@@ -1676,5 +1685,5 @@
   // "workbench.productIconTheme": "fluent-icons",
   "workbench.activityBar.location": "top",
   "workbench.colorTheme": "GitHub Dark Default"
-  // build at": "2026-02-04T11:11:05.267Z (insiders)"
+  // build at": "2026-02-05T02:12:36.653Z (insiders)"
 }
