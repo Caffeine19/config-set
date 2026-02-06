@@ -136,13 +136,32 @@ local function handleWindowCreated(win)
 	end)
 end
 
+-- Window filter reference for pausing/resuming during bulk operations
+local wf
+
+--- Wrap an async function to pause the window creation handler during execution.
+--- Automatically resumes after the inner function completes (including early returns).
+local function withPausedHandler(fn)
+	return async(function()
+		if wf then
+			wf:pause()
+			logger.debug("Paused window creation handler")
+		end
+
+		fn()
+
+		if wf then
+			wf:resume()
+			logger.debug("Resumed window creation handler")
+		end
+	end)
+end
+
 -- Initialize the window management functionality
 function windowManager.init()
 	-- Subscribe to window creation events
-	hs.window.filter.default:subscribe(
-		hs.window.filter.windowCreated,
-		handleWindowCreated
-	)
+	wf = hs.window.filter.default
+	wf:subscribe(hs.window.filter.windowCreated, handleWindowCreated)
 	logger.start("Window management initialized")
 end
 
@@ -187,7 +206,7 @@ end
 
 -- Maximize all windows in the current screen
 function windowManager.tidyMainScreen_async()
-	return async(function()
+	return withPausedHandler(function()
 		logger.custom("🌟", "Starting to tidy main screen...")
 
 		raycastNotification.showHUD("🌟 Starting to Tidy Main Screen")
@@ -209,7 +228,7 @@ end
 
 -- Maximize all existing windows
 function windowManager.tidyAllScreens_async()
-	return async(function()
+	return withPausedHandler(function()
 		logger.custom("💎", "Starting to tidy all screens...")
 
 		raycastNotification.showHUD("💎 Starting to Tidy All Screens")
@@ -224,7 +243,7 @@ end
 
 -- Maximize all existing windows from all spaces
 function windowManager.tidyAllSpaces_async()
-	return async(function()
+	return withPausedHandler(function()
 		logger.custom("🪩", "Starting to tidy all spaces...")
 
 		raycastNotification.showHUD("🪩 Starting to Tidy All Spaces")
@@ -444,7 +463,7 @@ end
 
 -- Randomly position and size all windows across all spaces (chaos mode!)
 function windowManager.messUpAllSpaces_async()
-	return async(function()
+	return withPausedHandler(function()
 		logger.custom("👻", "Starting to mess up all spaces...")
 
 		raycastNotification.showHUD("👻 Starting Window Chaos Mode")
