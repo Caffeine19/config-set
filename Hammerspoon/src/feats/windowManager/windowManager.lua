@@ -165,7 +165,7 @@ local function processAndMaximizeWindows_async(windowList)
 			win:focus()
 
 			-- Small delay to ensure window is focused
-			await(promise.sleep(0.1))
+			await(promise.sleep(0.4))
 
 			-- Check if app should be centered instead of maximized
 			if config.shouldCenterInsteadOfMax(appName) then
