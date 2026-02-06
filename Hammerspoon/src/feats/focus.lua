@@ -1,6 +1,7 @@
 local ax = hs.axuielement
 
 local js = require("utils.js")
+local find, includes = js.find, js.includes
 local log = require("utils.log")
 
 -- Focus utilities for interacting with windows near the mouse cursor
@@ -25,7 +26,7 @@ end
 local function firstWindowUnderPointByOrderedWindows(point)
 	local ordered = hs.window.orderedWindows()
 
-	return js.find(ordered, function(win, index)
+	return find(ordered, function(win, index)
 		logger.debug(
 			string.format(
 				"ordered window %d -> %s | %s",
@@ -70,7 +71,7 @@ local function windowFromAccessibilityAtPoint(point)
 			return nil
 		end
 
-		if js.includes({ "AXWindow", "AXSheet" }, role) then
+		if includes({ "AXWindow", "AXSheet" }, role) then
 			local win = asWindow(element)
 			if win then
 				return win
@@ -116,7 +117,7 @@ local function onlyCommandActive(flags)
 	end
 
 	local disallowedModifiers = { "alt", "ctrl", "fn", "shift", "capslock" }
-	local activeModifier = js.find(disallowedModifiers, function(modifier)
+	local activeModifier = find(disallowedModifiers, function(modifier)
 		return flags[modifier]
 	end)
 

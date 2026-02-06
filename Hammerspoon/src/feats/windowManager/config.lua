@@ -1,5 +1,6 @@
 -- Config for Window Manager
 local js = require("utils.js")
+local find, includes, merge = js.find, js.includes, js.merge
 
 local config = {}
 
@@ -64,12 +65,12 @@ local conditionalList = {
 }
 
 config.blacklist =
-	js.merge(systemApps, baseList, launchers, games, conditionalList)
+	merge(systemApps, baseList, launchers, games, conditionalList)
 
 -- Check if window should be blacklisted
 -- Returns: shouldSkip (boolean), reason (string or nil)
 function config.isBlacklisted(appName, win)
-	local match = js.find(config.blacklist, function(item)
+	local match = find(config.blacklist, function(item)
 		if type(item) == "string" then
 			return item == appName
 		elseif type(item) == "table" then
@@ -107,7 +108,7 @@ config.centerList = {
 
 -- Check if application should be centered instead of maximized
 function config.shouldCenterInsteadOfMax(appName)
-	return js.includes(config.centerList, appName)
+	return includes(config.centerList, appName)
 end
 
 return config

@@ -1,5 +1,6 @@
 local find = require("utils.find")
 local js = require("utils.js")
+local forEachEntries, includes = js.forEachEntries, js.includes
 local promise = require("utils.promise")
 local raycastNotifications = require("utils.raycastNotification")
 local log = require("utils.log")
@@ -112,8 +113,8 @@ function endel.setMode_async(mode)
 		logger.debug("setMode - axApp=", axApp)
 
 		local tabName = nil
-		js.forEachEntries(modeGroupList, function(k, modes)
-			if not tabName and js.includes(modes, mode) then
+		forEachEntries(modeGroupList, function(k, modes)
+			if not tabName and includes(modes, mode) then
 				tabName = k
 			end
 		end)

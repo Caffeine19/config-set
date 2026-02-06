@@ -24,6 +24,24 @@ This directory manages all Hammerspoon (Lua) automation for the config-set envir
 - **JS-Style Utilities**: Use `src/utils/js.lua` for array/table operations (map, filter, forEach, etc.) and async/await patterns.
 - **Early Returns**: Prefer early returns over nested if-else structures.
 
+### Module Import Conventions
+
+- **Default**: Use `module.xxx` style for calling module methods (e.g., `log.d(...)`, `find.byRole(...)`). This is the standard convention unless explicitly stated otherwise.
+- **Exception — `js.lua`**: Always destructure/unpack `js.lua` functions at the top of the file and call them **directly** (e.g., `map(...)`, `filter(...)`, `diff(...)`). **Never** use `js.map(...)` or `js.diff(...)` style.
+
+  ```lua
+  -- ✅ Correct: destructure js.lua functions
+  local js = require("utils.js")
+  local map, filter, diff, includes = js.map, js.filter, js.diff, js.includes
+
+  local result = map(items, function(item) return item.name end)
+  local changed = diff(oldList, newList)
+
+  -- ❌ Wrong: do NOT use js.xxx
+  local js = require("utils.js")
+  local result = js.map(items, function(item) return item.name end)
+  ```
+
 ### Examples & Patterns
 
 - See `src/feats/windowManager/` for window management logic and modularization.

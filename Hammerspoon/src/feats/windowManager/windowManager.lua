@@ -4,6 +4,8 @@
 local config = require("feats.windowManager.config")
 
 local js = require("utils.js")
+local diff, filter, flat, forEach, forEachAsync, map, values =
+	js.diff, js.filter, js.flat, js.forEach, js.forEachAsync, js.map, js.values
 local log = require("utils.log")
 local method = require("feats.windowManager.method")
 local promise = require("utils.promise")
@@ -130,7 +132,7 @@ local function handleWindowCreated(win)
 
 		local action = shouldCenter and "Centered" or "Tiled"
 		local title = string.format("💫 Auto %s: %s", action, appName)
-		raycastNotification.showHUD(title, true)
+		raycastNotification.showHUD(title)
 	end)
 end
 
@@ -150,7 +152,7 @@ local function processAndMaximizeWindows_async(windowList)
 		local processed = 0
 		local skipped = 0
 
-		await(js.forEachAsync(windowList, function(win)
+		await(forEachAsync(windowList, function(win)
 			local appName = win:application():name()
 			logger.debug("Processing window for app:", appName)
 
@@ -188,7 +190,7 @@ function windowManager.tidyMainScreen_async()
 	return async(function()
 		logger.custom("🌟", "Starting to tidy main screen...")
 
-		raycastNotification.showHUD("🌟 Starting to Tidy Main Screen", true)
+		raycastNotification.showHUD("🌟 Starting to Tidy Main Screen")
 
 		local mainScreen = hs.screen.mainScreen()
 		local mainScreenWindows = hs.window.filter
@@ -201,7 +203,7 @@ function windowManager.tidyMainScreen_async()
 
 		await(processAndMaximizeWindows_async(mainScreenWindows))
 
-		raycastNotification.showHUD("🌟 Tidy Main Screen Complete", true)
+		raycastNotification.showHUD("🌟 Tidy Main Screen Complete")
 	end)
 end
 
@@ -210,13 +212,13 @@ function windowManager.tidyAllScreens_async()
 	return async(function()
 		logger.custom("💎", "Starting to tidy all screens...")
 
-		raycastNotification.showHUD("💎 Starting to Tidy All Screens", true)
+		raycastNotification.showHUD("💎 Starting to Tidy All Screens")
 
 		local allWindows = hs.window.allWindows()
 
 		await(processAndMaximizeWindows_async(allWindows))
 
-		raycastNotification.showHUD("💎 Tidy All Screens Complete", true)
+		raycastNotification.showHUD("💎 Tidy All Screens Complete")
 	end)
 end
 
@@ -225,18 +227,17 @@ function windowManager.tidyAllSpaces_async()
 	return async(function()
 		logger.custom("🪩", "Starting to tidy all spaces...")
 
-		raycastNotification.showHUD("🪩 Starting to Tidy All Spaces", true)
+		raycastNotification.showHUD("🪩 Starting to Tidy All Spaces")
 
 		-- All spaces ids
 		-- Form: {screen1: [space 1, space 2 * active, space 3], screen2: [space 4, space 5 * active]}
 		-- To: [space1, space2, space3, space4, space5]
-		local allSpaceIds = js.flat(js.values(hs.spaces.allSpaces() or {}))
+		local allSpaceIds = flat(values(hs.spaces.allSpaces() or {}))
 		logger.debug("All space IDs:", allSpaceIds)
 		if #allSpaceIds == 0 then
 			logger.error("Could not get all spaces")
 			raycastNotification.showHUD(
-				"⚠️ Error: Could not get all spaces",
-				true
+				"⚠️ Error: Could not get all spaces"
 			)
 			return
 		end
@@ -244,13 +245,12 @@ function windowManager.tidyAllSpaces_async()
 		-- Active(visible) space ids
 		-- From: {screen1: space 2 *active, screen2: space 5 *active}
 		-- To: [space2, space5]
-		local activeSpaceIds = js.values(hs.spaces.activeSpaces() or {})
+		local activeSpaceIds = values(hs.spaces.activeSpaces() or {})
 		logger.debug("Active space IDs:", activeSpaceIds)
 		if #activeSpaceIds == 0 then
 			logger.error("Could not get active spaces")
 			raycastNotification.showHUD(
-				"⚠️ Error: Could not get active spaces",
-				true
+				"⚠️ Error: Could not get active spaces"
 			)
 			return
 		end
@@ -270,32 +270,31 @@ function windowManager.tidyAllSpaces_async()
 			"skipped"
 		)
 
-		raycastNotification.showHUD("⌛ Active Spaces Complete", true)
+		raycastNotification.showHUD("⌛ Active Spaces Complete")
 		await(promise.sleep(1))
 
 		-- STEP 2: Calculate non-active spaces (all - active)
-		local nonActiveSpaceIds = js.diff(allSpaceIds, activeSpaceIds)
+		local nonActiveSpaceIds = diff(allSpaceIds, activeSpaceIds)
 
 		logger.debug("Non-active spaces to process:", #nonActiveSpaceIds)
 		logger.debug("Non-active space IDs:", nonActiveSpaceIds)
 
 		if #nonActiveSpaceIds == 0 then
 			logger.celebrate("All windows processed from active spaces only")
-			raycastNotification.showHUD("🪩 Tidy All Spaces Complete", true)
+			raycastNotification.showHUD("🪩 Tidy All Spaces Complete")
 			return
 		end
 
 		-- STEP 3: Process each non-active space individually
 		local totalNonActiveProcessed = 0
 
-		await(js.forEachAsync(nonActiveSpaceIds, function(spaceID, i)
+		await(forEachAsync(nonActiveSpaceIds, function(spaceID, i)
 			raycastNotification.showHUD(
 				"⏳ Still running... ("
 					.. i
 					.. "/"
 					.. #nonActiveSpaceIds
-					.. ")",
-				true
+					.. ")"
 			)
 			await(promise.sleep(1))
 
@@ -319,8 +318,8 @@ function windowManager.tidyAllSpaces_async()
 			logger.debug("Found", #windowIDs, "windows in space", spaceID)
 
 			-- Convert window IDs to window objects (now accessible since we're in this space)
-			local spaceWindows = js.filter(
-				js.map(windowIDs, function(windowID)
+			local spaceWindows = filter(
+				map(windowIDs, function(windowID)
 					local window = hs.window.get(windowID)
 					if not window then
 						return nil
@@ -362,11 +361,11 @@ function windowManager.tidyAllSpaces_async()
 
 		-- Restore original active spaces
 		logger.custom("🔄", "Restoring original active spaces...")
-		js.forEach(activeSpaceIds, function(spaceId)
+		forEach(activeSpaceIds, function(spaceId)
 			hs.spaces.gotoSpace(spaceId)
 		end)
 
-		raycastNotification.showHUD("🪩 Tidy All Spaces Complete", true)
+		raycastNotification.showHUD("🪩 Tidy All Spaces Complete")
 	end)
 end
 
@@ -411,7 +410,7 @@ local function processAndMessUpWindows(windowList)
 	local processed = 0
 	local skipped = 0
 
-	js.forEach(windowList, function(win)
+	forEach(windowList, function(win)
 		local appName = win:application():name()
 		logger.debug("Messing up window for app:", appName)
 
@@ -437,142 +436,132 @@ local function processAndMessUpWindows(windowList)
 	)
 
 	hs.timer.doAfter(0.2, function()
-		raycastNotification.showHUD("👻 Window Chaos Completed", true)
+		raycastNotification.showHUD("👻 Window Chaos Completed")
 	end)
 
 	return processed, skipped
 end
 
 -- Randomly position and size all windows across all spaces (chaos mode!)
-function windowManager.messUpAllSpaces()
-	logger.custom("👻", nil, "Starting to mess up all spaces...")
+function windowManager.messUpAllSpaces_async()
+	return async(function()
+		logger.custom("👻", "Starting to mess up all spaces...")
 
-	local title = string.format("👻 Starting Window Chaos Mode")
-	raycastNotification.showHUD(title, true)
+		raycastNotification.showHUD("👻 Starting Window Chaos Mode")
 
-	-- Use the same efficient logic as tidyAllSpaces
-
-	-- Get all spaces across all screens
-	local spacesTable = hs.spaces.allSpaces()
-	if not spacesTable then
-		logger.error("Could not get spaces table")
-		raycastNotification.showHUD("⚠️ Error: Could not get spaces", true)
-		return
-	end
-
-	-- Get currently active (visible) spaces
-	local activeSpaces = hs.spaces.activeSpaces()
-	if not activeSpaces then
-		logger.error("Could not get active spaces")
-		raycastNotification.showHUD(
-			"⚠️ Error: Could not get active spaces",
-			true
-		)
-		return
-	end
-
-	logger.debug("All spaces:", spacesTable)
-	logger.debug("Active spaces:", activeSpaces)
-
-	-- STEP 1: Process all windows in currently visible spaces efficiently
-	logger.custom("⚡", nil, "[STEP 1] Messing up visible spaces...")
-
-	local visibleWindows = hs.window.allWindows()
-	logger.debug("Found", #visibleWindows, "windows in visible spaces")
-
-	local visibleProcessed, visibleSkipped =
-		processAndMessUpWindows(visibleWindows)
-	logger.success(
-		"[STEP 1] Visible spaces chaos complete:",
-		visibleProcessed,
-		"messed up,",
-		visibleSkipped,
-		"skipped"
-	)
-
-	-- STEP 2: Calculate non-visible spaces that need individual processing
-	local nonVisibleSpaces = {}
-	for screenUUID, allSpaceIDs in pairs(spacesTable) do
-		local activeSpaceID = activeSpaces[screenUUID]
-		for _, spaceID in ipairs(allSpaceIDs) do
-			if spaceID ~= activeSpaceID then
-				table.insert(nonVisibleSpaces, spaceID)
-			end
-		end
-	end
-
-	logger.debug("Non-visible spaces to mess up:", #nonVisibleSpaces)
-	logger.debug("Non-visible space IDs:", nonVisibleSpaces)
-
-	if #nonVisibleSpaces == 0 then
-		logger.celebrate("All windows messed up from visible spaces only")
-		raycastNotification.showHUD(
-			"👻 Window Chaos Complete - " .. visibleProcessed .. " windows",
-			true
-		)
-		return
-	end
-
-	-- STEP 3: Process each non-visible space individually
-	local currentSpaceIndex = 1
-	local totalNonVisibleProcessed = 0
-
-	local function messUpNextNonVisibleSpace()
-		if currentSpaceIndex > #nonVisibleSpaces then
-			-- All non-visible spaces processed - restore original active spaces
-			logger.custom("🔄", nil, "Restoring original active spaces...")
-			for _, originalSpaceID in pairs(activeSpaces) do
-				hs.spaces.gotoSpace(originalSpaceID)
-			end
-
-			raycastNotification.showHUD("👻 Window Chaos Complete", true)
+		-- All spaces ids
+		-- Form: {screen1: [space 1, space 2 * active, space 3], screen2: [space 4, space 5 * active]}
+		-- To: [space1, space2, space3, space4, space5]
+		local allSpaceIds = flat(values(hs.spaces.allSpaces() or {}))
+		logger.debug("All space IDs:", allSpaceIds)
+		if #allSpaceIds == 0 then
+			logger.error("Could not get all spaces")
+			raycastNotification.showHUD(
+				"⚠️ Error: Could not get all spaces"
+			)
 			return
 		end
 
-		local spaceID = nonVisibleSpaces[currentSpaceIndex]
-		logger.custom(
-			"🌐",
-			nil,
-			"[STEP 3] Messing up non-visible space",
-			currentSpaceIndex .. "/" .. #nonVisibleSpaces .. ":",
-			spaceID
+		-- Active(visible) space ids
+		-- From: {screen1: space 2 *active, screen2: space 5 *active}
+		-- To: [space2, space5]
+		local activeSpaceIds = values(hs.spaces.activeSpaces() or {})
+		logger.debug("Active space IDs:", activeSpaceIds)
+		if #activeSpaceIds == 0 then
+			logger.error("Could not get active spaces")
+			raycastNotification.showHUD(
+				"⚠️ Error: Could not get active spaces"
+			)
+			return
+		end
+
+		-- STEP 1: Process all windows in currently active(visible) spaces
+		logger.custom("⚡", "[STEP 1] Messing up active spaces...")
+		local activeWindows = hs.window.allWindows()
+		logger.debug("Found", #activeWindows, "windows in active spaces")
+
+		local activeProcessed, activeSkipped =
+			processAndMessUpWindows(activeWindows)
+		logger.success(
+			"[STEP 1] Active spaces chaos complete:",
+			activeProcessed,
+			"messed up,",
+			activeSkipped,
+			"skipped"
 		)
 
-		-- Switch to this specific space
-		hs.spaces.gotoSpace(spaceID)
+		raycastNotification.showHUD("⌛ Active Spaces Complete")
+		await(promise.sleep(1))
 
-		-- Small delay to ensure space switch is complete
-		hs.timer.doAfter(0.5, function()
-			-- Get windows ONLY from this specific space
+		-- STEP 2: Calculate non-active spaces (all - active)
+		local nonActiveSpaceIds = diff(allSpaceIds, activeSpaceIds)
+
+		logger.debug("Non-active spaces to mess up:", #nonActiveSpaceIds)
+		logger.debug("Non-active space IDs:", nonActiveSpaceIds)
+
+		if #nonActiveSpaceIds == 0 then
+			logger.celebrate("All windows messed up from active spaces only")
+			raycastNotification.showHUD("👻 Window Chaos Complete")
+			return
+		end
+
+		-- STEP 3: Process each non-active space individually
+		local totalNonActiveProcessed = 0
+
+		await(forEachAsync(nonActiveSpaceIds, function(spaceID, i)
+			raycastNotification.showHUD(
+				"⏳ Still running... ("
+					.. i
+					.. "/"
+					.. #nonActiveSpaceIds
+					.. ")"
+			)
+			await(promise.sleep(1))
+
+			logger.custom(
+				"🌐",
+				"[STEP 3] Messing up non-active space",
+				i .. "/" .. #nonActiveSpaceIds .. ":",
+				spaceID
+			)
+
+			-- Switch to this specific space
+			hs.spaces.gotoSpace(spaceID)
+			await(promise.sleep(0.2))
+
 			local windowIDs = hs.spaces.windowsForSpace(spaceID)
 			if not windowIDs then
 				logger.error("No windows found in space", spaceID)
-				currentSpaceIndex = currentSpaceIndex + 1
-				messUpNextNonVisibleSpace()
 				return
 			end
 
 			logger.debug("Found", #windowIDs, "windows in space", spaceID)
 
-			-- Convert window IDs to window objects
-			local spaceWindows = {}
-			for _, windowID in ipairs(windowIDs) do
-				local window = hs.window.get(windowID)
-				if window then
-					table.insert(spaceWindows, window)
+			-- Convert window IDs to window objects (now accessible since we're in this space)
+			local spaceWindows = filter(
+				map(windowIDs, function(windowID)
+					local window = hs.window.get(windowID)
+					if not window then
+						return nil
+					end
+
 					logger.debug(
 						"Added window:",
 						(window:title() or "No title"),
 						"from",
 						window:application():name()
 					)
+					return window
+				end),
+				function(window)
+					return window ~= nil
 				end
-			end
+			)
 
 			-- Mess up windows in this space
 			if #spaceWindows > 0 then
 				local processed, skipped = processAndMessUpWindows(spaceWindows)
-				totalNonVisibleProcessed = totalNonVisibleProcessed + processed
+				totalNonActiveProcessed = totalNonActiveProcessed + processed
 				logger.debug(
 					"Space",
 					spaceID,
@@ -584,14 +573,17 @@ function windowManager.messUpAllSpaces()
 				)
 			end
 
-			-- Continue to next space
-			currentSpaceIndex = currentSpaceIndex + 1
-			hs.timer.doAfter(0.2, messUpNextNonVisibleSpace)
-		end)
-	end
+			await(promise.sleep(0.2))
+		end))
 
-	-- Start messing up non-visible spaces
-	messUpNextNonVisibleSpace()
+		-- Restore original active spaces
+		logger.custom("🔄", "Restoring original active spaces...")
+		forEach(activeSpaceIds, function(spaceId)
+			hs.spaces.gotoSpace(spaceId)
+		end)
+
+		raycastNotification.showHUD("👻 Window Chaos Complete")
+	end)
 end
 
 return windowManager
