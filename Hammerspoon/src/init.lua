@@ -37,7 +37,7 @@ _G.handleCallTidyMainScreen = handleCallTidyMainScreen
 
 local function handleCallMessUpAllSpaces()
 	-- This function can be used to randomly position and size all windows (chaos mode!)
-	windowManager.messUpAllSpaces()
+	windowManager.messUpAllSpaces_async()
 	return "Messed up all spaces successfully"
 end
 _G.handleCallMessUpAllSpaces = handleCallMessUpAllSpaces

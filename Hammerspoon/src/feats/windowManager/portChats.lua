@@ -5,6 +5,7 @@
 -- and `find` as a standalone finder function.
 
 local js = require("utils.js")
+local filter, flatMap, forEach, map = js.filter, js.flatMap, js.forEach, js.map
 local find = require("utils.find")
 local log = require("utils.log")
 
@@ -26,7 +27,7 @@ function portChats.listDisplays()
 	local screens = hs.screen.allScreens()
 	logger.custom("📺", "Found", #screens, "display(s):")
 
-	js.forEach(screens, function(screen, i)
+	forEach(screens, function(screen, i)
 		local name = screen:name()
 		local id = screen:id()
 		local frame = screen:frame()
@@ -56,7 +57,7 @@ end
 
 -- Find all windows belonging to chat apps
 function portChats.findChatWindows()
-	local chatWindows = js.flatMap(portChats.appList, function(appName)
+	local chatWindows = flatMap(portChats.appList, function(appName)
 		local app = hs.application.get(appName)
 		if not app then
 			logger.error(appName, "not running")
@@ -64,11 +65,11 @@ function portChats.findChatWindows()
 		end
 
 		local windows = app:allWindows()
-		local validWindows = js.filter(windows, function(win)
+		local validWindows = filter(windows, function(win)
 			return win:isStandard() and win:isVisible()
 		end)
 
-		return js.map(validWindows, function(win)
+		return map(validWindows, function(win)
 			logger.custom(
 				"💬",
 				"Found:",
@@ -107,7 +108,7 @@ function portChats.moveChatsToSidecar()
 	local chatWindows = portChats.findChatWindows()
 	local movedCount = 0
 
-	js.forEach(chatWindows, function(chatWin)
+	forEach(chatWindows, function(chatWin)
 		local win = chatWin.window
 		local currentScreen = win:screen()
 
@@ -160,7 +161,7 @@ function portChats.moveChatsToDisplayByName(displayName)
 	if matchedScreen then
 		-- Find the index of the matched screen
 		local matchedIndex = nil
-		js.forEach(screens, function(screen, i)
+		forEach(screens, function(screen, i)
 			if screen:id() == matchedScreen:id() then
 				matchedIndex = i
 			end
@@ -187,7 +188,7 @@ function portChats.removeApp(appName)
 	end)
 
 	if found then
-		portChats.appList = js.filter(portChats.appList, function(name)
+		portChats.appList = filter(portChats.appList, function(name)
 			return name ~= appName
 		end)
 		logger.custom("➖", "Removed", appName, "from chat app list")

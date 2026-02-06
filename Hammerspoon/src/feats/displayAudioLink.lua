@@ -4,6 +4,8 @@
 local log = require("utils.log")
 local raycastNotification = require("utils.raycastNotification")
 local js = require("utils.js")
+local filter, find, forEach, includes, map =
+	js.filter, js.find, js.forEach, js.includes, js.map
 
 local displayAudioLink = {}
 
@@ -26,7 +28,7 @@ local previousDisplays = {}
 -- @return table Array of display names
 local function getConnectedDisplayNames()
 	local screens = hs.screen.allScreens()
-	return js.map(screens, function(screen)
+	return map(screens, function(screen)
 		return screen:name()
 	end)
 end
@@ -47,7 +49,7 @@ end
 -- @return hs.audiodevice|nil
 local function findAudioDevice(deviceName)
 	local devices = hs.audiodevice.allOutputDevices()
-	return js.find(devices, function(device)
+	return find(devices, function(device)
 		local name = device:name()
 		return name
 			and string.find(string.lower(name), string.lower(deviceName))
@@ -79,7 +81,7 @@ end
 -- @param displayName string The display name to check
 -- @return table|nil The matching mapping or nil
 local function findMappingForDisplay(displayName)
-	return js.find(DISPLAY_AUDIO_MAPPINGS, function(mapping)
+	return find(DISPLAY_AUDIO_MAPPINGS, function(mapping)
 		return displayMatches(displayName, mapping.displayName)
 	end)
 end
@@ -93,17 +95,17 @@ local function handleDisplayChange()
 	logger.debug("Current displays:", currentDisplays)
 
 	-- Find newly connected displays
-	local newDisplays = js.filter(currentDisplays, function(display)
-		return not js.includes(previousDisplays, display)
+	local newDisplays = filter(currentDisplays, function(display)
+		return not includes(previousDisplays, display)
 	end)
 
 	-- Find disconnected displays
-	local removedDisplays = js.filter(previousDisplays, function(display)
-		return not js.includes(currentDisplays, display)
+	local removedDisplays = filter(previousDisplays, function(display)
+		return not includes(currentDisplays, display)
 	end)
 
 	-- Handle newly connected displays
-	js.forEach(newDisplays, function(displayName)
+	forEach(newDisplays, function(displayName)
 		logger.info("Display connected:", displayName)
 
 		local mapping = findMappingForDisplay(displayName)
@@ -137,7 +139,7 @@ local function handleDisplayChange()
 		return
 	end
 
-	js.forEach(removedDisplays, function(displayName)
+	forEach(removedDisplays, function(displayName)
 		logger.info("Display disconnected:", displayName)
 
 		local mapping = findMappingForDisplay(displayName)
@@ -174,7 +176,7 @@ end
 function displayAudioLink.listDisplays()
 	local displays = getConnectedDisplayNames()
 	logger.info("Connected displays:")
-	js.forEach(displays, function(display, i)
+	forEach(displays, function(display, i)
 		logger.info("  " .. i .. ".", display)
 	end)
 	return displays
@@ -184,14 +186,14 @@ end
 function displayAudioLink.listAudioDevices()
 	local devices = hs.audiodevice.allOutputDevices()
 	logger.info("Available audio output devices:")
-	js.forEach(devices, function(device, i)
+	forEach(devices, function(device, i)
 		local name = device:name()
 		local isDefault = device:isOutputDevice()
 			and device == hs.audiodevice.defaultOutputDevice()
 		local marker = isDefault and " (current)" or ""
 		logger.info("  " .. i .. ".", name .. marker)
 	end)
-	return js.map(devices, function(d)
+	return map(devices, function(d)
 		return d:name()
 	end)
 end

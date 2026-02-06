@@ -1,4 +1,5 @@
 local js = require("utils.js")
+local forEach = js.forEach
 local log = require("utils.log")
 
 -- Utility functions for finding accessibility elements
@@ -147,9 +148,9 @@ function find.allElements(element, criteria)
 
 	-- Search in children
 	local children = element:attributeValue("AXChildren") or {}
-	js.forEach(children, function(child)
+	forEach(children, function(child)
 		local childResults = find.allElements(child, criteria)
-		js.forEach(childResults, function(result)
+		forEach(childResults, function(result)
 			table.insert(results, result)
 		end)
 	end)

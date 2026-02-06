@@ -65,6 +65,7 @@ function raycastNotification.showHUD(title, background)
 end
 
 -- Show success notification (title only)
+-- @deprecated Not recommended. Prefer showHUD() for most use cases.
 function raycastNotification.showSuccess(title, background)
 	if background == nil then
 		background = false
@@ -73,6 +74,7 @@ function raycastNotification.showSuccess(title, background)
 end
 
 -- Show failure notification (title only)
+-- @deprecated Not recommended. Prefer showHUD() for most use cases.
 function raycastNotification.showFailure(title, background)
 	if background == nil then
 		background = false
@@ -81,6 +83,7 @@ function raycastNotification.showFailure(title, background)
 end
 
 -- Show notification center notification (supports title and message)
+-- @deprecated Not recommended. Prefer showHUD() for most use cases.
 function raycastNotification.showNotificationCenter(title, message, background)
 	if background == nil then
 		background = true
@@ -89,6 +92,7 @@ function raycastNotification.showNotificationCenter(title, message, background)
 end
 
 -- Generic notification function with all options
+-- @deprecated Not recommended. Prefer showHUD() for most use cases.
 function raycastNotification.notify(options)
 	local title = options.title
 	local message = options.message

@@ -2,6 +2,7 @@ local find = require("utils.find")
 local promise = require("utils.promise")
 local raycastNotification = require("utils.raycastNotification")
 local js = require("utils.js")
+local forEach = js.forEach
 local log = require("utils.log")
 
 local async, await = promise.async, promise.await
@@ -102,7 +103,7 @@ function picEdge.setEdgeIcon_async()
 		local actions = edgeIcon:actionNames()
 		if actions then
 			logger.search("Available actions:")
-			js.forEach(actions, function(action)
+			forEach(actions, function(action)
 				logger.debug("  -", action)
 			end)
 		end
