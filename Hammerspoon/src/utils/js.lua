@@ -44,13 +44,27 @@ end
 
 -- Filter function similar to JS array.filter
 -- Returns a new array with elements that pass the test
+-- Note: Uses pairs to handle sparse arrays (ipairs stops at first nil)
 function js.filter(array, predicate)
 	local result = {}
-	for i, value in ipairs(array) do
+
+	-- Collect and sort numeric indices to handle sparse arrays while preserving order
+	local indices = {}
+	for i, _ in pairs(array) do
+		if type(i) == "number" then
+			table.insert(indices, i)
+		end
+	end
+	table.sort(indices)
+
+	-- Filter in sorted order
+	for _, i in ipairs(indices) do
+		local value = array[i]
 		if predicate(value, i, array) then
 			table.insert(result, value)
 		end
 	end
+
 	return result
 end
 
@@ -115,6 +129,24 @@ function js.forEachEntries(object, func)
 	for k, v in pairs(object) do
 		func(k, v)
 	end
+end
+
+-- Values function similar to JS Object.values()
+-- Returns an array of the object's values
+function js.values(object)
+	local result = {}
+	for _, v in pairs(object) do
+		table.insert(result, v)
+	end
+	return result
+end
+
+-- Diff function similar to radash diff()
+-- Returns elements in first array that are not in second array
+function js.diff(array, other)
+	return js.filter(array, function(value)
+		return not js.includes(other, value)
+	end)
 end
 
 -- Async version of forEach that works with await

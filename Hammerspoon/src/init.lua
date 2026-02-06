@@ -35,12 +35,12 @@ local function handleCallTidyMainScreen()
 end
 _G.handleCallTidyMainScreen = handleCallTidyMainScreen
 
-local function handleCallMessUpAllWindows()
+local function handleCallMessUpAllSpaces()
 	-- This function can be used to randomly position and size all windows (chaos mode!)
-	windowManager.messUpAllWindows()
-	return "Messed up all windows successfully"
+	windowManager.messUpAllSpaces()
+	return "Messed up all spaces successfully"
 end
-_G.handleCallMessUpAllWindows = handleCallMessUpAllWindows
+_G.handleCallMessUpAllSpaces = handleCallMessUpAllSpaces
 
 -- local space = require("space")
 -- function handleCallRemoveCurrentSpace()
