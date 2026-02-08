@@ -1,6 +1,7 @@
 .titlebar {
   background-color: unset !important;
-  background-image: radial-gradient(
+  background-image:
+    radial-gradient(
       240px 405.23% at 200px -144.12%,
       rgba(from var(--vscode-terminal-ansiBlue) r g b / 0.35) 0%,
       transparent 90%,

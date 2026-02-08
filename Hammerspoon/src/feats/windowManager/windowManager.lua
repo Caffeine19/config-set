@@ -92,9 +92,9 @@ local function inspectWinInfo(win)
 	logger.debug(
 		"Is Standard:",
 		win:isStandard(),
-		"Is Minimized:",
+		"| Is Minimized:",
 		win:isMinimized(),
-		"Is Visible:",
+		"| Is Visible:",
 		win:isVisible()
 	)
 end
