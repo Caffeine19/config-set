@@ -56,7 +56,7 @@ function endel.togglePlayOrPause()
 	local success = playOrPauseButton:performAction("AXPress")
 	if not success then
 		logger.error("Failed to toggle play/pause")
-		raycastNotifications.showHUD("❌ Failed to toggle Endel play/pause")
+		raycastNotifications.showHUD("⚠️ Failed to toggle Endel play/pause")
 		return
 	end
 

@@ -23,7 +23,7 @@ function picEdge.setEdgeIcon_async()
 
 		if not pictogramApp then
 			logger.error("Failed to launch Pictogram app")
-			raycastNotification.showHUD("❌ Failed to launch Pictogram")
+			raycastNotification.showHUD("⚠️ Failed to launch Pictogram")
 			return false
 		end
 
@@ -44,7 +44,7 @@ function picEdge.setEdgeIcon_async()
 		local axApp = hs.axuielement.applicationElement(pictogramApp)
 		if not axApp then
 			logger.error("Cannot access Pictogram UI elements")
-			raycastNotification.showHUD("❌ Cannot access Pictogram UI")
+			raycastNotification.showHUD("⚠️ Cannot access Pictogram UI")
 			return false
 		end
 
@@ -53,7 +53,7 @@ function picEdge.setEdgeIcon_async()
 
 		if not customIconButton then
 			logger.error("Custom Icon button not found")
-			raycastNotification.showHUD("❌ Custom Icon button not found")
+			raycastNotification.showHUD("⚠️ Custom Icon button not found")
 			return false
 		end
 
@@ -63,7 +63,7 @@ function picEdge.setEdgeIcon_async()
 
 		if not success then
 			logger.error("Failed to click Custom Icon button")
-			raycastNotification.showHUD("❌ Failed to click button")
+			raycastNotification.showHUD("⚠️ Failed to click button")
 			return false
 		end
 
@@ -92,7 +92,7 @@ function picEdge.setEdgeIcon_async()
 
 		if not edgeIcon then
 			logger.error("MicrosoftEdge.icns image not found")
-			raycastNotification.showHUD("❌ Edge icon not found")
+			raycastNotification.showHUD("⚠️ Edge icon not found")
 			return false
 		end
 
