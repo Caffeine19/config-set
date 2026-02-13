@@ -4,6 +4,7 @@
   "scripts": {
     "build": "tsx ./src/merge.ts",
     "build-insiders": "tsx ./src/merge.ts --insiders",
+    "build-all": "tsx ./src/merge.ts && tsx ./src/merge.ts --insiders",
     "link": "tsx ./src/merge.ts && sh ./link.sh",
     "link-insiders": "tsx ./src/merge.ts --insiders && sh ./link-insiders.sh"
   },

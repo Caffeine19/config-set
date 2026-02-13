@@ -82,12 +82,28 @@
     {
       // git graph
       "before": ["<leader>", "g", "g"],
-      "commands": ["git-graph.view"]
+      "commands": [
+        "git-graph.view",
+
+        "workbench.action.increaseViewWidth",
+        "workbench.action.increaseViewWidth",
+        "workbench.action.increaseViewWidth",
+        "workbench.action.increaseViewWidth",
+        "workbench.action.increaseViewWidth"
+      ]
     },
     {
       // diff with previous
       "before": ["<leader>", "g", ";"],
-      "commands": ["gitlens.diffWithPrevious"]
+      "commands": [
+        "gitlens.diffWithPrevious",
+
+        "workbench.action.increaseViewWidth",
+        "workbench.action.increaseViewWidth",
+        "workbench.action.increaseViewWidth",
+        "workbench.action.increaseViewWidth",
+        "workbench.action.increaseViewWidth"
+      ]
     },
     {
       // toggle diff editor
@@ -155,6 +171,28 @@
     {
       "before": ["<leader>", "c", "r"],
       "commands": ["editor.action.rename"]
+    },
+
+    // resize
+    {
+      "before": ["<C-w>", ">"],
+      "commands": [
+        "workbench.action.increaseViewWidth",
+        "workbench.action.increaseViewWidth",
+        "workbench.action.increaseViewWidth",
+        "workbench.action.increaseViewWidth",
+        "workbench.action.increaseViewWidth"
+      ]
+    },
+    {
+      "before": ["<C-w>", "<"],
+      "commands": [
+        "workbench.action.decreaseViewWidth",
+        "workbench.action.decreaseViewWidth",
+        "workbench.action.decreaseViewWidth",
+        "workbench.action.decreaseViewWidth",
+        "workbench.action.decreaseViewWidth"
+      ]
     }
   ],
   //使用affinity，提高性能

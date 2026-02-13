@@ -1,16 +1,17 @@
 {
   "$schema": "vscode://schemas/settings/user",
 
+  "chat.tips.enabled": false,
+  "chat.editor.wordWrap": "on",
   "chat.agent.maxRequests": 1000,
-  "chat.agent.thinkingStyle": "collapsedPreview",
+  "chat.todoListTool.enabled": true,
   "chat.agentsControl.enabled": false,
   "chat.checkpoints.showFileChanges": true,
-  "chat.commandCenter.enabled": false, // 隐藏标题栏上的copilot按钮
-  "chat.editing.confirmEditRequestRemoval": false,
-  "chat.editor.wordWrap": "on",
-  "chat.todoListTool.enabled": true,
-  "chat.tools.terminal.outputLocation": "terminal",
   "chat.viewSessions.orientation": "stacked",
+  "chat.agent.thinkingStyle": "collapsedPreview",
+  "chat.editing.confirmEditRequestRemoval": false,
+  "chat.tools.terminal.outputLocation": "terminal",
+  "chat.commandCenter.enabled": false, // 隐藏标题栏上的copilot按钮
 
   "chat.mcp.access": "all",
   "chat.mcp.autostart": "never",

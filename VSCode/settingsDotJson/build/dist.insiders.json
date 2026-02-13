@@ -163,6 +163,7 @@
   "editor.smoothScrolling": true,
   // 自动换行
   "editor.wordWrap": "on",
+  "editor.aiStats.enabled": false,
   // 为了在vue的template中对于component标签的特殊高亮,用于区分普通的html元素
   "editor.semanticTokenColorCustomizations": {
     "[GitHub Dark Default]": {
@@ -637,7 +638,9 @@
         {
           "scope": "markup.bold",
           "settings": {
-            "fontStyle": "bold"
+            "fontStyle": "bold",
+            // 额外配置颜色
+            "foreground": "#FF6B6B"
           }
         },
         {
@@ -1280,16 +1283,17 @@
   // diff editor
   "diffEditor.ignoreTrimWhitespace": true,
   "diffEditor.useInlineViewWhenSpaceIsLimited": false,
+  "chat.tips.enabled": false,
+  "chat.editor.wordWrap": "on",
   "chat.agent.maxRequests": 1000,
-  "chat.agent.thinkingStyle": "collapsedPreview",
+  "chat.todoListTool.enabled": true,
   "chat.agentsControl.enabled": false,
   "chat.checkpoints.showFileChanges": true,
-  "chat.commandCenter.enabled": false, // 隐藏标题栏上的copilot按钮
-  "chat.editing.confirmEditRequestRemoval": false,
-  "chat.editor.wordWrap": "on",
-  "chat.todoListTool.enabled": true,
-  "chat.tools.terminal.outputLocation": "terminal",
   "chat.viewSessions.orientation": "stacked",
+  "chat.agent.thinkingStyle": "collapsedPreview",
+  "chat.editing.confirmEditRequestRemoval": false,
+  "chat.tools.terminal.outputLocation": "terminal",
+  "chat.commandCenter.enabled": false, // 隐藏标题栏上的copilot按钮
   "chat.mcp.access": "all",
   "chat.mcp.autostart": "never",
   "chat.mcp.enabled": true,
@@ -1419,9 +1423,6 @@
   "svelte.enable-ts-plugin": true,
   "tabnine.experimentalAutoImports": true,
   "terminal.explorerKind": "external",
-  // 使用Warp作为外部终端
-  "terminal.external.osxExec": "Warp.app",
-  "terminal.integrated.env.osx": {},
   // 字体
   "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font Propo'",
   "terminal.integrated.lineHeight": 1.4,
@@ -1433,6 +1434,7 @@
   "terminal.integrated.cursorStyle": "line",
   "terminal.integrated.cursorStyleInactive": "underline",
   "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.initialHint": false,
   // "terminal.integrated.tabs.enabled": false
   "todo-tree.highlights.useColourScheme": true,
   "todo-tree.highlights.customHighlight": {
@@ -1558,12 +1560,26 @@
     {
       // git graph
       "before": ["<leader>", "g", "g"],
-      "commands": ["git-graph.view"]
+      "commands": [
+        "git-graph.view",
+        "workbench.action.increaseViewWidth",
+        "workbench.action.increaseViewWidth",
+        "workbench.action.increaseViewWidth",
+        "workbench.action.increaseViewWidth",
+        "workbench.action.increaseViewWidth"
+      ]
     },
     {
       // diff with previous
       "before": ["<leader>", "g", ";"],
-      "commands": ["gitlens.diffWithPrevious"]
+      "commands": [
+        "gitlens.diffWithPrevious",
+        "workbench.action.increaseViewWidth",
+        "workbench.action.increaseViewWidth",
+        "workbench.action.increaseViewWidth",
+        "workbench.action.increaseViewWidth",
+        "workbench.action.increaseViewWidth"
+      ]
     },
     {
       // toggle diff editor
@@ -1627,6 +1643,27 @@
     {
       "before": ["<leader>", "c", "r"],
       "commands": ["editor.action.rename"]
+    },
+    // resize
+    {
+      "before": ["<C-w>", ">"],
+      "commands": [
+        "workbench.action.increaseViewWidth",
+        "workbench.action.increaseViewWidth",
+        "workbench.action.increaseViewWidth",
+        "workbench.action.increaseViewWidth",
+        "workbench.action.increaseViewWidth"
+      ]
+    },
+    {
+      "before": ["<C-w>", "<"],
+      "commands": [
+        "workbench.action.decreaseViewWidth",
+        "workbench.action.decreaseViewWidth",
+        "workbench.action.decreaseViewWidth",
+        "workbench.action.decreaseViewWidth",
+        "workbench.action.decreaseViewWidth"
+      ]
     }
   ],
   //使用affinity，提高性能
@@ -1685,5 +1722,5 @@
   // "workbench.productIconTheme": "fluent-icons",
   "workbench.activityBar.location": "top",
   "workbench.colorTheme": "GitHub Dark Default"
-  // build at": "2026-02-05T02:12:36.653Z (insiders)"
+  // build at": "2026-02-13T02:20:22.258Z (insiders)"
 }

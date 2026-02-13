@@ -33,5 +33,7 @@
   // 滚动顺滑
   "editor.smoothScrolling": true,
   // 自动换行
-  "editor.wordWrap": "on"
+  "editor.wordWrap": "on",
+
+  "editor.aiStats.enabled": false
 }

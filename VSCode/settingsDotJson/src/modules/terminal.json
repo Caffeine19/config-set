@@ -3,10 +3,6 @@
 
   "terminal.explorerKind": "external",
 
-  // 使用Warp作为外部终端
-  "terminal.external.osxExec": "Warp.app",
-  "terminal.integrated.env.osx": {},
-
   // 字体
   "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font Propo'",
   "terminal.integrated.lineHeight": 1.4,
@@ -20,7 +16,9 @@
 
   "terminal.integrated.cursorStyle": "line",
   "terminal.integrated.cursorStyleInactive": "underline",
-  "terminal.integrated.cursorBlinking": true
+  "terminal.integrated.cursorBlinking": true,
+
+  "terminal.integrated.initialHint": false
 
   // "terminal.integrated.tabs.enabled": false
 }
