@@ -23,6 +23,7 @@ This directory manages all Hammerspoon (Lua) automation for the config-set envir
 - **Notifications**: Prefer Raycast notifications (`src/utils/raycastNotification.lua`) over native Hammerspoon notifications.
 - **JS-Style Utilities**: Use `src/utils/js.lua` for array/table operations (map, filter, forEach, etc.) and async/await patterns.
 - **Early Returns**: Prefer early returns over nested if-else structures.
+- **Async Naming**: All functions that return a Promise (use `async`/`await`) **must** be suffixed with `_async` in feature modules (e.g., `tidyMainScreen_async`, `setMode_async`). In `js.lua`, follow the JS camelCase convention instead: `forEachAsync`, `mapAsync`, `retryAsync`.
 
 ### Module Import Conventions
 

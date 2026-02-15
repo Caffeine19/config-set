@@ -247,7 +247,7 @@ end
 --- It can be sync or async (awaitable).
 --- @param callback fun(windowList: table): table -- returns { processed, skipped }
 --- @param opts { emoji: string, startHUD: string, completeHUD: string }
-local function mapWindowsFromAllSpaces(callback, opts)
+local function mapWindowsFromAllSpaces_async(callback, opts)
 	return withPausedHandler(function()
 		local emoji = opts.emoji
 
@@ -402,7 +402,7 @@ end
 
 -- Maximize all existing windows from all spaces
 function windowManager.tidyAllSpaces_async()
-	return mapWindowsFromAllSpaces(processAndMaximizeWindows_async, {
+	return mapWindowsFromAllSpaces_async(processAndMaximizeWindows_async, {
 		emoji = "🪩",
 		startHUD = "Starting to Tidy All Spaces",
 		completeHUD = "Tidy All Spaces Complete",
@@ -482,7 +482,7 @@ end
 
 -- Randomly position and size all windows across all spaces (chaos mode!)
 function windowManager.messUpAllSpaces_async()
-	return mapWindowsFromAllSpaces(processAndMessUpWindows_async, {
+	return mapWindowsFromAllSpaces_async(processAndMessUpWindows_async, {
 		emoji = "👻",
 		startHUD = "Starting Window Chaos Mode",
 		completeHUD = "Window Chaos Complete",
