@@ -28,7 +28,7 @@ end
 
 -- Check if a device name matches AirPods
 local function isAirPods(deviceName)
-	return deviceName and string.find(deviceName, AIR_PODS_ALIAS)
+	return deviceName == AIR_PODS_ALIAS
 end
 
 -- Handle audio device changes

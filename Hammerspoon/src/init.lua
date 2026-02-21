@@ -109,8 +109,8 @@ local function handleCallMoveChatsToDisplay(displayIndex)
 end
 _G.handleCallMoveChatsToDisplay = handleCallMoveChatsToDisplay
 
--- local airPods = require("feats.airPods")
--- airPods.init()
+local airPods = require("feats.airPods")
+airPods.init()
 
 local displayAudioLink = require("feats.displayAudioLink")
 
