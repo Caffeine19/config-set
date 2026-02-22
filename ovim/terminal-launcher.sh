@@ -34,7 +34,7 @@ log "Calculated: COLS=$COLS, ROWS=$ROWS"
 
 # Signal that we're handling the spawn
 log "Calling launcher-handled..."
-"$OVIM_CLI" launcher-handled --session "$OVIM_SESSION_ID"
+ovim launcher-handled --session "$OVIM_SESSION_ID"
 log "launcher-handled returned: $?"
 
 # Launch Alacritty with Buttonless decorations
@@ -45,7 +45,7 @@ log "Command: /Applications/Alacritty.app/Contents/MacOS/alacritty -o 'window.de
     -o 'window.decorations="Buttonless"' \
     -o "window.dimensions.columns=120" \
     -o "window.dimensions.lines=$ROWS" \
-    -e /opt/homebrew/bin/nvim --listen "$OVIM_SOCKET" "$OVIM_FILE" 2>> "$LOG_FILE"
+    -e /opt/homebrew/bin/nvim --listen "$OVIM_SOCKET" "$OVIM_FILE" 
 
 log "Alacritty exited with: $?"
 log "=== Terminal launcher finished ==="
