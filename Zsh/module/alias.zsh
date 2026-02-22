@@ -22,6 +22,9 @@ alias yw='git --no-pager log --oneline --no-merges --author="$(git config user.n
 # today work
 alias tw='git --no-pager log --oneline --no-merges  --author="$(git config user.name)" --since=midnight | tr "()" "  " | pbcopy && echo "Today commits copied to clipboard"'
 
+# git: initial commit with tada emoji
+alias init_repo='git commit -m ":tada: init project"'
+
 alias run_fn='fn=$(print -l ${(k)functions} | grep -v "^_" | fzf) && [ -n "$fn" ] && echo "Running >> $fn" && eval "$fn"'
 
 echo "[oh-my-zsh] module alias.zsh loaded"
