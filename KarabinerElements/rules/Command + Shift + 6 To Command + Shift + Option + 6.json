@@ -1,0 +1,21 @@
+{
+  "description": "Command + Shift + 6 To Command + Shift + Option + 6",
+  "manipulators": [
+    {
+      "from": {
+        "key_code": "6",
+        "modifiers": {
+          "mandatory": ["command", "shift"],
+          "optional": ["caps_lock"]
+        }
+      },
+      "to": [
+        {
+          "key_code": "6",
+          "modifiers": ["command", "shift", "option"]
+        }
+      ],
+      "type": "basic"
+    }
+  ]
+}
