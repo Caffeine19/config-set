@@ -3,7 +3,7 @@
 
 backup_app_icons() {
     local date_suffix=$(date +"%Y-%m-%d")
-    local dest_dir="${1:-$HOME/Desktop/AppIcons_${date_suffix}}"
+    local dest_dir="${1:-$HOME/Library/Mobile Documents/com~apple~CloudDocs/Icon/Backup/AppIcons_${date_suffix}}"
     local apps_dir="/Applications"
     local success_count=0
     local fail_count=0
