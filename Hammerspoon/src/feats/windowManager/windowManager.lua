@@ -124,10 +124,10 @@ local function handleWindowCreated(win)
 	hs.timer.doAfter(delay, function()
 		local shouldCenter = config.shouldCenterInsteadOfMax(appName)
 		if shouldCenter then
-			method.centerWindow(win, appName)
+			method.center(win, appName)
 		else
 			-- Attempt to maximize the window
-			method.maximizeWindow(win, appName)
+			method.maximize(win, appName)
 		end
 
 		local action = shouldCenter and "Centered" or "Tiled"
@@ -190,10 +190,10 @@ local function processAndMaximizeWindows_async(windowList)
 
 			-- Check if app should be centered instead of maximized
 			if config.shouldCenterInsteadOfMax(appName) then
-				method.centerWindow(win, appName)
+				method.center(win, appName)
 			else
-				-- Use existing maximizeWindow function (Loop/Raycast/MenuItem)
-				method.maximizeWindow(win, appName)
+				-- Use existing maximize function (Loop/Raycast/MenuItem)
+				method.maximize(win, appName)
 			end
 			processed = processed + 1
 		end))
