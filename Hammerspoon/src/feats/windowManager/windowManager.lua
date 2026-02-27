@@ -31,6 +31,12 @@ local function checkWindow(win, appName)
 		return true
 	end
 
+	-- Skip fullscreen windows
+	if win:isFullScreen() then
+		logger.custom("⏭︎", "Skip:", appName, "- fullscreen")
+		return true
+	end
+
 	-- Skip dialog windows
 	if win:subrole() == "AXDialog" then
 		logger.custom("⏭︎", "Skip:", appName, "- AXDialog subrole")
