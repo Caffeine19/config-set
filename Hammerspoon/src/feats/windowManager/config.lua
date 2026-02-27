@@ -15,6 +15,7 @@ local systemApps = {
 	"System Preferences",
 	"Control Center",
 	"UASharedPasteboardProgressUI",
+	"coreautha",
 }
 
 local launchers = {
