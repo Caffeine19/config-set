@@ -97,17 +97,23 @@ _G.handleCallSetEndelMode = handleCallSetEndelMode
 
 local portChats = require("feats.windowManager.portChats")
 
-local function handleCallListDisplays()
-	portChats.listDisplays()
-	return "Listed all displays"
+local function handleCallListScreens()
+	portChats.listScreens()
+	return "Listed all screens"
 end
-_G.handleCallListDisplays = handleCallListDisplays
+_G.handleCallListScreens = handleCallListScreens
 
-local function handleCallMoveChatsToDisplay(displayIndex)
-	portChats.moveChatsToDisplay(displayIndex)
-	return "Moved chat windows to display " .. displayIndex
+local function handleCallMoveChatsToSidecar()
+	portChats.moveChatsToSidecar()
+	return "Moved Chats to Sidecar successfully"
 end
-_G.handleCallMoveChatsToDisplay = handleCallMoveChatsToDisplay
+_G.handleCallMoveChatsToSidecar = handleCallMoveChatsToSidecar
+
+local function handleCallMoveChatsBack()
+	portChats.moveChatsBack()
+	return "Moved Chats back to main screen successfully"
+end
+_G.handleCallMoveChatsBack = handleCallMoveChatsBack
 
 local airPods = require("feats.airPods")
 airPods.init()
