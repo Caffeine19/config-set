@@ -6,6 +6,7 @@ set_proxy() {
     export http_proxy="http://127.0.0.1:${PROXY_HTTP_PORT}"
     export https_proxy="http://127.0.0.1:${PROXY_HTTP_PORT}"
     export all_proxy="socks5://127.0.0.1:${PROXY_SOCKS_PORT}"
+
 }
 
 unset_proxy() {
@@ -18,7 +19,7 @@ test_proxy() {
     echo "https_proxy = ${https_proxy:-<not set>}"
     echo "all_proxy   = ${all_proxy:-<not set>}"
     echo ""
-    curl -sS -o /dev/null -w "HTTP %{http_code} — %{time_total}s\n" https://www.google.com && echo "Proxy is working" || echo "Proxy is NOT working"
+    curl "www.google.com" && (echo "" && echo "" && echo "Proxy is working") || (echo "" && echo "" && echo "Proxy is NOT working")
 }
 
 # Auto-enable proxy on shell startup
