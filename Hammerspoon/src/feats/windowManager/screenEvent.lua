@@ -1,5 +1,5 @@
 local js = require("utils.js")
-local diff = js.diff
+local diff, map = js.diff, js.map
 
 local log = require("utils.log")
 
@@ -47,17 +47,18 @@ local screenWatcher
 function screenEvent.onScreenChanged(func)
 	logger.debug("Setting up screen change watcher...")
 	screenWatcher = hs.screen.watcher.new(function()
-		logger.debug("Screen change detected, determining type of change...")
+		-- logger.debug("Screen change detected, determining type of change...")
 		local type, diffScreens = handleScreenChange()
+		if type == "nothing" then
+			return
+		end
+
 		logger.debug(
 			"Screen change type:",
 			type,
 			"| Diff screens:",
 			diffScreens
 		)
-		if type == "nothing" then
-			return
-		end
 
 		func(type, diffScreens)
 	end)
