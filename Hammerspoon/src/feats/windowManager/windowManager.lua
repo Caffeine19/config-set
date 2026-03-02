@@ -122,12 +122,12 @@ local function handleWindowCreated(win)
 		return
 	end
 
-	-- some window isn't focused when created, so focus it first
-	win:focus()
-
 	local delay = getExtraDelay(win, appName)
 
 	hs.timer.doAfter(delay, function()
+		-- some window isn't focused when created, so focus it first
+		win:focus()
+
 		local shouldCenter = config.shouldCenterInsteadOfMax(appName)
 		if shouldCenter then
 			method.center(win, appName)
