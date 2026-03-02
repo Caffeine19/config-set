@@ -4,9 +4,6 @@
   - allow pic any app
     - pictogram('ege','edge.icns')
 
-- raycast notification
-  - debounce | throttle
-
 - port chats
   - for each async for windows
   - sleep delay for raycast notification

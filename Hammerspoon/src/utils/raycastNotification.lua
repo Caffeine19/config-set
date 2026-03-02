@@ -1,6 +1,7 @@
 -- Raycast Notification Module for Hammerspoon
 -- Provides convenient functions to send notifications via Raycast Notification extension
 local log = require("utils.log")
+local js = require("utils.js")
 
 local raycastNotification = {}
 
@@ -57,12 +58,16 @@ local function sendNotification(notificationType, background, title, message)
 end
 
 -- Show standard HUD notification (title only)
-function raycastNotification.showHUD(title, background)
-	if background == nil then
-		background = true
+-- Throttled: rapid consecutive calls within 500ms are suppressed.
+raycastNotification.showHUD = js.throttle(
+	{ interval = 500 },
+	function(title, background)
+		if background == nil then
+			background = true
+		end
+		sendNotification("standard", background, title, nil)
 	end
-	return sendNotification("standard", background, title, nil)
-end
+)
 
 -- Show success notification (title only)
 -- @deprecated Not recommended. Prefer showHUD() for most use cases.
@@ -108,7 +113,5 @@ function raycastNotification.notify(options)
 
 	return sendNotification(notificationType, background, title, message)
 end
-
--- Convenience functions for common use cases
 
 return raycastNotification

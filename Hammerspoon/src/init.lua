@@ -131,3 +131,11 @@ local function handleCallListAudioDevices()
 	return displayAudioLink.listAudioDevices()
 end
 _G.handleCallListAudioDevices = handleCallListAudioDevices
+
+local screenEvent = require("feats.windowManager.screenEvent")
+screenEvent.onScreenChanged(function(type, diffScreens)
+	if type == "connected" then
+		hs.printf("Screen(s) connected: %d", #diffScreens)
+	end
+	hs.printf("Screen change type: %s", type)
+end)

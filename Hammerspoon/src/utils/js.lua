@@ -184,12 +184,20 @@ function js.values(object)
 end
 
 --- Return elements in the first array that are not in the second.
---- Similar to radash `diff()`
+--- Similar to radash `diff()` / lodash `differenceBy()`
+--- If `keyFn` is provided, comparison is done by key instead of by value.
 ---@generic T
 ---@param array T[] The source array
 ---@param other T[] The array to exclude
+---@param keyFn? fun(value: T): any Optional function to extract the comparison key
 ---@return T[]
-function js.diff(array, other)
+function js.diff(array, other, keyFn)
+	if keyFn then
+		local otherKeys = js.map(other, keyFn)
+		return js.filter(array, function(value)
+			return not js.includes(otherKeys, keyFn(value))
+		end)
+	end
 	return js.filter(array, function(value)
 		return not js.includes(other, value)
 	end)
@@ -231,6 +239,99 @@ function js.mapAsync(array, func)
 		end
 		return result
 	end)
+end
+
+--- Create a debounced version of a function.
+--- Delays invoking `fn` until `options.delay` ms have elapsed since the last call.
+--- Similar to radash `debounce()`
+--- Returned function has methods: `cancel()`, `flush(...)`, `isPending()`
+---@param options {delay: number} Options table with `delay` in milliseconds
+---@param fn fun(...) The function to debounce
+---@return table Callable debounced function
+function js.debounce(options, fn)
+	local delaySec = options.delay / 1000
+	local timer = nil
+	local pendingArgs = nil
+
+	local debounced = {}
+
+	local function invoke()
+		local args = pendingArgs
+		pendingArgs = nil
+		timer = nil
+		if args then
+			fn(table.unpack(args))
+		end
+	end
+
+	setmetatable(debounced, {
+		__call = function(_, ...)
+			pendingArgs = { ... }
+			if timer then
+				timer:stop()
+			end
+			timer = hs.timer.doAfter(delaySec, invoke)
+		end,
+	})
+
+	--- Stop any pending invocation permanently
+	function debounced.cancel()
+		if timer then
+			timer:stop()
+			timer = nil
+		end
+		pendingArgs = nil
+	end
+
+	--- Immediately invoke the function, bypassing the delay
+	function debounced.flush(...)
+		if timer then
+			timer:stop()
+			timer = nil
+		end
+		pendingArgs = nil
+		fn(...)
+	end
+
+	--- Returns true if there is a pending invocation
+	function debounced.isPending()
+		return timer ~= nil
+	end
+
+	return debounced
+end
+
+--- Create a throttled version of a function.
+--- Invokes `fn` immediately, then ignores further calls within `options.interval` ms.
+--- Similar to radash `throttle()`
+--- Returned function has method: `isThrottled()`
+---@param options {interval: number} Options table with `interval` in milliseconds
+---@param fn fun(...) The function to throttle
+---@return table Callable throttled function
+function js.throttle(options, fn)
+	local intervalSec = options.interval / 1000
+	local timer = nil
+
+	local throttled = {}
+
+	setmetatable(throttled, {
+		__call = function(_, ...)
+			if timer then
+				return
+			end
+			fn(...)
+			timer = hs.timer.doAfter(intervalSec, function()
+				timer = nil
+			end)
+		end,
+	})
+
+	--- Returns true if currently throttled (calls will be ignored)
+	function throttled.isThrottled()
+		return timer ~= nil
+	end
+
+	return throttled
 end
 
 return js

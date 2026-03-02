@@ -89,10 +89,6 @@
       "name": "Top Cycle"
     },
     {
-      "direction": "FocusNextInStack",
-      "keybind": [24]
-    },
-    {
       "direction": "Maximize",
       "keybind": [49, 56, 58]
     },
@@ -114,5 +110,5 @@
     }
   ],
   "triggerKey": [55, 62],
-  "version": "🧪 1.4.0"
+  "version": "1.4.2"
 }
