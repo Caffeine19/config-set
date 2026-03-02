@@ -16,6 +16,7 @@ local systemApps = {
 	"Control Center",
 	"UASharedPasteboardProgressUI",
 	"coreautha",
+	"Problem Reporter",
 }
 
 local launchers = {
