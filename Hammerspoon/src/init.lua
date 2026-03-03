@@ -12,7 +12,7 @@ spoon.SpoonInstall:andUse("EmmyLua")
 -- The Raycast Hammerspoon extension need this to be enabled
 hs.allowAppleScript(true)
 
-local windowManager = require("feats.windowManager.windowManager")
+local windowManager = require("Feats.windowManager.windowManager")
 windowManager.init()
 
 local function handleCallTidyAllScreens()
@@ -49,7 +49,7 @@ _G.handleCallMessUpAllSpaces = handleCallMessUpAllSpaces
 -- end
 -- _G.handleCallRemoveCurrentSpace = handleCallRemoveCurrentSpace
 
-local toggleEdgeTabsPane = require("feats.toggleEdgeTabsPane")
+local toggleEdgeTabsPane = require("Feats.toggleEdgeTabsPane")
 
 local function handleCallCollapseEdgeTabs()
 	-- This function can be used to toggle Edge tabs
@@ -71,7 +71,7 @@ local function handleCallToggleEdgeTabs()
 end
 _G.handleCallToggleEdgeTabs = handleCallToggleEdgeTabs
 
-local picEdge = require("feats.picEdge")
+local picEdge = require("Feats.picEdge")
 
 local function handleCallSetEdgeIcon()
 	local result = picEdge.setEdgeIcon_async()
@@ -81,7 +81,7 @@ _G.handleCallSetEdgeIcon = handleCallSetEdgeIcon
 
 -- local macMouseFix = require("macMouseFix")
 
-local endel = require("feats.endel")
+local endel = require("Feats.endel")
 
 local function handleCallToggleEndelPlayPause()
 	endel.togglePlayOrPause()
@@ -95,7 +95,7 @@ local function handleCallSetEndelMode(mode)
 end
 _G.handleCallSetEndelMode = handleCallSetEndelMode
 
-local portChats = require("feats.windowManager.portChats")
+local portChats = require("Feats.windowManager.portChats")
 
 local function handleCallListScreens()
 	portChats.listScreens()
@@ -115,10 +115,10 @@ local function handleCallMoveChatsBack()
 end
 _G.handleCallMoveChatsBack = handleCallMoveChatsBack
 
-local airPods = require("feats.airPods")
+local airPods = require("Feats.airPods")
 airPods.init()
 
-local displayAudioLink = require("feats.displayAudioLink")
+local displayAudioLink = require("Feats.displayAudioLink")
 
 -- displayAudioLink.init()
 
@@ -132,5 +132,5 @@ local function handleCallListAudioDevices()
 end
 _G.handleCallListAudioDevices = handleCallListAudioDevices
 
-local screenEvent = require("feats.windowManager.screenEvent")
+local screenEvent = require("Feats.windowManager.screenEvent")
 screenEvent.onScreenChanged(function(_type, _diffScreens) end)

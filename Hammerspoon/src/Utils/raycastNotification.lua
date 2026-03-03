@@ -1,0 +1,117 @@
+-- Raycast Notification Module for Hammerspoon
+-- Provides convenient functions to send notifications via Raycast Notification extension
+local log = require("Utils.log")
+local js = require("Utils.js")
+
+local raycastNotification = {}
+
+-- Create a scoped logger for this module
+local logger = log.createLogger("RAYCAST-NOTIFICATION")
+
+-- Base function to send notification via Raycast
+local function sendNotification(notificationType, background, title, message)
+	if not title or title == "" then
+		logger.error("Title is required")
+		return false
+	end
+
+	-- Build simple JSON manually
+	local jsonParts = { '"title":"' .. title .. '"' }
+
+	-- Message only works with notification-center type
+	if
+		message
+		and message ~= ""
+		and notificationType == "notification-center"
+	then
+		table.insert(jsonParts, '"message":"' .. message .. '"')
+	end
+
+	if notificationType and notificationType ~= "" then
+		table.insert(jsonParts, '"type":"' .. notificationType .. '"')
+	end
+
+	local jsonArgs = "{" .. table.concat(jsonParts, ",") .. "}"
+	local encodedArgs = hs.http.encodeForQuery(jsonArgs)
+
+	-- Build Raycast URL
+	local baseUrl = "raycast://extensions/maxnyby/raycast-notification/index"
+	local params = "arguments=" .. encodedArgs
+
+	if background then
+		params = "launchType=background&" .. params
+	end
+
+	local raycastUrl = baseUrl .. "?" .. params
+	logger.link("URL:", raycastUrl)
+
+	-- Execute the command
+	local success = hs.execute('open -g "' .. raycastUrl .. '"')
+
+	if success then
+		logger.success("Sent:", title)
+		return true
+	else
+		logger.error("Failed to send:", title)
+		return false
+	end
+end
+
+-- Show standard HUD notification (title only)
+-- Throttled: rapid consecutive calls within 500ms are suppressed.
+raycastNotification.showHUD = js.throttle(
+	{ interval = 500 },
+	function(title, background)
+		if background == nil then
+			background = true
+		end
+		sendNotification("standard", background, title, nil)
+	end
+)
+
+-- Show success notification (title only)
+-- @deprecated Not recommended. Prefer showHUD() for most use cases.
+function raycastNotification.showSuccess(title, background)
+	if background == nil then
+		background = false
+	end
+	return sendNotification("success", background, title, nil)
+end
+
+-- Show failure notification (title only)
+-- @deprecated Not recommended. Prefer showHUD() for most use cases.
+function raycastNotification.showFailure(title, background)
+	if background == nil then
+		background = false
+	end
+	return sendNotification("failure", background, title, nil)
+end
+
+-- Show notification center notification (supports title and message)
+-- @deprecated Not recommended. Prefer showHUD() for most use cases.
+function raycastNotification.showNotificationCenter(title, message, background)
+	if background == nil then
+		background = true
+	end
+	return sendNotification("notification-center", background, title, message)
+end
+
+-- Generic notification function with all options
+-- @deprecated Not recommended. Prefer showHUD() for most use cases.
+function raycastNotification.notify(options)
+	local title = options.title
+	local message = options.message
+	local notificationType = options.type or "standard"
+	local background = options.background
+
+	if background == nil then
+		background = (
+			notificationType == "standard"
+			or notificationType == "notification-center"
+		)
+	end
+
+	return sendNotification(notificationType, background, title, message)
+end
+
+return raycastNotification

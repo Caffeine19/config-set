@@ -32,14 +32,14 @@ This directory manages all Hammerspoon (Lua) automation for the config-set envir
 
   ```lua
   -- ✅ Correct: destructure js.lua functions
-  local js = require("utils.js")
+  local js = require("Utils.js")
   local map, filter, diff, includes = js.map, js.filter, js.diff, js.includes
 
   local result = map(items, function(item) return item.name end)
   local changed = diff(oldList, newList)
 
   -- ❌ Wrong: do NOT use js.xxx
-  local js = require("utils.js")
+  local js = require("Utils.js")
   local result = js.map(items, function(item) return item.name end)
   ```
 
