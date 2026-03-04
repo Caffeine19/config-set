@@ -1,0 +1,11 @@
+{
+  "$schema": "vscode://schemas/settings/user",
+
+  "json.format.keepLines": true,
+
+  "json.schemaDownload.trustedDomains": {
+    "https://www.raycast.com": true,
+    "https://turborepo.dev": true,
+    "https://esm.sh": true
+  }
+}

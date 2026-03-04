@@ -61,7 +61,7 @@ const main = () => {
   console.log(
     `Merged ${jsonFiles.length} files into ${mergedFilePath}${
       isInsiders ? " (insiders)" : ""
-    }`
+    }`,
   );
 };
 

@@ -20,7 +20,6 @@
   "typescript.inlayHints.parameterNames.enabled": "all",
   //ts自动更新引用
   "typescript.updateImportsOnFileMove.enabled": "always",
-  "json.format.keepLines": true,
   //dev container
   "dev.containers.executeInWSL": true,
   // wsl使用插件的方式
@@ -1312,6 +1311,12 @@
   "github.copilot.nextEditSuggestions.fixes": true,
   "inlineChat.enableV2": true,
   "haskell.manageHLS": "GHCup",
+  "json.format.keepLines": true,
+  "json.schemaDownload.trustedDomains": {
+    "https://www.raycast.com": true,
+    "https://turborepo.dev": true,
+    "https://esm.sh": true
+  },
   "[css]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -1721,6 +1726,6 @@
   // maybe the default icon theme is better
   // "workbench.productIconTheme": "fluent-icons",
   "workbench.activityBar.location": "top",
-  "workbench.colorTheme": "GitHub Dark Default"
-  // build at": "2026-02-13T02:20:22.258Z (insiders)"
+  "workbench.colorTheme": "GitHub Dark Default",
+  "// build at": "2026-03-04T03:18:55.225Z (insiders)"
 }

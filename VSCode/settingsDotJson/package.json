@@ -2,15 +2,17 @@
   "name": "vscode-settings-dot-json",
   "version": "1.0.0",
   "scripts": {
-    "build": "tsx ./src/merge.ts",
-    "build-insiders": "tsx ./src/merge.ts --insiders",
-    "build-all": "tsx ./src/merge.ts && tsx ./src/merge.ts --insiders",
+    "build": "tsx ./src/merge.ts && prettier --write ./build/dist.json",
+    "build-insiders": "tsx ./src/merge.ts --insiders && prettier --write ./build/dist.insiders.json",
+    "build-all": "tsx ./src/merge.ts && tsx ./src/merge.ts --insiders && prettier --write ./build/dist.json ./build/dist.insiders.json",
     "link": "tsx ./src/merge.ts && sh ./link.sh",
-    "link-insiders": "tsx ./src/merge.ts --insiders && sh ./link-insiders.sh"
+    "link-insiders": "tsx ./src/merge.ts --insiders && sh ./link-insiders.sh",
+    "format": "prettier --write ."
   },
   "type": "module",
   "devDependencies": {
     "@types/node": "^22.15.17",
+    "prettier": "^3.8.1",
     "tsx": "^4.19.4"
   },
   "dependencies": {

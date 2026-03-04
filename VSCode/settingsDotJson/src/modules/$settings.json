@@ -27,8 +27,6 @@
   //ts自动更新引用
   "typescript.updateImportsOnFileMove.enabled": "always",
 
-  "json.format.keepLines": true,
-
   //dev container
   "dev.containers.executeInWSL": true,
 
