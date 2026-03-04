@@ -29,7 +29,6 @@ local games = {
 }
 
 local baseList = {
-	"Hammerspoon",
 	"Loop",
 	"Mouseposé",
 	"Shottr",
