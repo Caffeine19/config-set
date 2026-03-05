@@ -139,8 +139,6 @@ PATH=~/.console-ninja/.bin:$PATH
 # Created by `pipx` on 2025-06-13 02:24:55
 export PATH="$PATH:/Users/caffeinecat/.local/bin"
 
-source /Users/caffeinecat/.config/broot/launcher/bash/br
-
 # bun completions
 [ -s "/Users/caffeinecat/.bun/_bun" ] && source "/Users/caffeinecat/.bun/_bun"
 
