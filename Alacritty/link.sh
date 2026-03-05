@@ -1,3 +1,7 @@
-mkdir -p ~/.config/alacritty
-rm -f ~/.config/alacritty/alacritty.toml
-ln -s ~/Code/config-set/Alacritty/alacritty.toml ~/.config/alacritty/alacritty.toml
+FROM=~/Code/config-set/Alacritty/alacritty.toml
+TO=~/.config/alacritty/alacritty.toml
+
+mkdir -p "$(dirname "$TO")"
+rm -f "$TO"
+ln -s "$FROM" "$TO"
+echo "🔗 link $FROM -> $TO"

@@ -1,2 +1,6 @@
-mkdir -p $HOME/.warp/themes/
-cp ~/Code/config-set/Warp/themes/* $HOME/.warp/themes/
+FROM=~/Code/config-set/Warp/themes/*
+TO=~/.warp/themes/
+
+mkdir -p "$TO"
+cp $FROM "$TO"
+echo "📋 copy $FROM -> $TO"

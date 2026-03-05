@@ -1,2 +1,6 @@
-rm -rf ~/.warp/launch_configurations
-ln -s ~/Code/config-set/Warp/launch_configurations ~/.warp/launch_configurations
+FROM=~/Code/config-set/Warp/launch_configurations
+TO=~/.warp/launch_configurations
+
+rm -rf "$TO"
+ln -s "$FROM" "$TO"
+echo "🔗 link $FROM -> $TO"

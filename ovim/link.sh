@@ -1,9 +1,13 @@
-mkdir -p ~/Library/Application\ Support/ovim
-rm -f ~/Library/Application\ Support/ovim/terminal-launcher.sh
-ln -s ~/Code/config-set/ovim/terminal-launcher.sh ~/Library/Application\ Support/ovim/terminal-launcher.sh
+FROM=~/Code/config-set/ovim/terminal-launcher.sh
+TO=~/Library/Application\ Support/ovim/terminal-launcher.sh
+
+mkdir -p "$(dirname "$TO")"
+rm -f "$TO"
+ln -s "$FROM" "$TO"
+echo "🔗 link $FROM -> $TO"
 
 # Make sure the script is executable
-chmod +x "$SOURCE_FILE"
-echo "Made script executable: $SOURCE_FILE"
+chmod +x "$FROM"
+echo "Made script executable: $FROM"
 
 

@@ -43,6 +43,51 @@ cd <tool-directory> && ./link.sh
 - Handles existing links gracefully (checks before creating)
 - Links to standard config locations (`~/.config/`, `~/.hammerspoon/`, etc.)
 
+#### Standard `link.sh` Template
+
+Single file/directory link:
+
+```bash
+FROM=~/Code/config-set/<Tool>/<config-file>
+TO=~/<target-path>/<config-file>
+
+mkdir -p "$(dirname "$TO")"
+rm -f "$TO"
+ln -s "$FROM" "$TO"
+echo "🔗 link $FROM -> $TO"
+```
+
+Loop-based link (multiple files):
+
+```bash
+TO_DIR=~/<target-dir>
+
+for FROM in ~/Code/config-set/<Tool>/<pattern>; do
+    TO="$TO_DIR/$(basename "$FROM")"
+    rm -f "$TO"
+    ln -s "$FROM" "$TO"
+    echo "🔗 link $FROM -> $TO"
+done
+```
+
+#### Standard `cp.sh` Template
+
+```bash
+FROM=~/Code/config-set/<Tool>/<build-output>
+TO=~/<target-path>/<config-file>
+
+cp "$FROM" "$TO"
+echo "📋 copy $FROM -> $TO"
+```
+
+**Conventions**:
+
+- Always define `FROM` and `TO` variables at the top
+- Use `mkdir -p "$(dirname "$TO")"` to ensure target directory exists
+- Use `rm -f` for file links, `rm -rf` for directory links
+- Echo with 🔗 emoji for link operations, 📋 for copy operations
+- Format: `echo "🔗 link $FROM -> $TO"` / `echo "📋 copy $FROM -> $TO"`
+
 ### Warp Launch Configurations 🚀
 
 Project-specific workspace setups in `Warp/launch_configurations/`:

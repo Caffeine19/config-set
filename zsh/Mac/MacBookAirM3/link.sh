@@ -1,2 +1,6 @@
-rm -f ~/.zshrc
-ln -s ~/Code/config-set/zsh/Mac/MacBookAirM3/.zshrc ~/.zshrc
+FROM=~/Code/config-set/zsh/Mac/MacBookAirM3/.zshrc
+TO=~/.zshrc
+
+rm -f "$TO"
+ln -s "$FROM" "$TO"
+echo "🔗 link $FROM -> $TO"
