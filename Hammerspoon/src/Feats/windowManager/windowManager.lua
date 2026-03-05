@@ -10,6 +10,7 @@ local log = require("Utils.log")
 local method = require("Feats.windowManager.method")
 local promise = require("Utils.promise")
 local raycastNotification = require("Utils.raycastNotification")
+local focusWarpWindow = require("Feats.windowManager.focusWarp")
 
 local async, await = promise.async, promise.await
 
@@ -139,6 +140,8 @@ local function handleWindowCreated(win)
 		local action = shouldCenter and "Centered" or "Tiled"
 		local title = string.format("💫 Auto %s: %s", action, appName)
 		raycastNotification.showHUD(title)
+
+		focusWarpWindow(win, appName)
 	end)
 end
 

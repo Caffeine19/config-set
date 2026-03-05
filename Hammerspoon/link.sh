@@ -1,2 +1,6 @@
-rm -rf ~/.hammerspoon
-ln -s ~/Code/config-set/Hammerspoon/src ~/.hammerspoon
+FROM=~/Code/config-set/Hammerspoon/src
+TO=~/.hammerspoon
+
+rm -rf "$TO"
+ln -s "$FROM" "$TO"
+echo "🔗 link $FROM -> $TO"

@@ -1,7 +1,15 @@
 # link ideavimrc
-rm -f ~/.ideavimrc
-ln -s ~/Code/config-set/nvim/.ideavimrc ~/.ideavimrc
+FROM=~/Code/config-set/nvim/.ideavimrc
+TO=~/.ideavimrc
+
+rm -f "$TO"
+ln -s "$FROM" "$TO"
+echo "🔗 link $FROM -> $TO"
 
 # link neovim
-rm -rf ~/.config/nvim
-ln -s ~/Code/config-set/nvim ~/.config/nvim
+FROM=~/Code/config-set/nvim
+TO=~/.config/nvim
+
+rm -rf "$TO"
+ln -s "$FROM" "$TO"
+echo "🔗 link $FROM -> $TO"

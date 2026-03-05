@@ -1,2 +1,6 @@
-rm -f ~/Library/Application\ Support/Code/User/settings.json
-ln -s ~/Code/config-set/VSCode/settingsDotJson/build/dist.json ~/Library/Application\ Support/Code/User/settings.json
+FROM=~/Code/config-set/VSCode/settingsDotJson/build/dist.json
+TO=~/Library/Application\ Support/Code/User/settings.json
+
+rm -f "$TO"
+ln -s "$FROM" "$TO"
+echo "🔗 link $FROM -> $TO"
