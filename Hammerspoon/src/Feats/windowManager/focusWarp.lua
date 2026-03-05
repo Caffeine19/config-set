@@ -17,9 +17,9 @@ local function focusWarpWindow(win, appName)
 	hs.timer.doAfter(2, function()
 		local frame = win:frame()
 		local clickPoint =
-			{ x = frame.x + frame.w / 2, y = frame.y + frame.h / 2 }
+			{ x = frame.x + frame.w / 4, y = frame.y + frame.h / 2 }
 		hs.eventtap.leftClick(clickPoint)
-		logger.debug("Left clicked Warp window at center position")
+		logger.debug("Left clicked Warp window")
 	end)
 end
 
