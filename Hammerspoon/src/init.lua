@@ -132,5 +132,13 @@ local function handleCallListAudioDevices()
 end
 _G.handleCallListAudioDevices = handleCallListAudioDevices
 
+local kerio = require("Feats.kerio")
+
+local function handleCallConnectKerioVpn()
+	kerio.connect_async()
+	return "Kerio VPN connection initiated"
+end
+_G.handleCallConnectKerioVpn = handleCallConnectKerioVpn
+
 local screenEvent = require("Feats.windowManager.screenEvent")
 screenEvent.onScreenChanged(function(_type, _diffScreens) end)
