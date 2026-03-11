@@ -61,6 +61,21 @@ function find.element(element, criteria)
 		matches = false
 	end
 
+	-- Check domClassList if specified (partial match on any class)
+	if criteria.domClassList and matches then
+		local classList = element:attributeValue("AXDOMClassList") or {}
+		local classMatched = false
+		for _, cls in ipairs(classList) do
+			if string.find(cls, criteria.domClassList) then
+				classMatched = true
+				break
+			end
+		end
+		if not classMatched then
+			matches = false
+		end
+	end
+
 	if matches then
 		local foundText = title or description or "unknown"
 		logger.success("Found target element:", foundText)
@@ -140,6 +155,21 @@ function find.allElements(element, criteria)
 
 	if criteria.description and description ~= criteria.description then
 		matches = false
+	end
+
+	-- Check domClassList if specified (partial match on any class)
+	if criteria.domClassList and matches then
+		local classList = element:attributeValue("AXDOMClassList") or {}
+		local classMatched = false
+		for _, cls in ipairs(classList) do
+			if string.find(cls, criteria.domClassList) then
+				classMatched = true
+				break
+			end
+		end
+		if not classMatched then
+			matches = false
+		end
 	end
 
 	if matches then
