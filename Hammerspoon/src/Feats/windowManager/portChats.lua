@@ -76,6 +76,7 @@ portChats.appList = {
 	"WeChat",
 	"Spark",
 	"Claude",
+	"Endel",
 }
 
 -- Get all windows belonging to chat apps

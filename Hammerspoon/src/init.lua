@@ -142,3 +142,13 @@ _G.handleCallConnectKerioVpn = handleCallConnectKerioVpn
 
 local screenEvent = require("Feats.windowManager.screenEvent")
 screenEvent.onScreenChanged(function(_type, _diffScreens) end)
+
+local setup = require("Feats.setup")
+
+local function handleCallSetup()
+	setup.init_async()
+	return "Setup initiated successfully"
+end
+_G.handleCallSetup = handleCallSetup
+
+setup.init_async()

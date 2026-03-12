@@ -33,7 +33,6 @@ local baseList = {
 	"Mouseposé",
 	"Shottr",
 	"AutoSwitchInput Pro",
-	"Endel",
 }
 
 -- Apps with conditional blacklist rules (callback must return true to skip)

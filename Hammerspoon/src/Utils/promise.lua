@@ -12,6 +12,11 @@
 
 local promise = {}
 
+-- Store active timer references to prevent garbage collection.
+-- hs.timer.doAfter returns a userdata that must be retained;
+-- if collected, __gc stops the underlying CFRunLoopTimer and the callback never fires.
+local activeTimers = {}
+
 ---@class Promise
 ---@field _status "pending" | "fulfilled" | "rejected"
 ---@field _value any
@@ -100,13 +105,19 @@ function Promise:andThen(onFulfilled, onRejected)
 		end
 
 		if self._status == "fulfilled" then
-			hs.timer.doAfter(0, function()
+			local timer
+			timer = hs.timer.doAfter(0, function()
+				activeTimers[timer] = nil
 				handleFulfilled(self._value)
 			end)
+			activeTimers[timer] = true
 		elseif self._status == "rejected" then
-			hs.timer.doAfter(0, function()
+			local timer
+			timer = hs.timer.doAfter(0, function()
+				activeTimers[timer] = nil
 				handleRejected(self._value)
 			end)
+			activeTimers[timer] = true
 		else
 			table.insert(self._callbacks.onFulfilled, handleFulfilled)
 			table.insert(self._callbacks.onRejected, handleRejected)
@@ -296,9 +307,12 @@ end
 ---@return Promise
 function promise.sleep(seconds)
 	return Promise.new(function(resolve)
-		hs.timer.doAfter(seconds, function()
+		local timer
+		timer = hs.timer.doAfter(seconds, function()
+			activeTimers[timer] = nil
 			resolve(true)
 		end)
+		activeTimers[timer] = true
 	end)
 end
 

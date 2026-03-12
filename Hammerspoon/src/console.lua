@@ -2,7 +2,7 @@ local console = {}
 
 function console.init()
 	-- Default: 10000
-	hs.console.maxOutputHistory(100000000)
+	hs.console.maxOutputHistory(100000)
 	hs.console.darkMode(true)
 
 	hs.console.consoleCommandColor({

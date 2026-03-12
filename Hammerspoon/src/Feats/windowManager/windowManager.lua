@@ -174,6 +174,22 @@ function windowManager.init()
 	logger.start("Window management initialized")
 end
 
+--- Pause the window creation handler (e.g. during setup)
+function windowManager.pauseHandler()
+	if wf then
+		wf:pause()
+		logger.debug("Paused window creation handler")
+	end
+end
+
+--- Resume the window creation handler
+function windowManager.resumeHandler()
+	if wf then
+		wf:resume()
+		logger.debug("Resumed window creation handler")
+	end
+end
+
 -- Common function to process and maximize a list of windows
 local function processAndMaximizeWindows_async(windowList)
 	return async(function()
