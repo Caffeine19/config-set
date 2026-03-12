@@ -102,6 +102,9 @@ end)
 function endel.setMode_async(mode)
 	return async(function()
 		openEndel()
+		-- @copilot await sleep
+
+		await(promise.sleep(0.8))
 
 		local endelApp = getEndelApp()
 		if not endelApp then
