@@ -5,7 +5,7 @@ local promise = require("Utils.promise")
 local raycastNotifications = require("Utils.raycastNotification")
 local log = require("Utils.log")
 
-local async = promise.async
+local async, await = promise.async, promise.await
 
 -- Create a scoped logger for this module
 local logger = log.createLogger("ENDEL")
