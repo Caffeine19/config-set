@@ -98,8 +98,11 @@ function setup.init_async()
 		await(promise.sleep(0.4))
 
 		logger.success("Setup complete")
+
 		hs.execute("open -g raycast://extensions/raycast/raycast/confetti")
+		await(promise.sleep(0.2))
 		hs.execute("open -g raycast://extensions/raycast/raycast/confetti")
+		await(promise.sleep(0.2))
 		hs.execute("open -g raycast://extensions/raycast/raycast/confetti")
 	end)
 end

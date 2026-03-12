@@ -151,4 +151,10 @@ local function handleCallSetup()
 end
 _G.handleCallSetup = handleCallSetup
 
-setup.init_async()
+-- Only run setup on first boot after restart, not on config reload.
+-- /tmp/ is cleared on every macOS reboot, so the sentinel file won't exist after a restart.
+local sentinelFile = "/tmp/.hammerspoon_setup_done"
+if not hs.fs.attributes(sentinelFile) then
+	io.open(sentinelFile, "w"):close()
+	setup.init_async()
+end
