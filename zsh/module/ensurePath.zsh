@@ -4,9 +4,11 @@
 ensure_path() {
     local path_list=(
         "$HOME/Work"
+
         "$HOME/Code"
-        "$HOME/Code/Raycast/CustomExtensions"
+        "$HOME/Code/Raycast"
         "$HOME/Code/Raycast/ForkedExtensions"
+
         "$HOME/Movies/QuickRecorder"
         "$HOME/Pictures/Screenshots"
     )
