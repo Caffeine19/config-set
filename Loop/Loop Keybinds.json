@@ -9,8 +9,15 @@
       "keybind": [37, 38]
     },
     {
-      "direction": "Center",
-      "keybind": [36]
+      "anchor": 8,
+      "direction": "Custom",
+      "height": 80,
+      "keybind": [36],
+      "name": "Custom Center",
+      "positionMode": 0,
+      "sizeMode": 1,
+      "unit": 1,
+      "width": 80
     },
     {
       "cycle": [
@@ -110,5 +117,5 @@
     }
   ],
   "triggerKey": [55, 62],
-  "version": "1.4.2"
+  "version": "🧪 1.4.3"
 }
