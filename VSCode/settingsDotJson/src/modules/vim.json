@@ -63,7 +63,7 @@
       "commands": ["workbench.action.quickTextSearch"]
     },
 
-    // file explorer
+    // e - file explorer
     {
       "before": ["<leader>", "e", "f"],
       "commands": ["workbench.view.explorer"]
@@ -73,7 +73,7 @@
       "commands": ["outline.focus"]
     },
 
-    // git
+    // g - git
     {
       // changes view
       "before": ["<leader>", "g", "c"],
@@ -116,6 +116,17 @@
       "commands": ["diffEditor.switchSide"]
     },
     {
+      // open chat changes
+      "before": ["<leader>", "g", "o"],
+      "commands": [
+        "copyFilePath",
+        {
+          "command": "workbench.action.terminal.sendSequence",
+          "args": { "text": "code \"$(pbpaste | sed \"s|^~|$HOME|\")\"\n" }
+        }
+      ]
+    },
+    {
       // discard changes
       "before": ["<leader>", "g", "d"],
       "commands": ["git.clean"]
@@ -131,7 +142,25 @@
       "commands": ["workbench.action.editorLayoutThreeColumns"]
     },
 
-    // close editors
+    // w - move editor to group
+    {
+      "before": ["<leader>", "w", "h"],
+      "commands": ["workbench.action.moveEditorToLeftGroup"]
+    },
+    {
+      "before": ["<leader>", "w", "j"],
+      "commands": ["workbench.action.moveEditorToBelowGroup"]
+    },
+    {
+      "before": ["<leader>", "w", "k"],
+      "commands": ["workbench.action.moveEditorToAboveGroup"]
+    },
+    {
+      "before": ["<leader>", "w", "l"],
+      "commands": ["workbench.action.moveEditorToRightGroup"]
+    },
+
+    // x - close editors
     {
       "before": ["<leader>", "x"],
       "commands": ["workbench.action.closeActiveEditor"]
@@ -149,7 +178,7 @@
       "commands": ["workbench.action.closeOtherEditors"]
     },
 
-    // file utils
+    // f - file utils
     {
       "before": ["<leader>", "f", "a"],
       "commands": ["fileutils.newFileAtRoot"]
@@ -167,7 +196,7 @@
       "commands": ["fileutils.removeFile"]
     },
 
-    // codes
+    // c - codes
     {
       "before": ["<leader>", "c", "r"],
       "commands": ["editor.action.rename"]
@@ -175,23 +204,23 @@
 
     // resize
     {
-      "before": ["<C-w>", ">"],
-      "commands": [
-        "workbench.action.increaseViewWidth",
-        "workbench.action.increaseViewWidth",
-        "workbench.action.increaseViewWidth",
-        "workbench.action.increaseViewWidth",
-        "workbench.action.increaseViewWidth"
-      ]
-    },
-    {
-      "before": ["<C-w>", "<"],
+      "before": ["<C-w>", ","],
       "commands": [
         "workbench.action.decreaseViewWidth",
         "workbench.action.decreaseViewWidth",
         "workbench.action.decreaseViewWidth",
         "workbench.action.decreaseViewWidth",
         "workbench.action.decreaseViewWidth"
+      ]
+    },
+    {
+      "before": ["<C-w>", "."],
+      "commands": [
+        "workbench.action.increaseViewWidth",
+        "workbench.action.increaseViewWidth",
+        "workbench.action.increaseViewWidth",
+        "workbench.action.increaseViewWidth",
+        "workbench.action.increaseViewWidth"
       ]
     }
   ],
