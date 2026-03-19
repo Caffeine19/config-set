@@ -15,7 +15,8 @@ local airPods = {}
 
 -- Configuration
 local AIR_PODS_ALIAS = "CC-AirPods Pro"
-local AIR_PODS_DEFAULT_VOLUME = volume.grid(5)
+local DEFAULT_VOLUME_GRID = 5
+local AIR_PODS_DEFAULT_VOLUME = volume.grid(DEFAULT_VOLUME_GRID)
 local MUTED_VOLUME = 0
 
 -- Store the last default audio output device name
@@ -70,7 +71,7 @@ local function handleDeviceChanges_async()
 			currentDevice:setVolume(AIR_PODS_DEFAULT_VOLUME)
 			logger.success(
 				"AirPods connected, volume set to",
-				AIR_PODS_DEFAULT_VOLUME
+				DEFAULT_VOLUME_GRID .. " Grid"
 			)
 
 			await(promise.sleep(2))
@@ -101,7 +102,7 @@ function airPods.init()
 			device:setVolume(AIR_PODS_DEFAULT_VOLUME)
 			logger.success(
 				"AirPods already connected on init, volume set to",
-				AIR_PODS_DEFAULT_VOLUME
+				DEFAULT_VOLUME_GRID .. " Grid"
 			)
 		end
 	end

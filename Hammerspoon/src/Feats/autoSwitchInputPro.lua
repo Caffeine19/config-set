@@ -22,7 +22,9 @@ local function check()
 	end
 
 	logger.info(APP_NAME .. " is not running, launching...")
-	raycastNotification.showHUD("⌨️ " .. APP_NAME .. " is not running, launching...")
+	raycastNotification.showHUD(
+		"⌨️ " .. APP_NAME .. " is not running, launching..."
+	)
 	hs.application.open(APP_NAME)
 end
 
