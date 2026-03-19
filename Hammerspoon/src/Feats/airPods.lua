@@ -1,6 +1,7 @@
 local log = require("Utils.log")
 local raycastNotification = require("Utils.raycastNotification")
 local promise = require("Utils.promise")
+local volume = require("Utils.volume")
 
 local async, await = promise.async, promise.await
 
@@ -14,7 +15,7 @@ local airPods = {}
 
 -- Configuration
 local AIR_PODS_ALIAS = "CC-AirPods Pro"
-local AIR_PODS_DEFAULT_VOLUME = 25
+local AIR_PODS_DEFAULT_VOLUME = volume.grid(5)
 local MUTED_VOLUME = 0
 
 -- Store the last default audio output device name
@@ -92,6 +93,18 @@ end
 -- Initialize the audio device watcher
 function airPods.init()
 	initLastDevice()
+
+	-- If AirPods are already the output device on startup, set volume immediately
+	if isAirPods(lastOutputDeviceName) then
+		local device = hs.audiodevice.defaultOutputDevice()
+		if device then
+			device:setVolume(AIR_PODS_DEFAULT_VOLUME)
+			logger.success(
+				"AirPods already connected on init, volume set to",
+				AIR_PODS_DEFAULT_VOLUME
+			)
+		end
+	end
 
 	hs.audiodevice.watcher.setCallback(handleDeviceChanges_async)
 	hs.audiodevice.watcher.start()
