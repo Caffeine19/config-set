@@ -1565,26 +1565,12 @@
     {
       // git graph
       "before": ["<leader>", "g", "g"],
-      "commands": [
-        "git-graph.view",
-        "workbench.action.increaseViewWidth",
-        "workbench.action.increaseViewWidth",
-        "workbench.action.increaseViewWidth",
-        "workbench.action.increaseViewWidth",
-        "workbench.action.increaseViewWidth"
-      ]
+      "commands": ["git-graph.view"]
     },
     {
       // diff with previous
       "before": ["<leader>", "g", ";"],
-      "commands": [
-        "gitlens.diffWithPrevious",
-        "workbench.action.increaseViewWidth",
-        "workbench.action.increaseViewWidth",
-        "workbench.action.increaseViewWidth",
-        "workbench.action.increaseViewWidth",
-        "workbench.action.increaseViewWidth"
-      ]
+      "commands": ["gitlens.diffWithPrevious"]
     },
     {
       // toggle diff editor
@@ -1597,7 +1583,7 @@
       "commands": ["diffEditor.switchSide"]
     },
     {
-      // open actual file from chat changes (read-only view)
+      // open chat changes
       "before": ["<leader>", "g", "o"],
       "commands": [
         "copyFilePath",
@@ -1757,5 +1743,5 @@
   // "workbench.productIconTheme": "fluent-icons",
   "workbench.activityBar.location": "top",
   "workbench.colorTheme": "GitHub Dark Default",
-  "// build at": "2026-03-12T01:28:23.992Z (insiders)"
+  "// build at": "2026-03-15T06:31:10.118Z (insiders)"
 }

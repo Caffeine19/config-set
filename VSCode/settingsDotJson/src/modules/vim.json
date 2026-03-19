@@ -82,28 +82,12 @@
     {
       // git graph
       "before": ["<leader>", "g", "g"],
-      "commands": [
-        "git-graph.view",
-
-        "workbench.action.increaseViewWidth",
-        "workbench.action.increaseViewWidth",
-        "workbench.action.increaseViewWidth",
-        "workbench.action.increaseViewWidth",
-        "workbench.action.increaseViewWidth"
-      ]
+      "commands": ["git-graph.view"]
     },
     {
       // diff with previous
       "before": ["<leader>", "g", ";"],
-      "commands": [
-        "gitlens.diffWithPrevious",
-
-        "workbench.action.increaseViewWidth",
-        "workbench.action.increaseViewWidth",
-        "workbench.action.increaseViewWidth",
-        "workbench.action.increaseViewWidth",
-        "workbench.action.increaseViewWidth"
-      ]
+      "commands": ["gitlens.diffWithPrevious"]
     },
     {
       // toggle diff editor
