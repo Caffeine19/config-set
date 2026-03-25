@@ -30,6 +30,13 @@
 
       // "widget.shadow": "#00030f", // default
       "widget.shadow": "#00030F99" // softer
+    },
+    "[GitHub Dark Default]": {
+      // darker, to improve readability of code changes
+      "diffEditor.insertedLineBackground": "#23863626",
+      "diffEditor.insertedTextBackground": "#3fb9501d",
+      "diffEditor.removedLineBackground": "#da363326",
+      "diffEditor.removedTextBackground": "#ff7b721d"
     }
   },
 

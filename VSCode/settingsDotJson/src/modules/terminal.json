@@ -18,7 +18,7 @@
   "terminal.integrated.cursorStyleInactive": "underline",
   "terminal.integrated.cursorBlinking": true,
 
-  "terminal.integrated.initialHint": false
+  "terminal.integrated.initialHint": false,
 
-  // "terminal.integrated.tabs.enabled": false
+  "terminal.integrated.tabs.enabled": false
 }

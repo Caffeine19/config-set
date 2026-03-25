@@ -100,15 +100,9 @@
       "commands": ["diffEditor.switchSide"]
     },
     {
-      // open chat changes
+      // open file from diff editor
       "before": ["<leader>", "g", "o"],
-      "commands": [
-        "copyFilePath",
-        {
-          "command": "workbench.action.terminal.sendSequence",
-          "args": { "text": "code \"$(pbpaste | sed \"s|^~|$HOME|\")\"\n" }
-        }
-      ]
+      "commands": ["git.openFile"]
     },
     {
       // discard changes

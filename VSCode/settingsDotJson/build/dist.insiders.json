@@ -1291,11 +1291,20 @@
   "chat.viewSessions.orientation": "stacked",
   "chat.agent.thinkingStyle": "collapsedPreview",
   "chat.editing.confirmEditRequestRemoval": false,
-  "chat.tools.terminal.outputLocation": "terminal",
+  // "chat.tools.terminal.outputLocation": "terminal",
   "chat.commandCenter.enabled": false, // 隐藏标题栏上的copilot按钮
+  "chat.tools.urls.autoApprove": {
+    "https://github.com": {
+      "approveRequest": true,
+      "approveResponse": true
+    },
+    "https://raw.githubusercontent.com": {
+      "approveRequest": true,
+      "approveResponse": true
+    }
+  },
   "chat.mcp.access": "all",
   "chat.mcp.autostart": "never",
-  "chat.mcp.enabled": true,
   "chat.mcp.gallery.enabled": true,
   "github.copilot.chat.agent.autoFix": true,
   "github.copilot.chat.agent.thinkingTool": true,
@@ -1309,6 +1318,7 @@
   "github.copilot.chat.tools.memory.enabled": true,
   "github.copilot.nextEditSuggestions.enabled": true,
   "github.copilot.nextEditSuggestions.fixes": true,
+  "github.copilot.chat.agentDebugLog.enabled": true,
   "inlineChat.enableV2": true,
   "haskell.manageHLS": "GHCup",
   "json.format.keepLines": true,
@@ -1440,7 +1450,7 @@
   "terminal.integrated.cursorStyleInactive": "underline",
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.initialHint": false,
-  // "terminal.integrated.tabs.enabled": false
+  "terminal.integrated.tabs.enabled": false,
   "todo-tree.highlights.useColourScheme": true,
   "todo-tree.highlights.customHighlight": {
     // github dark default
@@ -1583,17 +1593,9 @@
       "commands": ["diffEditor.switchSide"]
     },
     {
-      // open chat changes
+      // open file from diff editor
       "before": ["<leader>", "g", "o"],
-      "commands": [
-        "copyFilePath",
-        {
-          "command": "workbench.action.terminal.sendSequence",
-          "args": {
-            "text": "code \"$(pbpaste | sed \"s|^~|$HOME|\")\"\n"
-          }
-        }
-      ]
+      "commands": ["git.openFile"]
     },
     {
       // discard changes
@@ -1730,6 +1732,13 @@
       "scrollbar.shadow": "#00030F66", // softer
       // "widget.shadow": "#00030f", // default
       "widget.shadow": "#00030F99" // softer
+    },
+    "[GitHub Dark Default]": {
+      // darker, to improve readability of code changes
+      "diffEditor.insertedLineBackground": "#23863626",
+      "diffEditor.insertedTextBackground": "#3fb9501d",
+      "diffEditor.removedLineBackground": "#da363326",
+      "diffEditor.removedTextBackground": "#ff7b721d"
     }
   },
   "workbench.editor.labelFormat": "medium",
@@ -1743,5 +1752,5 @@
   // "workbench.productIconTheme": "fluent-icons",
   "workbench.activityBar.location": "top",
   "workbench.colorTheme": "GitHub Dark Default",
-  "// build at": "2026-03-15T06:31:10.118Z (insiders)"
+  "// build at": "2026-03-25T09:44:00.125Z (insiders)"
 }
