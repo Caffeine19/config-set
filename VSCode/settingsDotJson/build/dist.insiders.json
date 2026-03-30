@@ -20,6 +20,7 @@
   "security.workspace.trust.untrustedFiles": "open",
   // hide update status bar item
   "update.statusBar": "hidden",
+  "copyPathWithLineNumber.show.message": false,
   "animations.Install-Method": "Custom CSS and JS",
   "animations.UseCursorColorForCursorAnimation": true,
   "animations.Active": "None",
@@ -1597,7 +1598,10 @@
     {
       // open file from diff editor
       "before": ["<leader>", "g", "o"],
-      "commands": ["git.openFile"]
+      "commands": [
+        "qishan233.copy.absolute.path.line",
+        ":!code --reuse-window -g \"$(pbpaste)\""
+      ]
     },
     {
       // discard changes
@@ -1763,5 +1767,5 @@
   // "workbench.productIconTheme": "fluent-icons",
   "workbench.activityBar.location": "top",
   "workbench.colorTheme": "GitHub Dark Default",
-  "// build at": "2026-03-30T06:44:57.859Z (insiders)"
+  "// build at": "2026-03-30T08:16:28.574Z (insiders)"
 }

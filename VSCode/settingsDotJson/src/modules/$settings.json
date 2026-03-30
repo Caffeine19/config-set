@@ -27,5 +27,7 @@
   "security.workspace.trust.untrustedFiles": "open",
 
   // hide update status bar item
-  "update.statusBar": "hidden"
+  "update.statusBar": "hidden",
+
+  "copyPathWithLineNumber.show.message": false
 }
