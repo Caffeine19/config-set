@@ -109,6 +109,16 @@
       "before": ["<leader>", "g", "d"],
       "commands": ["git.clean"]
     },
+    // revert block
+    {
+      "before": ["<leader>", "g", "r"],
+      "commands": ["diffEditor.revert"]
+    },
+    // revert block
+    {
+      "before": ["<leader>", "g", "a"],
+      "commands": ["git.stageChange"]
+    },
 
     // layout
     {

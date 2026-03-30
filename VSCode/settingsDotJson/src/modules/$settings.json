@@ -7,25 +7,11 @@
   "explorer.confirmPasteNative": false,
   "explorer.compactFolders": false,
 
-  // 文件关联方式
-  "files.associations": {
-    // UniApp
-    "pages.json": "jsonc",
-    "manifest.json": "jsonc",
+  // js/ts 显示参数名
+  "js/ts.inlayHints.parameterNames.enabled": "all",
 
-    // env
-    ".env.*": "env"
-  },
-
-  // js显示参数名
-  "javascript.inlayHints.parameterNames.enabled": "all",
-  // js自动更新应用
-  "javascript.updateImportsOnFileMove.enabled": "always",
-
-  // ts显示参数名
-  "typescript.inlayHints.parameterNames.enabled": "all",
-  //ts自动更新引用
-  "typescript.updateImportsOnFileMove.enabled": "always",
+  // js/ts 自动更新引用
+  "js/ts.updateImportsOnFileMove.enabled": "always",
 
   //dev container
   "dev.containers.executeInWSL": true,
@@ -38,8 +24,8 @@
 
   // security
   "security.promptForLocalFileProtocolHandling": false,
-  "security.workspace.trust.untrustedFiles": "open"
+  "security.workspace.trust.untrustedFiles": "open",
 
-  // fix auth failed
-  // "microsoft-authentication.implementation": "classic"
+  // hide update status bar item
+  "update.statusBar": "hidden"
 }

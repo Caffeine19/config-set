@@ -16,8 +16,13 @@
   "gitlens.views.searchAndCompare.files.layout": "tree",
 
   "gitlens.graph.layout": "editor",
+  "gitlens.graph.dimMergeCommits": true,
+  "gitlens.graph.statusBar.enabled": false,
   "gitlens.ai.model": "vscode",
   "gitlens.ai.vscode.model": "copilot:claude-sonnet-4.5",
+
+  "gitlens.statusBar.enabled": false,
+  "gitlens.launchpad.indicator.enabled": false,
 
   // diff editor
   "diffEditor.ignoreTrimWhitespace": true,

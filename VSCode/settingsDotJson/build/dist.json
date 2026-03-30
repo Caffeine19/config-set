@@ -4,22 +4,10 @@
   // 直接复制
   "explorer.confirmPasteNative": false,
   "explorer.compactFolders": false,
-  // 文件关联方式
-  "files.associations": {
-    // UniApp
-    "pages.json": "jsonc",
-    "manifest.json": "jsonc",
-    // env
-    ".env.*": "env"
-  },
-  // js显示参数名
-  "javascript.inlayHints.parameterNames.enabled": "all",
-  // js自动更新应用
-  "javascript.updateImportsOnFileMove.enabled": "always",
-  // ts显示参数名
-  "typescript.inlayHints.parameterNames.enabled": "all",
-  //ts自动更新引用
-  "typescript.updateImportsOnFileMove.enabled": "always",
+  // js/ts 显示参数名
+  "js/ts.inlayHints.parameterNames.enabled": "all",
+  // js/ts 自动更新引用
+  "js/ts.updateImportsOnFileMove.enabled": "always",
   //dev container
   "dev.containers.executeInWSL": true,
   // wsl使用插件的方式
@@ -30,8 +18,8 @@
   // security
   "security.promptForLocalFileProtocolHandling": false,
   "security.workspace.trust.untrustedFiles": "open",
-  // fix auth failed
-  // "microsoft-authentication.implementation": "classic"
+  // hide update status bar item
+  "update.statusBar": "hidden",
   "animations.Install-Method": "Custom CSS and JS",
   "animations.UseCursorColorForCursorAnimation": true,
   "animations.Active": "None",
@@ -1265,6 +1253,14 @@
     // "info",
   ],
   "fileutils.inputBox.pathType": "workspace",
+  // 文件关联方式
+  "files.associations": {
+    // UniApp
+    "pages.json": "jsonc",
+    "manifest.json": "jsonc",
+    // env
+    ".env.*": "env"
+  },
   "git.autofetch": true,
   "git.openRepositoryInParentFolders": "never",
   // 侧边栏/source control/changes 默认以tree的形式而不是list
@@ -1277,8 +1273,12 @@
   "gitlens.views.repositories.files.layout": "tree",
   "gitlens.views.searchAndCompare.files.layout": "tree",
   "gitlens.graph.layout": "editor",
+  "gitlens.graph.dimMergeCommits": true,
+  "gitlens.graph.statusBar.enabled": false,
   "gitlens.ai.model": "vscode",
   "gitlens.ai.vscode.model": "copilot:claude-sonnet-4.5",
+  "gitlens.statusBar.enabled": false,
+  "gitlens.launchpad.indicator.enabled": false,
   // diff editor
   "diffEditor.ignoreTrimWhitespace": true,
   "diffEditor.useInlineViewWhenSpaceIsLimited": false,
@@ -1286,10 +1286,11 @@
   "chat.editor.wordWrap": "on",
   "chat.agent.maxRequests": 1000,
   "chat.todoListTool.enabled": true,
-  "chat.agentsControl.enabled": false,
+  "chat.agentsControl.enabled": "hidden",
   "chat.checkpoints.showFileChanges": true,
   "chat.viewSessions.orientation": "stacked",
   "chat.agent.thinkingStyle": "collapsedPreview",
+  "chat.editing.confirmEditRequestRetry": false,
   "chat.editing.confirmEditRequestRemoval": false,
   // "chat.tools.terminal.outputLocation": "terminal",
   "chat.commandCenter.enabled": false, // 隐藏标题栏上的copilot按钮
@@ -1315,6 +1316,7 @@
   "github.copilot.chat.languageContext.fix.typescript.enabled": true,
   "github.copilot.chat.languageContext.inline.typescript.enabled": true,
   "github.copilot.chat.languageContext.typescript.enabled": true,
+  "github.copilot.chat.languageContext.typescript.includeDocumentation": true,
   "github.copilot.chat.tools.memory.enabled": true,
   "github.copilot.nextEditSuggestions.enabled": true,
   "github.copilot.nextEditSuggestions.fixes": true,
@@ -1602,6 +1604,16 @@
       "before": ["<leader>", "g", "d"],
       "commands": ["git.clean"]
     },
+    // revert block
+    {
+      "before": ["<leader>", "g", "r"],
+      "commands": ["diffEditor.revert"]
+    },
+    // revert block
+    {
+      "before": ["<leader>", "g", "a"],
+      "commands": ["git.stageChange"]
+    },
     // layout
     {
       "before": ["<leader>", "2"],
@@ -1704,8 +1716,8 @@
     "file://${userHome}/.config/vscode-custom-css-and-js/titlebar.css",
     "file://${userHome}/.vscode/extensions/brandonkirbyson.vscode-animations-2.0.7/dist/updateHandler.js"
   ],
+  "vscode_custom_css.statusbar": false,
   "window.menuBarVisibility": "compact",
-  "window.titleBarStyle": "custom",
   "window.newWindowProfile": "Default",
   "workbench.startupEditor": "none",
   "workbench.tree.indent": 16,
@@ -1752,5 +1764,5 @@
   // "workbench.productIconTheme": "fluent-icons",
   "workbench.activityBar.location": "top",
   "workbench.colorTheme": "GitHub Dark Default",
-  "// build at": "2026-03-25T09:43:59.914Z"
+  "// build at": "2026-03-30T06:44:57.687Z"
 }
