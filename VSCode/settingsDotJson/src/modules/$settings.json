@@ -26,8 +26,8 @@
   "security.promptForLocalFileProtocolHandling": false,
   "security.workspace.trust.untrustedFiles": "open",
 
-  // hide update status bar item
   "update.statusBar": "hidden",
+  "update.titleBar": "none",
 
   "copyPathWithLineNumber.show.message": false
 }
