@@ -31,7 +31,7 @@ end
 function autoSwitchInputPro.init()
 	logger.start("Starting watcher for " .. APP_NAME)
 	-- Run an immediate check on init
-	check()
+	-- check()
 	timer = hs.timer.doEvery(CHECK_INTERVAL, check)
 end
 
