@@ -4,3 +4,19 @@
   background-size: 14px !important;
   margin-left: 6px !important;
 }
+
+/* fix the icon position in chat list */
+.show-file-icons.chat-inline-anchor-widget .icon:before {
+  margin-bottom: unset !important;
+  margin-top: 0px !important;
+}
+
+.interactive-response-progress-tree,
+.interactive-session .chat-summary-list,
+.interactive-session .chat-used-context-list {
+  & .monaco-icon-label {
+    &:before {
+      padding-right: 6px !important;
+    }
+  }
+}
