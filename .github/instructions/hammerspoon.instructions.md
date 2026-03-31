@@ -1,8 +1,11 @@
 ---
+description: This file provides guidelines for the Hammerspoon (Lua) automation modules in the config-set environment.
 applyTo: "**/Hammerspoon/**"
 ---
 
 ## Hammerspoon Module: AI Coding Agent Guidelines
+
+When using this instructions, say "⌘ Using hammerspoon.instructions.md" explicitly, this is very very important.
 
 This directory manages all Hammerspoon (Lua) automation for the config-set environment. Follow these rules for code generation, review, and answering questions:
 

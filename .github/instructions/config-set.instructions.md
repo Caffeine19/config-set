@@ -1,8 +1,15 @@
-# 🛠️ Config-Set: Personal Development Environment Configuration
+---
+description: This file provides guidelines for the config-set repository structure, conventions, and workflows.
+applyTo: "**"
+---
+
+## Config-Set: Personal Development Environment Configuration
+
+When using this instructions, say "⌘ Using config-set.instructions.md" explicitly, this is very very important.
 
 This repository manages a comprehensive collection of configuration files for a macOS development environment. Each directory contains configurations for specific tools, with automated linking and build systems.
 
-## 🏗️ Architecture Overview
+## Architecture Overview
 
 **Configuration Management Pattern**: Each tool directory contains:
 
@@ -17,9 +24,9 @@ This repository manages a comprehensive collection of configuration files for a 
 - **Development Tools** : VS Code (modular settings), Neovim, Karabiner Elements
 - **Theming** : Extensive theme collections (Warp, VSCode token customizations)
 
-## ⚡ Critical Workflows
+## Critical Workflows
 
-### 📝 VSCode Settings Management
+### VSCode Settings Management
 
 The `VSCode/settingsDotJson/` directory uses a **modular JSON merge system**:
 
@@ -31,7 +38,7 @@ cd VSCode/settingsDotJson && pnpm run build-all
 - `build-all` builds both standard and Insiders versions
 - Build creates `build/dist.json` and `build/dist.insiders.json` with automatic formatting
 
-### 🔗 Configuration Linking
+### Configuration Linking
 
 Each tool has its own `link.sh` script that creates symlinks:
 
@@ -54,7 +61,7 @@ TO=~/<target-path>/<config-file>
 mkdir -p "$(dirname "$TO")"
 rm -f "$TO"
 ln -s "$FROM" "$TO"
-echo "🔗 link $FROM -> $TO"
+echo "link $FROM -> $TO"
 ```
 
 Loop-based link (multiple files):
@@ -66,7 +73,7 @@ for FROM in ~/Code/config-set/<Tool>/<pattern>; do
     TO="$TO_DIR/$(basename "$FROM")"
     rm -f "$TO"
     ln -s "$FROM" "$TO"
-    echo "🔗 link $FROM -> $TO"
+    echo "link $FROM -> $TO"
 done
 ```
 
@@ -77,7 +84,7 @@ FROM=~/Code/config-set/<Tool>/<build-output>
 TO=~/<target-path>/<config-file>
 
 cp "$FROM" "$TO"
-echo "📋 copy $FROM -> $TO"
+echo "copy $FROM -> $TO"
 ```
 
 **Conventions**:
@@ -85,10 +92,10 @@ echo "📋 copy $FROM -> $TO"
 - Always define `FROM` and `TO` variables at the top
 - Use `mkdir -p "$(dirname "$TO")"` to ensure target directory exists
 - Use `rm -f` for file links, `rm -rf` for directory links
-- Echo with 🔗 emoji for link operations, 📋 for copy operations
-- Format: `echo "🔗 link $FROM -> $TO"` / `echo "📋 copy $FROM -> $TO"`
+- Echo with emoji for link/copy operations
+- Format: `echo "link $FROM -> $TO"` / `echo "copy $FROM -> $TO"`
 
-### 🚀 Warp Launch Configurations
+### Warp Launch Configurations
 
 Project-specific workspace setups in `Warp/launch_configurations/`:
 
@@ -96,16 +103,16 @@ Project-specific workspace setups in `Warp/launch_configurations/`:
 - Used for quickly launching development environments for different projects
 - Contains real project paths (binjiang, yq-common, pbis, etc.)
 
-## Project-Specific Conventions 🔧
+## Project-Specific Conventions
 
-### 💻 Multi-Machine Support
+### Multi-Machine Support
 
 Zsh configurations have machine-specific variants:
 
 - `Zsh/Mac/MacBookProM2Max/` vs `Zsh/Mac/MacBookAirM3/`
 - Different plugin sets and performance optimizations per machine
 
-### ⌨️ Karabiner Complex Modifications
+### Karabiner Complex Modifications
 
 JSON files in `KarabinerElements/` define advanced key mappings:
 
@@ -113,7 +120,7 @@ JSON files in `KarabinerElements/` define advanced key mappings:
 - **Caps Lock transformations**: Context-aware modifier key behavior
 - Uses Karabiner's variable system for stateful key handling
 
-## 📝 Development Notes
+## Development Notes
 
 - **TypeScript builds** use `tsx` for direct TS execution without compilation
 - **Symlink management** is idempotent - safe to re-run link scripts
