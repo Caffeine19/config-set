@@ -42,11 +42,9 @@ function kerio.connect_async()
 		hs.eventtap.keyStroke({}, "return")
 
 		-- Step 5: Reopen SecoClient if it was running
-		if secoWasRunning then
-			await(promise.sleep(3))
-			logger.launch("Reopening SecoClient...")
-			hs.application.open("SecoClient")
-		end
+		await(promise.sleep(3))
+		logger.launch("Reopening SecoClient...")
+		hs.application.open("SecoClient")
 
 		logger.celebrate("Kerio VPN connection initiated!")
 		raycastNotification.showHUD("🔐 Set Kerio VPN Connection")
