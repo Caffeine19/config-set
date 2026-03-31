@@ -72,14 +72,14 @@ function setup.init_async()
 		-- Pause window manager auto-tidy during setup to prevent interference
 		windowManager.pauseHandler()
 
-		await(promise.sleep(2))
+		await(promise.sleep(4))
 
 		-- Press Enter on WeChat
-		pressEnterOnWeChat_async()
-		await(promise.sleep(1))
+		await(pressEnterOnWeChat_async())
+		await(promise.sleep(2))
 
 		-- Close all Warp windows
-		closeAllWarpWindows_async()
+		await(closeAllWarpWindows_async())
 		await(promise.sleep(1))
 
 		-- Move chats back to main screen
@@ -104,6 +104,11 @@ function setup.init_async()
 		hs.execute("open -g raycast://extensions/raycast/raycast/confetti")
 		await(promise.sleep(0.2))
 		hs.execute("open -g raycast://extensions/raycast/raycast/confetti")
+	end):catch(function(err)
+		logger.error("Setup failed:", tostring(err))
+		raycastNotification.showHUD("⚠️ Setup failed: " .. tostring(err))
+		-- Ensure handler is resumed even on error
+		windowManager.resumeHandler()
 	end)
 end
 

@@ -119,12 +119,29 @@ function portChats.moveChatsToScreenByName_async(screenName)
 		end
 
 		await(foreachAsync(chatWindows, function(window)
-			window:focus()
-			window:moveToScreen(matchedScreen, true, true, 0)
+			local appName = window:application() and window:application():name()
+				or "Unknown"
+
+			-- pcall to guard against invalid window states (e.g., "not a rect")
+			local ok, err = pcall(function()
+				window:focus()
+				window:moveToScreen(matchedScreen, true, true, 0)
+			end)
+
+			if not ok then
+				logger.error(
+					"Skip",
+					appName,
+					"- moveToScreen failed:",
+					tostring(err)
+				)
+				return
+			end
+
 			await(promise.sleep(0.2))
 			window:focus()
 
-			method.maximize(window, window:application():name())
+			method.maximize(window, appName)
 
 			await(promise.sleep(0.4))
 		end))
