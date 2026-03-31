@@ -1,7 +1,4 @@
 {
-  "files.associations": {
-    "config": "shellscript"
-  },
   "cSpell.words": [
     "audiodevice",
     "auxiliarybar",
@@ -46,6 +43,8 @@
     "ovim",
     "pathwatchers",
     "PICEDGE",
+    "qgyw",
+    "QGYW",
     "seco",
     "Seco",
     "setairportnetwork",
@@ -62,6 +61,27 @@
     "wasu",
     "Wasu",
     "zjgyrj"
+  ],
+
+  "files.associations": {
+    "config": "shellscript"
+  },
+
+  "json.schemas": [
+    {
+      "fileMatch": [
+        "VSCode/settingsDotJson/src/modules/*.json",
+        "VSCode/settingsDotJson/build/*.json"
+      ],
+      "url": "vscode://schemas/settings/user"
+    },
+    {
+      "fileMatch": [
+        "VSCode/keybindings/src/modules/*.json",
+        "VSCode/keybindings/build/*.json"
+      ],
+      "url": "vscode://schemas/keybindings"
+    }
   ],
 
   "Lua.diagnostics.globals": ["hs", "vim"],
