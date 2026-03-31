@@ -17,7 +17,6 @@ local timer = nil
 local function check()
 	local app = hs.application.find(APP_NAME)
 	if app then
-		logger.debug(APP_NAME .. " is running")
 		return
 	end
 

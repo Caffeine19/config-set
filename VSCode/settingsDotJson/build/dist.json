@@ -18,8 +18,8 @@
   // security
   "security.promptForLocalFileProtocolHandling": false,
   "security.workspace.trust.untrustedFiles": "open",
-  // hide update status bar item
   "update.statusBar": "hidden",
+  "update.titleBar": "none",
   "copyPathWithLineNumber.show.message": false,
   "animations.Install-Method": "Custom CSS and JS",
   "animations.UseCursorColorForCursorAnimation": true,
@@ -1768,5 +1768,5 @@
   // "workbench.productIconTheme": "fluent-icons",
   "workbench.activityBar.location": "top",
   "workbench.colorTheme": "GitHub Dark Default",
-  "// build at": "2026-03-30T08:16:28.383Z"
+  "// build at": "2026-03-30T15:18:55.773Z"
 }
