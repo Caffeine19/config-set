@@ -41,10 +41,17 @@ windows:
           split_direction: horizontal
           panes:
             - cwd: /Users/caffeinecat/work/qgyw/qgyw-web/apps/admin
-              is_focused: true
-            - cwd: /Users/caffeinecat/work/qgyw/qgyw-web/apps/admin
               commands:
-                - exec: git status
+                - exec: lg
+            - split_direction: vertical
+              panes:
+                - cwd: /Users/caffeinecat/work/qgyw/qgyw-web/apps/admin
+                  commands:
+                    - exec: pnpm dev
+                - cwd: /Users/caffeinecat/work/qgyw/qgyw-web/apps/admin
+                  is_focused: true
+                  commands:
+                    - exec: git status
       - title: qgyw-server
         layout:
           cwd: /Users/caffeinecat/work/qgyw/qgyw-server-oracle
