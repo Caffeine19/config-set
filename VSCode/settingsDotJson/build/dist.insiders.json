@@ -1,5 +1,4 @@
 {
-  "$schema": "vscode://schemas/settings/user",
   "search.defaultViewMode": "tree",
   // 直接复制
   "explorer.confirmPasteNative": false,
@@ -1305,6 +1304,11 @@
       "approveResponse": true
     }
   },
+  "chat.instructionsFilesLocations": {
+    "~/.claude/rules": false,
+    ".claude/rules": false
+  },
+  "chat.useClaudeMdFile": false,
   "chat.mcp.access": "all",
   "chat.mcp.autostart": "never",
   "chat.mcp.gallery.enabled": true,
@@ -1722,6 +1726,7 @@
   ],
   "window.menuBarVisibility": "compact",
   "window.newWindowProfile": "Default",
+  "window.zoomLevel": -0.2,
   "workbench.startupEditor": "none",
   "workbench.tree.indent": 16,
   // 样式自定义
@@ -1759,6 +1764,7 @@
   "workbench.editor.labelFormat": "medium",
   // 标签自动换行
   "workbench.editor.wrapTabs": true,
+  "workbench.editor.useModal": "off",
   "workbench.iconTheme": "catppuccin-mocha",
   "workbench.layoutControl.enabled": false,
   // 滚动顺滑
@@ -1767,5 +1773,5 @@
   // "workbench.productIconTheme": "fluent-icons",
   "workbench.activityBar.location": "top",
   "workbench.colorTheme": "GitHub Dark Default",
-  "// build at": "2026-03-30T15:18:55.943Z (insiders)"
+  "// build at": "2026-03-31T09:54:10.668Z (insiders)"
 }

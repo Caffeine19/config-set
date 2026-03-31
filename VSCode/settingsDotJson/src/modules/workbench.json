@@ -43,6 +43,8 @@
   // 标签自动换行
   "workbench.editor.wrapTabs": true,
 
+  "workbench.editor.useModal": "off",
+
   "workbench.iconTheme": "catppuccin-mocha",
 
   "workbench.layoutControl.enabled": false,

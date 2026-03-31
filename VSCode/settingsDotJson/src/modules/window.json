@@ -1,5 +1,7 @@
 {
   "window.menuBarVisibility": "compact",
 
-  "window.newWindowProfile": "Default"
+  "window.newWindowProfile": "Default",
+
+  "window.zoomLevel": -0.2
 }

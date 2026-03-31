@@ -23,6 +23,12 @@
     }
   },
 
+  "chat.instructionsFilesLocations": {
+    "~/.claude/rules": false,
+    ".claude/rules": false
+  },
+  "chat.useClaudeMdFile": false,
+
   "chat.mcp.access": "all",
   "chat.mcp.autostart": "never",
   "chat.mcp.gallery.enabled": true,
