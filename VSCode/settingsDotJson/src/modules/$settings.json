@@ -1,6 +1,4 @@
 {
-  "$schema": "vscode://schemas/settings/user",
-
   "search.defaultViewMode": "tree",
 
   // 直接复制

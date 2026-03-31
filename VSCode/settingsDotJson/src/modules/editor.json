@@ -1,6 +1,4 @@
 {
-  "$schema": "vscode://schemas/settings/user",
-
   // 建议补全通过替换而不是在后面插入
   // "editor.suggest.insertMode": "replace",
   // 关闭屏幕阅读

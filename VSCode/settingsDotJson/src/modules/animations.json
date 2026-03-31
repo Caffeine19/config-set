@@ -1,6 +1,4 @@
 {
-  "$schema": "vscode://schemas/settings/user",
-
   "animations.Install-Method": "Custom CSS and JS",
   "animations.UseCursorColorForCursorAnimation": true,
   "animations.Active": "None",

@@ -1,6 +1,4 @@
 {
-  "$schema": "vscode://schemas/settings/user",
-
   "chat.tips.enabled": false,
   "chat.editor.wordWrap": "on",
   "chat.agent.maxRequests": 1000,

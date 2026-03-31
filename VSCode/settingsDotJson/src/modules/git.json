@@ -1,6 +1,4 @@
 {
-  "$schema": "vscode://schemas/settings/user",
-
   "git.autofetch": true,
   "git.openRepositoryInParentFolders": "never",
 

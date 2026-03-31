@@ -1,6 +1,4 @@
 {
-  "$schema": "vscode://schemas/settings/user",
-
   "vscode_custom_css.imports": [
     "file://${userHome}/.config/vscode-custom-css-and-js/chatSummary.css",
     "file://${userHome}/.config/vscode-custom-css-and-js/custom.css",

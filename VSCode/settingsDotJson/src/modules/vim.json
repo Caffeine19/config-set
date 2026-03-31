@@ -1,6 +1,4 @@
 {
-  "$schema": "vscode://schemas/settings/user",
-
   "vim.foldfix": true,
   "vim.easymotion": true,
   "vim.leader": "<space>",

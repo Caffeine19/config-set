@@ -1,6 +1,4 @@
 {
-  "$schema": "vscode://schemas/settings/user",
-
   "json.format.keepLines": true,
 
   "json.schemaDownload.trustedDomains": {

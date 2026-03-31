@@ -1,6 +1,4 @@
 {
-  "$schema": "vscode://schemas/settings/user",
-
   // cspell用户词库
   "cSpell.userWords": [
     "agnoster",

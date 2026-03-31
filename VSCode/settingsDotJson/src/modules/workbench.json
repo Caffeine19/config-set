@@ -1,6 +1,4 @@
 {
-  "$schema": "vscode://schemas/settings/user",
-
   "workbench.startupEditor": "none",
 
   "workbench.tree.indent": 16,

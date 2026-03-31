@@ -1,6 +1,4 @@
 {
-  "$schema": "vscode://schemas/settings/user",
-
   "catppuccin.accentColor": "lavender",
   "catppuccin.bracketMode": "monochromatic",
   "catppuccin.colorOverrides": {
