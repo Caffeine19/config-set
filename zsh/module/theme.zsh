@@ -21,6 +21,7 @@ ZSH_THEME_BLACKLIST=(
     "fino"
     "steeef"
     "evan"
+    "simonoff"
 )
 
 delete_theme_file_from_blacklist() {
