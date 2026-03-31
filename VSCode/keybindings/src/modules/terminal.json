@@ -1,0 +1,25 @@
+[
+  // swap built-in terminal with warp
+  {
+    "key": "ctrl+shift+`",
+    "command": "-workbench.action.terminal.new",
+    "when": "terminalProcessSupported || terminalWebExtensionContributedProfile"
+  },
+  {
+    "key": "ctrl+shift+alt+`",
+    "command": "-workbench.action.terminal.newInNewWindow",
+    "when": "terminalHasBeenCreated || terminalProcessSupported"
+  },
+  {
+    "key": "ctrl+shift+`",
+    "command": "warp-terminal.openInNewWindow"
+  },
+  {
+    "key": "ctrl+shift+alt+`",
+    "command": "warp-terminal.openInNewTab"
+  },
+  {
+    "key": "ctrl ctrl",
+    "command": "whichkey.show"
+  }
+]

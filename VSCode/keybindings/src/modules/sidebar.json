@@ -1,0 +1,16 @@
+[
+  // navigate between sidebar views
+  {
+    "key": "shift+cmd+'",
+    "command": "workbench.action.nextSideBarView"
+  },
+  {
+    "key": "shift+cmd+;",
+    "command": "workbench.action.previousSideBarView"
+  },
+  {
+    "key": "shift+cmd+;",
+    "command": "-breadcrumbs.focus",
+    "when": "breadcrumbsPossible && breadcrumbsVisible"
+  }
+]

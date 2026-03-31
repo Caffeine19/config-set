@@ -1,0 +1,266 @@
+[
+  // turbo console log
+  {
+    "key": "shift+alt+l",
+    "command": "turboConsoleLog.displayLogMessage",
+  },
+
+  // toggle bold in markdown
+  {
+    "key": "cmd+b",
+    "command": "-markdown.extension.editing.toggleBold",
+    "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^markdown$|^rmd$|^quarto$/",
+  },
+  {
+    "key": "shift+alt+cmd+b",
+    "command": "markdown.extension.editing.toggleBold",
+    "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^markdown$|^rmd$|^quarto$/",
+  },
+
+  // enable custom css and js
+  {
+    "key": "alt+cmd+e",
+    "command": "extension.installCustomCSS",
+  },
+
+  // open user settings in json
+  {
+    "key": "alt+cmd+,",
+    "command": "workbench.action.openSettingsJson",
+  },
+
+  // reload window
+  {
+    "key": "cmd+r",
+    "command": "workbench.action.reloadWindow",
+  },
+  {
+    "key": "cmd+r",
+    "command": "-workbench.action.reloadWindow",
+    "when": "isDevelopment",
+  },
+
+  // zoom reset
+  {
+    "key": "cmd+0",
+    "command": "-workbench.action.focusSideBar",
+  },
+  {
+    "key": "cmd+0",
+    "command": "workbench.action.zoomReset",
+  },
+  {
+    "key": "cmd+numpad0",
+    "command": "-workbench.action.zoomReset",
+  },
+  // chat
+  {
+    "key": "shift+cmd+i",
+    "command": "workbench.panel.chat",
+    "when": "workbench.panel.chat.view.copilot.active",
+  },
+  {
+    "key": "ctrl+cmd+i",
+    "command": "-workbench.panel.chat",
+    "when": "workbench.panel.chat.view.copilot.active",
+  },
+  {
+    "key": "ctrl+cmd+i",
+    "command": "-workbench.action.chat.open",
+    "when": "!chatSetupDisabled && !chatSetupHidden",
+  },
+
+  // chat.attach
+  {
+    "key": "shift+cmd+a",
+    "command": "github.copilot.chat.attachSelection",
+  },
+  {
+    "key": "cmd+alt+a",
+    "command": "workbench.action.chat.attachFile",
+  },
+
+  // cancel chat
+  {
+    "key": "ctrl+c",
+    "command": "workbench.action.chat.cancel",
+    "when": "inChatInput && chatLocation == 'panel'",
+  },
+  {
+    "key": "cmd+escape",
+    "command": "-workbench.action.chat.cancel",
+  },
+
+  // open chat to side
+  {
+    "key": "alt+cmd+n",
+    "command": "workbench.action.openChatToSide",
+  },
+  // switch copy relative file path with open external terminal
+  {
+    "key": "shift+cmd+c",
+    "command": "copyRelativeFilePath",
+    "when": "!editorFocus",
+  },
+  {
+    "key": "shift+alt+cmd+c",
+    "command": "-copyRelativeFilePath",
+    "when": "!editorFocus",
+  },
+  {
+    "key": "shift+cmd+c",
+    "command": "copyRelativeFilePath",
+    "when": "editorFocus",
+  },
+  {
+    "key": "cmd+k shift+alt+cmd+c",
+    "command": "-copyRelativeFilePath",
+    "when": "editorFocus",
+  },
+  {
+    "key": "shift+cmd+c",
+    "command": "-workbench.action.terminal.openNativeConsole",
+    "when": "!terminalFocus",
+  },
+
+  // copy file path
+  {
+    "key": "shift+alt+cmd+c",
+    "command": "copyFilePath",
+    "when": "!editorFocus",
+  },
+  {
+    "key": "alt+cmd+c",
+    "command": "-copyFilePath",
+    "when": "!editorFocus",
+  },
+  {
+    "key": "shift+alt+cmd+c",
+    "command": "copyFilePath",
+    "when": "editorFocus",
+  },
+  {
+    "key": "cmd+k alt+cmd+c",
+    "command": "-copyFilePath",
+    "when": "editorFocus",
+  },
+  // explorer — vim-style file operations
+  {
+    "key": "a",
+    "command": "explorer.newFile",
+    "when": "filesExplorerFocus && !inputFocus",
+  },
+  {
+    "key": "shift+a",
+    "command": "explorer.newFolder",
+    "when": "filesExplorerFocus && !inputFocus",
+  },
+  {
+    "key": "d",
+    "command": "deleteFile",
+    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceReadonly && !inputFocus",
+  },
+  {
+    "key": "v",
+    "command": "explorer.openToSide",
+    "when": "explorerViewletFocus && explorerViewletVisible && !inputFocus",
+  },
+  {
+    "key": "y",
+    "command": "filesExplorer.copy",
+    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !inputFocus",
+  },
+  {
+    "key": "x",
+    "command": "filesExplorer.cut",
+    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !inputFocus",
+  },
+  {
+    "key": "p",
+    "command": "filesExplorer.paste",
+    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceReadonly && !inputFocus",
+  },
+  {
+    "key": "r",
+    "command": "renameFile",
+    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus",
+  },
+  // #region gitlens open file
+  {
+    "key": "alt+cmd+o",
+    "command": "gitlens.openWorkingFile",
+  },
+  {
+    "key": "alt+cmd+o",
+    "command": "-workbench.action.remote.showMenu",
+  },
+  {
+    "key": "alt+cmd+o",
+    "command": "-editor.action.toggleOvertypeInsertMode",
+  },
+  // #endregion
+
+  // #region diff editor switch side
+  {
+    "key": "alt+cmd+\\",
+    "command": "diffEditor.switchSide",
+    "when": "isInDiffEditor",
+  },
+  // #endregion
+  // open keyboard shortcut
+  {
+    "key": "shift+cmd+k",
+    "command": "-editor.action.deleteLines",
+    "when": "textInputFocus && !editorReadonly",
+  },
+  {
+    "key": "shift+cmd+k",
+    "command": "workbench.action.openGlobalKeybindings",
+  },
+  {
+    "key": "cmd+k cmd+s",
+    "command": "-workbench.action.openGlobalKeybindings",
+  },
+  {
+    "key": "shift+alt+cmd+k",
+    "command": "workbench.action.openGlobalKeybindingsFile",
+  },
+  // navigate between sidebar views
+  {
+    "key": "shift+cmd+'",
+    "command": "workbench.action.nextSideBarView",
+  },
+  {
+    "key": "shift+cmd+;",
+    "command": "workbench.action.previousSideBarView",
+  },
+  {
+    "key": "shift+cmd+;",
+    "command": "-breadcrumbs.focus",
+    "when": "breadcrumbsPossible && breadcrumbsVisible",
+  },
+
+  // swap built-in terminal with warp
+  {
+    "key": "ctrl+shift+`",
+    "command": "-workbench.action.terminal.new",
+    "when": "terminalProcessSupported || terminalWebExtensionContributedProfile",
+  },
+  {
+    "key": "ctrl+shift+alt+`",
+    "command": "-workbench.action.terminal.newInNewWindow",
+    "when": "terminalHasBeenCreated || terminalProcessSupported",
+  },
+  {
+    "key": "ctrl+shift+`",
+    "command": "warp-terminal.openInNewWindow",
+  },
+  {
+    "key": "ctrl+shift+alt+`",
+    "command": "warp-terminal.openInNewTab",
+  },
+  {
+    "key": "ctrl ctrl",
+    "command": "whichkey.show",
+  },
+]

@@ -1,0 +1,56 @@
+[
+  // turbo console log
+  {
+    "key": "shift+alt+l",
+    "command": "turboConsoleLog.displayLogMessage"
+  },
+
+  // toggle bold in markdown
+  {
+    "key": "cmd+b",
+    "command": "-markdown.extension.editing.toggleBold",
+    "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^markdown$|^rmd$|^quarto$/"
+  },
+  {
+    "key": "shift+alt+cmd+b",
+    "command": "markdown.extension.editing.toggleBold",
+    "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^markdown$|^rmd$|^quarto$/"
+  },
+
+  // enable custom css and js
+  {
+    "key": "alt+cmd+e",
+    "command": "extension.installCustomCSS"
+  },
+
+  // open user settings in json
+  {
+    "key": "alt+cmd+,",
+    "command": "workbench.action.openSettingsJson"
+  },
+
+  // reload window
+  {
+    "key": "cmd+r",
+    "command": "workbench.action.reloadWindow"
+  },
+  {
+    "key": "cmd+r",
+    "command": "-workbench.action.reloadWindow",
+    "when": "isDevelopment"
+  },
+
+  // zoom reset
+  {
+    "key": "cmd+0",
+    "command": "-workbench.action.focusSideBar"
+  },
+  {
+    "key": "cmd+0",
+    "command": "workbench.action.zoomReset"
+  },
+  {
+    "key": "cmd+numpad0",
+    "command": "-workbench.action.zoomReset"
+  }
+]

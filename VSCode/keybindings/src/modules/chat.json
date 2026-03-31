@@ -1,0 +1,45 @@
+[
+  // chat
+  {
+    "key": "shift+cmd+i",
+    "command": "workbench.panel.chat",
+    "when": "workbench.panel.chat.view.copilot.active"
+  },
+  {
+    "key": "ctrl+cmd+i",
+    "command": "-workbench.panel.chat",
+    "when": "workbench.panel.chat.view.copilot.active"
+  },
+  {
+    "key": "ctrl+cmd+i",
+    "command": "-workbench.action.chat.open",
+    "when": "!chatSetupDisabled && !chatSetupHidden"
+  },
+
+  // chat.attach
+  {
+    "key": "shift+cmd+a",
+    "command": "github.copilot.chat.attachSelection"
+  },
+  {
+    "key": "cmd+alt+a",
+    "command": "workbench.action.chat.attachFile"
+  },
+
+  // cancel chat
+  {
+    "key": "ctrl+c",
+    "command": "workbench.action.chat.cancel",
+    "when": "inChatInput && chatLocation == 'panel'"
+  },
+  {
+    "key": "cmd+escape",
+    "command": "-workbench.action.chat.cancel"
+  },
+
+  // open chat to side
+  {
+    "key": "alt+cmd+n",
+    "command": "workbench.action.openChatToSide"
+  }
+]

@@ -1,0 +1,24 @@
+[
+  // #region gitlens open file
+  {
+    "key": "alt+cmd+o",
+    "command": "gitlens.openWorkingFile"
+  },
+  {
+    "key": "alt+cmd+o",
+    "command": "-workbench.action.remote.showMenu"
+  },
+  {
+    "key": "alt+cmd+o",
+    "command": "-editor.action.toggleOvertypeInsertMode"
+  },
+  // #endregion
+
+  // #region diff editor switch side
+  {
+    "key": "alt+cmd+\\",
+    "command": "diffEditor.switchSide",
+    "when": "isInDiffEditor"
+  }
+  // #endregion
+]
