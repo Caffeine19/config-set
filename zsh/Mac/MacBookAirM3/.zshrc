@@ -106,40 +106,37 @@ source $ZSH/oh-my-zsh.sh
 # pnpm
 export PNPM_HOME="/Users/caffeinecat/Library/pnpm"
 case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
+*":$PNPM_HOME:"*) ;;
+*) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
 
 # nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
-nvm use node
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 # nvm end
 
-# zoxide
-eval "$(zoxide init zsh)"
-# zoxide en
-
-# console-ninja
-PATH=~/.console-ninja/.bin:$PATH
-
-# deno
-. "/Users/caffeinecat/.deno/env"
-
-# Added by Windsurf
-export PATH="/Users/caffeinecat/.codeium/windsurf/bin:$PATH"
-
-# Created by `pipx` on 2025-05-25 06:59:04
-export PATH="$PATH:/Users/caffeinecat/.local/bin"
-
-# bun completions
-[ -s "/Users/caffeinecat/.bun/_bun" ] && source "/Users/caffeinecat/.bun/_bun"
+# fnm
+eval "$(fnm env --use-on-cd --shell zsh)"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+[ -s "/Users/caffeinecat/.bun/_bun" ] && source "/Users/caffeinecat/.bun/_bun" # bun completions
+# bun end
+
+# deno
+. "/Users/caffeinecat/.deno/env"
+
+# console-ninja
+PATH=~/.console-ninja/.bin:$PATH
+
+# zoxide
+eval "$(zoxide init zsh)"
+
+# pipx
+export PATH="$PATH:/Users/caffeinecat/.local/bin"
 
 # ghcup
 [ -f "/Users/caffeinecat/.ghcup/env" ] && . "/Users/caffeinecat/.ghcup/env" # ghcup-env

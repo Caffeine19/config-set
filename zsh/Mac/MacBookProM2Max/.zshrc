@@ -117,31 +117,24 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 # nvm end
 
-# zoxide
-eval "$(zoxide init zsh)"
-export _ZO_ECHO=1
-# zoxide en
-
-# haskell
-. ~/.ghcup/env
-# haskell end
-
-# console ninja
-PATH=~/.console-ninja/.bin:$PATH
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+# bun completions
+[ -s "/Users/caffeinecat/.bun/_bun" ] && source "/Users/caffeinecat/.bun/_bun"
+# bun end
 
 # deno
 . "/Users/caffeinecat/.deno/env"
 
-# jetbrains
-# ___MY_VMOPTIONS_SHELL_FILE="${HOME}/.jetbrains.vmoptions.sh"
-# if [ -f "${___MY_VMOPTIONS_SHELL_FILE}" ]; then . "${___MY_VMOPTIONS_SHELL_FILE}"; fi
+# console-ninja
+PATH=~/.console-ninja/.bin:$PATH
 
-# Created by `pipx` on 2025-06-13 02:24:55
+# zoxide
+eval "$(zoxide init zsh)"
+
+# pipx
 export PATH="$PATH:/Users/caffeinecat/.local/bin"
 
-# bun completions
-[ -s "/Users/caffeinecat/.bun/_bun" ] && source "/Users/caffeinecat/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+# haskell
+. ~/.ghcup/env
