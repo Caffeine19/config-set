@@ -16,6 +16,7 @@
     "tsx": "^4.19.4"
   },
   "dependencies": {
-    "comment-json": "^4.2.5"
+    "comment-json": "^4.2.5",
+    "radash": "^12.1.1"
   }
 }
