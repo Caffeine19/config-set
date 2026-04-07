@@ -102,7 +102,11 @@ end
 
 -- Move chat windows to screen by name (partial match supported)
 -- @param screenName: Name or partial name of the screen
-function portChats.moveChatsToScreenByName_async(screenName)
+-- @param opts table|nil: options { tidyWindow = true }
+function portChats.moveChatsToScreenByName_async(screenName, opts)
+	opts = opts or {}
+	local tidyWindow = opts.tidyWindow ~= false -- default true
+
 	return async(function()
 		local matchedScreen = portChats.findScreenByName(screenName)
 		if not matchedScreen then
@@ -138,10 +142,11 @@ function portChats.moveChatsToScreenByName_async(screenName)
 				return
 			end
 
-			await(promise.sleep(0.2))
-			window:focus()
-
-			method.maximize(window, appName)
+			if tidyWindow then
+				await(promise.sleep(0.2))
+				window:focus()
+				method.maximize(window, appName)
+			end
 
 			await(promise.sleep(0.4))
 		end))
@@ -153,13 +158,19 @@ function portChats.moveChatsToScreenByName_async(screenName)
 end
 
 -- Helper function to move chats to sidecar screen
-function portChats.moveChatsToSidecar()
-	return portChats.moveChatsToScreenByName_async("Sidecar Display (AirPlay)")
+function portChats.moveChatsToSidecar(opts)
+	return portChats.moveChatsToScreenByName_async(
+		"Sidecar Display (AirPlay)",
+		opts
+	)
 end
 
 -- Helper function to move chats back to main screen
-function portChats.moveChatsBack()
-	return portChats.moveChatsToScreenByName_async("Built-in Retina Display")
+function portChats.moveChatsBack(opts)
+	return portChats.moveChatsToScreenByName_async(
+		"Built-in Retina Display",
+		opts
+	)
 end
 
 return portChats

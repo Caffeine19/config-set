@@ -83,7 +83,7 @@ function setup.init_async()
 		await(promise.sleep(1))
 
 		-- Move chats back to main screen
-		await(portChats.moveChatsBack())
+		await(portChats.moveChatsBack({ tidyWindow = false }))
 		await(promise.sleep(1))
 
 		-- Resume handler before tidy (tidyAllScreens_async has its own pause/resume)
