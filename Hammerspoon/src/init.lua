@@ -146,7 +146,7 @@ screenEvent.onScreenChanged(function(_type, _diffScreens) end)
 local autoSwitchInputPro = require("Feats.autoSwitchInputPro")
 autoSwitchInputPro.init()
 
-local chatgptFocus = require("Hammerspoon.src.Feats.chatgpt")
+local chatgptFocus = require("Feats.chatgpt")
 chatgptFocus.init()
 
 local setup = require("Feats.setup")

@@ -14,19 +14,24 @@ local APP_NAME = "ChatGPT"
 local observer
 local appWatcher
 
-local function focusTextarea(app)
-	local axApp = hs.axuielement.applicationElement(app)
-	if not axApp then
-		return
-	end
-
-	local textarea = find.element(axApp, { role = "AXTextArea" })
+-- Search for textarea within the specific window element, not the whole app tree
+local function focusTextarea(windowElement)
+	local textarea = find.element(windowElement, { role = "AXTextArea" })
 	if not textarea then
 		return
 	end
 
-	textarea:setAttributeValue("AXFocused", true)
-	logger.success("Focused ChatGPT textarea")
+	local position = textarea:attributeValue("AXPosition")
+	local size = textarea:attributeValue("AXSize")
+	if not position or not size then
+		return
+	end
+
+	hs.eventtap.leftClick({
+		x = position.x + size.w / 2,
+		y = position.y + size.h / 2,
+	})
+	logger.success("Clicked ChatGPT textarea")
 end
 
 local function attachObserver(app)
@@ -48,7 +53,8 @@ local function attachObserver(app)
 			if title and title ~= "" then
 				return
 			end
-			focusTextarea(app)
+			-- Pass the specific empty-title window, not the whole app
+			focusTextarea(element)
 		end)
 	end)
 	obs:start()
