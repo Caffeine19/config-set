@@ -4,26 +4,26 @@
     {
       "conditions": [
         {
-          "name": "left_shift pressed",
+          "name": "right_shift pressed",
           "type": "variable_if",
           "value": 1
         }
       ],
       "from": {
-        "key_code": "left_shift",
+        "key_code": "right_shift",
         "modifiers": { "optional": ["any"] }
       },
       "to": [
         {
           "key_code": "slash",
-          "modifiers": ["left_command", "left_control"]
+          "modifiers": ["right_command", "right_control"]
         }
       ],
       "type": "basic"
     },
     {
       "from": {
-        "key_code": "left_shift",
+        "key_code": "right_shift",
         "modifiers": { "optional": ["any"] }
       },
       "parameters": {
@@ -33,17 +33,17 @@
       "to": [
         {
           "set_variable": {
-            "name": "left_shift pressed",
+            "name": "right_shift pressed",
             "value": 1
           }
         },
-        { "key_code": "left_shift" }
+        { "key_code": "right_shift" }
       ],
       "to_delayed_action": {
         "to_if_canceled": [
           {
             "set_variable": {
-              "name": "left_shift pressed",
+              "name": "right_shift pressed",
               "value": 0
             }
           }
@@ -51,7 +51,7 @@
         "to_if_invoked": [
           {
             "set_variable": {
-              "name": "left_shift pressed",
+              "name": "right_shift pressed",
               "value": 0
             }
           }
