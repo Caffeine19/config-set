@@ -32,8 +32,10 @@ windows:
           split_direction: horizontal
           panes:
             - cwd: /Users/caffeinecat/work/qgyw/qgyw-web/packages/business
-              is_focused: true
+              commands:
+                - exec: pnpm dev
             - cwd: /Users/caffeinecat/work/qgyw/qgyw-web/packages/business
+              is_focused: true
               commands:
                 - exec: git status
       - title: qgyw-admin
