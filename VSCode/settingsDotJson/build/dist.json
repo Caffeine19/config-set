@@ -1282,18 +1282,24 @@
   // diff editor
   "diffEditor.ignoreTrimWhitespace": true,
   "diffEditor.useInlineViewWhenSpaceIsLimited": false,
-  "chat.tips.enabled": false,
-  "chat.editor.wordWrap": "on",
   "chat.agent.maxRequests": 1000,
-  "chat.todoListTool.enabled": true,
+  "chat.agent.thinkingStyle": "collapsedPreview",
   "chat.agentsControl.enabled": "hidden",
   "chat.checkpoints.showFileChanges": true,
-  "chat.viewSessions.orientation": "stacked",
-  "chat.agent.thinkingStyle": "collapsedPreview",
-  "chat.editing.confirmEditRequestRetry": false,
-  "chat.editing.confirmEditRequestRemoval": false,
   // "chat.tools.terminal.outputLocation": "terminal",
   "chat.commandCenter.enabled": false, // 隐藏标题栏上的copilot按钮
+  "chat.editing.confirmEditRequestRemoval": false,
+  "chat.editing.confirmEditRequestRetry": false,
+  "chat.editor.wordWrap": "on",
+  "chat.instructionsFilesLocations": {
+    ".claude/rules": false,
+    "~/.claude/rules": false
+  },
+  "chat.mcp.access": "all",
+  "chat.mcp.autostart": "never",
+  "chat.mcp.gallery.enabled": true,
+  "chat.tips.enabled": false,
+  "chat.todoListTool.enabled": true,
   "chat.tools.urls.autoApprove": {
     "https://github.com": {
       "approveRequest": true,
@@ -1304,16 +1310,11 @@
       "approveResponse": true
     }
   },
-  "chat.instructionsFilesLocations": {
-    "~/.claude/rules": false,
-    ".claude/rules": false
-  },
   "chat.useClaudeMdFile": false,
-  "chat.mcp.access": "all",
-  "chat.mcp.autostart": "never",
-  "chat.mcp.gallery.enabled": true,
+  "chat.viewSessions.orientation": "stacked",
   "github.copilot.chat.agent.autoFix": true,
   "github.copilot.chat.agent.thinkingTool": true,
+  "github.copilot.chat.agentDebugLog.enabled": true,
   "github.copilot.chat.anthropic.contextEditing.enabled": true,
   "github.copilot.chat.copilotMemory.enabled": true,
   "github.copilot.chat.editor.temporalContext.enabled": true,
@@ -1323,9 +1324,9 @@
   "github.copilot.chat.languageContext.typescript.enabled": true,
   "github.copilot.chat.languageContext.typescript.includeDocumentation": true,
   "github.copilot.chat.tools.memory.enabled": true,
+  "github.copilot.nextEditSuggestions.eagerness": "high",
   "github.copilot.nextEditSuggestions.enabled": true,
   "github.copilot.nextEditSuggestions.fixes": true,
-  "github.copilot.chat.agentDebugLog.enabled": true,
   "inlineChat.enableV2": true,
   "haskell.manageHLS": "GHCup",
   "json.format.keepLines": true,
@@ -1438,6 +1439,9 @@
       "args": []
     }
   },
+  "openInGithubDesktop.statusBar.Label": "$(mark-github)",
+  "openInGithubDesktop.statusBar.Alignment": "none",
+  "openInGithubDesktop.diagnosticWarning": "error",
   "powermode.enabled": false,
   "powermode.shake.intensity": 0.5,
   "stylua.searchBinaryInPATH": true,
@@ -1727,7 +1731,7 @@
   "vscode_custom_css.statusbar": false,
   "window.menuBarVisibility": "compact",
   "window.newWindowProfile": "Default",
-  "window.zoomLevel": -0.2,
+  // "window.zoomLevel": -0.2
   "workbench.startupEditor": "none",
   "workbench.tree.indent": 16,
   // 样式自定义
@@ -1774,5 +1778,5 @@
   // "workbench.productIconTheme": "fluent-icons",
   "workbench.activityBar.location": "top",
   "workbench.colorTheme": "GitHub Dark Default",
-  "// build at": "2026-04-05T11:11:21.343Z"
+  "// build at": "2026-04-07T17:44:41.042Z"
 }

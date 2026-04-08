@@ -1,0 +1,5 @@
+{
+  "openInGithubDesktop.statusBar.Label": "$(mark-github)",
+  "openInGithubDesktop.statusBar.Alignment": "none",
+  "openInGithubDesktop.diagnosticWarning": "error"
+}

@@ -1,16 +1,24 @@
 {
-  "chat.tips.enabled": false,
-  "chat.editor.wordWrap": "on",
   "chat.agent.maxRequests": 1000,
-  "chat.todoListTool.enabled": true,
+  "chat.agent.thinkingStyle": "collapsedPreview",
   "chat.agentsControl.enabled": "hidden",
   "chat.checkpoints.showFileChanges": true,
-  "chat.viewSessions.orientation": "stacked",
-  "chat.agent.thinkingStyle": "collapsedPreview",
-  "chat.editing.confirmEditRequestRetry": false,
-  "chat.editing.confirmEditRequestRemoval": false,
   // "chat.tools.terminal.outputLocation": "terminal",
   "chat.commandCenter.enabled": false, // 隐藏标题栏上的copilot按钮
+  "chat.editing.confirmEditRequestRemoval": false,
+  "chat.editing.confirmEditRequestRetry": false,
+  "chat.editor.wordWrap": "on",
+
+  "chat.instructionsFilesLocations": {
+    ".claude/rules": false,
+    "~/.claude/rules": false
+  },
+
+  "chat.mcp.access": "all",
+  "chat.mcp.autostart": "never",
+  "chat.mcp.gallery.enabled": true,
+  "chat.tips.enabled": false,
+  "chat.todoListTool.enabled": true,
 
   "chat.tools.urls.autoApprove": {
     "https://github.com": {
@@ -23,18 +31,12 @@
     }
   },
 
-  "chat.instructionsFilesLocations": {
-    "~/.claude/rules": false,
-    ".claude/rules": false
-  },
   "chat.useClaudeMdFile": false,
-
-  "chat.mcp.access": "all",
-  "chat.mcp.autostart": "never",
-  "chat.mcp.gallery.enabled": true,
+  "chat.viewSessions.orientation": "stacked",
 
   "github.copilot.chat.agent.autoFix": true,
   "github.copilot.chat.agent.thinkingTool": true,
+  "github.copilot.chat.agentDebugLog.enabled": true,
   "github.copilot.chat.anthropic.contextEditing.enabled": true,
   "github.copilot.chat.copilotMemory.enabled": true,
   "github.copilot.chat.editor.temporalContext.enabled": true,
@@ -44,9 +46,9 @@
   "github.copilot.chat.languageContext.typescript.enabled": true,
   "github.copilot.chat.languageContext.typescript.includeDocumentation": true,
   "github.copilot.chat.tools.memory.enabled": true,
+  "github.copilot.nextEditSuggestions.eagerness": "high",
   "github.copilot.nextEditSuggestions.enabled": true,
   "github.copilot.nextEditSuggestions.fixes": true,
-  "github.copilot.chat.agentDebugLog.enabled": true,
 
   "inlineChat.enableV2": true
 }
